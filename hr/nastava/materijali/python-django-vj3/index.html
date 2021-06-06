@@ -1,0 +1,898 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Vježba 3 - Cloud and hyperscale application devops group</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vjezbe-3-relacije-meu-modelima-upiti" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-header__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud and hyperscale application devops group
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vježba 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-nav__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Cloud and hyperscale application devops group
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Dinamičke web aplikacije 2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dinamičke web aplikacije 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dinamičke web aplikacije 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj1/" class="md-nav__link">
+        Vježba 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj2/" class="md-nav__link">
+        Vježba 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vježba 3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vježba 3
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-django-modeli-pyhton" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Django Modeli Pyhton
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeli-relacije-meu-modelima" class="md-nav__link">
+    Modeli: Relacije među modelima
+  </a>
+  
+    <nav class="md-nav" aria-label="Modeli: Relacije među modelima">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#many-to-many" class="md-nav__link">
+    Many to many
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#many-to-one" class="md-nav__link">
+    Many to one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-one" class="md-nav__link">
+    One to one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upiti" class="md-nav__link">
+    Upiti
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj4/" class="md-nav__link">
+        Vježba 4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Vježba 5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Vježba 6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Vježba 7
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Vježba 9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Vježba 10
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Vježba 11
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Vježba 12
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-django-modeli-pyhton" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Django Modeli Pyhton
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeli-relacije-meu-modelima" class="md-nav__link">
+    Modeli: Relacije među modelima
+  </a>
+  
+    <nav class="md-nav" aria-label="Modeli: Relacije među modelima">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#many-to-many" class="md-nav__link">
+    Many to many
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#many-to-one" class="md-nav__link">
+    Many to one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-one" class="md-nav__link">
+    One to one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upiti" class="md-nav__link">
+    Upiti
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/chadgroup/website/blob/main/docs/hr/nastava/materijali/python-django-vj3.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="vjezbe-3-relacije-meu-modelima-upiti">Vježbe 3: Relacije među modelima. Upiti</h1>
+<h6 id="tags-dwa2-vjezbe-django-django-modeli-pyhton">tags: <code>DWA2 Vjezbe</code> <code>Django</code> <code>Django Modeli</code> <code>Pyhton</code></h6>
+<h2 id="modeli-relacije-meu-modelima">Modeli: Relacije među modelima</h2>
+<p><a href="https://docs.djangoproject.com/en/3.1/topics/db/examples/">Relacije: Django dokumnetacija</a>
+- <a href="https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_many/">Many to many</a>
+- <a href="https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/">One to one</a>
+- <a href="https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_one/">Many to one</a></p>
+<h3 id="many-to-many">Many to many</h3>
+<p>Na prethodnim vježbama stvorili smo model koji sadržava klasu Predmet, dodajmo sada klasu Student koja će biti povezana s Predmetom relacijom ManyToMany.</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Model iz Vježbi2 <code>main/models.py</code> nadopunite tako da stvorite novu klasu <code>Student</code>. Klasa student sadrži stupce naziva <code>student_ime</code>, <code>student_prezime</code>, <code>student_broj_xice</code> i <code>student_prvi_upis_predmeta</code>.
+Tipovi podataka neka budu <code>CharField()</code> za <code>student_ime</code> sa <code>max_length</code> na <code>25</code>, <code>student_prezime</code> sa <code>max_length</code> na <code>50</code>. Vrijednost <code>student_broj_xice</code> postavite na <code>CharField()</code> za <code>student_ime</code> sa <code>max_length</code> na <code>10</code>. </p>
+<p>Dodajte vrijednost <code>student_predmeti</code> koja će biti povezan s klasom <code>Predmet</code>, tip veze neka bude <code>ManyToMany</code>. </p>
+<p>Unutar klase <code>Predmet</code> izmijenite vrijednost <code>predmet_vrijeme_objave</code> tako da joj postavite zadanu vrijednost na <code>timezone.now</code>.</p>
+<p>Nakon kreirane klase pokrenite naredbe <code>makemigrations</code> i <code>migrate</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+
+<span class="k">class</span> <span class="nc">Predmet</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">predmet_naslov</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">predmet_sadrzaj</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">predmet_vrijeme_objave</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">predmet_naslov</span>
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">student_ime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">student_prezime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">student_broj_xice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">student_predmeti</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Predmet</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>definirajte funkciju <code>__str__()</code> unutar klase Student koja vraća <code>student_broj_xice</code>. Zatim dodajte klasu <code>Student</code> unutar <code>main/admin.py</code> tako da ona postane vidljiva u admin panelu. </p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="c1">#Unutar klase</span>
+<span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">student_broj_xice</span>
+
+<span class="c1">#ovaj kod ide u main/admin.py  </span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">Predmet</span><span class="p">,</span> <span class="n">Student</span><span class="p">]</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">model_list</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>Nakon što ste nadopunili <code>main/models.py</code> primjenite pripremu i nakon toga migraciju s naredbama <code>makemigrations</code> i <code>migrate</code>. </p>
+<p>:::info
+Provjerite radi li vam sve tako da posjetite <code>http://127.0.0.1:8000/admin/</code>.
+:::</p>
+<h3 id="many-to-one">Many to one</h3>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte klasu <code>Profesor</code> koja sadrži vrijednosti, <code>prof_ime</code> i <code>prof_prezime</code> koji su <code>CharField</code> duljine 30, zatim definirajte <code>prof_email</code> koji je tipa <code>EmailField</code>.</p>
+<p>Unutar klase zadajte <code>__str__</code> funkciju koja vraća email adresu od profesora.</p>
+<p>Nakon kreirane klase pokrenite naredbe <code>makemigrations</code> i <code>migrate</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Profesor</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">prof_ime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">prof_prezime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">prof_email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prof_email</span>   
+</code></pre></div>
+:::</p>
+<p>:::success
+<strong>Zadatak</strong>
+Izmijenite klasu <code>Predmet</code> tako da joj dodate nositelja, vrijednost <code>nositelj</code> neka bude tip veze One to many. Za definiranje veze koristite <code>ForeignKey</code>.</p>
+<p>Nakon kreirane klase pokrenite naredbe <code>makemigrations</code> i <code>migrate</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Predmet</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">predmet_naslov</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">predmet_sadrzaj</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">predmet_vrijeme_objave</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+    <span class="n">predmet_nositelj</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Profesor</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">predmet_naslov</span> 
+</code></pre></div>
+:::</p>
+<h3 id="one-to-one">One to one</h3>
+<p>Student i Profesor povezat ćemo u klasi Zavrsni_rad, na kojem radi student, dok mu je profesor mentor. 
+Svaki završni rad ima Studenta koji ga piše i profesora koji mu je mentor. Ovo ćemo ostvariti <em>One to one</em> vezama.</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Definirajte klasu <code>Završni_rad</code>. 
+<code>Zavrsni_rad</code> neka ima zadanog nositelja <code>mentor</code> koji je povezan sa <code>Profesor</code> pomoću <code>OneToOne</code> veze, dodatni parametar koje zadajete u definiciji veze je <code>primary_key=True</code>. 
+Klasu <code>Završni_rad</code> zatim povežite sa <code>Student</code>, tip veze neka bude <code>One-to-one</code>, dodatni parametri koje zadajete su <code>on_delete=models.CASCADE</code> i <code>primary_key=True</code>. </p>
+<p>Zatim dodajte vrijednosti <code>rad_naslov</code> i <code>rad_zadatak</code> koji su CharField duljine 25 i 50 i bool vrijednost <code>rad_prvi_upis</code> koja po defaultu ima vrijednost <code>True</code>. </p>
+<p>Nakon kreirane klase pokrenite naredbe <code>makemigrations</code> i <code>migrate</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Zavrsni_rad</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">mentor</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span>
+        <span class="n">Profesor</span><span class="p">,</span>
+        <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+    <span class="n">student</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span>
+        <span class="n">Student</span><span class="p">,</span>
+        <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span>
+        <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">rad_naslov</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">rad_zadatak</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">rad_prvi_upis</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte funkciju <code>__str__()</code> unutar klase <code>Završni_rad</code> koja vraća <code>student_broj_xice</code>. Zatim dodajte klasu <code>Završni rad</code> unutar <code>main/admin.py</code> tako da ona postane vidljiva u admin panelu. 
+:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="c1">#Unutar klase Zavrsni_rad ovo dopunjavamo</span>
+<span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Zavrsni rad od: </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">student</span><span class="o">.</span><span class="n">student_broj_xice</span>
+
+<span class="c1">#u admin.py samo dopunite model_list</span>
+<span class="n">model_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">Predmet</span><span class="p">,</span> <span class="n">Student</span><span class="p">,</span> <span class="n">Zavrsni_rad</span><span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>:::info
+<strong>manage.py</strong> 
+- Nakon svake novo stvorene klase u modelu pokrenite naredbe <code>makemigrations</code> i <code>migrate</code>.
+- <code>./manage.py flush</code> koristite za očistiti bazu padatak od prethodno unešenih vrijednosti.
+- ./manage.py dbshell, ALTER TABLE main_predmet ADD COLUMN "predmet_nositelj_id" integer;
+:::</p>
+<h3 id="upiti">Upiti</h3>
+<p>Naredba za pokretanje Python shell-a:
+<div class="highlight"><pre><span></span><code>./manage.py shell 
+</code></pre></div></p>
+<p>Za definiranje instance klase:
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; profesor=Profesor()
+&gt;&gt;&gt; predmet=Predmet()
+</code></pre></div></p>
+<p>Povezivanje instanci Profesor i Predmet pomoću vanjskog ključa, odnosno dodavanje nositelja na predmet:</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; predmet.predmet_nositelj=profesor
+</code></pre></div>
+<p>Instanci klase student možemo dodati <em>n</em> predmeta:</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; student.student_predmeti.add(predmet1, predmet2)
+</code></pre></div>
+<p>Kreiranje instance Zavrsni_rad:
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; zr = Zavrsni_rad()
+</code></pre></div></p>
+<p>Dodavanje veze One to one, na instancu klase Završni rad:
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; zr.mentor=profesor
+&gt;&gt;&gt; zr.student=student
+</code></pre></div></p>
+<p>Upittza koji vraća sve instance tražene klase:
+<div class="highlight"><pre><span></span><code>profesors = Profesor.objects.all()
+</code></pre></div></p>
+<p>Pretraga po zadanoj vrijednosti:
+<div class="highlight"><pre><span></span><code>email = Profesor.objects.get(prof_email=&quot;prof_mail@uniri.hr&quot;)
+</code></pre></div></p>
+<p>Pretraga svih instanci koji imaju traženo ime:
+<div class="highlight"><pre><span></span><code>prof_peros = Profesor.objects.filter(prof_ime__contains=&quot;Pero&quot;)
+``````
+
+Uzimanje prvih 5 zapisa:
+</code></pre></div>
+Profesor.objects.all()[:5]
+<div class="highlight"><pre><span></span><code>Sortiranje i dohvaćanje prvog u listi:
+</code></pre></div>
+Profesor.objects.order_by('prof_ime')[0]
+<div class="highlight"><pre><span></span><code>## Cjelovit kod današnjih vježbi 
+
+```python
+from django.db import models
+from django.utils import timezone
+
+# Create your models here.
+
+class Profesor(models.Model):
+    prof_ime = models.CharField(max_length=30)
+    prof_prezime = models.CharField(max_length=30)
+    prof_email = models.EmailField()
+
+    def __str__(self):
+        return self.prof_email
+
+class Predmet(models.Model):
+    predmet_naslov = models.CharField(max_length=100)
+    predmet_sadrzaj = models.TextField()
+    predmet_vrijeme_objave = models.DateTimeField(default=timezone.now)
+    predmet_nositelj = models.ForeignKey(Profesor, default=1, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.predmet_naslov
+
+
+class Student(models.Model):
+    student_ime = models.CharField(max_length=25)
+    student_prezime = models.CharField(max_length=50)
+    student_broj_xice = models.CharField(max_length=10)
+    student_predmeti = models.ManyToManyField(Predmet)
+
+    def __str__(self):
+        return self.student_broj_xice
+
+
+class Zavrsni_rad(models.Model):
+    mentor = models.OneToOneField(
+        Profesor,
+        on_delete=models.CASCADE,
+    )
+    student = models.OneToOneField(
+        Student,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    rad_naslov = models.CharField(max_length=50)
+    rad_zadatak = models.CharField(max_length=150)
+    rad_prvi_upis = models.BooleanField(default=True)
+
+    def __str__(self):
+        return &quot;Zavrsni rad od: %s &quot; % self.student.student_broj_xice
+</code></pre></div></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../python-django-vj2/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Vježba 2
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../python-django-vj4/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Vježba 4
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,813 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Vježba 2 - Cloud and hyperscale application devops group</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vjezbe-2-koristenje-baze-podataka-stvaranje-modela-i-objektno-relacijsko-preslikavanje" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-header__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud and hyperscale application devops group
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vježba 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-nav__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Cloud and hyperscale application devops group
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Dinamičke web aplikacije 2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dinamičke web aplikacije 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dinamičke web aplikacije 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj1/" class="md-nav__link">
+        Vježba 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vježba 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vježba 2
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-django-modeli-pyhton" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Django Modeli Pyhton
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj3/" class="md-nav__link">
+        Vježba 3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj4/" class="md-nav__link">
+        Vježba 4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Vježba 5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Vježba 6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Vježba 7
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Vježba 9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Vježba 10
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Vježba 11
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Vježba 12
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-django-modeli-pyhton" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Django Modeli Pyhton
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/chadgroup/website/blob/main/docs/hr/nastava/materijali/python-django-vj2.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="vjezbe-2-koristenje-baze-podataka-stvaranje-modela-i-objektno-relacijsko-preslikavanje">Vježbe 2: Korištenje baze podataka. Stvaranje modela i objektno-relacijsko preslikavanje</h1>
+<h6 id="tags-dwa2-vjezbe-django-django-modeli-pyhton">tags: <code>DWA2 Vjezbe</code> <code>Django</code> <code>Django Modeli</code> <code>Pyhton</code></h6>
+<h1 id="modeli">Modeli</h1>
+<h2 id="paradigma-model-view-controller-mvc">Paradigma model-view-controller (MVC)</h2>
+<p>Django koristi paradigmu <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> (MVC) koju naziva model-template-view (MTV). Svaka stranica kreirana pomoću Django frameworka vjerojatno koristi ove tri stvari kako bi vam prikazala podatke.</p>
+<p>Iako ga nazivamo MVC (model-view-controller), način na koji radi ide u obrnutom slijedu. Korisnik će posjetiti URL, vaš kontroler (/urls.py) ukazat će na određeni prikaz (/views.py). Taj se prikaz tada može (ili ne mora) povezati s vašim modelima. Drugim riječima, prvo ide Controller, zatim View i na posljetku Model po potrebi.</p>
+<p>Unutar Djanga koristi se djelomično izmijenjena terminologija. Stoga od sad nadalje koristit ćemo Django terminologiju (model, template i view). U tablici u nastavku detaljnije su objašnjeni pojmovi i termini koji se koriste. </p>
+<table>
+<thead>
+<tr>
+<th>Korišteni naziv</th>
+<th>Django naziv</th>
+<th>Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>Model</td>
+<td>Sloj modela u Djangu odnosi se na bazu podataka plus Python kôd koji je izravno koristi. Modelira stvarnost. Pohranjuje sve potrebne vrijednosti unutar baze podataka koje su potrebne web aplikaciji. Django vam omogućuje pisanje Python klasa koje nazivamo modeli, koje se vezuju za tablice baze podataka. Stvoreni modeli nisu trajno zadani, nego se mogu izmjenjivati i dopunjavati. Izmjene su dostupne odmah nakon primjene migracija o kojima detaljnije kasnije na ovim vježbama u poglavlju ORM.</td>
+</tr>
+<tr>
+<td>View</td>
+<td>Template</td>
+<td>View sloj u Djangu odnosi se na korisničko sučelje (UI). Funkcija pregleda ili skraćeno prikaz (<em>eng. view</em>) je Python funkcija koja je zadužena za generiranje HTMLa i ostalih UI elemenata. Pomoću Python kôda renderiraju se pogledi. Django uzima web zahtjev i vraća web odgovor. Ovaj odgovor može biti bilo što, npr. HTML sadržaj web stranice, preusmjeravanje, <a href="https://http.cat/">statusni kod</a>, XML dokument ili slika...</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>View</td>
+<td>Središnji dio sustava, sadržava logiku koja povezuje cjeline da bi se pružio odgovor korisniku na traženi zahtjev. Upravlja zahtjevima i odgovorima na njih. uspostavlja vezu s bazom podataka i učitavanjem datoteka.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="uvod-u-django-hello-world">Uvod u Django: Hello world</h2>
+<p>U nastavku ovog poglavlja prikazano je kako kreirati Django aplikaciju za teksta na početnoj stranici. Za ovo nije potreban Model nego samo View u kojemu je definiran tekst koji želimo prikazati na stranici.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Otvorite datoteku i provjerite što je zapisano u <code>mysite/mysite/url.py</code>.
+:::</p>
+<p>Za definiranje putanje na koju će Django primati HTTP zahtjeve iskoristit ćemo funkciju <code>django.urls.path()</code> (<a href="https://docs.djangoproject.com/en/3.1/ref/urls/#path">dokumentacija</a>) i usmjerit ćemo na administratorsko sučelje (<a href="https://docs.djangoproject.com/en/3.1/ref/contrib/#admin">dokumentacija</a>)</p>
+<p>:::info</p>
+<p><code>mysite/mysite/url.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>Vidimo da imamo samo jedan URL koji se tiče stranice za administraciju koji nam trenutno ne treba. Sljedeće što je potrebno učiniti je usmjeriti view na URL. Razlog tome je što Django web stranice vidi kao kolekciju aplikacija koje 'ispisuje' pomoću danih URLova koji 'pokazuju' Djangu gdje tražiti. Datoteka <code>urls.py</code> unutar naše "primarne" aplikacije obično samo usmjerava na aplikacije. </p>
+<p>Pa krenimo sa kreiranjem aplikacije, i to na način da ju kreiramo pomoću naredbe <code>./manage.py startapp main</code>.</p>
+<p>Idemo sada usmjeriti naš glavni dio Django aplikacije da provjerava, odnosno poziva našu novostvorenu aplikaciju. To radimo unutar <code>mysite/mysite/url.py</code>:</p>
+<p>:::info</p>
+<p><code>mysite/mysite/url.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span> <span class="c1">#importamo include</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;main.urls&#39;</span><span class="p">)),</span> <span class="c1">#dodajemo urls</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>Ako pogledamo u folder aplikacije <code>main</code> vidjet ćemo da file <code>urls.py</code> ne postoji. Kreirajomo ga  i dodajmo sljedeći sadržaj.</p>
+<p>:::info</p>
+<p><code>mysite/main/urls.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">app_name</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span>  <span class="c1"># here for namespacing of urls.</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">homepage</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;homepage&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>Prođimo ukratko kroz logiku rada našeg programa. Prvo se posjećuje <code>mysite/url.py</code>, u URL-u nije prosljeđeno ništa, stoga odgovara <code>""</code> iz <code>path("", include('main.urls'))</code>. Program ovo tumači tako da ukljuuje <code>main.urls</code>. </p>
+<p>Program zatim pronalazi i učitava <code>main.urls</code> koji se nalazi na lokaciji <code>mysite/main/urls.py</code> i čita njegov sadržaj.
+Upravo smo izmjenili sadržaj tako da smo dodali uzorak <code>""</code> koji odgovara <code>path("", views.homepage, name="homepage")</code>. Ovime smo usmjerili aplikaciju da pokrene funkciju <code>homepage</code> unutar <code>main/views.py</code> koji još nismo izmjenili stoga ćemo to sada učiniti rako da dodamo funkciju naziva <code>homepage()</code>.</p>
+<p>:::info</p>
+<p><code>mysite/main/views.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="c1"># Create your views here.</span>
+<span class="k">def</span> <span class="nf">homepage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Welcome to homepage! &lt;strong&gt;#samoOIRI&lt;/strong&gt;&quot;</span><span class="p">)</span> 
+    <span class="c1"># primjetiti korištenje HTMLa</span>
+</code></pre></div>
+:::
+Osvježimo stranicu <code>127.0.0.1:8000</code> u browseru.</p>
+<h2 id="modeli-uvod">Modeli: Uvod</h2>
+<p>Nastavak na program iz uvoda. U ovom poglavlju detaljnije je objasnjeno stvaranje modela u djangu.</p>
+<p>Stvoreni model se mapira na tablicu u bazi podataka. Baza poidataka je već stvorena i možete ju vidjeti na lokaciji <code>mysite/mysite</code>. Po defaultu tip baze podataka je <code>.sqlite3</code>. Tip baze podataka možete mjenjati u <code>settings.py</code> pod <code>DATABASES</code>.</p>
+<h3 id="stvaranje-modela-model-fields">Stvaranje modela / Model fields</h3>
+<p>Ovime stvaramo novu tablicu u bazi podataka a zadana polja postaju stupci u toj tablici. Automatski se po defaultu kreira primarni ključ iz toga, ali po želji možemo i proizvoljno odrediti da neka od zadanih vrijednosti to bude.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Otvorite <code>main/models.py</code> i definirajte klasu imena Predmet. U klasi definirajte stupce naziva:<code>predmet_naslov</code>, <code>predmet_sadrzaj</code> i <code>predmet_vrijeme_objave</code>. Njihovi tipovi neka budu <code>CharField()</code> koji ima zadan parametar <code>max_length</code> na <code>100</code>, <code>TextField()</code> i <code>DateTimeField()</code> koji ima naziv postavljen na <code>"date published"</code>.</p>
+<p>:::spoiler Rješenje zadataka
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Predmet</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">predmet_naslov</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">predmet_sadrzaj</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">predmet_vrijeme_objave</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s2">&quot;date published&quot;</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Definirajte funkciju <code>__str__()</code> unutar klase <code>Predmet</code> koja vraća naziv predmeta <code>predmet_naziv</code>.
+:::spoiler Rješenje zadataka
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">predmet_naslov</span>
+</code></pre></div>
+:::</p>
+<p>Službena <a href="https://docs.djangoproject.com/en/3.1/ref/models/fields/">Django dokumentacija</a> o svim poljima unutar modela.</p>
+<h3 id="orm">ORM</h3>
+<p>Svaki novi model je nova tablica u bazi podataka. Zbog toga moramo napraviti dvije stvari. Prva je pripremiti za migraciju naredbom <code>makemigrations</code>, a zatim napraviti migraciju nredbom <code>migrate</code>. </p>
+<p>Pokrenimo naš lokalni server sa naredbom <code>python/python3 manage.py runserver</code>. Primjetite u outputu konzole sljedeću poruku <code>You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions
+Run 'python manage.py migrate' to apply them</code>.</p>
+<p>Unesite naredbu  da bi pripremili migraciju.</p>
+<p><div class="highlight"><pre><span></span><code>python manage.py makemigrations
+</code></pre></div>
+Output u terminalu 
+<div class="highlight"><pre><span></span><code>No changes detected
+</code></pre></div></p>
+<p>Razlog tomu je što još nismo povezali <code>main</code> aplikaciju. Način na koji ćemo povezati aplikaciju je taj da ju pozovome unutar INSTALLED_APPS unutar <code>mysite/settings.py</code>.</p>
+<p>Možemo vidjeti da je unutar <code>main/apps.py</code> definirana kalsa <code>MainConfig</code>.</p>
+<p>Dopunimo sada <code>mysite/settings.py</code> sa pozivom klase <code>MainConfig</code> iz aplikacije <code>main</code>. To radimo na način da pod <code>INSTALLED_APPS</code> dodamo <code>'main.apps.MainConfig'</code>.</p>
+<p>:::info</p>
+<p><code>mysite/mysite/settings.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Application definition</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;main.apps.MainConfig&#39;</span> <span class="c1"># ovu liniju dodajemo</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>Unesite ponovo naredbu <code>python manage.py makemigrations</code> da bi pripremili migraciju.</p>
+<div class="highlight"><pre><span></span><code>Migrations for &#39;main&#39;:
+  main\migrations\0001_initial.py
+    - Create model Predmet
+</code></pre></div>
+<p>:::success
+<strong>Zadatak</strong>
+Prčitajte sadržaj unutar <code>main\migrations\0001_initial.py</code> datoteke. 
+:::</p>
+<p>Zatim unesimo naredbu <code>python manage.py migrate</code> da bi se migracija izvršila.</p>
+<p>Nakon svakog rada sa modelima, bile to izmjene ili stvaranje novih modela potrebno je napraviti migraciju na načn <code>makemigrations</code> a zatim <code>migrate</code>.</p>
+<p>Pogledajmo output u terminalu koji nam vraća naredba 
+<div class="highlight"><pre><span></span><code>$ python manage.py migrate
+</code></pre></div></p>
+<p>Output naredbe <code>python manage.py migrate</code> u terminalu:</p>
+<div class="highlight"><pre><span></span><code>Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+</code></pre></div>
+<h3 id="interakcija-sa-modelom">Interakcija sa modelom</h3>
+<p>Za interakciju sa modelom koristimo naredbu <code>python manage.py shell</code> koja pokreće Python shell. </p>
+<p>Za početak uvezimo potrebne modele i pakete naredbama:
+<code>from main.models import Predmet</code>
+<code>from django.utils import timezone</code></p>
+<p>Za dohvaćanje svih objekata koristimo <code>Predmet.objects.all()</code> što vraća <code>QuerrySet []</code> ondosno praznu listu. </p>
+<p>Dodajmo vrijednosti u novu instancu klase Predmet nazvia <code>novi_predmet</code> pomoću:</p>
+<p><code>novi_predmet = Predmet()</code>
+<code>novi_predmet.predmet_naslov="DWA2"</code>
+<code>novi_predmet_sadrzaj="ovo je opis predmeta"</code>
+<code>novi_predmet.predmet_vrijeme_objave=timezone.now()</code></p>
+<p>Pohranimo promjene sa <code>novi_predmet.save()</code></p>
+<p>Isprobajmo ponovno naredbu <code>Predmet.objects.all()</code> </p>
+<p>Kroz predmete se može i iterirati, primjerice korištenjem <code>for</code> petlje:
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">Predmet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">predmet_naslov</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="kreiranje-superusera-i-povezivanje-modela">Kreiranje superusera i povezivanje modela</h2>
+<p>Administratora kreiramo naredbom:
+<code>./manage.py createsuperuser</code></p>
+<p>Dodjelite proizvoljno ime i lozinku, mail adresu trenutno možemo ostaviti praznu.</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Posjetite na lokalnom serveru adresu http://127.0.0.1:8000/admin
+:::</p>
+<p>Idemo sada nadopuniti kod i povezati stvoreni model pomoću <code>mysite/main/admin.py</code>. </p>
+<p>:::info</p>
+<p><code>mysite/main/admin.py</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Predmet</span>
+
+<span class="c1"># Register your models here.</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Predmet</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Osvježite stranicu na adresi http://127.0.0.1:8000/admin
+:::</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../python-django-vj1/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Vježba 1
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../python-django-vj3/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Vježba 3
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,842 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Vježba 4 - Cloud and hyperscale application devops group</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vjezbe-4-usmjeravanje-i-url-i-stvaranje-pogleda-kao-odgovora-na-http-zahtjeve" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-header__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud and hyperscale application devops group
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vježba 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-nav__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Cloud and hyperscale application devops group
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Dinamičke web aplikacije 2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dinamičke web aplikacije 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dinamičke web aplikacije 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj1/" class="md-nav__link">
+        Vježba 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj2/" class="md-nav__link">
+        Vježba 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj3/" class="md-nav__link">
+        Vježba 3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vježba 4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vježba 4
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-pyhton-http-zahtjevi-url" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Pyhton HTTP zahtjevi URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usmjeravanje-pomocu-urlspy" class="md-nav__link">
+    Usmjeravanje pomoću /urls.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slanje-zahtjeva" class="md-nav__link">
+    Slanje zahtjeva
+  </a>
+  
+    <nav class="md-nav" aria-label="Slanje zahtjeva">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vracajne-gresaka-na-zahtjeve" class="md-nav__link">
+    Vraćajne grešaka na zahtjeve
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vracanje-zapisa-iz-baze" class="md-nav__link">
+    Vraćanje zapisa iz baze
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Vježba 5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Vježba 6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Vježba 7
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Vježba 9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Vježba 10
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Vježba 11
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Vježba 12
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-pyhton-http-zahtjevi-url" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Pyhton HTTP zahtjevi URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usmjeravanje-pomocu-urlspy" class="md-nav__link">
+    Usmjeravanje pomoću /urls.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slanje-zahtjeva" class="md-nav__link">
+    Slanje zahtjeva
+  </a>
+  
+    <nav class="md-nav" aria-label="Slanje zahtjeva">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vracajne-gresaka-na-zahtjeve" class="md-nav__link">
+    Vraćajne grešaka na zahtjeve
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vracanje-zapisa-iz-baze" class="md-nav__link">
+    Vraćanje zapisa iz baze
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/chadgroup/website/blob/main/docs/hr/nastava/materijali/python-django-vj4.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="vjezbe-4-usmjeravanje-i-url-i-stvaranje-pogleda-kao-odgovora-na-http-zahtjeve">Vježbe 4: Usmjeravanje i URL-i. Stvaranje pogleda kao odgovora na HTTP zahtjeve</h1>
+<h6 id="tags-dwa2-vjezbe-django-pyhton-http-zahtjevi-url">tags: <code>DWA2 Vjezbe</code> <code>Django</code> <code>Pyhton</code> <code>HTTP zahtjevi</code> <code>URL</code></h6>
+<p>Na današnjim vježbama čeka nas gradivo vezano za usmjeravanje pomoću URL'ova. Zatim ćemo vidjeti par primjera kako se izgleda odgovor na poslani HTTP zahtjev</p>
+<h2 id="usmjeravanje-pomocu-urlspy">Usmjeravanje pomoću <em>/urls.py</em></h2>
+<p>Potrebno je prvo stvoriti novi projekt i unutar njega aplikaciju koju ćemo povezati.</p>
+<p>Za kreiranje projekta koristi se naredba:
+<div class="highlight"><pre><span></span><code>django-admin startproject &lt;prject_name&gt;
+</code></pre></div></p>
+<p>Za kreiranje aplikacije unutar projekta koristi se naredba:
+<div class="highlight"><pre><span></span><code>django-admin startapp &lt;app_name&gt;
+</code></pre></div></p>
+<p>Nakon što su projekt i aplikacija unutar njega kreirani, potrebno ih je povezati. Ovo se radi unutar datoteka <code>./urls.py</code> koja se nalazi u projektnom folderu.</p>
+<p>Na ovim vježbama kreirati će se projekt naziva <code>vj4</code> unutar kojeg je stvorena aplikacija naziva <code>main</code>.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Povežite kreiranu aplikaciju <code>main</code> s glavnim djelom aplikacije unutar <code>./urls.py</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;main/&quot;</span><span class="p">,</span><span class="n">include</span><span class="p">(</span><span class="s1">&#39;main.urls&#39;</span><span class="p">)),</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>:::warning
+<strong>Napomena</strong>
+Potrebno je povezati novostvorenu aplikaciju <code>main</code> i unutar <code>setting.py</code>. Unutar<code>INSTALLED_APPS</code> potrebno je dodati <code>MainConfig</code> iz <code>apps.py</code> koja se nalazi unutar <code>main</code> aplikacije.</p>
+<p>:::</p>
+<p>Program smo usmjerili na <code>./main/urls.py</code> koji trenutno ne postoji. Iz toga razloga, potrebno ga je stvoriti.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Stvorite datoteku <code>./main/urls.py</code>. Odmah importajte sve iz filea <code>views.py</code> i neka ime aplikacije bude zadano na <code>app_name = 'main'</code>.</p>
+<p>Zatim definirajte uzorak URL-a neka upućuje na <code>homepage</code>, odnosno na funkciju unutar <code>./main/views.py</code> koja se zove <code>homepage</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">app_name</span> <span class="o">=</span> <span class="s1">&#39;main&#39;</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;homepage&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">homepage</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;homepage&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+:::</p>
+<p>Definirali smo poveznice unutar <code>url</code> fileova. Sada je potrebno kreirati funkciju<code>homepage</code> unutar <code>./main/views.py</code> koju smo pozvali unutar <code>./main/urls.py</code>.</p>
+<h2 id="slanje-zahtjeva">Slanje zahtjeva</h2>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte funkciju <code>homepage</code> unutar<code>./main/views.py</code> koja će vraćati Http odgovor na zahtjev.
+Za vraćanje Http odgovora koristite funkciju <code>HttpResponse</code> koju uvozite sa <code>from django.http import HttpResponse</code>.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="c1"># Create your views here.</span>
+
+<span class="k">def</span> <span class="nf">homepage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;&lt;strong&gt; Homepage &lt;/strong&gt; jos neki tekst na homepage&quot;</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>:::info
+Pohranite sve promjene i pokrenite server.
+:::</p>
+<p>:::success
+<strong>Zadatak</strong>
+Difinirajte funkciju <code>current_datetime</code> unutar<code>./main/views.py</code> koja će vraćati Http odgovor na zahtjev.
+Neka vrijednost koju funkcija vraća budu datum i trenutno vrijeme.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="c1"># Create your views here.</span>
+
+<span class="k">def</span> <span class="nf">current_datetime</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;html&gt;&lt;body&gt;Trenutno vrijeme: </span><span class="si">%s</span><span class="s2">.&lt;/body&gt;&lt;/html&gt;&quot;</span> <span class="o">%</span> <span class="n">now</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<h3 id="vracajne-gresaka-na-zahtjeve">Vraćajne grešaka na zahtjeve</h3>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte funkciju unutar <code>views.py</code>, funkcija <code>not_found</code> neka vraća <code>HttpResponseNotFound</code>. Vratite proizvoljni odgovor.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpResponseNotFound</span>
+
+<span class="k">def</span> <span class="nf">not_found</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponseNotFound</span><span class="p">(</span><span class="s1">&#39;&lt;h1&gt;Page not found&lt;/h1&gt;&#39;</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<h2 id="vracanje-zapisa-iz-baze">Vraćanje zapisa iz baze</h2>
+<p>U nastavku je prikazano kako se mogu dohvaćati vrijednosti iz baze podataka i kako ih možemo prikazivati na stranici.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Kreirajte klasu <code>Student</code>, neka sadrži, ime prezime i broj xice kao atribute. Dodajte ju zatim unutar <code>admin.py</code> da bi se mogle unositi vrijednosti. 
+Za kraj pokrenite naredbe za migraciju da se kreira baza.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="c1">#unutar models.py</span>
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">ime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+    <span class="n">prezime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">broj_xice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">broj_xice</span><span class="p">)</span>
+
+
+<span class="c1">### unutar admin.py</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">main.models</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Register your models here.</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Student</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>Nakon što je baza pomoću modela kreirana, potrebno je unijeti u nju vrijednosti da se može izvršiti tražene upite.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Kreirajte administratora i dodajte u bazu podataka 5 studenata. Od 5 studenata, 3 neka imaju isto ime. 
+<em>Primjerice: Marko, Marko, Marko, Ivan i Ana.</em></p>
+<p>Prezime i broj xice, proizvoljno zadajte.
+:::</p>
+<p>Kada smo popunili bazu, idemo kreirati i upite.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte funkciju koja u bazi pronalazi sve studente zadanog imena, listu pronađenih imena proslijedite funkciji <code>render</code>. Proslijeđena rješenja neka se prikazuju unutar <code>students.html</code>. 
+Za početak, neka vaša funkcija vraća <code>render(request, 'students.html', context=context)</code>. A <code>students.html</code> ćemo definirati u nastavku rješavanja ovoga zadatka.</p>
+<p>:::spoiler Rješenje
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">all_peros</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">peros</span> <span class="o">=</span> <span class="n">Student</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ime__contains</span><span class="o">=</span><span class="s2">&quot;pero&quot;</span><span class="p">)</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;peros&#39;</span><span class="p">:</span> <span class="n">peros</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;students.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+:::</p>
+<p>Za prikaz rješenja prethodnog zadatka, potreban nam je html file, koji će prikazati rezultate upita nad bazom.
+Kreirajte unutar <code>main</code> foldera datoteku <code>./main/templates</code>, unutar koje pohranjujete <code>students.html</code>.</p>
+<p>:::info
+<strong>students.html</strong>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    {% for p in peros %}
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Ime: {{ p.ime }} <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span> Prezime: {{ p.prezime }} <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span> Broj xice:{{ p.broj_xice }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    {% endfor %}
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
+:::</p>
+<p>:::success
+Dodajte unutar <code>./main/urls.py</code> putanju koja nas vodi na prethodno kreiranu funkciju i zatim provjerite prikaz rezultata na serveru.
+:::</p>
+<p>Idemo još prikazati ukupan broj studenata u našoj bazi. Ovaj broj ćemo zatim proslijediti funkciji <code>render</code> koja će ispisati ukupan broj studenata u za to kreiranom html-u.</p>
+<p>:::success
+<strong>Zadatak</strong>
+Definirajte funkciju koja u bazi pronalazi ukupan broj studenata, broj studenata funkciji <code>render</code>. </p>
+<p>Proslijeđena rješenja neka se prikazuju unutar <code>index.html</code>. </p>
+<p>Dodajte grešku u slučaju da Student u bazi nije pronađen.</p>
+<p>:::spoiler Rješenje python
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">num_students</span> <span class="o">=</span> <span class="n">Student</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num_students&#39;</span><span class="p">:</span> <span class="n">num_students</span><span class="p">}</span>
+
+    <span class="k">except</span> <span class="n">Student</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">Http404</span><span class="p">(</span><span class="s2">&quot;Student does not exist&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;detail.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{% block content %}
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Dobrodosli na UNIRI<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Na faxu je upisano:<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Studenata:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> {{ num_students }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+{% endblock %}
+</code></pre></div>
+:::</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../python-django-vj3/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Vježba 3
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../python-django-vj5/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Vježba 5
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,810 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Vježba 1 - Cloud and hyperscale application devops group</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vjezbe-1-postavljanje-razvojnog-okruzenja-web-aplikacija-na-operacijskim-sustavima-slicnim-unixu-i-windowsima-stvaranje-projekta-i-organizacija-koda-koristenje-dokumentacije" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-header__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud and hyperscale application devops group
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vježba 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Cloud and hyperscale application devops group" class="md-nav__button md-logo" aria-label="Cloud and hyperscale application devops group" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Cloud and hyperscale application devops group
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/chadgroup/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Dinamičke web aplikacije 2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dinamičke web aplikacije 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dinamičke web aplikacije 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vježba 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vježba 1
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-pyhton-uvod" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Pyhton Uvod
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacija" class="md-nav__link">
+    Instalacija
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stvaranje-prvog-django-projekta" class="md-nav__link">
+    Stvaranje prvog Django projekta
+  </a>
+  
+    <nav class="md-nav" aria-label="Stvaranje prvog Django projekta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projektni-direktorij-i-njegov-sadrzaj" class="md-nav__link">
+    Projektni direktorij i njegov sadržaj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kreiranje-prve-aplikacije" class="md-nav__link">
+    Kreiranje prve aplikacije
+  </a>
+  
+    <nav class="md-nav" aria-label="Kreiranje prve aplikacije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lokalni-posluzitelj-za-razvoj" class="md-nav__link">
+    Lokalni poslužitelj za razvoj
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dodatak-citanje-dokumentacije-i-stackoverflow" class="md-nav__link">
+    Dodatak: Čitanje dokumentacije i StackOverflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj2/" class="md-nav__link">
+        Vježba 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj3/" class="md-nav__link">
+        Vježba 3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj4/" class="md-nav__link">
+        Vježba 4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Vježba 5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Vježba 6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Vježba 7
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Vježba 9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Vježba 10
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Vježba 11
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Vježba 12
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tags-dwa2-vjezbe-django-pyhton-uvod" class="md-nav__link">
+    tags: DWA2 Vjezbe Django Pyhton Uvod
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacija" class="md-nav__link">
+    Instalacija
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stvaranje-prvog-django-projekta" class="md-nav__link">
+    Stvaranje prvog Django projekta
+  </a>
+  
+    <nav class="md-nav" aria-label="Stvaranje prvog Django projekta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projektni-direktorij-i-njegov-sadrzaj" class="md-nav__link">
+    Projektni direktorij i njegov sadržaj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kreiranje-prve-aplikacije" class="md-nav__link">
+    Kreiranje prve aplikacije
+  </a>
+  
+    <nav class="md-nav" aria-label="Kreiranje prve aplikacije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lokalni-posluzitelj-za-razvoj" class="md-nav__link">
+    Lokalni poslužitelj za razvoj
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dodatak-citanje-dokumentacije-i-stackoverflow" class="md-nav__link">
+    Dodatak: Čitanje dokumentacije i StackOverflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/chadgroup/website/blob/main/docs/hr/nastava/materijali/python-django-vj1.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="vjezbe-1-postavljanje-razvojnog-okruzenja-web-aplikacija-na-operacijskim-sustavima-slicnim-unixu-i-windowsima-stvaranje-projekta-i-organizacija-koda-koristenje-dokumentacije">Vježbe 1: Postavljanje razvojnog okruženja web aplikacija na operacijskim sustavima sličnim Unixu i Windowsima. Stvaranje projekta i organizacija koda. Korištenje dokumentacije</h1>
+<h6 id="tags-dwa2-vjezbe-django-pyhton-uvod">tags: <code>DWA2 Vjezbe</code> <code>Django</code> <code>Pyhton</code> <code>Uvod</code></h6>
+<h2 id="instalacija">Instalacija</h2>
+<p>IDE u kojem se radi na vježbama je Visual Studio Code koji možete preuzeti na <a href="https://code.visualstudio.com/">linku</a>. 
+Nakon što preuzimete i instalirate VS Code. Pokrenite ga, zatim s kraticom <code>CTRL</code> + <code>SHIFT</code> + <code>X</code> otvorite dio za instalaciju ekstenzija, pronađite Python i instalirajte ga. </p>
+<p>Dodatna upustva za instalaciju Python ekstenzije unutar VS Codea možete pronaći na <a href="https://code.visualstudio.com/docs/python/python-tutorial">linku</a>.</p>
+<p>Instalacija <a href="https://pypi.org/project/pip/">pip</a>-a (kod sebe doma na WSL ili kakvom god Ubuntuu):</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install python3 python3-pip python-is-python3 pylint
+</code></pre></div>
+<p>(Nepreporučeno jer je Django verzija 2.x) Instalacija pakirane verzije <a href="https://www.djangoproject.com/">Djanga</a>:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install python3-django
+</code></pre></div>
+<p>(Preporučeno jer je Django verzija 3.x) Instalacija Djanga korištenjem pip-a (kod sebe doma na WSL ili kakvom god Ubuntuu, uključujući i učionicu):</p>
+<div class="highlight"><pre><span></span><code>$ pip3 install Django
+</code></pre></div>
+<p>ili</p>
+<div class="highlight"><pre><span></span><code>$ python3 -m pip install Django
+</code></pre></div>
+<p>Primjer web sjedišta u Djangu:</p>
+<p>https://www.instagram.com/ (velikim dijelom)
+http://www.riteh.uniri.hr/ (shoutout: http://www.riteh.uniri.hr/ustroj/zavodi/zr/)</p>
+<h2 id="stvaranje-prvog-django-projekta">Stvaranje prvog Django projekta</h2>
+<p>Stvaranje direktorija gdje ćemo stvoriti naš projekt:</p>
+<div class="highlight"><pre><span></span><code>$ mkdir moja_prva_stranica
+</code></pre></div>
+<p>Zatim idemo u taj direktorij naredbom</p>
+<div class="highlight"><pre><span></span><code>$ cd moja_prva_stranica
+</code></pre></div>
+<p>u njemu stvaramo django projekt naredbom:</p>
+<div class="highlight"><pre><span></span><code>$ django-admin startproject mysite
+</code></pre></div>
+<p>Ostale raspoložive naredbe možemo vidjeti s komandom <code>django-admin</code>, a za detaljnije o pojedinim naredbama koristite <code>django-admin help</code>, npr. za naredbu <code>startproject</code> na način:</p>
+<div class="highlight"><pre><span></span><code>$ django-admin help startproject
+</code></pre></div>
+<p>Naredba <code>startproject</code> kreira novi direktorij naziva kojega smo proslijedili, u našem slučaju to je <code>mysite</code>.</p>
+<p>Prebacimo se u direktorij <code>mysite</code> pomoću naredbe <code>cd mysite</code> i ispišimo sadržaj direktorija u obiliku stabla s naredbom <code>tree mysite</code>, možete koristiti i naredbu <code>ls mysite</code>.</p>
+<div class="highlight"><pre><span></span><code>mysite
+├── manage.py
+└── mysite
+    ├── asgi.py
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre></div>
+<p>Direktorij <code>mysite</code> je središnji direktorij naše stranice koju ćemo graditi. Ovo je "glavna" tj. središnja aplikacija. Njena uloga je usmjeravanje Djanga na druge aplikacije koje ćemo kreirati. Ono što ćemo tu razvijati je samo usmjeravanje na druge aplikacije koje razvijamo i podešavanje postavki. </p>
+<h3 id="projektni-direktorij-i-njegov-sadrzaj">Projektni direktorij i njegov sadržaj</h3>
+<p>Sadržaj koji se nalazi u novo kreiranom projektu:</p>
+<p>Izvan direktorija <code>mysite/</code>
+: korijenski je direktorij koji ima ulogu mjesta gdje se nalaze sve datoteke i direktoriji projekta. </p>
+<p>Unutar direktorija <code>mysite/</code>
+: nalazi se Python package projekta, a njegov sadržaj je: </p>
+<p>Datoteka <code>mysite/__init__.py</code>
+: Govori interpreteru da sve unutar ovoga direktorija bude tretirano kao Python package. </p>
+<p>Datoteka <code>mysite/settings.py</code>
+: Postavke/konfiguracija za Django projekt. Obratiti pažnju na <code>INSTALLED_APPS</code> koji nam je trenutno najbitniji dio u ovome fileu koji će nam trebati. Svaki puta kada se dodaje nova aplikacija na našu web stranicu, moramo ju ovdje ručno dodavati.</p>
+<div class="highlight"><pre><span></span><code>:::danger 
+Paziti na `SECRET_KEY` da nije vidljiv svima, npr. na GitHubu-u. Zlonamjerni pojedinac može to iskoristiti i upravljati vašom stranicom kao administrator.
+:::
+</code></pre></div>
+<p>Datoteka <code>mysite/urls.py</code>
+: Sadrži deklarirane URLove vezane za Django projekt, služi Django aplikaciji kao "kazalo sadržaja". Njegova uloga je 'kontroliranje' naše stranice/aplikacije. Pomoću njega 'pokazujemo/usmjeravamo' program na naše aplikacije.</p>
+<div class="highlight"><pre><span></span><code>:::warning
+**Osvježite si znanje regularnih izraza**
+- [Regularni izrazi na kolegiju OS1](https://inf2.uniri.hr/reStructuredHgWiki/materijali/grep-sed-awk-tr/#izdvajanje-linija-iz-tekstualnih-datoteka)
+- [Regularni izrazi i Python](https://docs.python.org/3/library/re.html#module-re)
+:::
+</code></pre></div>
+<p>Datoteke <code>mysite/wsgi.py i mysite/asgi.py</code>
+: ASGI je nasljednik WSGI, dugogodišnjeg Python standarda za kompatibilnost između web poslužitelja, frameworka i aplikacija. WSGI povećava mogućnosti u radu na webu pomoću Pythona, dok je cilj ASGI-a produžiti to za područje asinkronog Pythona.</p>
+<p>Datoteka <code>manage.py</code>
+: Koristimo pri radu u terminalu za prosljeđivanje raznih naredbi koje prosljeđujemo programu da se izvrše nad projektom, više o tome u nastavku.</p>
+<h3 id="kreiranje-prve-aplikacije">Kreiranje prve aplikacije</h3>
+<p>Započnimo s kreiranjem prve aplikacije. Za početak dodat ćemo aplikacije na naš projekt <code>mysite</code>, to činimo naredbom: <code>./manage.py startapp main</code>. Primijetit ćete da u direktoriju <code>mysite</code> je stvoren novi poddirektorij naziva <code>main</code>.</p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Provjerite sadržaj direktorija <code>mysite/mysite</code> i direktorija <code>mysite/main</code> s naredbama <code>tree</code> i <code>ls</code>.
+:::</p>
+<h4 id="lokalni-posluzitelj-za-razvoj">Lokalni poslužitelj za razvoj</h4>
+<p>Pokrenimo sada naš lokalni poslužitelj (<em>eng.server</em>) na kojemu ćemo razvijati aplikaciju.</p>
+<p>:::warning
+<strong>Napomena za pokretanje lokalnog poslužitelja</strong></p>
+<p>Za pokretanje poslužitelja koristite zasebni terminal. Poslužitelj aktivno radi za vrijeme razvoja i nije potrebno ponovno pokretati poslužitelj nakon svake promjene.
+:::</p>
+<p>U zasebnom terminalu za pokretanje poslužitelja koristi se naredba:</p>
+<div class="highlight"><pre><span></span><code>$ ./manage.py runserver 
+</code></pre></div>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Provjerite rad poslužitelja posjetom adrese <code>http://127.0.0.1:8000/</code> u web pregledniku.
+:::</p>
+<p>Ovo je poslužitelj na kojem ćemo razvijati Django aplikacije.</p>
+<p>U terminalu možemo vidjeti HTTP zahtjeve na poslužitelj i statusni kod odgovora na njih. </p>
+<p>:::success
+<strong>Zadatak</strong></p>
+<p>Provjerite ispis u terminalu prilikom osvježavanja stranice pritiskom na tipki<code>CTRL</code> + <code>R</code> ili <code>F5</code>.
+:::</p>
+<h3 id="dodatak-citanje-dokumentacije-i-stackoverflow">Dodatak: Čitanje dokumentacije i StackOverflow</h3>
+<blockquote>
+<p>Tko radi taj i griješi, a iz grešaka se najbolje uči.</p>
+</blockquote>
+<p>Službenu Django dokumentaciju možete pronaći <a href="https://docs.djangoproject.com/en/3.1/">ovdje</a>.</p>
+<p><a href="https://stackoverflow.com/">Stack Overflow</a> je mjesto za pitanja i odgovore za profesionalne programere i entuzijaste. Sadrži pitanja i odgovore na širok raspon tema u računalnom programiranju. Više na <a href="https://en.wikipedia.org/wiki/Stack_Overflow">Wikipediji</a>.</p>
+<p>Primjeri pitanja postavljenih na Stack Overflowu vezanih za probleme u Pythonu i Djangu:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/3500371/trouble-installing-django">Primjer 1</a></li>
+<li><a href="https://stackoverflow.com/questions/28842901/how-to-start-a-new-django-project">Primjer 2</a></li>
+<li><a href="https://stackoverflow.com/questions/755857/default-value-for-field-in-django-model">Primjer 3</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../../.." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../python-django-vj2/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Vježba 2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>
