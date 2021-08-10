@@ -1,0 +1,4929 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.3">
+    
+    
+      
+        <title>Konfiguracija sustava za upravljanje bazom podataka MariaDB - Group for apps and services on exascale research infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#konfiguracija-sustava-za-upravljanje-bazom-podataka-mariadb" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Group for apps and services on exascale research infrastructure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Konfiguracija sustava za upravljanje bazom podataka MariaDB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Group for apps and services on exascale research infrastructure
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        O laboratoriju
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ljudi/" class="md-nav__link">
+        Ljudi
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../istrazivanje-i-razvoj/" class="md-nav__link">
+        Istraživanje i razvoj
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        Nastava
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nastava" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Nastava
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      <label class="md-nav__link" for="__nav_5_1">
+        Izvedbeni planovi
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Izvedbeni planovi" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Izvedbeni planovi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+      
+      <label class="md-nav__link" for="__nav_5_1_1">
+        2020/2021
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2020/2021" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          2020/2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+      
+      <label class="md-nav__link" for="__nav_5_1_2">
+        2019/2020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2019/2020" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+      
+      <label class="md-nav__link" for="__nav_5_1_3">
+        2018/2019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2018/2019" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          2018/2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2018-2019/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/KM/" class="md-nav__link">
+        Komunikacijske mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OI1/" class="md-nav__link">
+        Osnove informatike 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OPK/" class="md-nav__link">
+        Optimizacija programskog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OS1/" class="md-nav__link">
+        Operacijski sustavi 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM-RiTeh/" class="md-nav__link">
+        Računalne mreže (RiTeh)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/SRS/" class="md-nav__link">
+        Superračunalni sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/URS/" class="md-nav__link">
+        Upravljanje računalnim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_21" type="checkbox" id="__nav_5_21" checked>
+      
+      <label class="md-nav__link" for="__nav_5_21">
+        Nastavni materijali
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nastavni materijali" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_21">
+          <span class="md-nav__icon md-icon"></span>
+          Nastavni materijali
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../389-directory-server-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj 389 Directory Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anaconda-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible-automatizacija-konfiguracije-odrzavanja-sustava/" class="md-nav__link">
+        Automatizacija konfiguracije i održavanja sustava alatom Ansible
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-ab-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom ab (Apache HTTP server benchmarking tool)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-mod-ssl/" class="md-nav__link">
+        Konfiguracija HTTPS-a u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-pokretanje-php-aplikacija/" class="md-nav__link">
+        Pokretanje PHP web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-pokretanje-python-aplikacija/" class="md-nav__link">
+        Pokretanje Python web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-virtual-host/" class="md-nav__link">
+        Konfiguracija virtualnih domaćina u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-web-posluzitelj/" class="md-nav__link">
+        Osnovna konfiguracija web poslužitelja Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-abi-kompatibilnost/" class="md-nav__link">
+        Binarna kompatibilnost i kompatibilnost na razini izvornog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../avahi-zeroconf/" class="md-nav__link">
+        Zerconf NSS/mDNS sustav Avahi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../avogadro-vizualizacija-uredjivanje-molekula/" class="md-nav__link">
+        Vizualizacija i uređivanje molekula alatom Avogadro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bind9-dns-sustav/" class="md-nav__link">
+        DNS sustav BIND9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatika-povijest-osnove/" class="md-nav__link">
+        Bioinformatika
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brctl-izrada-mostova/" class="md-nav__link">
+        Premošćenje mrežnih adaptera i izrada mostova
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bro-raspoznavanje-upada-u-sustav/" class="md-nav__link">
+        Raspoznavanje upada u sustav alatom Bro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ceph-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Ceph
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chembl-baza-bioaktivnih-molekula/" class="md-nav__link">
+        Baza bioaktivnih molekula ChEMBL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../click-modularni-usmjerivac/" class="md-nav__link">
+        Modularni usmjerivač Click
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../click-programska-osnova-usmjerivaca/" class="md-nav__link">
+        Programska osnova usmjerivača
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../click-protokoli/" class="md-nav__link">
+        Korištenje mrežnih protokola u modularnom usmjerivaču Click
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c-mrezne-aplikacije/" class="md-nav__link">
+        Programiranje mrežnih aplikacija u programskim jezicima C i C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-eigen/" class="md-nav__link">
+        C++ biblioteka predložaka za linearnu algebru Eigen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-std-random/" class="md-nav__link">
+        Generiranje pseudoslučajnih brojeva u C++ aplikacijama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja C++ aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../curl-protokoli-aplikacijske-razine/" class="md-nav__link">
+        Rad s protokolima aplikacijske razine
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debian-installer-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskog sustava Debian korištenjem instalacijskog alata Debian-Installer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deb-pakiranje-paketa/" class="md-nav__link">
+        Pakiranje deb paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp-posluzitelj-klijent/" class="md-nav__link">
+        Dinamičko dodjeljivanje adresa domaćinima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dnsmasq-dhcp-dns-posluzitelj/" class="md-nav__link">
+        DHCP i DNS poslužitelj dnsmasq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-kontejneri/" class="md-nav__link">
+        Kontejnerizacija alatom Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava DokuWiki
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dovecot-pop3-imap-posluzitelj/" class="md-nav__link">
+        POP3 i IMAP -- Dovecot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doxygen-dokumentiranje-programskog-koda/" class="md-nav__link">
+        Dokumentiranje programskog koda alatom Doxygen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ebtables-vatrozid/" class="md-nav__link">
+        Filtriranje okvira vatrozidom na veznom sloju
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elasticsearch-distribuirano-pretrazivanje/" class="md-nav__link">
+        Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emacs-text-datoteke/" class="md-nav__link">
+        Rad s tekstualnim datotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-bezicne-mreze/" class="md-nav__link">
+        Emulacija bežičnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-fragmentacija-paketa/" class="md-nav__link">
+        Fragmentacija IPv4 paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-generiranje-topologija/" class="md-nav__link">
+        Generiranje topologija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-graficko-sucelje/" class="md-nav__link">
+        Osnove rada s emulatorom računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-konfiguracija-cvora/" class="md-nav__link">
+        Konfiguracija čvorova u alatu CORE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-mobilnost/" class="md-nav__link">
+        Mobilnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-stvaranje-konfiguracija-podmreza/" class="md-nav__link">
+        Stvaranje i konfiguracija podmreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcc-gxx-make-prevodjenje-programa/" class="md-nav__link">
+        Prevođenje C, C++ i Fortran programa u izvršni kod
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettext-lokalizacija-softvera/" class="md-nav__link">
+        Lokalizacija softvera korištenjem GNU gettexta
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab-ci-cd/" class="md-nav__link">
+        Kontinuirana integracija korištenjem GitLaba
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-upravljanje-verzijama/" class="md-nav__link">
+        Distribuirani sustav za upravljanje verzijama Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gluster-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Gluster
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnu-linux-slobodni-softver-povijest-osnove/" class="md-nav__link">
+        Razvoj slobodnog operacijskog sustava sličnog Unixu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnupg-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa alatom GnuPG
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep-sed-awk-tr/" class="md-nav__link">
+        Pretraživanje i obrada tekstualnih datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grub-pokretanje-sustava/" class="md-nav__link">
+        Boot proces računala i učitavač GRUB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hsa-pregled/" class="md-nav__link">
+        Pregled heterogene sustavske arhitekture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpie-http-klijent/" class="md-nav__link">
+        HTTP klijent HTTPie
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ifconfig-konfiguracija-mreznih-sucelja/" class="md-nav__link">
+        Osnovni alati za konfiguraciju računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intelektualno-vlasnistvo-softver-podaci-znanstveni-radovi/" class="md-nav__link">
+        Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables-prevodjenje-adresa/" class="md-nav__link">
+        Prevođenje mrežnih adresa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables-vatrozid/" class="md-nav__link">
+        Filtriranje paketa vatrozidom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kemoinformatika-povijest-osnove/" class="md-nav__link">
+        Kemoinformatika i računalna kemija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kvm-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-arhiviranje-komprimiranje/" class="md-nav__link">
+        Arhiviranje i komprimiranje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-cijevi-preusmjeravanje-ulaza-izlaza/" class="md-nav__link">
+        Cijevi, preusmjeravanje ulaza i izlaza
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-cli-uvod/" class="md-nav__link">
+        Uvod u komandnolinijsko sučelje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-datoteke-touch-rm-cp-mv/" class="md-nav__link">
+        Baratanje datotekama u datotečnom sustavu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-direktoriji-mkdir-pwd-cd/" class="md-nav__link">
+        Stablo direktorija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-disk-particija-filesystem/" class="md-nav__link">
+        Diskovi, particije, datotečni sustavi i mjesta montiranja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-dozvole-datoteka/" class="md-nav__link">
+        Dozvole i kontrola pristupa datotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-inode-poveznice/" class="md-nav__link">
+        Informacijski čvorovi, vremena i poveznice datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-kernel-osnove/" class="md-nav__link">
+        Rad s jezgrom operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-korisnici-grupe/" class="md-nav__link">
+        Korisnici i grupe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-procesi/" class="md-nav__link">
+        Upravljanje procesima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-shell-varijable-povijest/" class="md-nav__link">
+        Varijable ljuske i okoline, povijest ljuske
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-tipovi-datoteka/" class="md-nav__link">
+        Tipovi datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llvm-backend-amdgpu/" class="md-nav__link">
+        Prevođenje OpenCL C koda u asemblerski kod arhitektura AMD GCN i RDNA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llvm-frontend-clang-opencl-c/" class="md-nav__link">
+        Prevođenje OpenCL C koda program prevoditeljem Clang
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Konfiguracija sustava za upravljanje bazom podataka MariaDB
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Konfiguracija sustava za upravljanje bazom podataka MariaDB
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguracija-posluzitelja-mariadb" class="md-nav__link">
+    Konfiguracija poslužitelja MariaDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sifriranje-podataka" class="md-nav__link">
+    Šifriranje podataka
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-podataka-u-prijenosu" class="md-nav__link">
+    Šifriranje podataka u prijenosu
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka u prijenosu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stvaranje-asimetricnih-kljuceva" class="md-nav__link">
+    Stvaranje asimetričnih ključeva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukljucivanje-kljuceva-u-konfiguracijsku-datoteku" class="md-nav__link">
+    Uključivanje ključeva u konfiguracijsku datoteku
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dodatne-postavke-tls-a" class="md-nav__link">
+    Dodatne postavke TLS-a
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-podataka-na-odmoru" class="md-nav__link">
+    Šifriranje podataka na odmoru
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka na odmoru">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ucitavanje-dodatka" class="md-nav__link">
+    Učitavanje dodatka
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stvaranje-simetricnih-kljuceva" class="md-nav__link">
+    Stvaranje simetričnih ključeva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukljucivanje-datoteke-s-kljucevima" class="md-nav__link">
+    Uključivanje datoteke s ključevima
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odabir-algoritma-za-sifriranje" class="md-nav__link">
+    Odabir algoritma za šifriranje
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-tablica-u-bazi-podataka" class="md-nav__link">
+    Šifriranje tablica u bazi podataka
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-binarnih-logova" class="md-nav__link">
+    Šifriranje binarnih logova
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilegije-korisnika" class="md-nav__link">
+    Privilegije korisnika
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilegije korisnika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#korisnici" class="md-nav__link">
+    Korisnici
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privilegije" class="md-nav__link">
+    Privilegije
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilegije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dodjeljivanje-privilegija" class="md-nav__link">
+    Dodjeljivanje privilegija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opozivanje-privilegija" class="md-nav__link">
+    Opozivanje privilegija
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uloge" class="md-nav__link">
+    Uloge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mediawiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava MediaWiki
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs-dokumentiranje-programa/" class="md-nav__link">
+        Dokumentiranje programa alatom MkDocs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nabavka-prevodjenje-instalacija-softvera-otvorenog-koda/" class="md-nav__link">
+        Nabavka, kompajliranje i instalacija softvera otvorenog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netlib-blas-lapack/" class="md-nav__link">
+        BLAS i LAPACK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nfs-mrezni-datotecni-sustav/" class="md-nav__link">
+        Mrežni datotečni sustav NFS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx-web-posluzitelj/" class="md-nav__link">
+        Web poslužitelj nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nmap-analiza-ranjivosti/" class="md-nav__link">
+        Analiza ranjivosti računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oblak-resursi-usluge/" class="md-nav__link">
+        Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-linux-upravljanje-datotecnim-sustavom-2/" class="md-nav__link">
+        Pretraživanje, prava pristupa, rad sa tekstom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-linux-upravljanje-datotecnim-sustavom/" class="md-nav__link">
+        Osnove rada sa komandnom linijom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-perl/" class="md-nav__link">
+        Skriptiranje u Perl-u
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-regularni-izrazi-konacni-automati/" class="md-nav__link">
+        Regularni izrazi i konačni automati
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../open-babel-pretvorba-analiza-spremanje-podataka-molekula/" class="md-nav__link">
+        Pretvorba formata alatom Open Babel
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openldap-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj OpenLDAP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssh-sigurna-ljuska/" class="md-nav__link">
+        Sigurna ljuska i udaljeni rad alatom OpenSSH
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-certifikat-javnog-kljuca/" class="md-nav__link">
+        Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-kriptografski-algoritmi/" class="md-nav__link">
+        Korištenje osnovnih kriptografskih algoritama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openvpn-infrastruktura-javnog-kljuca/" class="md-nav__link">
+        Korištenje infrastrukture javnog ključa u postavljanju virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openvpn-virtualna-privatna-mreza/" class="md-nav__link">
+        Konfiguracija virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openwrt-ugradbeni-softver-za-bezicne-mrezne-usmjerivace/" class="md-nav__link">
+        OpenWrt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otvoreni-kod-povijest-osnove/" class="md-nav__link">
+        Softver otvorenog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paralelno-distribuirano-heterogeno-racunarstvo-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi paralelnog, distribuiranog i heterogenog računarstva
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paralelno-distribuirano-heterogeno-racunarstvo-superracunala/" class="md-nav__link">
+        Superračunala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pdb-baza-proteina/" class="md-nav__link">
+        Baza struktura proteina RCSB PDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-composer/" class="md-nav__link">
+        Upravljanje zavisnostima paketa u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-cookies/" class="md-nav__link">
+        Baratanje HTTP kolačićima u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-curl/" class="md-nav__link">
+        Izvođenje HTTP zahtjeva korištenjem biblioteke cURL u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-file-upload/" class="md-nav__link">
+        Postavljanje datoteka na poslužitelj u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-http-auth/" class="md-nav__link">
+        HTTP autentifikacija u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-http-encoding/" class="md-nav__link">
+        Kodiranje HTTP sadržaja i kompresija u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-json/" class="md-nav__link">
+        Obrada podataka zapisanih u obliku JavaScript Object Notation (JSON) u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-openssl/" class="md-nav__link">
+        Korištenje biblioteke OpenSSL u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-rest/" class="md-nav__link">
+        Implementacija REpresentational State Transfer (REST) aplikacijskog programskog sučelja u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-sockets/" class="md-nav__link">
+        Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-sodium/" class="md-nav__link">
+        Korištenje biblioteke Sodium u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-ugradjeni-web-posluzitelj/" class="md-nav__link">
+        Ugrađeni web poslužitelj u interpreteru jezika PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-visejezicnost/" class="md-nav__link">
+        Višejezičnost u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-zahtjev-odgovor/" class="md-nav__link">
+        Obrada HTTP zahtjeva i stvaranje odgovora u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ping-traceroute-nestat-analiza-mreze/" class="md-nav__link">
+        Osnovni alati za analizu računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix-procmail-smtp-posluzitelj/" class="md-nav__link">
+        Message transfer agent -- Postfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgresql-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procfs-sysfs-informacije-konfiguracija/" class="md-nav__link">
+        Datotečni sustavi Procfs i Sysfs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pxe-pokretanje-racunala-putem-mreznog-sucelja/" class="md-nav__link">
+        Pokretanje računala putem mrežnog sučelja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pymol-vizualizacija-molekula/" class="md-nav__link">
+        Vizualizacija molekula u alatu PyMOL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj1/" class="md-nav__link">
+        Django vježba 1 -- Postavljanje razvojnog okruženja web aplikacija na operacijskim sustavima sličnim Unixu i Windowsima. Stvaranje projekta i organizacija koda. Korištenje dokumentacije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj2/" class="md-nav__link">
+        Django vježba 2 -- Korištenje baze podataka. Stvaranje modela i objektno-relacijsko preslikavanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj3/" class="md-nav__link">
+        Django vježba 3 -- Relacije među modelima. Upiti
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj4/" class="md-nav__link">
+        Django vježba 4 -- Usmjeravanje i URL-i. Stvaranje pogleda kao odgovora na HTTP zahtjeve
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Django vježba 5 -- Generički pogledi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Django vježba 6 -- Predaja obrazaca HTTP metodama GET i POST. Provjera unosa i prikaz poruka o greškama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Django vježba 9 -- Sijanje i migracije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Django vježba 10 -- Autentifikacija. Autorizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Django vježba 11 -- Testiranje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Django vježba 12 -- Django REST framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dokumentiranje/" class="md-nav__link">
+        Dokumentiranje Python koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-funkcije-klase/" class="md-nav__link">
+        Python -- funkcije i klase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-input-output/" class="md-nav__link">
+        Python -- ulaz i izlaz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modularizacija/" class="md-nav__link">
+        Python -- moduli
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-calendar/" class="md-nav__link">
+        Python -- stvaranje i ispis kalendara
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-cryptography/" class="md-nav__link">
+        Rad s Python modulom pyca/cryptography
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-datetime/" class="md-nav__link">
+        Python -- osnovni tipovi podataka datuma i vremena
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-fcntl/" class="md-nav__link">
+        Python -- usluge specifične za operacijske sustave slične Unixu -- pozivi fcntl() i ioctl()
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-gettext/" class="md-nav__link">
+        Python -- usluge za višejezičnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-glob/" class="md-nav__link">
+        Python -- ekspanzija uzoraka imena putanje u stilu operacijskih sustava sličnih Unixu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-locale/" class="md-nav__link">
+        Python -- internacionalizacija i lokalizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-matplotlib/" class="md-nav__link">
+        Rad s Python modulom matplotlib i sučeljem pyplot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-dinamicko-upravljanje-procesima/" class="md-nav__link">
+        Python modul mpi4py -- dinamičko upravljanje procesima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-jednostrana-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- jednostrana komunikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-kolektivna-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- kolektivna komunikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-komunikacija-tocka-do-tocke/" class="md-nav__link">
+        Python modul mpi4py -- komunikacija točka-do-točke
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-komunikatori-grupe/" class="md-nav__link">
+        Python modul mpi4py -- komunikatori i grupe procesa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-osnove/" class="md-nav__link">
+        Python modul mpi4py -- osnove
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-paralelni-ulaz-izlaz/" class="md-nav__link">
+        Python modul mpi4py -- paralelni ulaz/izlaz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-upravljanje-okolinom/" class="md-nav__link">
+        Python modul mpi4py -- upravljanje okolinom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-multiprocessing/" class="md-nav__link">
+        Python -- višeprocesnost na jednom računalu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-numpy/" class="md-nav__link">
+        Rad s Python modulom numpy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-os/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- osnovna sučelja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-os-path/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- baratanje imenom putanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-biblioteke-funkcija/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije i tipovi podatka dostupni u CUDA bibliotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-funkcije-uredjaja-domacina/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije uređaja i domaćina
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-hijerarhija-memorije/" class="md-nav__link">
+        Python modul PyCUDA -- hijerarhija GPU memorije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-matrice/" class="md-nav__link">
+        Python modul PyCUDA -- paralelni algoritmi na matricama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-multi-gpu/" class="md-nav__link">
+        Python modul PyCUDA -- rad s više GPU-a
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-osnove/" class="md-nav__link">
+        Python modul PyCUDA -- osnove rada s GPU-om
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-otklanjanje-gresaka/" class="md-nav__link">
+        Python modul PyCUDA -- otklanjanje grešaka i curenja memorije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-profiliranje-optimizacija/" class="md-nav__link">
+        Python modul PyCUDA -- mjerenje performansi, profiliranje i optimizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-redukcija/" class="md-nav__link">
+        Python modul PyCUDA -- paralelna redukcija, norma i skalarno množenje vektora
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-tokovi-asinkrone-operacije/" class="md-nav__link">
+        Python modul PyCUDA -- korištenje tokova i asinkronih kopiranja memorije za poboljšanje performansi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-vektorski-tipovi/" class="md-nav__link">
+        Python modul PyCUDA -- rad s vektorskim tipovima podataka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-zbrajanje-vektora/" class="md-nav__link">
+        Python modul PyCUDA -- zbrajanje vektora
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pyopencl/" class="md-nav__link">
+        Programiranje aplikacija za heterogene sustave korištenjem tehnologije OpenCL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-scipy/" class="md-nav__link">
+        Rad s Python modulom scipy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-select/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- čekanje na završetak ulazno/izlaznih operacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-signal/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- baratanje signalima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-socket/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- utičnice
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-subprocess/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- podprocesi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-sys/" class="md-nav__link">
+        Python -- parametri i funkcije ovisni o sustavu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-threading/" class="md-nav__link">
+        Python -- dodatne usluge operacijskog sustava -- višenitnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-time/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- vrijeme
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-xmlrpc/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- pozivanje udaljenih procedoura i modul XML-RPC
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-okvir-waf/" class="md-nav__link">
+        Rad s Python okvirom waf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-osnove-sintakse/" class="md-nav__link">
+        Osnovna sintaksa programskog jezika Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-programiranje/" class="md-nav__link">
+        Programiranje i programski jezik Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-standardna-biblioteka/" class="md-nav__link">
+        Python -- često korišteni moduli standardne biblioteke
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-testiranje/" class="md-nav__link">
+        Testiranje Python aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja Python aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quagga-usmjeravanje/" class="md-nav__link">
+        Rad s alatima za usmjeravanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../racunarstvo-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja računala i temelji računarske znanosti
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../racunarstvo-sveprisutna-prozimajuca-racunala/" class="md-nav__link">
+        Sveprisutna i prožimajuća računala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocalution/" class="md-nav__link">
+        rocALUTION -- ROCm SPARSE Linear Algebra PACkage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocblas/" class="md-nav__link">
+        rocBLAS -- ROCm Basic Linear Algebra Subprograms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocfft/" class="md-nav__link">
+        rocFFT -- ROCm Fast Fourier Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocprim/" class="md-nav__link">
+        rocPRIM -- ROCm parallel PRIMitives
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocrand/" class="md-nav__link">
+        rocRAND -- ROCm RANDom number generator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocsolver/" class="md-nav__link">
+        rocSOLVER -- ROCm-ov linear algebra SOLVER
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocsparse/" class="md-nav__link">
+        rocSPARSE -- ROCm SPARSE basic linear algebra subroutines
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba-interoperabilnost-windows-linux/" class="md-nav__link">
+        Interoperabilnost operacijskih sustava Windows i GNU/Linux korištenjem Sambe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-tmux-multipleksiranje-terminala/" class="md-nav__link">
+        Multipleksiranje terminala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selinux-mandantna-kontrola-pristupa/" class="md-nav__link">
+        Mandantna kontrola pristupa korištenjem sustava SELinux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../siege-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom Siege
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
+        Integracija simuliranih i stvarnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-modeli-gresaka/" class="md-nav__link">
+        Simulacijski modeli grešaka paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-mrezne-aplikacije-promet/" class="md-nav__link">
+        Simulacijski modeli mrežnih aplikacija kao generatora prometa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-pojmovi/" class="md-nav__link">
+        Teorijske osnove simulacije računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-povezivanje-cvorova/" class="md-nav__link">
+        Povezivanje čvorova u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-redovi-cekanja/" class="md-nav__link">
+        Simulacijski modeli redova čekanja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-tcp-upravljanje-zagusenjem/" class="md-nav__link">
+        Simulacijski modeli TCP-ovih algoritama za upravljanje zagušenjem
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-topologije/" class="md-nav__link">
+        Slaganje složenijih topologija u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spamassasin-spam-filter/" class="md-nav__link">
+        Spam filter -- SpamAssassin
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strace-ltrace-sucelja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje korištenja programskih sučelja sustava korištenjem alata strace i ltrace
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strongswan-ipsec/" class="md-nav__link">
+        IPsec alat strongSwan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-cron-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
+        Automatizacija zadaća operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-journalctl-pracenje-dogadjaja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje događaja operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-systemctl-upravljanje-uslugama-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje uslugama operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tinc-virtualna-privatna-mreza/" class="md-nav__link">
+        Tuneliranje alatom tinc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tor-anonimna-komunikacija/" class="md-nav__link">
+        Anonimna komunikacija alatom Tor
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix-att-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa u AT&T-u i drugim tvrtkama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix-bsd-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa na Kalifornijskom sveučilištu u Berkeleyu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljacki-programi-hardvera/" class="md-nav__link">
+        Upravljački programi hardvera
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljanje-dokumentacijom-racunalnih-sustava-i-mreza/" class="md-nav__link">
+        Upravljanje dokumentacijom računalnih sustava i mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljanje-racunalnim-sustavima-i-mrezama-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi upravljanja računalnim sustavima i mrežama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlasnicki-softveri-posebne-namjene-i-racunalne-igre/" class="md-nav__link">
+        Vlasnički softveri posebne namjene i računalne igre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlc-strujanje-multimedijskog-sadrzaja/" class="md-nav__link">
+        Strujanje multimedijskog sadržaja alatom VLC
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark-filtriranje-paketa/" class="md-nav__link">
+        Filtriranje paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark-snimanje-prometa/" class="md-nav__link">
+        Snimanje prometa aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wordpress-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija sustava za upravljanje sadržajem Wordpress
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yum-rpm-upravljanje-paketima-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje paketima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../znanstveni-softver/" class="md-nav__link">
+        Znanstveni softver
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zotero-citiranje-bibliografija/" class="md-nav__link">
+        Upute za upravljanje bibliografijom korištenjem alata Zotero
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../teme-zavrsnih-i-diplomskih-radova/" class="md-nav__link">
+        Teme završnih i diplomskih radova
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aktivizam/" class="md-nav__link">
+        Aktivizam
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Arhiva
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Arhiva" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Arhiva
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      <label class="md-nav__link" for="__nav_8_1">
+        Eseji
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Eseji" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Eseji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arhiva/eseji/peter-norvig-naucite-programirati-u-deset-godina/" class="md-nav__link">
+        Peter Norvig -- Naučite programirati u deset godina
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vrlo-vazne-informacije/" class="md-nav__link">
+        Vrlo važne informacije
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Contents in English
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Contents in English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Contents in English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/people/" class="md-nav__link">
+        People
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/research-and-development/" class="md-nav__link">
+        Research and development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/partnerships-and-collaborations/" class="md-nav__link">
+        Partnerships and collaborations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/teaching/" class="md-nav__link">
+        Teaching
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/activism/" class="md-nav__link">
+        Activism
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/very-important-information/" class="md-nav__link">
+        Very important information
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguracija-posluzitelja-mariadb" class="md-nav__link">
+    Konfiguracija poslužitelja MariaDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sifriranje-podataka" class="md-nav__link">
+    Šifriranje podataka
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-podataka-u-prijenosu" class="md-nav__link">
+    Šifriranje podataka u prijenosu
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka u prijenosu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stvaranje-asimetricnih-kljuceva" class="md-nav__link">
+    Stvaranje asimetričnih ključeva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukljucivanje-kljuceva-u-konfiguracijsku-datoteku" class="md-nav__link">
+    Uključivanje ključeva u konfiguracijsku datoteku
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dodatne-postavke-tls-a" class="md-nav__link">
+    Dodatne postavke TLS-a
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-podataka-na-odmoru" class="md-nav__link">
+    Šifriranje podataka na odmoru
+  </a>
+  
+    <nav class="md-nav" aria-label="Šifriranje podataka na odmoru">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ucitavanje-dodatka" class="md-nav__link">
+    Učitavanje dodatka
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stvaranje-simetricnih-kljuceva" class="md-nav__link">
+    Stvaranje simetričnih ključeva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukljucivanje-datoteke-s-kljucevima" class="md-nav__link">
+    Uključivanje datoteke s ključevima
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odabir-algoritma-za-sifriranje" class="md-nav__link">
+    Odabir algoritma za šifriranje
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-tablica-u-bazi-podataka" class="md-nav__link">
+    Šifriranje tablica u bazi podataka
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sifriranje-binarnih-logova" class="md-nav__link">
+    Šifriranje binarnih logova
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilegije-korisnika" class="md-nav__link">
+    Privilegije korisnika
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilegije korisnika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#korisnici" class="md-nav__link">
+    Korisnici
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privilegije" class="md-nav__link">
+    Privilegije
+  </a>
+  
+    <nav class="md-nav" aria-label="Privilegije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dodjeljivanje-privilegija" class="md-nav__link">
+    Dodjeljivanje privilegija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opozivanje-privilegija" class="md-nav__link">
+    Opozivanje privilegija
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uloge" class="md-nav__link">
+    Uloge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="konfiguracija-sustava-za-upravljanje-bazom-podataka-mariadb">Konfiguracija sustava za upravljanje bazom podataka MariaDB</h1>
+<p><a href="https://mariadb.org/">MariaDB</a> (<a href="https://en.wikipedia.org/wiki/MariaDB">Wikipedia</a>) je sustav za upravljanje relacijskom bazom podataka, razvijan od strane zajednice i komercijalno podržan. Razvoj MariaDB-a započet je odvajanjem od <a href="https://www.mysql.com/">MySQL</a>-a izvedenim od strane nekolicine izvornih programera MySQL-a zbog zabrinutosti oko njegove budućnosti povodom <a href="https://www.directionsmag.com/article/2357">akvizicije Suna od strane Oraclea</a>. Prvenstveni cilj stvaranja projekta neovisnog o Oracleu je želja da softvera ostane slobodan i otvorenog koda pod licencom GNU General Public License.</p>
+<p>MariaDB zadržava visok nivo kompatibilnosti s MySQL-om, ali proširuje njegovu funkcionalnost tako da nudi i značajke koje MySQL nema. <a href="https://www.mysql.com/cloud/">Kao i MySQL</a>, MariaDB je ponuđena i u obliku usluge u oblaku (drugim riječima, sustava koji netko drugi održava) pod imenom <a href="https://mariadb.com/products/skysql/">SkySQL</a>.</p>
+<p>Ime MariaDB dao je autor MySQL-a <a href="https://en.wikipedia.org/wiki/Michael_Widenius">Michael "Monty" Widenius</a> prema svojoj mlađoj kćeri koja se zove Maria. Slično tome, ime MySQL dao je prema imenu starije kćeri koja se zove My.</p>
+<h2 id="konfiguracija-posluzitelja-mariadb">Konfiguracija poslužitelja MariaDB</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kako MariaDB zadržava što je moguće veću razinu kompatibilnosti s MySQL-om, uočit ćemo kako se u naredbama ljuske, konfiguracijskim naredbama i nazivima datoteka na mnogo mjesta može koristiti naziv MySQL umjesto MariaDB. Primjerice, klijent sučelja naredbenog retka dostupan je naredbama <code>mariadb</code> i <code>mysql</code>, a poslužitelj naredbama <code>mariadbd</code> (MariaDB daemon) i <code>mysqld</code> (MySQL daemon).</p>
+</div>
+<p>Nakon instalacije sva konfiguracija poslužitelja MariaDB nalazi se u <code>/etc/mysql</code>. Nama će u nastavku biti zanimljive samo datoteka <code>/etc/mysql/mariadb.cnf</code> i datoteke u direktorijima  <code>/etc/mysql/mariadb.conf.d</code> i <code>/etc/mysql/mariadb.conf.d</code>. Razmotrimo za početak sadržaj datoteke <code>/etc/mysql/mariadb.cnf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># The MariaDB configuration file</span>
+<span class="c1">#</span>
+<span class="c1"># The MariaDB/MySQL tools read configuration files in the following order:</span>
+<span class="c1"># 1. &quot;/etc/mysql/mariadb.cnf&quot; (this file) to set global defaults,</span>
+<span class="c1"># 2. &quot;/etc/mysql/conf.d/*.cnf&quot; to set global options.</span>
+<span class="c1"># 3. &quot;/etc/mysql/mariadb.conf.d/*.cnf&quot; to set MariaDB-only options.</span>
+<span class="c1"># 4. &quot;~/.my.cnf&quot; to set user-specific options.</span>
+<span class="c1">#</span>
+<span class="c1"># If the same option is defined multiple times, the last one will apply.</span>
+<span class="c1">#</span>
+<span class="c1"># One can use all long options that the program supports.</span>
+<span class="c1"># Run program with --help to get a list of available options and with</span>
+<span class="c1"># --print-defaults to see which it would actually understand and use.</span>
+
+<span class="c1">#</span>
+<span class="c1"># This group is read both both by the client and the server</span>
+<span class="c1"># use it for options that affect everything</span>
+<span class="c1">#</span>
+<span class="k">[client-server]</span>
+
+<span class="c1"># Import all .cnf files from configuration directory</span>
+<span class="na">!includedir /etc/mysql/conf.d/</span>
+<span class="na">!includedir /etc/mysql/mariadb.conf.d/</span>
+</code></pre></div>
+<p>Uočimo kako gotovo čitav sadržaj datoteke čine komentari i prazni retci, osim odjeljka <code>[client-server]</code> i dvije naredbe <code>!includedir</code> kojima se uključuju konfiguracijske datoteke iz dva već ranije spomenuta direktorija.</p>
+<p>U direktoriju <code>/etc/mysql/conf.d/</code> datoteka <code>mysql.cnf</code> sadrži samo oznaku odjeljka, a datoteka <code>mysqldump.cnf</code> tiče se konfiguracije naredbe <code>mysqldump</code> koja omogućuje pohranjivanje baza u tekstualnom zapisu kao niz SQL upita i koja nam u nastavku neće trebati.</p>
+<p>U direktoriju <code>/etc/mysql/mariadb.conf.d/</code> nalazimo konfiguraciju klijenta (<code>50-client.cnf</code>), svih aplikacija za pristup poslužitelju (<code>50-mysql-clients.cnf</code>), konfiguraciju za sigurno pokretanje u slučaju problema (<code>50-mysqld_safe.cnf</code>) i konfiguraciju poslužitelja (<code>50-server.cnf</code>). Razmtorimo sadržaj posljednje datoteke:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#</span>
+<span class="c1"># These groups are read by MariaDB server.</span>
+<span class="c1"># Use it for options that only the server (but not clients) should see</span>
+<span class="c1">#</span>
+<span class="c1"># See the examples of server my.cnf files in /usr/share/mysql</span>
+
+<span class="c1"># this is read by the standalone daemon and embedded servers</span>
+<span class="k">[server]</span>
+
+<span class="c1"># this is only for the mysqld standalone daemon</span>
+<span class="k">[mysqld]</span>
+
+<span class="c1">#</span>
+<span class="c1"># * Basic Settings</span>
+<span class="c1">#</span>
+<span class="na">user</span>                    <span class="o">=</span> <span class="s">mysql</span>
+<span class="na">pid-file</span>                <span class="o">=</span> <span class="s">/run/mysqld/mysqld.pid</span>
+<span class="na">socket</span>                  <span class="o">=</span> <span class="s">/run/mysqld/mysqld.sock</span>
+<span class="c1">#port                   = 3306</span>
+<span class="na">basedir</span>                 <span class="o">=</span> <span class="s">/usr</span>
+<span class="na">datadir</span>                 <span class="o">=</span> <span class="s">/var/lib/mysql</span>
+<span class="na">tmpdir</span>                  <span class="o">=</span> <span class="s">/tmp</span>
+<span class="na">lc-messages-dir</span>         <span class="o">=</span> <span class="s">/usr/share/mysql</span>
+<span class="c1">#skip-external-locking</span>
+
+<span class="c1"># Instead of skip-networking the default is now to listen only on</span>
+<span class="c1"># localhost which is more compatible and is not less secure.</span>
+<span class="na">bind-address</span>            <span class="o">=</span> <span class="s">127.0.0.1</span>
+
+<span class="c1"># ...</span>
+</code></pre></div>
+<p>Uočimo kako su u odjeljku <code>[mysqld]</code> koji se odnosi na poslužitelj MariaDB navedene brojne konfiguracijske naredbe, primjerice:</p>
+<ul>
+<li><code>user</code>, kojom se postavlja ime korisnika koji pokreće poslužitelj,</li>
+<li><code>pid</code>, kojom se postavlja putanja do datoteke u kojoj je naveden PID procesa poslužitelja,</li>
+<li><code>datadir</code>, kojom se navodi putanja do podatkovnog direktorija u kojem se spremaju baze podataka i binarni logovi</li>
+<li><code>tmpdir</code>, kojom se navodi putanja do direktorija s privremenim datotekama i</li>
+<li><code>lc-messages-dir</code>, kojom se navodi putanja do direktorija s lokalizacijskim datotekama (prijevodima na različite jezike).</li>
+</ul>
+<p>Povežimo se klijentom na poslužitelj:</p>
+<div class="highlight"><pre><span></span><code>$ sudo mariadb
+Welcome to the MariaDB monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MariaDB connection id is <span class="m">52</span>
+Server version: <span class="m">10</span>.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu <span class="m">20</span>.04
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle, MariaDB Corporation Ab and others.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt;
+</code></pre></div>
+<p>U ljusci klijenta MariaDB dostupne su nam naredbe jezika SQL i brojne druge specifične za MariaDB. Naredbe jezika SQL su slične među različitim sustavima za upravljanje bazama podataka i njih ćemo koristiti nešto kasnije. Jedna od naredbi specifičnih za MariaDB je <code>SHOW</code> (<a href="https://mariadb.com/kb/en/show/">dokumentacija</a>) koja može prikazati popis autora MariaDB korištenjem parametra <code>AUTHORS</code> (<a href="https://mariadb.com/kb/en/show-authors/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">AUTHORS</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| Name                           | Location                              | Comment                                                                                                                                 |
++--------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| Michael (Monty) Widenius       | Tusby, Finland                        | Lead developer and main author                                                                                                          |
+| Sergei Golubchik               | Kerpen, Germany                       | Architect, Full-text search, precision math, plugin framework, merges etc                                                               |
+| Igor Babaev                    | Bellevue, USA                         | Optimizer, keycache, core work                                                                                                          |
+| Sergey Petrunia                | St. Petersburg, Russia                | Optimizer                                                                                                                               |
+| Oleksandr Byelkin              | Lugansk, Ukraine                      | Query Cache (4.0), Subqueries (4.1), Views (5.0)                                                                                        |
+(...)
++--------------------------------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+102 rows in set (0.000 sec)
+</code></pre></div>
+<p>Primjenom parametra <code>DATABASES</code> (<a href="https://mariadb.com/kb/en/show-databases/">dokumentacija</a>) prikazat će popis baza podataka koje postoje na poslužitelju:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.000 sec)
+</code></pre></div>
+<p>Naposlijetku, moguće je prikazati globalne varijable ili varijable trenutne sesije parametrom <code>VARIABLES</code> (<a href="https://mariadb.com/kb/en/show-variables/">dokumentacija</a>). U slučaju da želimo prikazati globalnu varijablu, dodajemo i parametar <code>GLOBAL</code>, a kod navođenja imena varijable u obliku znakovnog niza koristimo standardni SQL operator <code>LIKE</code> (<a href="https://mariadb.com/kb/en/like/">dokumentacija</a>). MariaDB <a href="https://mariadb.com/kb/en/string-literals/">podržava jednostruke i dvostruke navodnike kod navođenja znakovnih nizova</a>. Varijabla koja nas zanima je <code>have_ssl</code> pa je naredba oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;have_ssl&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+---------------+----------+
+| Variable_name | Value    |
++---------------+----------+
+| have_ssl      | DISABLED |
++---------------+----------+
+1 row in set (0.001 sec)
+</code></pre></div>
+<p>Uočimo kako MariaDB trenutno ne koristi SSL/TLS za šifriranje komunikacije klijenta i poslužitelja, što ćemo promijeniti u nastavku.</p>
+<h2 id="sifriranje-podataka">Šifriranje podataka</h2>
+<p>MariaDB <a href="https://mariadb.com/kb/en/securing-mariadb-encryption/">podržava šifriranje</a>:</p>
+<ul>
+<li><a href="https://mariadb.com/docs/security/encryption/in-transit/">podataka u prijenosu</a> (engl. <em>data in transit</em>), odnosno upita poslanih od klijenta do poslužitelja i njihovih rezultata poslanih od poslužitelja do klijenta te</li>
+<li><a href="https://mariadb.com/docs/security/encryption/at-rest/">podataka na odmoru</a> (engl. <em>data at rest</em>), odnosno spremljenih sadržaja baza podataka i binarnih logova poslužitelja.</li>
+</ul>
+<h3 id="sifriranje-podataka-u-prijenosu">Šifriranje podataka u prijenosu</h3>
+<h4 id="stvaranje-asimetricnih-kljuceva">Stvaranje asimetričnih ključeva</h4>
+<p><a href="https://mariadb.com/docs/security/encryption/in-transit/create-self-signed-certificates-keys-openssl/#create-self-signed-certificates-keys-openssl">Ključeve i X.509 certifikate</a> koje će MariaDB koristiti stvaramo korištenjem OpenSSL-a i Easy-RSA. Inicijalizirajmo infrastrukturu privatnog ključa i stvorimo ključ i certifikat autoriteta certifikata:</p>
+<div class="highlight"><pre><span></span><code>$ easyrsa init-pki
+$ easyrsa build-ca
+</code></pre></div>
+<p>Naravno, ako smo već ranije koristili Easy-RSA pa imamo uspostavljenu infrastrukturu privatnog ključa, neke od naredbi će nam javiti da već postoje napravljeni certifikati i ključevi. U tom slučaju, obzirom da samo učimo kako radi infrastruktura privatnog ključa u MariaDB, možemo iskorstiti certifikate i ključeve koje smo već koristili u drugim sustavima; u praksi to ne smijemo napraviti jer time smanjujemo sigurnost i naše instance MariaDB i tih drugih sustava.</p>
+<p>Izgradimo ključ i certifikat za poslužitelj:</p>
+<div class="highlight"><pre><span></span><code>$ easyrsa build-server-full moj-mariadb-posluzitelj nopass
+</code></pre></div>
+<p>Izgradimo ključ i certifikat koji će klijent koristiti:</p>
+<div class="highlight"><pre><span></span><code>$ easyrsa build-client-full moj-mariadb-klijent nopass
+</code></pre></div>
+<p>Kopirajmo stvoreni certifikat autoriteta certifikata na mjesto s kojeg ćemo ga koristiti pa mu postavimo odgovarajućeg vlasnika i grupu te dozvole:</p>
+<div class="highlight"><pre><span></span><code>$ sudo mkdir /etc/mysql/certs
+
+$ sudo cp pki/ca.crt /etc/mysql/certs/ca-cert.pem
+$ sudo chmod go-rwx /etc/mysql/certs/ca-cert.pem
+</code></pre></div>
+<p>Napravimo isto za poslužiteljski certifikat i ključ:</p>
+<div class="highlight"><pre><span></span><code>$ sudo cp pki/issued/moj-mariadb-posluzitelj.crt /etc/mysql/certs/server-cert.pem
+$ sudo chmod go-rwx /etc/mysql/certs/server-cert.pem
+
+$ sudo cp pki/private/moj-mariadb-posluzitelj.key /etc/mysql/certs/server-key.pem
+$ sudo chmod go-rwx /etc/mysql/certs/server-key.pem
+</code></pre></div>
+<p>Naposlijetku, postavimo na isto mjesto i klijentski certifikat i ključ:</p>
+<div class="highlight"><pre><span></span><code>$ sudo cp pki/issued/moj-mariadb-klijent.crt /etc/mysql/certs/client-cert.pem
+$ sudo chmod go-rwx /etc/mysql/certs/client-cert.pem
+
+$ sudo cp pki/private/moj-mariadb-klijent.key /etc/mysql/certs/client-key.pem
+$ sudo chmod go-rwx /etc/mysql/certs/client-key.pem
+</code></pre></div>
+<h4 id="ukljucivanje-kljuceva-u-konfiguracijsku-datoteku">Uključivanje ključeva u konfiguracijsku datoteku</h4>
+<p>Nakon stvaranja privatnog ključa i X.509 certifikata te njihovog premještanja u <code>/etc/mysql/certs</code> uključit ćemo njihovo korištenje konfiguracijskim naredbama:</p>
+<ul>
+<li><code>ssl_cert</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/ssl_cert/">dokumentacija</a>), kojom ćemo navesti X.509 certifikat u formatu PEM</li>
+<li><code>ssl_key</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/ssl_key/">dokumentacija</a>), kojom ćemo navesti privatni ključ u formatu PEM</li>
+<li><code>ssl_ca</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/ssl_ca/">dokumentacija</a>), kojom ćemo, u slučaju korištenja samopotpisanih certifikata, navesti i certifikat autoriteta certifikata koji ga je potpisao</li>
+</ul>
+<p>Više informacija o ovim konfiguracijskim naredbama može se naći u <a href="https://mariadb.com/docs/security/encryption/in-transit/enable-tls-server/">službenoj dokumentaciji</a>.</p>
+<p>MariaDB ne preporuča modificiranje postojećih konfiguracijskih datoteka, već dodavanje novih. U direktoriju <code>/etc/mysql/mariadb.conf.d</code> korištenjem uređivača teksta GNU nano ili bilo kojeg drugog stvorimo datoteku <code>90-ssl.cnf</code>:</p>
+<div class="highlight"><pre><span></span><code>$ sudo nano /etc/mysql/mariadb.conf.d/90-ssl.cnf
+</code></pre></div>
+<p>Jako je važno da nastavak bude <code>.cnf</code>, a ne <code>.conf</code> ili neka treća jer konfiguracijska naredba <code>!includedir</code> učitava u danom direktoriju samo datoteke s nastavkom <code>.cnf</code>. U njoj postavimo željene postavke poslužiteljskih i klijentskih ključeva i certifikata:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+
+<span class="na">ssl_cert</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/server-cert.pem</span>
+<span class="na">ssl_key</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/server-key.pem</span>
+<span class="na">ssl_ca</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/ca-cert.pem</span>
+
+<span class="k">[client-mariadb]</span>
+
+<span class="na">ssl_cert</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/client-cert.pem</span>
+<span class="na">ssl_key</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/client-key.pem</span>
+<span class="na">ssl_ca</span> <span class="o">=</span> <span class="s">/etc/mysql/certs/ca-cert.pem</span>
+</code></pre></div>
+<p>Umjesto odjeljka <code>[mariadb]</code> također smo konfiguracijske naredbe mogli staviti i u odjeljak <code>[server]</code> ili <code>[mysqld]</code> koje poslužitelj čita kod pokretanja (detaljnije objašnjenje pojedinih odjeljaka moguće je <a href="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#server-option-groups">naći u dijelu službene dokumentacije Configuring MariaDB with Option Files</a>), dok smo umjesto odjeljka <code>[client-mariadb]</code> također mogli koristiti <code>[client]</code> (<a href="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#client-option-groups">detalji</a>).</p>
+<p>Pokrenimo ponovno poslužitelj kako bi učitao nove postavke:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl restart mariadb
+</code></pre></div>
+<p>Kako bismo se uvjerili da je TLS uključen, povežimo se klijentom (naredba <code>mariadb</code>) kao i ranije pa iskoristimo naredbu <code>SHOW</code> za prikaz vrijednosti globalne varijable <code>have_ssl</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;have_ssl&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| have_ssl      | YES   |
++---------------+-------+
+1 row in set (0.001 sec)
+</code></pre></div>
+<h4 id="dodatne-postavke-tls-a">Dodatne postavke TLS-a</h4>
+<p>Slično kao kod drugih softvera koji koriste TLS, možemo navesti dodatne postavke šifriranja. Neke od korisnih naredbi su:</p>
+<ul>
+<li><code>require_secure_transport</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/require_secure_transport/">dokumentacija</a>), postavljanjem koje na <code>ON</code> možemo tražiti da se svako povezivanje klijenta sa poslužiteljem događa uz korištenje TLS-a (zadana vrijednost je <code>OFF</code>) (zahtijeva MariaDB 10.5 ili noviju)</li>
+<li><code>ssl_capath</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/ssl_crlpath/">dokumentacija</a>), kojom navodimo putanju do direktorija s certifikatima autoriteta certifikata kojima se vjeruje, primjerice <code>/usr/share/ca-certificates/mozilla</code></li>
+<li><code>ssl_cipher</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/ssl_cipher/">dokumentacija</a>), kojom navodimo popis šifrarnika koji će se koristiti</li>
+<li><code>tls_version</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/tls_version/">dokumentacija</a>), kojom navodimo verziju TLS-a koji će se koristiti (zahtijeva MariaDB 10.4 ili noviju)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Za generiranje adekvatnih sigurnosnih postavki možemo ponovno iskoristiti <a href="https://ssl-config.mozilla.org/">Mozillin generator SSL konfiguracije</a> i kao poslužiteljski softver odabrati MySQL.</p>
+</div>
+<h3 id="sifriranje-podataka-na-odmoru">Šifriranje podataka na odmoru</h3>
+<p>MariaDB podržava šifriranje podataka na odmoru korištenjem <a href="https://www.hashicorp.com/products/vault">HashiCorp Vaulta</a>, <a href="https://aws.amazon.com/kms/">Amazon Web Services (AWS) Key Management Servicea</a> ili datoteke s ključevima. Kako nemamo trenutno postavljen vlastiti oblak koji koristi HashiCorp Vault i nemamo želju postavljati sve potrebne usluge na AWS-u, koristit ćemo <a href="https://mariadb.com/docs/reference/mdb/plugins/file_key_management/">dodatak file_key_management</a> (<a href="https://mariadb.com/kb/en/file-key-management-encryption-plugin/">dokumentacija</a>) koji upravlja šifriranjem podataka na odmoru <a href="https://mariadb.com/docs/security/encryption/at-rest/encryption-plugins/file-key-management/understand-file-key-management/">pomoću datoteke s ključevima</a> za šifriranje baza podataka i binarnih logova.</p>
+<h4 id="ucitavanje-dodatka">Učitavanje dodatka</h4>
+<p>U direktoriju <code>/etc/mysql/mariadb.conf.d</code> stvorimo datoteku <code>91-file-key-management.cnf</code> u kojoj ćemo konfiguracijskom naredbom <code>plugin_load_add</code> (<a href="https://mariadb.com/docs/reference/mdb/cli/mariadbd/plugin-load-add/">dokumentacija</a>) učitati dodatak <code>file_key_management</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+
+<span class="na">plugin_load_add</span> <span class="o">=</span> <span class="s">file_key_management</span>
+</code></pre></div>
+<h4 id="stvaranje-simetricnih-kljuceva">Stvaranje simetričnih ključeva</h4>
+<p>Korišteni algoritam za šifriranje je <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">Advanced Encryption Standard (AES)</a> i podržane veličine ključeva su 128, 192 i 256 bita. Ključeve je moguće navesti po želji ili generirati OpenSSL-om kao slučajne podatke određene duljine. Kako se duljina navodi u bajtovima, za stvaranje 256-bitnog ključa generirat ćemo 32-bajtni slučajni podatak naredbom <code>openssl rand</code>:</p>
+<div class="highlight"><pre><span></span><code>$ openssl rand -hex <span class="m">32</span>
+1cece9bfd9e0263da50bcf02d088b12889cf1eddeb7f8ffdd719b9ab23359be2
+</code></pre></div>
+<p>U slučaju da trebamo više ključeva, naredbu ćemo iskoristiti više puta. Dodatne informacije o ovoj naredbi i parametrima koje podržava moguće je pronaći u man stranici <code>rand(1ssl)</code> (naredba <code>man 1ssl rand</code>). Stvorimo direktorij za ključeve za šifriranje:</p>
+<div class="highlight"><pre><span></span><code>$ sudo mkdir /etc/mysql/encryption
+</code></pre></div>
+<p>Stvorimo u njemu datoteku <code>/etc/mysql/encryption/keyfile</code> u kojoj su u svakom retku identifikator ključa (cijeli broj), znak točke sa zarezom i ključ:</p>
+<div class="highlight"><pre><span></span><code>1;1cece9bfd9e0263da50bcf02d088b12889cf1eddeb7f8ffdd719b9ab23359be2
+2;df8762cdcd39d0e095a538ecad06ca94f55f805cc76841ed304ec26e4f46d2a0
+11;6bf495bc15a970f8e51b7be49e0ebad5b74fc8febccd1ff45e259ca82e35a973
+34;34e791122e8cb9fe983534d33bc45522d3e9ca2ec373e720eb08fc34e7f59b7b
+</code></pre></div>
+<p>Identifikatori ključa moraju biti međusobno različiti, ali ne moraju ići po redu. Dodijelimo tu datoteku korisniku <code>mysql</code> i grupi <code>mysql</code> pa je skrijmo od ostalih:</p>
+<div class="highlight"><pre><span></span><code>$ sudo chown mysql:mysql /etc/mysql/encryption/keyfile
+$ sudo chmod o-rwx /etc/mysql/encryption/keyfile
+</code></pre></div>
+<h4 id="ukljucivanje-datoteke-s-kljucevima">Uključivanje datoteke s ključevima</h4>
+<p>Dopunimo datoteku <code>91-file-key-management.cnf</code> dodavanjem konfiguracijske naredbe <code>file_key_management_filename</code> (<a href="https://mariadb.com/kb/en/file-key-management-encryption-plugin/#file_key_management_filename">dokumentacija</a>) tako da bude oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+
+<span class="na">plugin_load_add</span> <span class="o">=</span> <span class="s">file_key_management</span>
+<span class="na">file_key_management_filename</span> <span class="o">=</span> <span class="s">/etc/mysql/encryption/keyfile</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Datoteku s ključevima je <a href="https://mariadb.com/kb/en/file-key-management-encryption-plugin/#encrypting-the-key-file">moguće šifrirati</a> pa navesti ključ za dešifriranje konfiguracijskom naredbom <code>file_key_management_filekey</code> (<a href="https://mariadb.com/kb/en/file-key-management-encryption-plugin/#file_key_management_filekey">dokumentacija</a>).</p>
+</div>
+<h4 id="odabir-algoritma-za-sifriranje">Odabir algoritma za šifriranje</h4>
+<p>Podržane su dvije varijante algoritma AES:</p>
+<ul>
+<li>AES-CBC, koji koristi <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC)">Cipher block chaining (CBC)</a></li>
+<li>AES-CTR, koji koristi kombinaciju <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_(CTR)">Counter (CTR)</a> i <a href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">Galois/Counter Mode (GCM)</a> (zahtijeva da korišteni OpenSSL podržava te algoritme)</li>
+</ul>
+<p>Kombinacija CTR-a i GCM-a se smatra boljim odabirom i naša je verzija OpenSSL-a podržava pa ćemo njeno korištenje uključiti dodavanjem konfiguracijske naredbe <code>file_key_management_encryption_algorithm</code> (<a href="https://mariadb.com/kb/en/file-key-management-encryption-plugin/#file_key_management_encryption_algorithm">dokumentacija</a>) u datoteku <code>91-file-key-management.cnf</code> tako da bude oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+
+<span class="na">plugin_load_add</span> <span class="o">=</span> <span class="s">file_key_management</span>
+<span class="na">file_key_management_filename</span> <span class="o">=</span> <span class="s">/etc/mysql/encryption/keyfile</span>
+<span class="na">file_key_management_encryption_algorithm</span> <span class="o">=</span> <span class="s">AES_CTR</span>
+</code></pre></div>
+<p>Ako korišteni OpenSSL ne podržava taj algoritam, zamijenit ćemo posljednju liniju za:</p>
+<div class="highlight"><pre><span></span><code><span class="na">file_key_management_encryption_algorithm</span> <span class="o">=</span> <span class="s">AES_CBC</span>
+</code></pre></div>
+<p>Pokrenimo ponovno poslužitelj kako bi učitao nove postavke:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl restart mariadb
+</code></pre></div>
+<h4 id="sifriranje-tablica-u-bazi-podataka">Šifriranje tablica u bazi podataka</h4>
+<p><a href="https://mariadb.com/kb/en/innodb-encryption/">Šifriranje tablica u bazi podataka</a> zahtijeva od nas da prvo stvorimo bazu podataka. Povežimo se na poslužitelj klijentom <code>mariadb</code> kao ranije pa stvorimo bazu SQL upitom <code>CREATE DATABASE</code> (<a href="https://mariadb.com/kb/en/create-database/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">mojabaza</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.000 sec)
+</code></pre></div>
+<p>Odaberimo je za korištenje naredbom <code>USE</code> (<a href="https://mariadb.com/kb/en/use/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span> <span class="n">mojabaza</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Database changed
+</code></pre></div>
+<p>Uočimo kako nam piše ime baze unutar uglatih zagrada gdje je ranije pisalo <code>(none)</code>. Stvorimo šifriranu tablicu SQL upitom <code>CREATE TABLE</code> (<a href="https://mariadb.com/kb/en/create-table/">dokumentacija</a>) uz navođenje opcije <code>ENCRYPTED</code> (<a href="https://mariadb.com/kb/en/create-table/#encrypted">dokumentacija</a>) postavljene na <code>YES</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">names</span> <span class="p">(</span> <span class="n">id</span> <span class="nb">int</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">str</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="p">)</span> <span class="k">ENCRYPTED</span><span class="o">=</span><span class="n">YES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.004 sec)
+</code></pre></div>
+<p>Ubacimo i nešto podataka u tablicu SQL upitom <code>INSERT</code> (<a href="https://mariadb.com/kb/en/insert/">dokumentacija</a>) jer će nam dobro doći kasnije da nam tablica nije prazna:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">names</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Tomislav&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">names</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Arijana&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.001 sec)
+</code></pre></div>
+<p>Uvjerimo se da su podaci u tablici SQL upitom <code>SELECT</code> (<a href="https://mariadb.com/kb/en/select/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">names</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----+----------+
+| id | str      |
++----+----------+
+|  1 | Tomislav |
+|  2 | Arijana  |
++----+----------+
+2 rows in set (0.000 sec)
+</code></pre></div>
+<p>Ova tablica i svi uneseni podaci su šifrirani korištenjem ključa s identifikatorom 1, koji je zadani ključ. U to da je ključ s identifikatorom 1 zadani možemo se uvjeriti dohvaćanjem vrijednosti varijable sesije <code>innodb_default_encryption_key_id</code> (<a href="https://mariadb.com/kb/en/innodb-system-variables/#innodb_default_encryption_key_id">dokumentacija</a>). (<a href="https://mariadb.com/kb/en/innodb/">InnoDB</a> je zadani pogon za pohranu tablica u MariaDB, a dostupan je za korištenje i u MySQL-u.) Za dohvaćanje te varijable iskoristit ćemo naredbu <code>SHOW</code> na način:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="k">SESSION</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;innodb_default_encryption_key_id&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----------------------------------+-------+
+| Variable_name                    | Value |
++----------------------------------+-------+
+| innodb_default_encryption_key_id | 1     |
++----------------------------------+-------+
+1 row in set (0.001 sec)
+</code></pre></div>
+<p>Korištenje ključa različitog od zadanog možemo postaviti kod stvaranja tablice navođenjem dodatne opcije <code>ENCRYPTION_KEY_ID</code> (<a href="https://mariadb.com/kb/en/create-table/#encryption_key_id">dokumentacija</a>) postavljene na identifikator ključa:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">surnames</span> <span class="p">(</span> <span class="n">id</span> <span class="nb">int</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">str</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="p">)</span> <span class="k">ENCRYPTED</span><span class="o">=</span><span class="n">YES</span> <span class="n">ENCRYPTION_KEY_ID</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.004 sec)
+</code></pre></div>
+<p>Ponovno, ubacimo nešto podataka da imamo s čime raditi kasnije:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">surnames</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Lasić&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">surnames</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Rebić&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">surnames</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Kutleša&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 1 row affected (0.001 sec)
+</code></pre></div>
+<p>Uvjerimo se ponovno da su podaci u tablici:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">surnames</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----+----------+
+| id | str      |
++----+----------+
+|  1 | Lasić    |
+|  2 | Rebić    |
+|  3 | Kutleša  |
++----+----------+
+3 rows in set (0.000 sec)
+</code></pre></div>
+<h4 id="sifriranje-binarnih-logova">Šifriranje binarnih logova</h4>
+<p><a href="https://mariadb.com/kb/en/encrypting-binary-logs/">Šifriranje binarnih logova</a> moguće je uključiti dodavanjem konfiguracijske naredbe <code>encrypt_binlog</code> (<a href="https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#encrypt_binlog">dokumentacija</a>) postavljene na vrijednost <code>ON</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+
+<span class="na">encrypt_binlog</span> <span class="o">=</span> <span class="s">ON</span>
+</code></pre></div>
+<h2 id="privilegije-korisnika">Privilegije korisnika</h2>
+<p>Dosad smo pokretali klijent MariaDB kao korijenski korisnik i zbog toga imali sva prava na svim bazama i svim tablicama u tim bazama. U praksi tu mogućnost želimo koristiti samo kad nam treba, a u redovnom radu ograničiti privilegije korisnika u radu s bazom i tablicama u njoj na one koje su zaista potrebne. Naime, u slučaju neograničenih prava zlonamjeran SQL upit može vrlo lako promijeniti ili izbrisati podatke kojima inače uopće ne pristupa i nema razloga pristupati. U aplikaciji želimo spriječiti da takav upit uopće dođe do sustava za upravljanje bazom podataka; ako ipak pronađe put do njega, u sustavu za upravljanje bazom podataka želimo spriječiti da bude uspješan.</p>
+<h3 id="korisnici">Korisnici</h3>
+<p>MariaDB omogućuje <a href="https://mariadb.com/kb/en/user-account-management/">upravljanje korisnicima</a> korištenjem <a href="https://mariadb.com/kb/en/account-management-sql-commands/">naredbi sličnih SQL upitima</a>:</p>
+<ul>
+<li><code>CREATE USER</code> (<a href="https://mariadb.com/kb/en/create-user/">dokumentacija</a>) stvara novi korisnički račun</li>
+<li><code>ALTER USER</code> (<a href="https://mariadb.com/kb/en/alter-user/">dokumentacija</a>) mijenja postojeći korisnički račun</li>
+<li><code>RENAME USER</code> (<a href="https://mariadb.com/kb/en/rename-user/">dokumentacija</a>) preimenuje korisnika</li>
+<li><code>DROP USER</code> (<a href="https://mariadb.com/kb/en/drop-user/">dokumentacija</a>) briše jedan ili više korisničkih računa</li>
+</ul>
+<p>Stvorimo korisnika sa svojim imenom koji će se prijavljivati s lokalnog računala korištenjem lozinke:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;ne3pr0v4lj1v4t4jn4l0z1nka&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<p>Sada se možemo prijaviti kao taj korisnik, što ćemo i napraviti u drugom terminalu bez prekidanja postojeće sesije korijenskog korisnika. Parametrom <code>-u</code> navodimo korisničko ime korisnika koji se prijavljuje, a parametrom <code>-p</code> navodimo da ćemo izvršiti prijavu korištenjem zaporke:</p>
+<div class="highlight"><pre><span></span><code>$ mariadb -u ivanzhegalkin
+ERROR <span class="m">1045</span> <span class="o">(</span><span class="m">28000</span><span class="o">)</span>: Access denied <span class="k">for</span> user <span class="s1">&#39;ivanzhegalkin&#39;</span>@<span class="s1">&#39;localhost&#39;</span> <span class="o">(</span>using password: NO<span class="o">)</span>
+
+$ mariadb -u ivanzhegalkin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MariaDB connection id is <span class="m">58</span>
+Server version: <span class="m">10</span>.3.25-MariaDB-0ubuntu0.20.04.1 Ubuntu <span class="m">20</span>.04
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle, MariaDB Corporation Ab and others.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+MariaDB <span class="o">[(</span>none<span class="o">)]</span>&gt;
+</code></pre></div>
+<p>Pokušamo li sada pristupiti bazi <code>mojabaza</code> od ranije, uočit ćemo kako to ne možemo izvesti:</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span> <span class="n">mojabaza</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ERROR 1044 (42000): Access denied for user &#39;ivanzhegalkin&#39;@&#39;localhost&#39; to database &#39;mojabaza&#39;
+</code></pre></div>
+<p>Ostavimo otvorena oba terminala jer ćemo u nastavku dodjeljivati i provjeravati dodijeljene privilegije.</p>
+<h3 id="privilegije">Privilegije</h3>
+<p>Korijenski korisnik može naredbom <code>GRANT</code> (<a href="https://mariadb.com/kb/en/grant/">dokumentacija</a>) dodjeljivati privilegije drugim korisnicima, uključujući i privilegiju da mogu dalje dodjeljivati privilegije koje posjeduju. U nastavku ćemo raditi kao korijenski korisnik, a kao drugi korisnik možemo se eventualno uvjeriti da zaista posjedujemo dodijeljene privilegije.</p>
+<p>Postoji više nivoa privilegija, a nama su zanimljive:</p>
+<ol>
+<li>globalne privilegije (<a href="https://mariadb.com/kb/en/grant/#global-privileges">popis u službenoj dokumentaciji</a>), u koje spadaju pregledavanje popisa svih baza koje postoje na sustavu naredbom <code>SHOW DATABASES</code>, stvaranje korisnika naredbom <code>CREATE USER</code> i dodjeljivanje privilegija drugom korisniku naredbom <code>GRANT OPTION</code>:</li>
+<li>privilegije baze podataka (<a href="https://mariadb.com/kb/en/grant/#database-privileges">popis u službenoj dokumentaciji</a>), u koje spadaju stvaranje baze naredbom <code>CREATE DATABASE</code>, brisanje baze naredbom <code>DROP DATABASE</code> i dodjeljivanje tih privilegija drugom korisniku naredbom <code>GRANT OPTION</code>;</li>
+<li>privilegije tablice (<a href="https://mariadb.com/kb/en/grant/#table-privileges">popis u službenoj dokumentaciji</a>), u koje spadaju stvaranje tablice naredbom <code>CREATE TABLE</code>, stvaranje pogleda naredbom <code>CREATE VIEW</code>, promjena strukture tablice naredbom <code>ALTER TABLE</code>, čitanje podataka iz tablice naredbom <code>SELECT</code>, umetanje podataka u tablicu naredbom <code>INSERT</code>, promjenu podataka u tablici naredbom <code>UPDATE</code>, brisanje tablice ili pogleda naredbama <code>DROP TABLE</code> i <code>DROP VIEW</code>, stvaranje indeksa tablice naredbom <code>CREATE INDEX</code> i druge.</li>
+</ol>
+<p>Dodijeljene privilegije mogu prikazati naredbom <code>SHOW GRANTS</code> (<a href="https://mariadb.com/kb/en/show-grants/">dokumentacija</a>).</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">FOR</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----------------------------------------------------------------------------------------------------------------------+
+| Grants for ivanzhegalkin@localhost                                                                                   |
++----------------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO [ivanzhegalkin)@[localhost) IDENTIFIED BY PASSWORD &#39;*FB0DD9B1D2A1CF4B2203A2FBF5E1EAE4A2008788&#39; |
++----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.000 sec)
+</code></pre></div>
+<h4 id="dodjeljivanje-privilegija">Dodjeljivanje privilegija</h4>
+<p>Privilegija <code>USAGE</code> ne omogućuje ništa specijalno, već samo označava da korisnik postoji. Dodijelimo korisniku pravo pregledavanja baza koje postoje na sustavu:</p>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span> <span class="k">SHOW</span> <span class="n">DATABASES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<p>Kako bismo bili sigurni da su naše promjene privilegija aktivne, moramo sprati dodijeljene privilegije naredbom <code>FLUSH</code> (<a href="https://mariadb.com/kb/en/flush/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<p>Uočimo promjenu kod izlaza naredbe <code>SHOW GRANTS</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">FOR</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+-------------------------------------------------------------------------------------------------------------------------------+
+| Grants for ivanzhegalkin@localhost                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SHOW DATABASES ON *.* TO [ivanzhegalkin)@[localhost) IDENTIFIED BY PASSWORD &#39;*FB0DD9B1D2A1CF4B2203A2FBF5E1EAE4A2008788&#39; |
++-------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.000 sec)
+</code></pre></div>
+<p>Uvjerimo se kao obični korisnik da smo zaista dobili privilegiju pregledavanja popisa baza podataka:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mojabaza           |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.000 sec)
+</code></pre></div>
+<p>Kako se čitanje podataka iz baze vrši naredbom <code>SELECT</code>, pravo čitanja podataka iz svih tablica korisniku ćemo dati na način:</p>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">mojabaza</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">FOR</span> <span class="s1">&#39;ivanzhegalkin&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+-------------------------------------------------------------------------------------------------------------------------------+
+| Grants for ivanzhegalkin@localhost                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SHOW DATABASES ON *.* TO [ivanzhegalkin)@[localhost) IDENTIFIED BY PASSWORD &#39;*FB0DD9B1D2A1CF4B2203A2FBF5E1EAE4A2008788&#39; |
+| GRANT SELECT ON [mojabaza).* TO [ivanzhegalkin)@[localhost)                                                                   |
++-------------------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.000 sec)
+</code></pre></div>
+<p>Uvjerimo se kao obični korisnik da zaista imamo privilegije pregledavanja tablica i čitanja podataka iz njih:</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span> <span class="n">mojabaza</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">TABLES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------------------+
+| Tables_in_mojabaza |
++--------------------+
+| names              |
+| surnames           |
++--------------------+
+2 rows in set (0.000 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">DESCRIBE</span> <span class="k">names</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| str   | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">DESCRIBE</span> <span class="n">surnames</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| str   | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">names</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----+----------+
+| id | str      |
++----+----------+
+|  1 | Tomislav |
+|  2 | Arijana  |
++----+----------+
+2 rows in set (0.000 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">surnames</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+----+----------+
+| id | str      |
++----+----------+
+|  1 | Lasić    |
+|  2 | Rebić    |
+|  3 | Kutleša  |
++----+----------+
+3 rows in set (0.000 sec)
+</code></pre></div>
+<p>Uvjerimo se i da nismo dobili druge privilegije:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">names</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Marko&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ERROR 1142 (42000): INSERT command denied to user &#39;ivanzhegalkin&#39;@&#39;localhost&#39; for table &#39;names&#39;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">surnames</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ERROR 1142 (42000): DROP command denied to user &#39;ivanzhegalkin&#39;@&#39;localhost&#39; for table &#39;surnames&#39;
+</code></pre></div>
+<p>Ako to želimo, na analogan način bismo uz pomoć <a href="https://mariadb.com/kb/en/grant/#table-privileges">popisa privilegija tablice</a> mogli dodijeliti te privilegije kao i mogućnost promjene podataka, promjene strukture tablice i druge.</p>
+<h4 id="opozivanje-privilegija">Opozivanje privilegija</h4>
+<p>Dodijeljene privilegije se opozivaju naredbom <code>REVOKE</code> (<a href="https://mariadb.com/kb/en/revoke/">dokumentacija</a>) čiji je način korištenja potpuno analogan načinu korištenja naredbe <code>GRANT</code>.</p>
+<h3 id="uloge">Uloge</h3>
+<p><a href="https://mariadb.com/kb/en/roles_overview/">Uloge</a> se koriste za grupiranje većeg broja privilegija zajedno, što olakšava dodjeljivanje privilegijama korisnicima. Privilegije se dodjeljuju ulozi, a onda se uloga dodjeljuje proizvoljnom broju korisnika. Naredba <code>CREATE ROLE</code> (<a href="https://mariadb.com/kb/en/create-role/">dokumentacija</a>) stvara ulogu, a naredba <code>DROP ROLE</code> (<a href="https://mariadb.com/kb/en/drop-role/">dokumentacija</a>) briše ulogu.</p>
+<p>Za ilustraciju, možemo zamisliti sustav u kojem studenti tek uče raditi s bazama podataka pa imaju pravo čitanja podataka iz svih tablica iz svih baza, ali ne i zapisivanja podataka u njih. Ulogu <code>student</code> ćemo stvoriti, dodijeliti joj privilegije i dodijeliti je korisnicima na način:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">student</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SHOW</span> <span class="n">DATABASES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">student</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">student</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="n">student</span> <span class="k">to</span> <span class="n">filip</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="n">student</span> <span class="k">to</span> <span class="n">laura</span><span class="p">;</span>
+</code></pre></div>
+<p>S druge strane, profesori imaju potrebu i unositi novi sadržaj u baze podataka i uređivati postojeći sadržaj u njima pa za ulogu <code>professor</code> imamo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">professor</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SHOW</span> <span class="n">DATABASES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">professor</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">professor</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">INSERT</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">professor</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">UPDATE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">professor</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="n">professor</span> <span class="k">to</span> <span class="n">lucia</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="n">professor</span> <span class="k">to</span> <span class="n">danijela</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="n">professor</span> <span class="k">to</span> <span class="n">kristian</span><span class="p">;</span>
+</code></pre></div>
+<p>Naredba <code>DROP ROLE</code> koristi se analogno naredbi <code>CREATE ROLE</code>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../llvm-frontend-clang-opencl-c/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Prevođenje OpenCL C koda program prevoditeljem Clang" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Prevođenje OpenCL C koda program prevoditeljem Clang
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../mediawiki-instalacija-web-aplikacije/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Instalacija i konfiguracija wiki sustava MediaWiki" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Instalacija i konfiguracija wiki sustava MediaWiki
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.29db7785.min.js"></script>
+      
+    
+  </body>
+</html>

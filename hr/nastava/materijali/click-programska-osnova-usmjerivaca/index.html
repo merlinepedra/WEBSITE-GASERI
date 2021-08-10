@@ -1,0 +1,4526 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Information Technology">
+      
+      
+      
+        <meta name="author" content="Ivan Ivakić, Vedran Miletić">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.3">
+    
+    
+      
+        <title>Programska osnova usmjerivača - Group for apps and services on exascale research infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#programska-osnova-usmjerivaca" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Group for apps and services on exascale research infrastructure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Programska osnova usmjerivača
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Group for apps and services on exascale research infrastructure
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        O laboratoriju
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ljudi/" class="md-nav__link">
+        Ljudi
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../istrazivanje-i-razvoj/" class="md-nav__link">
+        Istraživanje i razvoj
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        Nastava
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nastava" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Nastava
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      <label class="md-nav__link" for="__nav_5_1">
+        Izvedbeni planovi
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Izvedbeni planovi" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Izvedbeni planovi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+      
+      <label class="md-nav__link" for="__nav_5_1_1">
+        2020/2021
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2020/2021" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          2020/2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2020-2021/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+      
+      <label class="md-nav__link" for="__nav_5_1_2">
+        2019/2020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2019/2020" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2019-2020/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+      
+      <label class="md-nav__link" for="__nav_5_1_3">
+        2018/2019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2018/2019" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          2018/2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2018-2019/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/KM/" class="md-nav__link">
+        Komunikacijske mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OI1/" class="md-nav__link">
+        Osnove informatike 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OPK/" class="md-nav__link">
+        Optimizacija programskog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OS1/" class="md-nav__link">
+        Operacijski sustavi 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/RM-RiTeh/" class="md-nav__link">
+        Računalne mreže (RiTeh)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/SRS/" class="md-nav__link">
+        Superračunalni sustavi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolegiji/URS/" class="md-nav__link">
+        Upravljanje računalnim sustavima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_21" type="checkbox" id="__nav_5_21" checked>
+      
+      <label class="md-nav__link" for="__nav_5_21">
+        Nastavni materijali
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Nastavni materijali" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_21">
+          <span class="md-nav__icon md-icon"></span>
+          Nastavni materijali
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../389-directory-server-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj 389 Directory Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anaconda-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible-automatizacija-konfiguracije-odrzavanja-sustava/" class="md-nav__link">
+        Automatizacija konfiguracije i održavanja sustava alatom Ansible
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-ab-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom ab (Apache HTTP server benchmarking tool)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-mod-ssl/" class="md-nav__link">
+        Konfiguracija HTTPS-a u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-pokretanje-php-aplikacija/" class="md-nav__link">
+        Pokretanje PHP web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-pokretanje-python-aplikacija/" class="md-nav__link">
+        Pokretanje Python web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-virtual-host/" class="md-nav__link">
+        Konfiguracija virtualnih domaćina u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apache-web-posluzitelj/" class="md-nav__link">
+        Osnovna konfiguracija web poslužitelja Apache HTTP Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-abi-kompatibilnost/" class="md-nav__link">
+        Binarna kompatibilnost i kompatibilnost na razini izvornog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../avahi-zeroconf/" class="md-nav__link">
+        Zerconf NSS/mDNS sustav Avahi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../avogadro-vizualizacija-uredjivanje-molekula/" class="md-nav__link">
+        Vizualizacija i uređivanje molekula alatom Avogadro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bind9-dns-sustav/" class="md-nav__link">
+        DNS sustav BIND9
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatika-povijest-osnove/" class="md-nav__link">
+        Bioinformatika
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brctl-izrada-mostova/" class="md-nav__link">
+        Premošćenje mrežnih adaptera i izrada mostova
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bro-raspoznavanje-upada-u-sustav/" class="md-nav__link">
+        Raspoznavanje upada u sustav alatom Bro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ceph-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Ceph
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chembl-baza-bioaktivnih-molekula/" class="md-nav__link">
+        Baza bioaktivnih molekula ChEMBL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../click-modularni-usmjerivac/" class="md-nav__link">
+        Modularni usmjerivač Click
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Programska osnova usmjerivača
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Programska osnova usmjerivača
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arhitektura-alata-click" class="md-nav__link">
+    Arhitektura alata Click
+  </a>
+  
+    <nav class="md-nav" aria-label="Arhitektura alata Click">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicijalizacija" class="md-nav__link">
+    Inicijalizacija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#konfiguracija" class="md-nav__link">
+    Konfiguracija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pokretanje" class="md-nav__link">
+    Pokretanje
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dodatak-sucelje-prema-mreznom-simulatoru-ns-3" class="md-nav__link">
+    Dodatak: sučelje prema mrežnom simulatoru ns-3
+  </a>
+  
+    <nav class="md-nav" aria-label="Dodatak: sučelje prema mrežnom simulatoru ns-3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nacin-koristenja" class="md-nav__link">
+    Način korištenja
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primjeri-simulacija" class="md-nav__link">
+    Primjeri simulacija
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../click-protokoli/" class="md-nav__link">
+        Korištenje mrežnih protokola u modularnom usmjerivaču Click
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c-mrezne-aplikacije/" class="md-nav__link">
+        Programiranje mrežnih aplikacija u programskim jezicima C i C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-eigen/" class="md-nav__link">
+        C++ biblioteka predložaka za linearnu algebru Eigen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-std-random/" class="md-nav__link">
+        Generiranje pseudoslučajnih brojeva u C++ aplikacijama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja C++ aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../curl-protokoli-aplikacijske-razine/" class="md-nav__link">
+        Rad s protokolima aplikacijske razine
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debian-installer-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskog sustava Debian korištenjem instalacijskog alata Debian-Installer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deb-pakiranje-paketa/" class="md-nav__link">
+        Pakiranje deb paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp-posluzitelj-klijent/" class="md-nav__link">
+        Dinamičko dodjeljivanje adresa domaćinima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dnsmasq-dhcp-dns-posluzitelj/" class="md-nav__link">
+        DHCP i DNS poslužitelj dnsmasq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-kontejneri/" class="md-nav__link">
+        Kontejnerizacija alatom Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dokuwiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava DokuWiki
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dovecot-pop3-imap-posluzitelj/" class="md-nav__link">
+        POP3 i IMAP -- Dovecot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doxygen-dokumentiranje-programskog-koda/" class="md-nav__link">
+        Dokumentiranje programskog koda alatom Doxygen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ebtables-vatrozid/" class="md-nav__link">
+        Filtriranje okvira vatrozidom na veznom sloju
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elasticsearch-distribuirano-pretrazivanje/" class="md-nav__link">
+        Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emacs-text-datoteke/" class="md-nav__link">
+        Rad s tekstualnim datotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-bezicne-mreze/" class="md-nav__link">
+        Emulacija bežičnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-fragmentacija-paketa/" class="md-nav__link">
+        Fragmentacija IPv4 paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-generiranje-topologija/" class="md-nav__link">
+        Generiranje topologija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-graficko-sucelje/" class="md-nav__link">
+        Osnove rada s emulatorom računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-konfiguracija-cvora/" class="md-nav__link">
+        Konfiguracija čvorova u alatu CORE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-mobilnost/" class="md-nav__link">
+        Mobilnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emulator-core-stvaranje-konfiguracija-podmreza/" class="md-nav__link">
+        Stvaranje i konfiguracija podmreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcc-gxx-make-prevodjenje-programa/" class="md-nav__link">
+        Prevođenje C, C++ i Fortran programa u izvršni kod
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettext-lokalizacija-softvera/" class="md-nav__link">
+        Lokalizacija softvera korištenjem GNU gettexta
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab-ci-cd/" class="md-nav__link">
+        Kontinuirana integracija korištenjem GitLaba
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-upravljanje-verzijama/" class="md-nav__link">
+        Distribuirani sustav za upravljanje verzijama Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gluster-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Gluster
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnu-linux-slobodni-softver-povijest-osnove/" class="md-nav__link">
+        Razvoj slobodnog operacijskog sustava sličnog Unixu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnupg-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa alatom GnuPG
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep-sed-awk-tr/" class="md-nav__link">
+        Pretraživanje i obrada tekstualnih datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grub-pokretanje-sustava/" class="md-nav__link">
+        Boot proces računala i učitavač GRUB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hsa-pregled/" class="md-nav__link">
+        Pregled heterogene sustavske arhitekture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../httpie-http-klijent/" class="md-nav__link">
+        HTTP klijent HTTPie
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ifconfig-konfiguracija-mreznih-sucelja/" class="md-nav__link">
+        Osnovni alati za konfiguraciju računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intelektualno-vlasnistvo-softver-podaci-znanstveni-radovi/" class="md-nav__link">
+        Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables-prevodjenje-adresa/" class="md-nav__link">
+        Prevođenje mrežnih adresa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables-vatrozid/" class="md-nav__link">
+        Filtriranje paketa vatrozidom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kemoinformatika-povijest-osnove/" class="md-nav__link">
+        Kemoinformatika i računalna kemija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kvm-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-arhiviranje-komprimiranje/" class="md-nav__link">
+        Arhiviranje i komprimiranje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-cijevi-preusmjeravanje-ulaza-izlaza/" class="md-nav__link">
+        Cijevi, preusmjeravanje ulaza i izlaza
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-cli-uvod/" class="md-nav__link">
+        Uvod u komandnolinijsko sučelje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-datoteke-touch-rm-cp-mv/" class="md-nav__link">
+        Baratanje datotekama u datotečnom sustavu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-direktoriji-mkdir-pwd-cd/" class="md-nav__link">
+        Stablo direktorija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-disk-particija-filesystem/" class="md-nav__link">
+        Diskovi, particije, datotečni sustavi i mjesta montiranja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-dozvole-datoteka/" class="md-nav__link">
+        Dozvole i kontrola pristupa datotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-inode-poveznice/" class="md-nav__link">
+        Informacijski čvorovi, vremena i poveznice datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-kernel-osnove/" class="md-nav__link">
+        Rad s jezgrom operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-korisnici-grupe/" class="md-nav__link">
+        Korisnici i grupe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-procesi/" class="md-nav__link">
+        Upravljanje procesima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-shell-varijable-povijest/" class="md-nav__link">
+        Varijable ljuske i okoline, povijest ljuske
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-tipovi-datoteka/" class="md-nav__link">
+        Tipovi datoteka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llvm-backend-amdgpu/" class="md-nav__link">
+        Prevođenje OpenCL C koda u asemblerski kod arhitektura AMD GCN i RDNA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llvm-frontend-clang-opencl-c/" class="md-nav__link">
+        Prevođenje OpenCL C koda program prevoditeljem Clang
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mediawiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava MediaWiki
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs-dokumentiranje-programa/" class="md-nav__link">
+        Dokumentiranje programa alatom MkDocs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nabavka-prevodjenje-instalacija-softvera-otvorenog-koda/" class="md-nav__link">
+        Nabavka, kompajliranje i instalacija softvera otvorenog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netlib-blas-lapack/" class="md-nav__link">
+        BLAS i LAPACK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nfs-mrezni-datotecni-sustav/" class="md-nav__link">
+        Mrežni datotečni sustav NFS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx-web-posluzitelj/" class="md-nav__link">
+        Web poslužitelj nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nmap-analiza-ranjivosti/" class="md-nav__link">
+        Analiza ranjivosti računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oblak-resursi-usluge/" class="md-nav__link">
+        Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-linux-upravljanje-datotecnim-sustavom-2/" class="md-nav__link">
+        Pretraživanje, prava pristupa, rad sa tekstom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-linux-upravljanje-datotecnim-sustavom/" class="md-nav__link">
+        Osnove rada sa komandnom linijom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-perl/" class="md-nav__link">
+        Skriptiranje u Perl-u
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oi1-regularni-izrazi-konacni-automati/" class="md-nav__link">
+        Regularni izrazi i konačni automati
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../open-babel-pretvorba-analiza-spremanje-podataka-molekula/" class="md-nav__link">
+        Pretvorba formata alatom Open Babel
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openldap-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj OpenLDAP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssh-sigurna-ljuska/" class="md-nav__link">
+        Sigurna ljuska i udaljeni rad alatom OpenSSH
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-certifikat-javnog-kljuca/" class="md-nav__link">
+        Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl-kriptografski-algoritmi/" class="md-nav__link">
+        Korištenje osnovnih kriptografskih algoritama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openvpn-infrastruktura-javnog-kljuca/" class="md-nav__link">
+        Korištenje infrastrukture javnog ključa u postavljanju virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openvpn-virtualna-privatna-mreza/" class="md-nav__link">
+        Konfiguracija virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openwrt-ugradbeni-softver-za-bezicne-mrezne-usmjerivace/" class="md-nav__link">
+        OpenWrt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otvoreni-kod-povijest-osnove/" class="md-nav__link">
+        Softver otvorenog koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paralelno-distribuirano-heterogeno-racunarstvo-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi paralelnog, distribuiranog i heterogenog računarstva
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paralelno-distribuirano-heterogeno-racunarstvo-superracunala/" class="md-nav__link">
+        Superračunala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pdb-baza-proteina/" class="md-nav__link">
+        Baza struktura proteina RCSB PDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-composer/" class="md-nav__link">
+        Upravljanje zavisnostima paketa u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-cookies/" class="md-nav__link">
+        Baratanje HTTP kolačićima u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-curl/" class="md-nav__link">
+        Izvođenje HTTP zahtjeva korištenjem biblioteke cURL u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-file-upload/" class="md-nav__link">
+        Postavljanje datoteka na poslužitelj u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-http-auth/" class="md-nav__link">
+        HTTP autentifikacija u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-http-encoding/" class="md-nav__link">
+        Kodiranje HTTP sadržaja i kompresija u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-json/" class="md-nav__link">
+        Obrada podataka zapisanih u obliku JavaScript Object Notation (JSON) u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-openssl/" class="md-nav__link">
+        Korištenje biblioteke OpenSSL u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-rest/" class="md-nav__link">
+        Implementacija REpresentational State Transfer (REST) aplikacijskog programskog sučelja u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-sockets/" class="md-nav__link">
+        Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-sodium/" class="md-nav__link">
+        Korištenje biblioteke Sodium u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-ugradjeni-web-posluzitelj/" class="md-nav__link">
+        Ugrađeni web poslužitelj u interpreteru jezika PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-visejezicnost/" class="md-nav__link">
+        Višejezičnost u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php-zahtjev-odgovor/" class="md-nav__link">
+        Obrada HTTP zahtjeva i stvaranje odgovora u jeziku PHP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ping-traceroute-nestat-analiza-mreze/" class="md-nav__link">
+        Osnovni alati za analizu računalne mreže
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postfix-procmail-smtp-posluzitelj/" class="md-nav__link">
+        Message transfer agent -- Postfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgresql-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procfs-sysfs-informacije-konfiguracija/" class="md-nav__link">
+        Datotečni sustavi Procfs i Sysfs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pxe-pokretanje-racunala-putem-mreznog-sucelja/" class="md-nav__link">
+        Pokretanje računala putem mrežnog sučelja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pymol-vizualizacija-molekula/" class="md-nav__link">
+        Vizualizacija molekula u alatu PyMOL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj1/" class="md-nav__link">
+        Django vježba 1 -- Postavljanje razvojnog okruženja web aplikacija na operacijskim sustavima sličnim Unixu i Windowsima. Stvaranje projekta i organizacija koda. Korištenje dokumentacije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj2/" class="md-nav__link">
+        Django vježba 2 -- Korištenje baze podataka. Stvaranje modela i objektno-relacijsko preslikavanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj3/" class="md-nav__link">
+        Django vježba 3 -- Relacije među modelima. Upiti
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj4/" class="md-nav__link">
+        Django vježba 4 -- Usmjeravanje i URL-i. Stvaranje pogleda kao odgovora na HTTP zahtjeve
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj5/" class="md-nav__link">
+        Django vježba 5 -- Generički pogledi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj6/" class="md-nav__link">
+        Django vježba 6 -- Predaja obrazaca HTTP metodama GET i POST. Provjera unosa i prikaz poruka o greškama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj7/" class="md-nav__link">
+        Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj9/" class="md-nav__link">
+        Django vježba 9 -- Sijanje i migracije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj10/" class="md-nav__link">
+        Django vježba 10 -- Autentifikacija. Autorizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj11/" class="md-nav__link">
+        Django vježba 11 -- Testiranje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-django-vj12/" class="md-nav__link">
+        Django vježba 12 -- Django REST framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dokumentiranje/" class="md-nav__link">
+        Dokumentiranje Python koda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-funkcije-klase/" class="md-nav__link">
+        Python -- funkcije i klase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-input-output/" class="md-nav__link">
+        Python -- ulaz i izlaz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modularizacija/" class="md-nav__link">
+        Python -- moduli
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-calendar/" class="md-nav__link">
+        Python -- stvaranje i ispis kalendara
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-cryptography/" class="md-nav__link">
+        Rad s Python modulom pyca/cryptography
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-datetime/" class="md-nav__link">
+        Python -- osnovni tipovi podataka datuma i vremena
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-fcntl/" class="md-nav__link">
+        Python -- usluge specifične za operacijske sustave slične Unixu -- pozivi fcntl() i ioctl()
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-gettext/" class="md-nav__link">
+        Python -- usluge za višejezičnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-glob/" class="md-nav__link">
+        Python -- ekspanzija uzoraka imena putanje u stilu operacijskih sustava sličnih Unixu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-locale/" class="md-nav__link">
+        Python -- internacionalizacija i lokalizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-matplotlib/" class="md-nav__link">
+        Rad s Python modulom matplotlib i sučeljem pyplot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-dinamicko-upravljanje-procesima/" class="md-nav__link">
+        Python modul mpi4py -- dinamičko upravljanje procesima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-jednostrana-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- jednostrana komunikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-kolektivna-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- kolektivna komunikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-komunikacija-tocka-do-tocke/" class="md-nav__link">
+        Python modul mpi4py -- komunikacija točka-do-točke
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-komunikatori-grupe/" class="md-nav__link">
+        Python modul mpi4py -- komunikatori i grupe procesa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-osnove/" class="md-nav__link">
+        Python modul mpi4py -- osnove
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-paralelni-ulaz-izlaz/" class="md-nav__link">
+        Python modul mpi4py -- paralelni ulaz/izlaz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-mpi4py-upravljanje-okolinom/" class="md-nav__link">
+        Python modul mpi4py -- upravljanje okolinom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-multiprocessing/" class="md-nav__link">
+        Python -- višeprocesnost na jednom računalu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-numpy/" class="md-nav__link">
+        Rad s Python modulom numpy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-os/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- osnovna sučelja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-os-path/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- baratanje imenom putanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-biblioteke-funkcija/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije i tipovi podatka dostupni u CUDA bibliotekama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-funkcije-uredjaja-domacina/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije uređaja i domaćina
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-hijerarhija-memorije/" class="md-nav__link">
+        Python modul PyCUDA -- hijerarhija GPU memorije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-matrice/" class="md-nav__link">
+        Python modul PyCUDA -- paralelni algoritmi na matricama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-multi-gpu/" class="md-nav__link">
+        Python modul PyCUDA -- rad s više GPU-a
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-osnove/" class="md-nav__link">
+        Python modul PyCUDA -- osnove rada s GPU-om
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-otklanjanje-gresaka/" class="md-nav__link">
+        Python modul PyCUDA -- otklanjanje grešaka i curenja memorije
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-profiliranje-optimizacija/" class="md-nav__link">
+        Python modul PyCUDA -- mjerenje performansi, profiliranje i optimizacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-redukcija/" class="md-nav__link">
+        Python modul PyCUDA -- paralelna redukcija, norma i skalarno množenje vektora
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-tokovi-asinkrone-operacije/" class="md-nav__link">
+        Python modul PyCUDA -- korištenje tokova i asinkronih kopiranja memorije za poboljšanje performansi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-vektorski-tipovi/" class="md-nav__link">
+        Python modul PyCUDA -- rad s vektorskim tipovima podataka
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pycuda-zbrajanje-vektora/" class="md-nav__link">
+        Python modul PyCUDA -- zbrajanje vektora
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-pyopencl/" class="md-nav__link">
+        Programiranje aplikacija za heterogene sustave korištenjem tehnologije OpenCL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-scipy/" class="md-nav__link">
+        Rad s Python modulom scipy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-select/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- čekanje na završetak ulazno/izlaznih operacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-signal/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- baratanje signalima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-socket/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- utičnice
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-subprocess/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- podprocesi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-sys/" class="md-nav__link">
+        Python -- parametri i funkcije ovisni o sustavu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-threading/" class="md-nav__link">
+        Python -- dodatne usluge operacijskog sustava -- višenitnost
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-time/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- vrijeme
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-xmlrpc/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- pozivanje udaljenih procedoura i modul XML-RPC
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-okvir-waf/" class="md-nav__link">
+        Rad s Python okvirom waf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-osnove-sintakse/" class="md-nav__link">
+        Osnovna sintaksa programskog jezika Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-programiranje/" class="md-nav__link">
+        Programiranje i programski jezik Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-standardna-biblioteka/" class="md-nav__link">
+        Python -- često korišteni moduli standardne biblioteke
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-testiranje/" class="md-nav__link">
+        Testiranje Python aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja Python aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quagga-usmjeravanje/" class="md-nav__link">
+        Rad s alatima za usmjeravanje
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../racunarstvo-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja računala i temelji računarske znanosti
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../racunarstvo-sveprisutna-prozimajuca-racunala/" class="md-nav__link">
+        Sveprisutna i prožimajuća računala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocalution/" class="md-nav__link">
+        rocALUTION -- ROCm SPARSE Linear Algebra PACkage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocblas/" class="md-nav__link">
+        rocBLAS -- ROCm Basic Linear Algebra Subprograms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocfft/" class="md-nav__link">
+        rocFFT -- ROCm Fast Fourier Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocprim/" class="md-nav__link">
+        rocPRIM -- ROCm parallel PRIMitives
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocrand/" class="md-nav__link">
+        rocRAND -- ROCm RANDom number generator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocsolver/" class="md-nav__link">
+        rocSOLVER -- ROCm-ov linear algebra SOLVER
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rocm-rocsparse/" class="md-nav__link">
+        rocSPARSE -- ROCm SPARSE basic linear algebra subroutines
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba-interoperabilnost-windows-linux/" class="md-nav__link">
+        Interoperabilnost operacijskih sustava Windows i GNU/Linux korištenjem Sambe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen-tmux-multipleksiranje-terminala/" class="md-nav__link">
+        Multipleksiranje terminala
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selinux-mandantna-kontrola-pristupa/" class="md-nav__link">
+        Mandantna kontrola pristupa korištenjem sustava SELinux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../siege-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom Siege
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
+        Integracija simuliranih i stvarnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-modeli-gresaka/" class="md-nav__link">
+        Simulacijski modeli grešaka paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-mrezne-aplikacije-promet/" class="md-nav__link">
+        Simulacijski modeli mrežnih aplikacija kao generatora prometa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-pojmovi/" class="md-nav__link">
+        Teorijske osnove simulacije računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-povezivanje-cvorova/" class="md-nav__link">
+        Povezivanje čvorova u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-redovi-cekanja/" class="md-nav__link">
+        Simulacijski modeli redova čekanja
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-tcp-upravljanje-zagusenjem/" class="md-nav__link">
+        Simulacijski modeli TCP-ovih algoritama za upravljanje zagušenjem
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulator-ns3-topologije/" class="md-nav__link">
+        Slaganje složenijih topologija u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spamassasin-spam-filter/" class="md-nav__link">
+        Spam filter -- SpamAssassin
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strace-ltrace-sucelja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje korištenja programskih sučelja sustava korištenjem alata strace i ltrace
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strongswan-ipsec/" class="md-nav__link">
+        IPsec alat strongSwan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-cron-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
+        Automatizacija zadaća operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-journalctl-pracenje-dogadjaja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje događaja operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-systemctl-upravljanje-uslugama-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje uslugama operacijskog sustava
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tinc-virtualna-privatna-mreza/" class="md-nav__link">
+        Tuneliranje alatom tinc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tor-anonimna-komunikacija/" class="md-nav__link">
+        Anonimna komunikacija alatom Tor
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix-att-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa u AT&T-u i drugim tvrtkama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix-bsd-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa na Kalifornijskom sveučilištu u Berkeleyu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljacki-programi-hardvera/" class="md-nav__link">
+        Upravljački programi hardvera
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljanje-dokumentacijom-racunalnih-sustava-i-mreza/" class="md-nav__link">
+        Upravljanje dokumentacijom računalnih sustava i mreža
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upravljanje-racunalnim-sustavima-i-mrezama-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi upravljanja računalnim sustavima i mrežama
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlasnicki-softveri-posebne-namjene-i-racunalne-igre/" class="md-nav__link">
+        Vlasnički softveri posebne namjene i računalne igre
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlc-strujanje-multimedijskog-sadrzaja/" class="md-nav__link">
+        Strujanje multimedijskog sadržaja alatom VLC
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark-filtriranje-paketa/" class="md-nav__link">
+        Filtriranje paketa
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark-snimanje-prometa/" class="md-nav__link">
+        Snimanje prometa aplikacija
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wordpress-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija sustava za upravljanje sadržajem Wordpress
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yum-rpm-upravljanje-paketima-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje paketima
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../znanstveni-softver/" class="md-nav__link">
+        Znanstveni softver
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zotero-citiranje-bibliografija/" class="md-nav__link">
+        Upute za upravljanje bibliografijom korištenjem alata Zotero
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../teme-zavrsnih-i-diplomskih-radova/" class="md-nav__link">
+        Teme završnih i diplomskih radova
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aktivizam/" class="md-nav__link">
+        Aktivizam
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Arhiva
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Arhiva" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Arhiva
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      <label class="md-nav__link" for="__nav_8_1">
+        Eseji
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Eseji" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Eseji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arhiva/eseji/peter-norvig-naucite-programirati-u-deset-godina/" class="md-nav__link">
+        Peter Norvig -- Naučite programirati u deset godina
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vrlo-vazne-informacije/" class="md-nav__link">
+        Vrlo važne informacije
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Contents in English
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Contents in English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Contents in English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/people/" class="md-nav__link">
+        People
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/research-and-development/" class="md-nav__link">
+        Research and development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/partnerships-and-collaborations/" class="md-nav__link">
+        Partnerships and collaborations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/teaching/" class="md-nav__link">
+        Teaching
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/activism/" class="md-nav__link">
+        Activism
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/very-important-information/" class="md-nav__link">
+        Very important information
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arhitektura-alata-click" class="md-nav__link">
+    Arhitektura alata Click
+  </a>
+  
+    <nav class="md-nav" aria-label="Arhitektura alata Click">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicijalizacija" class="md-nav__link">
+    Inicijalizacija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#konfiguracija" class="md-nav__link">
+    Konfiguracija
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pokretanje" class="md-nav__link">
+    Pokretanje
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dodatak-sucelje-prema-mreznom-simulatoru-ns-3" class="md-nav__link">
+    Dodatak: sučelje prema mrežnom simulatoru ns-3
+  </a>
+  
+    <nav class="md-nav" aria-label="Dodatak: sučelje prema mrežnom simulatoru ns-3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nacin-koristenja" class="md-nav__link">
+    Način korištenja
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primjeri-simulacija" class="md-nav__link">
+    Primjeri simulacija
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/click-programska-osnova-usmjerivaca.md" title="Uredi stranicu" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="programska-osnova-usmjerivaca">Programska osnova usmjerivača</h1>
+<h2 id="arhitektura-alata-click">Arhitektura alata Click</h2>
+<p>Sama struktura Clicka bazira se na klasi <code>Master</code> koja sadrži, među ostalim dvije, nama najvažnije klase: <code>Router</code> i <code>RouterThread</code>. Klasa <code>Router</code> sadrži informacije o samoj konfiguraciji koja se dohvaća iz <em>.click</em> datoteka, a <code>RouterThread</code> stvara niti za svaku od pojedinih instanci klase <code>Router</code>. Pojednostavljeno rečeno, za svaki usmjerivač koji konfiguriramo i kreiramo stvara se programska nit koja upravlja njime (u slučaju kreiranja samo jednog usmjerivača stvara se samo jedna nit). Sastavne dijelove Clicka nazivamo elementima te ih možemo smatrati manjim jedinicama aplikacije koji imaju točno određeni zadatak.</p>
+<p>U trenutku pokretanja simulacije događa se nekoliko stvari koje možemo kategorizirati u tri skupine:</p>
+<ul>
+<li>Inicijalizacija -- kreiranje osnovnih elemenata</li>
+<li>Konfiguriranje -- postavljanje specifičnih parametara</li>
+<li>Pokretanje -- stvaranje i pokretanje niti koja upravlja usmjerivačem</li>
+</ul>
+<p>Programski kod koji to izvodi je oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="n">Router</span> <span class="o">*</span><span class="n">router</span><span class="p">;</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">click_static_initialize</span><span class="p">();</span><span class="c1">// Inicijalizacija</span>
+  <span class="c1">//...</span>
+  <span class="n">router</span> <span class="o">=</span> <span class="n">parse_configuration</span><span class="p">(</span><span class="n">router_file</span><span class="p">,</span> <span class="n">file_is_expr</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span><span class="c1">// Konfiguriranje</span>
+  <span class="c1">//...</span>
+  <span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">driver</span><span class="p">();</span> <span class="c1">// Pokretanje</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Pogledajmo sada detaljnije svaku od točaka.</p>
+<h3 id="inicijalizacija">Inicijalizacija</h3>
+<p>Pri pozivanju <code>click_static_initialize()</code> funkcije definiraju se tipovi parametara za elemente, parametri usmjerivača te se stvara podatkovna struktura sa nazivima i ostalim potrebnim informacijama o svim dostupnim elementima.</p>
+<p>Kod koji ovaj redoslijed definira je vrlo jednostavan:</p>
+<div class="highlight"><pre><span></span><code><span class="n">cp_va_static_initialize</span><span class="p">();</span>
+
+<span class="n">Router</span><span class="o">::</span><span class="n">static_initialize</span><span class="p">();</span>
+
+<span class="n">click_export_elements</span><span class="p">();</span>
+</code></pre></div>
+<p>Dakako ovo nije potpuni kod, ali je dovoljan za razumijevanje strukture i redoslijeda odvijanja događaja.</p>
+<p>Detaljniji pogled na <code>cp_va_static_initialize()</code> i <code>Router::static_initialize()</code> nije potreban, no zanimljivo je pogledati što se događa pozivanjem <code>click_export_elements()</code> funkcije.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;click/config.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;click/package.hh&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;../elements/standard/delayshaper.hh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;../elements/threads/spinlockrelease.hh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;../elements/test/listtest.hh&quot;</span><span class="cp"></span>
+<span class="c1">//... (nastavak popisa elemenata) ...</span>
+
+<span class="n">beetlemonkey</span><span class="p">(</span><span class="kt">uintptr_t</span> <span class="n">heywood</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">heywood</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AdjustTimestamp</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AggregateCounter</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AggregatePacketCounter</span><span class="p">;</span>
+    <span class="c1">//... (ostali elementi) ...</span>
+    <span class="k">case</span> <span class="mi">259</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ToRawSocket</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">260</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ToSocket</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">261</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">UMLSwitch</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span>
+<span class="n">click_export_elements</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;AdjustTimestamp&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="c1">//... (ostali elementi) ...</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToRawSocket&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">259</span><span class="p">);</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToSocket&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">260</span><span class="p">);</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;UMLSwitch&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">261</span><span class="p">);</span>
+  <span class="n">CLICK_DMALLOC_REG</span><span class="p">(</span><span class="s">&quot;nXXX&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Definiramo dostupne elemente, uključujemo datoteke zaglavlja i dodjeljujemo redni broj svakom od elemenata. Funkcija <code>click_add_element_type_stable()</code> je zadužena da dodijeli ime svakom od elemenata i kreira ga, a ako pobliže pogledamo njenu realizaciju možemo vidjeti da se zapravo dodijeljeni parametri parsiraju u svrhu utvrđivanja postojanja i stablizacije samog koda.</p>
+<div class="highlight"><pre><span></span><code><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="kt">int</span>
+<span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ename</span><span class="p">,</span>
+                              <span class="n">Element</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">uintptr_t</span><span class="p">),</span>
+                              <span class="kt">uintptr_t</span> <span class="n">thunk</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">ename</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Lexer</span> <span class="o">*</span><span class="n">l</span> <span class="o">=</span> <span class="n">click_lexer</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">add_element_type</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="n">make_stable</span><span class="p">(</span><span class="n">ename</span><span class="p">),</span>
+                                   <span class="n">func</span><span class="p">,</span>
+                                   <span class="n">thunk</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="mi">-99</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Naime, funkcija <code>click_lexer()</code> (konstruktor objekta <code>l</code> tipa <code>Lexer</code>) dodavajući element u simulaciju ujedno provjerava postoji li i koji mu je redni broj.</p>
+<h3 id="konfiguracija">Konfiguracija</h3>
+<p>Konfiguriranje je bitan dio svake simulacije pa tako i simulacije usmjerivača. Zapravo sve bitno što možemo podešavati radimo upravo u dijelu koji zovemo konfiguriranje. Stoga, pogledajmo pobliže kod koji osigurava da je konfiguracija valjana te ju kreira/mijenja na usmjerivaču.</p>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="n">Router</span> <span class="o">*</span>
+<span class="n">parse_configuration</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">text_is_expr</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">hotswap</span><span class="p">,</span>
+                    <span class="n">ErrorHandler</span> <span class="o">*</span><span class="n">errh</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Master</span> <span class="o">*</span><span class="n">master</span> <span class="o">=</span> <span class="p">(</span><span class="n">router</span> <span class="o">?</span> <span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span> <span class="o">:</span> <span class="k">new</span> <span class="n">Master</span><span class="p">(</span><span class="n">nthreads</span><span class="p">));</span>
+  <span class="n">Router</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="n">click_read_router</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">text_is_expr</span><span class="p">,</span> <span class="n">errh</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">master</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">//... (programski kod) ...</span>
+
+  <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ova funkcija stvara konfigurirani usmjerivač na osnovu nekoliko parametara. Prvi parametar je uređeni niz znakova tipa <code>String</code> koji može biti ili ime datoteke u kojoj su konfiguracijski parametri ili sama konfiguracija, drugi parametar određuje kako će se interpretirati prvi parametar (na jedan od dva prethodno navedena načina), treći parametar označava mijenjamo li konfiguraciju, a četvrti je pokazivač na eventualno nastale greške.</p>
+<p>Nakon toga provjeravamo postoji li definiran <code>router</code> te ukoliko postoji dohvaćamo, u prvom poglavlju spomenut, <code>master</code> element, a ukoliko ne postoji stvaramo novu instancu <code>Master</code> klase kojoj dodjeljujemo željeni broj niti.</p>
+<p>Posljednje što je potrebno učiniti je pozvati funkciju <code>click_read_router()</code>. Sama ta funkcija izgleda ovako:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Router</span> <span class="o">*</span>
+<span class="nf">click_read_router</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">,</span>
+                  <span class="kt">bool</span> <span class="n">is_expr</span><span class="p">,</span>
+                  <span class="n">ErrorHandler</span> <span class="o">*</span><span class="n">errh</span><span class="p">,</span>
+                  <span class="kt">bool</span> <span class="n">initialize</span><span class="p">,</span>
+                  <span class="n">Master</span> <span class="o">*</span><span class="n">master</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//... (1. dio koda) ...</span>
+    <span class="n">String</span> <span class="n">config_str</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">config_str</span> <span class="o">=</span> <span class="n">filename</span><span class="p">;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;config&quot;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">config_str</span> <span class="o">=</span> <span class="n">file_string</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">filename</span> <span class="o">||</span> <span class="n">filename</span> <span class="o">==</span> <span class="s">&quot;-&quot;</span><span class="p">)</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//... (2. dio koda) ...</span>
+
+    <span class="n">RequireLexerExtra</span> <span class="n">lextra</span><span class="p">(</span><span class="o">&amp;</span><span class="n">archive</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">cookie</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">begin_parse</span><span class="p">(</span><span class="n">config_str</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lextra</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">ystatement</span><span class="p">())</span>
+        <span class="cm">/* ne čini ništa */</span><span class="p">;</span>
+    <span class="n">Router</span> <span class="o">*</span><span class="n">router</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">create_router</span><span class="p">(</span><span class="n">master</span> <span class="o">?</span> <span class="nl">master</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Master</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="n">l</span><span class="o">-&gt;</span><span class="n">end_parse</span><span class="p">(</span><span class="n">cookie</span><span class="p">);</span>
+
+    <span class="c1">//... (3. dio koda)...</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">initialize</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">errh</span><span class="o">-&gt;</span><span class="n">nerrors</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">before</span> <span class="o">||</span> <span class="n">router</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">errh</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">delete</span> <span class="n">router</span><span class="p">;</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">router</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Prvi dio koda osigurava da se ukoliko je zastavica <code>is_expr</code> postavljena zabilježi konfiguracijski string te postavi zadano ime datoteke na <code>config</code>, a ukoliko nije postavljena znači da je putanja do datoteke koja sadrži konfiguraciju pa ju je potrebno samo pročitati te osigurati da konfiguracija nije prazna (ukoliko je prazna koristi se predefinirana konfiguracija).</p>
+<p>Drugi dio koda parsira samu konfiguraciju i kreira usmjerivač sa tim postavkama.</p>
+<p>Treći dio koda provjerava je li sve prošlo u redu u drugom dijelu koda. Ukoliko je došlo do bilo kakve greške ili nepredviđenih rezultata usmjerivač se briše te se izlazi iz programa, a ukoliko je sve prošlo u redu u glavni program se vraća sam konfigurirani usmjerivač.</p>
+<h3 id="pokretanje">Pokretanje</h3>
+<p>Ovo poglavlje pojasnit će što se događa u trenutku pokretanja našeg usmjerivača. Kada u glavnom kodu pozovemo metodu <code>driver()</code> na način da ju zovemo nad instancom klase <code>Router</code> kao što slijedi: <code>router-&gt;master()-&gt;thread(0)-&gt;driver()</code> zapravo pokrećemo sam aplikativni softver na usmjerivaču čime ga "uključujemo". Kod koji realizira to je:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span>
+<span class="n">RouterThread</span><span class="o">::</span><span class="n">driver</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="k">volatile</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">stopper</span> <span class="o">=</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">stopper_ptr</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="nl">driver_loop</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">stopper</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">iter</span><span class="o">++</span><span class="p">;</span>
+
+        <span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_signals</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">((</span><span class="n">iter</span> <span class="o">%</span> <span class="n">_iters_per_os</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">run_os</span><span class="p">();</span>
+
+        <span class="kt">bool</span> <span class="n">run_timers</span> <span class="o">=</span> <span class="p">(</span><span class="n">iter</span> <span class="o">%</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">timer_stride</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">run_timers</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_timers</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// izvrši prvi zadatak (1)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_pending_head</span><span class="p">)</span>
+        <span class="n">process_pending</span><span class="p">();</span>
+
+    <span class="n">run_tasks</span><span class="p">(</span><span class="n">_tasks_per_iter</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">stopper</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">driver_unlock_tasks</span><span class="p">();</span>
+        <span class="kt">bool</span> <span class="n">b</span> <span class="o">=</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">check_driver</span><span class="p">();</span>
+        <span class="n">driver_lock_tasks</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span>
+            <span class="k">goto</span> <span class="n">finish_driver</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">goto</span> <span class="n">driver_loop</span><span class="p">;</span>
+
+  <span class="nl">finish_driver</span><span class="p">:</span>
+    <span class="n">driver_unlock_tasks</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ne objašnjavajući detaljno svaku od pojedinih linija koda recimo samo da se ovime pokreće usmjerivač te se zadaci koje obavlja vrte u beskonačnoj petlji simulirajući time stvarno ponašanje usmjerivača. Dakako postoji i mogućnost gašenja usmjerivača što činimo izlaskom iz petlje.</p>
+<p>Samo izvršavanje određenog zadatka vrši se funkcijom <code>run_tasks()</code> čija je realizacija dana kako slijedi:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">inline</span> <span class="kt">void</span>
+<span class="n">RouterThread</span><span class="o">::</span><span class="n">run_tasks</span><span class="p">(</span><span class="kt">int</span> <span class="n">ntasks</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Task</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">ntasks</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">ntasks</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">task_begin</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="k">this</span><span class="p">)</span>
+      <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">t</span><span class="o">-&gt;</span><span class="n">fast_remove_from_scheduled_list</span><span class="p">();</span>
+
+      <span class="n">_pass</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">_pass</span><span class="p">;</span>
+
+      <span class="n">t</span><span class="o">-&gt;</span><span class="n">_status</span><span class="p">.</span><span class="n">is_scheduled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+      <span class="n">t</span><span class="o">-&gt;</span><span class="n">fire</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Izvršavanje određenog zadatka te pomicanje na sljedeći uz brisanje prethodnog zadatka iz niza zadataka koje usmjerivač treba obaviti. Još jedna važna metoda korištena u prethodnom bloku koda je <code>fire()</code> kojom zapravo "zakačimo" izvršavanje tog određenog zadatka za točno određeni element Clicka (podsjetimo se elementi su sastavnice koje obavljaju određenu funkciju).</p>
+<h2 id="dodatak-sucelje-prema-mreznom-simulatoru-ns-3">Dodatak: sučelje prema mrežnom simulatoru ns-3</h2>
+<p>Korištenje Click usmjerivača unutar ns-3 simulacije je prilično jednostavno zbog načina na koji su oba simulatora realizirana. Razlog zašto se Click implementira u ns-3 simulacije je mogućnost preciznijeg određivanja protokola na temelju kojeg će usmjerivač obrađivati pakete. Simulator ns-3 poznaje nekoliko osnovnih, standardnih modela te uglavnom ne dopušta izmjene njihove strukture bez izmjene programskog koda same implementacije, dok Click isključivo simulira usmjerivače te dopušta puno veću slobodu pri kreiranju protokola kojim će usmjeravati pakete.</p>
+<h3 id="nacin-koristenja">Način korištenja</h3>
+<p>Korištenje Click usmjerivača unutar ns-3 simulacije svodi se zapravo na pozivanje pomoćnika <code>ClickInternetStackHelper</code> te upućivanje simulacije na datoteku koja sadrži programski kod željenog Click usmjerivača</p>
+<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span> <span class="n">click</span><span class="p">;</span>
+<span class="n">click</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;mojUsmjerivac.click&quot;</span><span class="p">);</span>
+<span class="n">click</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;u/rt&quot;</span><span class="p">);</span>
+<span class="n">click</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+</code></pre></div>
+<p>pri čemu je <code>nodes</code> tipa <code>NodeContainer</code>. Usporedimo li ovaj kod s uobičajenim korištenjem <code>InternetStackHelper</code>-a oblika</p>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+</code></pre></div>
+<p>vidimo da je osnova ideja vrlo slična. Ostatak simulacije je identičan uobičajenoj ns-3 simulaciji.</p>
+<h3 id="primjeri-simulacija">Primjeri simulacija</h3>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Dodaj poveznice na dokumentaciju funkcija koje se koriste.</p>
+</div>
+<p>Simulacije kreiramo uobičajeno te je jedina razlika integracija nekog od Click usmjerivača unutar kreirane simulacije.  Ponovno koristimo jedan u nizu pomagača, ovaj puta je to <code>ClickInternetStackHelper</code> te koristimo tri metode nad instancom tog pomagača.</p>
+<p>Prvo metodom <code>SetClickFile()</code> postavljamo određeni konfigurirani usmjerivač na određeni čvor. Ona prima dva parametra gdje je prvi parametar čvor na koji želimo postaviti usmjerivač, a drugi parametar je putanja do datoteke <code>.click</code> koja sadrži sam kod kojim je realiziran usmjerivač.</p>
+<p>Potom metodom <code>SetRoutingTableElement()</code> postavljamo metodu rada, prvi parametar je ponovno čvor na koji želimo postaviti usmjerivač, a drugi je metoda rada gdje može biti kernel (<code>kernel/rt</code>) ili samostalni model rada (<code>u/rt</code>).</p>
+<p>Nakon postavljanja pozivamo metodu <code>Install()</code> kojoj dodjeljujemo parametar kontejnera čvorova koje smo instalirali te time dovršavamo postavljanje našeg konfiguriranog Click usmjerivača na čvorove.</p>
+<p>Primjerice, ako ponovno uzmemo da se <code>NodeContainer</code> zove <code>nodes</code> tada za instalaciju na prvi čvor imamo kod oblika</p>
+<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span> <span class="n">clickinternet</span><span class="p">;</span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+</code></pre></div>
+<p>U širem kontekstu taj je kod oblika</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Topologija</span>
+<span class="c1">//</span>
+<span class="c1">//              172.16.1.0/24</span>
+<span class="c1">//        (1.1)  (1.2)  (2.1)  (2.2)</span>
+<span class="c1">//</span>
+<span class="c1">//         eth0   eth0  eth1    eth0</span>
+<span class="c1">//       n0 ========= n1 ========= n2</span>
+<span class="c1">//            LAN 1       LAN 2</span>
+<span class="c1">//</span>
+<span class="c1">// - UDP tokovi n0 do n2 preko n1.</span>
+<span class="c1">// - Svi čvorovi koriste Click model usmjeravanja.</span>
+<span class="c1">//</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/core-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/network-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/internet-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/applications-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/csma-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/ipv4-click-routing.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/ipv4-l3-click-protocol.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ns3/click-internet-stack-helper.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+
+<span class="n">NS_LOG_COMPONENT_DEFINE</span> <span class="p">(</span><span class="s">&quot;NsclickRouting&quot;</span><span class="p">);</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+
+<span class="c1">//</span>
+<span class="c1">// Uključivanje loginga za Click klijenta i servera</span>
+<span class="c1">//</span>
+  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;NsclickRoutingClient&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;NsclickRoutingServer&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+
+<span class="c1">//</span>
+<span class="c1">// Kreiranje čvorova</span>
+<span class="c1">//</span>
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje čvorova.&quot;</span><span class="p">);</span>
+  <span class="n">NodeContainer</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">n</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">//</span>
+<span class="c1">// Instalacija Clicka na čvorove</span>
+<span class="c1">//</span>
+  <span class="n">ClickInternetStackHelper</span> <span class="n">clickinternet</span><span class="p">;</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span>
+<span class="c1">// datoteke su proizvoljne, ove su iz primjera unutar samog ns-3-a</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-ip-router.click&quot;</span><span class="p">);</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node2.click&quot;</span><span class="p">);</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&quot;u/rt&quot;</span><span class="p">);</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
+  <span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje kanala.&quot;</span><span class="p">);</span>
+<span class="c1">//</span>
+<span class="c1">// Stvaranje kanala</span>
+<span class="c1">//</span>
+  <span class="n">CsmaHelper</span> <span class="n">csma</span><span class="p">;</span>
+  <span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">DataRateValue</span> <span class="p">(</span><span class="n">DataRate</span> <span class="p">(</span><span class="mi">5000000</span><span class="p">)));</span>
+  <span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">MilliSeconds</span> <span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+  <span class="n">csma</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;Mtu&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1400</span><span class="p">));</span>
+  <span class="n">NetDeviceContainer</span> <span class="n">d01</span> <span class="o">=</span> <span class="n">csma</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)));</span>
+  <span class="n">NetDeviceContainer</span> <span class="n">d12</span> <span class="o">=</span> <span class="n">csma</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+
+  <span class="n">Ipv4AddressHelper</span> <span class="n">ipv4</span><span class="p">;</span>
+<span class="c1">//</span>
+<span class="c1">// Postavljanje IP adresa</span>
+<span class="c1">//</span>
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Dodjeljivanje IP adresa&quot;</span><span class="p">);</span>
+  <span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;172.16.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+  <span class="n">Ipv4InterfaceContainer</span> <span class="n">i01</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">d01</span><span class="p">);</span>
+
+  <span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;172.16.2.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+  <span class="n">Ipv4InterfaceContainer</span> <span class="n">i12</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">d12</span><span class="p">);</span>
+
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje aplikacija.&quot;</span><span class="p">);</span>
+<span class="c1">//</span>
+<span class="c1">// Kreiranje UDP serverske aplikacije na čvoru 2</span>
+<span class="c1">//</span>
+  <span class="kt">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">;</span>
+  <span class="n">UdpServerHelper</span> <span class="n">server</span> <span class="p">(</span><span class="n">port</span><span class="p">);</span>
+  <span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
+  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+
+<span class="c1">//</span>
+<span class="c1">// Kreiranje klijentske aplikacije na čvoru 0</span>
+<span class="c1">//</span>
+  <span class="kt">uint32_t</span> <span class="n">MaxPacketSize</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+  <span class="n">Time</span> <span class="n">interPacketInterval</span> <span class="o">=</span> <span class="n">Seconds</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
+  <span class="kt">uint32_t</span> <span class="n">maxPacketCount</span> <span class="o">=</span> <span class="mi">320</span><span class="p">;</span>
+  <span class="n">UdpClientHelper</span> <span class="n">client</span> <span class="p">(</span><span class="n">i12</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">port</span><span class="p">);</span>
+  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="n">maxPacketCount</span><span class="p">));</span>
+  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">interPacketInterval</span><span class="p">));</span>
+  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="n">MaxPacketSize</span><span class="p">));</span>
+  <span class="n">apps</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
+  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+
+<span class="c1">//</span>
+<span class="c1">// Omogućavanje Pcap-a</span>
+<span class="c1">//</span>
+  <span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span> <span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span> <span class="n">d01</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+  <span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span> <span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span> <span class="n">d12</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+<span class="c1">//</span>
+<span class="c1">// Pokretanje simulacije</span>
+<span class="c1">//</span>
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Pokreni simulaciju.&quot;</span><span class="p">);</span>
+  <span class="n">Simulator</span><span class="o">::</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">));</span>
+  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
+  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
+  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Kraj.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ovaj primjer je složen prema datoteci <code>src/click/examples/nsclick-routing.cc</code> koja je dio izvornog koda mrežnog simulatora ns-3.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../click-modularni-usmjerivac/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Modularni usmjerivač Click" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              Modularni usmjerivač Click
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../click-protokoli/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Korištenje mrežnih protokola u modularnom usmjerivaču Click" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Korištenje mrežnih protokola u modularnom usmjerivaču Click
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2011 – 2021, Vedran Miletić and collaborators; contents licensed under CC-BY-NC-ND 4.0, except teaching materials at /hr/nastava/ which are licensed under CC-BY-SA 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.29db7785.min.js"></script>
+      
+    
+  </body>
+</html>
