@@ -13,18 +13,18 @@
         <meta name="author" content="Milan Petrović">
       
       
-        <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/python-django-vj7/">
+        <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/python-modul-django-rest-framework/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
     
     
       
-        <title>Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Python -- Django REST framework - Group for apps and services on exascale research infrastructure (GASERI)</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8b42a75e.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.24c991ad.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#django-vjezba-7-predlosci-obrazaca-stvaranje-obrazaca-iz-modela" class="md-skip">
+        <a href="#python-django-rest-framework" class="md-skip">
           Preskočite na sadržaj
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela
+              Python -- Django REST framework
             
           </span>
         </div>
@@ -2864,288 +2864,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../python-django-vj1/" class="md-nav__link">
-        Django vježba 1 -- Postavljanje razvojnog okruženja web aplikacija na operacijskim sustavima sličnim Unixu i Windowsima. Stvaranje projekta i organizacija koda. Korištenje dokumentacije
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj2/" class="md-nav__link">
-        Django vježba 2 -- Korištenje baze podataka. Stvaranje modela i objektno-relacijsko preslikavanje
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj3/" class="md-nav__link">
-        Django vježba 3 -- Relacije među modelima. Upiti
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj4/" class="md-nav__link">
-        Django vježba 4 -- Usmjeravanje i URL-i. Stvaranje pogleda kao odgovora na HTTP zahtjeve
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj5/" class="md-nav__link">
-        Django vježba 5 -- Generički pogledi
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj6/" class="md-nav__link">
-        Django vježba 6 -- Predaja obrazaca HTTP metodama GET i POST. Provjera unosa i prikaz poruka o greškama
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Django vježba 7 -- Predlošci obrazaca. Stvaranje obrazaca iz modela
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Sadržaj
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#kreiranje-predlozaka" class="md-nav__link">
-    Kreiranje predložaka
-  </a>
-  
-    <nav class="md-nav" aria-label="Kreiranje predložaka">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sintaksa" class="md-nav__link">
-    Sintaksa
-  </a>
-  
-    <nav class="md-nav" aria-label="Sintaksa">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#varijable" class="md-nav__link">
-    Varijable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oznake" class="md-nav__link">
-    Oznake
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filteri" class="md-nav__link">
-    Filteri
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#komentari" class="md-nav__link">
-    Komentari
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#petlje" class="md-nav__link">
-    Petlje
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nasljeivanje-u-predloscima" class="md-nav__link">
-    Nasljeđivanje u predlošcima
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#css" class="md-nav__link">
-    CSS
-  </a>
-  
-    <nav class="md-nav" aria-label="CSS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uvoz" class="md-nav__link">
-    Uvoz
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#direktorij-za-staticke-datoteke" class="md-nav__link">
-    Direktorij za statičke datoteke
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj9/" class="md-nav__link">
-        Django vježba 9 -- Sijanje i migracije
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj10/" class="md-nav__link">
-        Django vježba 10 -- Autentifikacija. Autorizacija
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj11/" class="md-nav__link">
-        Django vježba 11 -- Testiranje
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-django-vj12/" class="md-nav__link">
-        Django vježba 12 -- Django REST framework
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../python-dokumentiranje/" class="md-nav__link">
         Dokumentiranje Python koda
       </a>
@@ -3219,6 +2937,116 @@
       <a href="../python-modul-cryptography/" class="md-nav__link">
         Rad s Python modulom pyca/cryptography
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modul-django/" class="md-nav__link">
+        Python -- Django
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python -- Django REST framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Python -- Django REST framework
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pocetak-rada" class="md-nav__link">
+    Početak rada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kreiranje-modela" class="md-nav__link">
+    Kreiranje modela
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postavljanje-django-rest-frameworka" class="md-nav__link">
+    Postavljanje Django REST frameworka
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serijalizacija" class="md-nav__link">
+    Serijalizacija
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pogledi" class="md-nav__link">
+    Pogledi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-ovi" class="md-nav__link">
+    URL-ovi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testiranje" class="md-nav__link">
+    Testiranje
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4960,97 +4788,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kreiranje-predlozaka" class="md-nav__link">
-    Kreiranje predložaka
+  <a href="#pocetak-rada" class="md-nav__link">
+    Početak rada
   </a>
-  
-    <nav class="md-nav" aria-label="Kreiranje predložaka">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sintaksa" class="md-nav__link">
-    Sintaksa
-  </a>
-  
-    <nav class="md-nav" aria-label="Sintaksa">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#varijable" class="md-nav__link">
-    Varijable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oznake" class="md-nav__link">
-    Oznake
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filteri" class="md-nav__link">
-    Filteri
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#komentari" class="md-nav__link">
-    Komentari
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#petlje" class="md-nav__link">
-    Petlje
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nasljeivanje-u-predloscima" class="md-nav__link">
-    Nasljeđivanje u predlošcima
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#css" class="md-nav__link">
-    CSS
-  </a>
-  
-    <nav class="md-nav" aria-label="CSS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uvoz" class="md-nav__link">
-    Uvoz
+  <a href="#kreiranje-modela" class="md-nav__link">
+    Kreiranje modela
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#direktorij-za-staticke-datoteke" class="md-nav__link">
-    Direktorij za statičke datoteke
+      
+        <li class="md-nav__item">
+  <a href="#postavljanje-django-rest-frameworka" class="md-nav__link">
+    Postavljanje Django REST frameworka
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#serijalizacija" class="md-nav__link">
+    Serijalizacija
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pogledi" class="md-nav__link">
+    Pogledi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-ovi" class="md-nav__link">
+    URL-ovi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testiranje" class="md-nav__link">
+    Testiranje
+  </a>
   
 </li>
       
@@ -5067,224 +4849,143 @@
               
   
                 
-                  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/python-django-vj7.md" title="Uredi stranicu" class="md-content__button md-icon">
+                  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/python-modul-django-rest-framework.md" title="Uredi stranicu" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="django-vjezba-7-predlosci-obrazaca-stvaranje-obrazaca-iz-modela">Django vježba 7: Predlošci obrazaca. Stvaranje obrazaca iz modela</h1>
-<h2 id="kreiranje-predlozaka">Kreiranje predložaka</h2>
-<p>Nakon što je baza kreirana i popunjena teestim podacima, sljedeći korak je definiranje predložaka pomoću kojih će se ti podaci prikazivati.</p>
-<h3 id="sintaksa">Sintaksa</h3>
-<h4 id="varijable">Varijable</h4>
-<p>Pomoću varijabli ispisujemo sadržaj koji je prosljeđen iz konteksta. Objekt je sličan Python riječniku (engl. <em>dictionary</em>) gdje je sadržaj mapiran u odnosu <em>key-value</em>.</p>
-<p>Varijable pišemo unutar vitičastih zagrada <code>{{ varijabla }}</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Ime: {{ first_name }}, Prezime: {{ last_name }}.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <h1 id="python-django-rest-framework">Python: Django REST framework</h1>
+<p>Na današnjim vježbama raditi ćemo sa bibliotekom <code>djangorestframework</code> (<a href="https://www.django-rest-framework.org/">službeno web sjedište</a>).</p>
+<h2 id="pocetak-rada">Početak rada</h2>
+<p>Za početak rada potrebno je stvoriti novi projekt i unutar njega aplikaciju.</p>
+<div class="highlight"><pre><span></span><code>$ django-admin startproject vj11
+<span class="o">(</span>...<span class="o">)</span>
+$ <span class="nb">cd</span> vj11
+$ django-admin startapp main
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Što će iz konteksta <code>{'first_name': 'Ivo', 'last_name': 'Ivić'}</code> biti prikazano kao:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Ime: Ivo, Prezime: Ivić.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<p>Nakon što ste kreirali aplikaciju, povežite ju sa projektom i kreirajte administratora.</p>
+<div class="highlight"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;main.apps.MainConfig&#39;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
 </code></pre></div>
-<h4 id="oznake">Oznake</h4>
-<p>Oznake se pišu unutar <code>{% oznaka %}</code>. Označavaju proizvoljnu logiku unutar prikaza. Oznaka može biti ispis sadržaja, ili logička cjelina ili pak pristup drugim oznakama iz predloška, Primjerice: <code>{% tag %} ... sadržaj ... {% endtag %}</code> ili <code>{% block title %}{{ object.title }}{% endblock %}</code>.</p>
-<h4 id="filteri">Filteri</h4>
-<p>Filtere koristimo da bi transformirali vrijednosti varijabli. Neki od primjera korištenja filtera mogu biti za:</p>
-<ul>
-<li>Pretvaranje u mala slova: <code>{{ name|lower }}</code></li>
-<li>Uzimanje prvih 30 riječi: <code>{{ bio|truncatewords:30 }}</code></li>
-<li>Dohvaćanje duljine varijable: <code>{{ value|length }}</code></li>
-</ul>
-<h4 id="komentari">Komentari</h4>
-<p>Za komentiranje dijelova koristimo <code>#</code> što unutar predloška izgleda: <code>{# Ovo neće biti prikazano #}</code>.</p>
-<h4 id="petlje">Petlje</h4>
-<p>Petlje se pišu unutar <code>{% %}</code> odnosno definiraju se njihove oznake. Primjer korištenja petlje <code>for</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-{% for author in author_list %}
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ author.name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-{% endfor %}
-<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code>$ ./manage.py createsuperuser --username admin
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Primjer provjere autentifikacije korisnika naredbom <code>if</code>:</p>
-<div class="highlight"><pre><span></span><code>{% if user.is_authenticated %}
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hello, {{ user.username }}.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-{% endif %}
+<h2 id="kreiranje-modela">Kreiranje modela</h2>
+<p>Unutar <code>main/models.py</code> potrebno je kreirati model. Podatke koji će biti uneseni u bazu biti će naknadno vraćani na zahtjev.</p>
+<p>Kreiranje modela:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Korisnik</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">surname</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 </code></pre></div>
-<p>Primjer naredbi <code>if</code> i <code>else</code>:</p>
-<div class="highlight"><pre><span></span><code>{% if author_list %}
-    Number of athletes: {{ athlete_list|length }}
-{% else %}
-    No authors.
-{% endif %}
+<p>Nakon kreiranog modela potrebno je izvršiti migracije:</p>
+<div class="highlight"><pre><span></span><code>$ ./manage.py makemigrations
+<span class="o">(</span>...<span class="o">)</span>
+$ ./manage.py migrate
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 <div class="admonition zadatak">
 <p class="admonition-title">Zadatak</p>
-<p>Kreirajte direktorij <code>./templates</code> unutar kojeg će biti pohranjeni predlošci koji se koriste, npr. <code>base_generic.html</code>. Ne zaboravite definirati putanju unutar <code>settings.py</code>.</p>
+<p>Registrirajte kreirani model <code>Korisnik</code> unutar <code>admin.py</code>. Pokrenite server i provjerite prikaz unutar admin sučelja a zatim unesite podatke za 3 korisnika.</p>
 </div>
-<p><strong>Rješenje zadatka.</strong> Datoteka <code>./templates/base_generic.html</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<p><strong>Rješenje zadatka.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Korisnik</span>
 
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>My library<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sidebar&quot;</span><span class="p">&gt;</span>
-        {% block sidebar %}
-        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/main&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/main/books&quot;</span><span class="p">&gt;</span>Books<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/main/authors&quot;</span><span class="p">&gt;</span>Authors<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-        {% endblock %}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
-        {% block content %}
-        {% endblock %}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Korisnik</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="nasljeivanje-u-predloscima">Nasljeđivanje u predlošcima</h3>
-<p>Datoteka <code>./template/main/book_list.html</code>:</p>
-<div class="highlight"><pre><span></span><code>{% extends &quot;base_generic.html&quot; %}
-{% block content %}
-<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span> Books <span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-{% for book in book_list %}
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;book&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>{{ book.title }}<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-        Author: {{book.author}}
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ book.abstract }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-{% endfor %}
-{% endblock %}
+<h2 id="postavljanje-django-rest-frameworka">Postavljanje Django REST frameworka</h2>
+<p>Instalacija biblioteke <code>djangorestframework</code>:</p>
+<div class="highlight"><pre><span></span><code>$ pip3 install djangorestframework
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Unutar <code>main/urls.py</code> dodajte:</p>
-<div class="highlight"><pre><span></span><code><span class="n">path</span><span class="p">(</span><span class="s1">&#39;books&#39;</span><span class="p">,</span> <span class="n">BookList</span><span class="o">.</span><span class="n">as_view</span><span class="p">())</span>
+<p>Pod instalirane aplikacije potrebno je dodati i <code>rest_framework</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;rest_framework&#39;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
 </code></pre></div>
-<p>Datoteka <code>main/views.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
-<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span>
-<span class="kn">from</span> <span class="nn">main.models</span> <span class="kn">import</span> <span class="n">Author</span><span class="p">,</span> <span class="n">Book</span>
+<h2 id="serijalizacija">Serijalizacija</h2>
+<p>Prvi korak u kreiranju Web API-ja je pružanje načina srijalizacije instanci u obliku reprezentacije JSON. To možemo učiniti deklariranjem serijalizatora, princip rada sličan je formama u Djangu.</p>
+<p>Sljedeći korak je kreiranje datoteke <code>serializers.py</code> unutar aplikacije <code>main</code>. Tu datoteku ćemo koristiti za prikaz podataka.</p>
+<div class="highlight"><pre><span></span><code>$ touch ./main/serializers.py
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># main/serializers.py</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
 
-<span class="k">class</span> <span class="nc">BookList</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+<span class="kn">from</span> <span class="nn">main.models</span> <span class="kn">import</span> <span class="n">Korisnik</span>
+
+<span class="k">class</span> <span class="nc">KorisnikSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Korisnik</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;surname&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="pogledi">Pogledi</h2>
+<p>Idemo sada kreirati prikaz unutar <code>views.py</code>.</p>
+<p>Ono što želimo da naši pogledi rade je upit nad svim korisnicima u bazi. A zatim taj upit prosljediti serializeru za korisnika kojeg smo prethodno kreirali.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># main/views.py</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+
+<span class="kn">from</span> <span class="nn">main.serializers</span> <span class="kn">import</span> <span class="n">KorisnikSerializer</span>
+<span class="kn">from</span> <span class="nn">main.models</span> <span class="kn">import</span> <span class="n">Korisnik</span>
+
+<span class="k">class</span> <span class="nc">KorisnikViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Korisnik</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">KorisnikSerializer</span>
+</code></pre></div>
+<h2 id="url-ovi">URL-ovi</h2>
+<p>Idemo sada sve to zajedno povezati unutar <code>views.py</code>.</p>
+<p>Because we're using viewsets instead of views, we can automatically generate the URL conf for our API, by simply registering the viewsets with a router class.</p>
+<p>Again, if we need more control over the API URLs we can simply drop down to using regular class-based views, and writing the URL conf explicitly.</p>
+<p>Finally, we're including default login and logout views for use with the browsable API. That's optional, but useful if your API requires authentication and you want to use the browsable API.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># vj11/urls.py</span>
+
+<span class="kn">from</span> <span class="nn">djagno.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;main.urls&#39;</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># main/urls.py</span>
+
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">routers</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">routers</span><span class="o">.</span><span class="n">DefaultRouter</span><span class="p">()</span>
+<span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;korisnici&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">KorisnikViewSet</span><span class="p">)</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;api-auth/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;rest_framework.urls&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;rest_framework&#39;</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="testiranje">Testiranje</h2>
+<div class="highlight"><pre><span></span><code>$ ./manage.py runserver
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ pip3 install httpie
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ http -a admin:admin http://127.0.0.1:8000/korisnici/
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 <div class="admonition zadatak">
 <p class="admonition-title">Zadatak</p>
-<p>Sukladno prethodnom primjeru kreirajte prikaz za sve autore unutar baze.</p>
+<p>Kreirajte model Vozilo koje će sadržavati polja <em>model</em> i <em>godina_proizvodnje</em>. A zatim kreirajte serializer koji će vraćati podatke o modelima vozila koja su upisana u bazu podataka.</p>
 </div>
-<h2 id="css">CSS</h2>
-<p>Dodavanje CSS-a u HTML predložak.</p>
-<h3 id="uvoz">Uvoz</h3>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.w3schools.com/html/styles.css&quot;</span><span class="p">&gt;</span> 
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.w3schools.com/html/styles.css&quot;</span><span class="p">&gt;</span> 
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block title %}Knjižnica{% endblock %}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</code></pre></div>
-<h3 id="direktorij-za-staticke-datoteke">Direktorij za statičke datoteke</h3>
-<p>Unutar aplikacije <code>main</code> potrebno je stvoriti direktorij <code>static</code> a unutar njega <code>style.css</code>.</p>
-<p>Referenciranje na <code>style.css</code> unutar aplikacije:</p>
-<div class="highlight"><pre><span></span><code>{% load static %}
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{% static &#39;style.css&#39; %}&quot;</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>Prikaz unutar HTML templatea:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    {% load static %}
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{% static &#39;style.css&#39; %}&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block title %}Knjiznica{% endblock %}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>Sadržaj datoteke <code>style.css</code> možete proizvoljno zadati i prilagođavati vlastitim željama. Primjerice, datoteka <code>main/static/style.css</code> može biti oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">h1</span> <span class="p">{</span>
-    <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span>
-    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">h2</span> <span class="p">{</span>
-    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">li</span> <span class="p">{</span>
-    <span class="k">list-style-type</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
-    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="admonition zadatak">
-<p class="admonition-title">Zadatak</p>
-<p>Dopunite prikaz na autora tako da njegovo ime bude link. Link neka vodi na prikaz svih knjiga od odabranog autora. Za tu svrhu prvo je potrebno kreirati pretraživanje po traženom autoru, a zatim vratiti sve knjige koje su pronađene za traženog autora.</p>
-</div>
-<p><strong>Rješenje zadatka.</strong> Uredit ćemo datoteku <code>main/views.py</code> da bude oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
-<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">ListView</span>
-<span class="kn">from</span> <span class="nn">main.models</span> <span class="kn">import</span> <span class="n">Author</span><span class="p">,</span> <span class="n">Book</span>
-
-<span class="k">class</span> <span class="nc">AuthorBookList</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;main/book_list.html&#39;</span>
-
-    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Author</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">)</span>
-</code></pre></div>
-<p>Potrebno je dodati putanju unutar <code>views.py</code>. Datoteka <code>main/views.py</code> je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;author&gt;&#39;</span><span class="p">,</span> <span class="n">AuthorBookList</span><span class="o">.</span><span class="n">as_view</span><span class="p">())</span>
-</code></pre></div>
-<p>Zatim je potrebno izmjeniti predložak, odnosno dodati linkove koji vode na autore. Datoteka <code>author_list.html</code>:</p>
-<div class="highlight"><pre><span></span><code>{% extends &quot;base_generic.html&quot; %}
-{% block content %}
-<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Books<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-{% for book in book_list %}
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;book&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>{{ book.title }}<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Author: <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{book.author}}&quot;</span><span class="p">&gt;</span> {{book.author}}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ book.abstract }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-{% endfor %}
-{% endblock %}
-</code></pre></div>
-<p>Izmjenimo i predložak za prikaz knjiga. Datoteka <code>book_list.html</code>:</p>
-<div class="highlight"><pre><span></span><code>{% extends &quot;base_generic.html&quot; %}
-{% block content %}
-<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Authors<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-{% for author in author_list %}
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;author&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>{{author.name}}<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>City: {{author.city}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Country: {{author.country}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{author.name}}&quot;</span><span class="p">&gt;</span> All books by {{author.name}}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> 
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-{% endfor %}
-{% endblock %}
-</code></pre></div>
-<div class="admonition zadatak">
-<p class="admonition-title">Zadatak</p>
-<p>Dopunite <code>style.css</code> tako da dodate obrub na elemente Knjige i Autora.</p>
-</div>
-<p><strong>Rješenje zadatka.</strong> U datoteku <code>style.css</code> dodajemo:</p>
-<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">book</span> <span class="p">{</span>
-    <span class="k">border-color</span><span class="p">:</span> <span class="kc">cyan</span><span class="p">;</span>
-    <span class="k">border-style</span><span class="p">:</span> <span class="kc">double</span><span class="p">;</span>
-    <span class="k">padding-left</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">padding-right</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">padding-bottom</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">author</span> <span class="p">{</span>
-    <span class="k">border-color</span><span class="p">:</span> <span class="kc">olive</span><span class="p">;</span>
-    <span class="k">border-style</span><span class="p">:</span> <span class="kc">double</span><span class="p">;</span>
-    <span class="k">padding-left</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">padding-right</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-    <span class="k">padding-bottom</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
                 
                   
                 
@@ -5310,7 +5011,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../python-django-vj6/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Django vježba 6 -- Predaja obrazaca HTTP metodama GET i POST. Provjera unosa i prikaz poruka o greškama" rel="prev">
+        <a href="../python-modul-django/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Python -- Django" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -5319,20 +5020,20 @@
               <span class="md-footer__direction">
                 Prethodno
               </span>
-              Django vježba 6 -- Predaja obrazaca HTTP metodama GET i POST. Provjera unosa i prikaz poruka o greškama
+              Python -- Django
             </div>
           </div>
         </a>
       
       
         
-        <a href="../python-django-vj9/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Django vježba 9 -- Sijanje i migracije" rel="next">
+        <a href="../python-modul-datetime/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Python -- osnovni tipovi podataka datuma i vremena" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Sljedeće
               </span>
-              Django vježba 9 -- Sijanje i migracije
+              Python -- osnovni tipovi podataka datuma i vremena
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -5367,10 +5068,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.bc35569b.min.js"></script>
       
     
   </body>
