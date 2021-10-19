@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/php-zahtjev-odgovor/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.24c991ad.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1998,6 +1998,20 @@
     <li class="md-nav__item">
       <a href="../kvm-virtualizacija/" class="md-nav__link">
         Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-manager-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem Virtual Machine Managera
       </a>
     </li>
   
@@ -5197,7 +5211,7 @@
 &lt; Date: Mon, <span class="m">02</span> Nov <span class="m">2020</span> <span class="m">22</span>:28:59 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Uvijek me uhvate kad šaram grafite po z
 * Closing connection <span class="m">0</span>
@@ -5229,7 +5243,7 @@
 &lt; Connection: close
 &lt; X-Powered-By: PHP/8.0.0
 &lt; PHP-Mascot: ElePHPant
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5262,7 +5276,7 @@
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
 &lt; Location: /grafit
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 * Issue another request to this URL: <span class="s1">&#39;http://localhost:8000/grafit&#39;</span>
@@ -5280,7 +5294,7 @@
 &lt; Date: Mon, <span class="m">02</span> Nov <span class="m">2020</span> <span class="m">22</span>:38:20 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Uvijek me uhvate kad šaram grafite po z
 * Closing connection <span class="m">1</span>
@@ -5314,7 +5328,7 @@
 <div class="highlight"><pre><span></span><code>$ curl -v -L http://localhost:8000/grafiti
 <span class="o">(</span>...<span class="o">)</span>
 &lt; Location: http://localhost:8000/grafit
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 * Issue another request to this URL: <span class="s1">&#39;http://localhost:8000/grafit&#39;</span>
@@ -5367,7 +5381,7 @@
 &lt; Date: Tue, <span class="m">03</span> Nov <span class="m">2020</span> <span class="m">07</span>:54:07 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Zahtjev metodom POST na /grafit nije ispravan&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5395,12 +5409,12 @@
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_ACCEPT&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;application/json&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
     <span class="k">echo</span> <span class="s1">&#39;{&quot;ime&quot;:&quot;Ivan&quot;,&quot;prezime&quot;:&quot;Horvat&quot;,&quot;studij&quot;:&quot;Informatika&quot;}&#39;</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_ACCEPT&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text/html&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ivan Horvat (Informatika)&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_ACCEPT&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: text/plain&quot;</span><span class="p">);</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: text/plain&quot;</span><span class="p">);</span>
     <span class="k">echo</span> <span class="s2">&quot;Ivan,Horvat,Informatika</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">406</span><span class="p">);</span>
@@ -5423,7 +5437,7 @@
 &lt; Date: Fri, <span class="m">13</span> Nov <span class="m">2020</span> <span class="m">13</span>:50:52 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 <span class="o">{</span><span class="s2">&quot;ime:&quot;</span>Ivan<span class="s2">&quot;,&quot;</span>prezime<span class="s2">&quot;:&quot;</span>Horvat<span class="s2">&quot;,&quot;</span>studij<span class="s2">&quot;:&quot;</span>Informatika<span class="s2">&quot;}</span>
@@ -5443,7 +5457,7 @@
 &lt; Date: Fri, <span class="m">13</span> Nov <span class="m">2020</span> <span class="m">13</span>:51:03 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Ivan Horvat <span class="o">(</span>Informatika<span class="o">)</span>&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5462,7 +5476,7 @@ $ curl -v -H <span class="s2">&quot;Accept: text/plain&quot;</span> http://local
 &lt; Date: Fri, <span class="m">13</span> Nov <span class="m">2020</span> <span class="m">13</span>:51:14 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/plain
+&lt; Content-Type: text/plain
 &lt;
 Ivan,Horvat,Informatika
 * Closing connection <span class="m">0</span>
@@ -5482,7 +5496,7 @@ Ivan,Horvat,Informatika
 &lt; Date: Fri, <span class="m">13</span> Nov <span class="m">2020</span> <span class="m">13</span>:51:24 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.11
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Nejasan zahtjev. Podržani MIME tipovi su application/json, text/html i text/plain.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5517,7 +5531,7 @@ Ivan,Horvat,Informatika
 &lt; Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">00</span>:56:39 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/8.0.0
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Na ovoj stranici nema ništa.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5537,7 +5551,7 @@ $ curl -v -H <span class="s2">&quot;Najjaci-Fakultet: Odjel za informatiku&quot;
 &lt; Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">00</span>:57:11 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/8.0.0
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Dobrodošli, kolega.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5577,7 +5591,7 @@ $ curl -v -H <span class="s2">&quot;Najjaci-Fakultet: Odjel za informatiku&quot;
 &lt; Date: Tue, <span class="m">03</span> Nov <span class="m">2020</span> <span class="m">12</span>:55:51 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.3
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Vi ste Ivan Horvat.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5612,7 +5626,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Tue, <span class="m">03</span> Nov <span class="m">2020</span> <span class="m">13</span>:02:47 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.3
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Vi ste Ivan Horvat.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
@@ -5669,7 +5683,7 @@ Warning: way you want. Consider using -I/--head instead.
 &lt; Connection: close
 &lt; X-Powered-By: PHP/8.0.0
 &lt; Moj-Head: ne prodajemo skije i štapove
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 
@@ -5680,7 +5694,7 @@ Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class
 Connection: close
 X-Powered-By: PHP/8.0.0
 Moj-Head: ne prodajemo skije i štapove
-Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 </code></pre></div>
 <p>Vidimo zaglavlja među kojima je i naše prilagođeno zaglavlje <code>Moj-Head</code>, a tijelo je prazno kao što smo i očekivali.</p>
 <h2 id="specificnosti-metode-connect">Specifičnosti metode CONNECT</h2>
@@ -5784,10 +5798,10 @@ curl: <span class="o">(</span><span class="m">52</span><span class="o">)</span> 
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

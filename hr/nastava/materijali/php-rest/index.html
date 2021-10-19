@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/php-rest/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.24c991ad.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1998,6 +1998,20 @@
     <li class="md-nav__item">
       <a href="../kvm-virtualizacija/" class="md-nav__link">
         Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-manager-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem Virtual Machine Managera
       </a>
     </li>
   
@@ -5315,7 +5329,7 @@
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$response_body_array</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span> <span class="o">=&gt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$persons</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span> <span class="o">=&gt;</span> <span class="nb">array_values</span><span class="p">(</span><span class="nv">$persons</span><span class="p">)];</span>
@@ -5340,7 +5354,7 @@
 &lt; Date: Mon, <span class="m">15</span> Feb <span class="m">2021</span> <span class="m">14</span>:25:54 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 <span class="o">{</span><span class="s2">&quot;count&quot;</span>:2,<span class="s2">&quot;results&quot;</span>:<span class="o">[{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Dennis MacAlistair Ritchie&quot;</span>,<span class="s2">&quot;birth_year&quot;</span>:1941,<span class="s2">&quot;known_for&quot;</span>:<span class="o">[</span><span class="s2">&quot;http:\/\/localhost:8000\/technologies\/1&quot;</span>,<span class="s2">&quot;http:\/\/localhost:8000\/technologies\/2&quot;</span><span class="o">]</span>,<span class="s2">&quot;created&quot;</span>:<span class="s2">&quot;2020-12-09T14:50:32+0100&quot;</span>,<span class="s2">&quot;edited&quot;</span>:<span class="s2">&quot;2020-12-20T21:14:07+0100&quot;</span>,<span class="s2">&quot;url&quot;</span>:<span class="s2">&quot;http:\/\/localhost:8000\/persons\/1&quot;</span><span class="o">}</span>,<span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Kenneth Lane Thompson&quot;</span>,<span class="s2">&quot;birth_year&quot;</span>:1943,<span class="s2">&quot;known_for&quot;</span>:<span class="o">[</span><span class="s2">&quot;http:\/\/localhost:8000\/technologies\/2&quot;</span><span class="o">]</span>,<span class="s2">&quot;created&quot;</span>:<span class="s2">&quot;2020-12-10T15:10:41+0100&quot;</span>,<span class="s2">&quot;edited&quot;</span>:<span class="s2">&quot;2020-12-20T21:17:55+0100&quot;</span>,<span class="s2">&quot;url&quot;</span>:<span class="s2">&quot;http:\/\/localhost:8000\/persons\/2&quot;</span><span class="o">}]}</span>
@@ -5359,7 +5373,7 @@ $ curl -v http://localhost:8000/scientists
 &lt; Date: Tue, <span class="m">23</span> Mar <span class="m">2021</span> <span class="m">23</span>:38:33 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5400,7 +5414,7 @@ $ curl -v http://localhost:8000/scientists
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$response_body_array</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span> <span class="o">=&gt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$persons</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span> <span class="o">=&gt;</span> <span class="nb">array_values</span><span class="p">(</span><span class="nv">$persons</span><span class="p">)];</span>
@@ -5436,7 +5450,7 @@ $ curl -v http://localhost:8000/scientists
 &lt; Date: Tue, <span class="m">23</span> Mar <span class="m">2021</span> <span class="m">23</span>:41:08 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 <span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Dennis MacAlistair Ritchie&quot;</span>,<span class="s2">&quot;birth_year&quot;</span>:1941,<span class="s2">&quot;known_for&quot;</span>:<span class="o">[</span><span class="s2">&quot;http:\/\/localhost:8000\/technologies\/1&quot;</span>,<span class="s2">&quot;http:\/\/localhost:8000\/technologies\/2&quot;</span><span class="o">]</span>,<span class="s2">&quot;created&quot;</span>:<span class="s2">&quot;2020-12-09T14:50:32+0100&quot;</span>,<span class="s2">&quot;edited&quot;</span>:<span class="s2">&quot;2020-12-20T21:14:07+0100&quot;</span>,<span class="s2">&quot;url&quot;</span>:<span class="s2">&quot;http:\/\/localhost:8000\/persons\/1&quot;</span><span class="o">}</span>
@@ -5455,7 +5469,7 @@ $ curl -v http://localhost:8000/persons/599
 &lt; Date: Tue, <span class="m">23</span> Mar <span class="m">2021</span> <span class="m">23</span>:41:10 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 
@@ -5473,7 +5487,7 @@ $ curl -v http://localhost:8000/persons/007
 &lt; Date: Tue, <span class="m">23</span> Mar <span class="m">2021</span> <span class="m">23</span>:41:17 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5487,7 +5501,7 @@ $ curl -v http://localhost:8000/persons/007
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_CONTENT_TYPE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$request_body</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$request_body</span> <span class="o">==</span> <span class="s2">&quot;Kako ide?&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: text/plain&quot;</span><span class="p">);</span>
+        <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: text/plain&quot;</span><span class="p">);</span>
         <span class="nv">$response_body</span> <span class="o">=</span> <span class="s2">&quot;A evo, dobro.&quot;</span><span class="p">;</span>
         <span class="nb">file_put_contents</span><span class="p">(</span><span class="s2">&quot;php://output&quot;</span><span class="p">,</span> <span class="nv">$response_body</span><span class="p">);</span>
     <span class="p">}</span>
@@ -5512,7 +5526,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">19</span>:20:13 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/8.0.0
-&lt; Content-type: text/plain<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/plain<span class="p">;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 A evo, dobro.
@@ -5555,7 +5569,7 @@ A evo, dobro.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$request_body</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
@@ -5585,7 +5599,7 @@ A evo, dobro.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$request_body</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
@@ -5623,7 +5637,7 @@ A evo, dobro.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$request_body</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
@@ -5663,7 +5677,7 @@ A evo, dobro.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$request_body</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
@@ -5706,7 +5720,7 @@ A evo, dobro.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">20</span>:40:10 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5729,7 +5743,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">20</span>:42:27 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5752,7 +5766,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">20</span>:44:30 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5775,7 +5789,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">20</span>:55:37 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5803,7 +5817,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
@@ -5857,7 +5871,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">21</span>:04:27 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -5886,7 +5900,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;PUT&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s2">&quot;/^\/persons\/[1-9][0-9]*$/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]))</span> <span class="p">{</span>
     <span class="nv">$uri_parts</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]);</span>
@@ -5935,7 +5949,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;PATCH&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s2">&quot;/^\/persons\/[1-9][0-9]*$/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]))</span> <span class="p">{</span>
     <span class="nv">$uri_parts</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]);</span>
@@ -5991,7 +6005,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">21</span>:21:51 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -6007,7 +6021,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DELETE&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s2">&quot;/^\/persons\/[1-9][0-9]*$/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]))</span> <span class="p">{</span>
     <span class="nv">$uri_parts</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]);</span>
@@ -6041,7 +6055,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">21</span>:33:58 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -6060,7 +6074,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 &lt; Date: Sat, <span class="m">03</span> Apr <span class="m">2021</span> <span class="m">21</span>:34:09 GMT
 &lt; Connection: close
 &lt; X-Powered-By: PHP/7.4.15
-&lt; Content-type: application/json
+&lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
@@ -6076,7 +6090,7 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <span class="nv">$persons</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="p">);</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/persons&quot;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$response_body_array</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span> <span class="o">=&gt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$persons</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span> <span class="o">=&gt;</span> <span class="nb">array_values</span><span class="p">(</span><span class="nv">$persons</span><span class="p">)];</span>
@@ -6292,10 +6306,10 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>
