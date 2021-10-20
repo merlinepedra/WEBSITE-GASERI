@@ -5282,7 +5282,7 @@ Iza toga se pokreće operacija riješavanja <code>Solve()</code> koju riješava 
 <p><code>Y</code>-one se postavlja na 0, i ponovno <code>tick</code> računa vrijeme, ali ovaj put za Accelerator.</p>
 <p>Opet se ponavlja ista <code>for</code> petlja kao i prije, i <code>tack</code> računa vrijeme. Ispisuje se vrijeme koje je bilo potrebno Akceleratoru da executa na isti način kao i prijašnje računice, i ponovno se računa i Skalarni produkt <code>x</code> i <code>y</code>.</p>
 <p>Iza toga se računa vrijeme za <code>tackg</code> koje se koristi za ispis vremena cijelog executa + transfera bez funkcije <code>Async</code> tako da se <code>tackg</code> i <code>tickg</code> oduzmu i opet podijele sa 1e6.</p>
-<p>Za sva tri objekta <code>mat</code>, x<code>i</code>y<code>se pomiče data na host-a.</code>Y`-oni se opet ponstavljaju na 0.</p>
+<p>Za sva tri objekta <code>mat</code>, <code>x</code> i <code>y</code> se pomiče data na host-a. <code>Y</code>-oni se opet ponstavljaju na 0.</p>
 <p>Kroz komentar kaže da se sada ovo odnosi na Async, i vidi se razlika jer se sada u isto vrijeme računaju vremena za i <code>tickg</code> i <code>tick</code>.</p>
 <p>Sada se vrši pomicanje vrijednosti/memorije objekata <code>mat</code> i <code>x</code> na Accelerator, ali sada sa opcijom Async.</p>
 <p>Ispisuje se info o sva tri objekta. Računa s vrijeme za <code>tack</code> i ispisuje koliko je vremena Async transfer trebao, i to na isti način kao i prije.</p>

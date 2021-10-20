@@ -5040,7 +5040,7 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># yum install spamassassin</span>
 </code></pre></div>
 <p>Zanimljivo je pri kraju instalacije primjetiti:</p>
-<div class="highlight"><pre><span></span><code>SpamAssassin Mail Filter Daemon: disabled, see `/etc/default/spamassassin`
+<div class="highlight"><pre><span></span><code>SpamAssassin Mail Filter Daemon: disabled, see /etc/default/spamassassin
 </code></pre></div>
 <p>što nam jasno daje do znanja da ćemo morati ručno uključiti Spamassassin Daemon proces.</p>
 <p>Nadalje, nije poželjno da nam se Spam filter pokreće sa root privilegijama pa ćemo mu dodijeliti specifičnog korisnika i grupu te ograničiti djelovanje na određene datoteke i direktorije. Dodajmo novu grupu sa ID-ijem 5001 i nazovimo ju spamd</p>
