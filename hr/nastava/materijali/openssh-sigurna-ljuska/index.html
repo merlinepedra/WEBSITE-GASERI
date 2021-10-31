@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openssh-sigurna-ljuska/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2463,6 +2463,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5013,6 +5015,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5219,7 +5223,7 @@ debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;im
 debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
 debug1: Server host key: ecdsa-sha2-nistp256 SHA256:0ru7bD+izhNW+qTNFkxqHtDoiyDRNLUHHvvuF0O0I84
 debug1: Host <span class="s1">&#39;inf2.uniri.hr&#39;</span> is known and matches the ECDSA host key.
-debug1: Found key in /home/korisnik/.ssh/known_hosts:1
+debug1: Found key <span class="k">in</span> /home/korisnik/.ssh/known_hosts:1
 <span class="o">(</span>...<span class="o">)</span>
 debug1: Next authentication method: password
 korisnik@inf2.uniri.hr<span class="err">&#39;</span>s password:
@@ -5269,10 +5273,10 @@ sshd: no hostkeys available -- exiting.
 </ul>
 <p>OpenSSH alat <code>ssh-keygen</code> služi za generiranje domaćinskih (poslužiteljskih) i korisničkih (klijentskih) ključeva; bez parametara <code>ssh-keygen</code> će generirati korisničke ključeve. Pozabavimo se prvo generiranje domaćinskih ključeva, što ćemo napraviti dodavanjem parametra <code>-A</code>:</p>
 <div class="highlight"><pre><span></span><code>$ ssh-keygen -A
-ssh-keygen: generating new host keys: RSA Could not save your public key in /etc/ssh/ssh_host_rsa_key.mYJvrepuWR: Permission denied
-ssh-keygen: generating new host keys: DSA Could not save your public key in /etc/ssh/ssh_host_dsa_key.zG3QFGy1zd: Permission denied
-ssh-keygen: generating new host keys: ECDSA Could not save your public key in /etc/ssh/ssh_host_ecdsa_key.JG7rzkXpNm: Permission denied
-ssh-keygen: generating new host keys: ED25519 Could not save your public key in /etc/ssh/ssh_host_ed25519_key.G4BsHFctX2: Permission denie
+ssh-keygen: generating new host keys: RSA Could not save your public key <span class="k">in</span> /etc/ssh/ssh_host_rsa_key.mYJvrepuWR: Permission denied
+ssh-keygen: generating new host keys: DSA Could not save your public key <span class="k">in</span> /etc/ssh/ssh_host_dsa_key.zG3QFGy1zd: Permission denied
+ssh-keygen: generating new host keys: ECDSA Could not save your public key <span class="k">in</span> /etc/ssh/ssh_host_ecdsa_key.JG7rzkXpNm: Permission denied
+ssh-keygen: generating new host keys: ED25519 Could not save your public key <span class="k">in</span> /etc/ssh/ssh_host_ed25519_key.G4BsHFctX2: Permission denie
 </code></pre></div>
 <p>Uočimo da bez administrativnih privilegija ne možemo spremiti generirane ključeve. Iskoristimo zato parametar <code>-f</code> da postavio ključeve u direktorij po želji koji ćemo prethodno stvoriti:</p>
 <div class="highlight"><pre><span></span><code>$ mkdir -p moj-ssh-server/etc/ssh
@@ -5432,12 +5436,12 @@ debug1: audit_event: unhandled event 12
 <p>Osim prijave pomoću zaporki, moguće je koristiti i korisničke ključeve. Već spomenutom naredbom <code>ssh-keygen</code> to ćemo napraviti na način:</p>
 <div class="highlight"><pre><span></span><code>$ ssh-keygen
 Generating public/private rsa key pair.
-Enter file in which to save the key <span class="o">(</span>/home/korisnik/.ssh/id_rsa<span class="o">)</span>:
+Enter file <span class="k">in</span> which to save the key <span class="o">(</span>/home/korisnik/.ssh/id_rsa<span class="o">)</span>:
 Created directory <span class="s1">&#39;/home/korisnik/.ssh&#39;</span>.
 Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
 Enter same passphrase again:
-Your identification has been saved in /home/korisnik/.ssh/id_rsa
-Your public key has been saved in /home/korisnik/.ssh/id_rsa.pub
+Your identification has been saved <span class="k">in</span> /home/korisnik/.ssh/id_rsa
+Your public key has been saved <span class="k">in</span> /home/korisnik/.ssh/id_rsa.pub
 The key fingerprint is:
 SHA256:3x+D9GXDyoZ2mJ9J4hzGwTCDHkl5oZX7VxVXmt1+Adw korisnik@hephaestus
 The key<span class="err">&#39;</span>s randomart image is:
@@ -5456,11 +5460,11 @@ The key<span class="err">&#39;</span>s randomart image is:
 <p>Zadana vrsta ključa je RSA, a druge vrstu ključa možemo odabrati parametrom <code>-t</code>. Specijalno, ECDSA i Ed25519 ključeve stvoriti naredbama:</p>
 <div class="highlight"><pre><span></span><code>$ ssh-keygen -t ecdsa
 Generating public/private ecdsa key pair.
-Enter file in which to save the key <span class="o">(</span>/home/korisnik/.ssh/id_ecdsa<span class="o">)</span>:
+Enter file <span class="k">in</span> which to save the key <span class="o">(</span>/home/korisnik/.ssh/id_ecdsa<span class="o">)</span>:
 Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
 Enter same passphrase again:
-Your identification has been saved in /home/korisnik/.ssh/id_ecdsa
-Your public key has been saved in /home/korisnik/.ssh/id_ecdsa.pub
+Your identification has been saved <span class="k">in</span> /home/korisnik/.ssh/id_ecdsa
+Your public key has been saved <span class="k">in</span> /home/korisnik/.ssh/id_ecdsa.pub
 The key fingerprint is:
 SHA256:RxwLKEToEpbyclxu7kQQQ29RhfKCTOQkbJ13VR/G0uU korisnik@hephaestus
 The key<span class="s1">&#39;s randomart image is:</span>
@@ -5629,10 +5633,10 @@ Accepted key ECDSA SHA256:RxwLKEToEpbyclxu7kQQQ29RhfKCTOQkbJ13VR/G0uU found at /
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

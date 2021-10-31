@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/click-programska-osnova-usmjerivaca/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1441,6 +1441,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5007,6 +5009,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5109,216 +5113,216 @@
 <li>Pokretanje -- stvaranje i pokretanje niti koja upravlja usmjerivačem</li>
 </ul>
 <p>Programski kod koji to izvodi je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="n">Router</span> <span class="o">*</span><span class="n">router</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Router</span><span class="w"> </span><span class="o">*</span><span class="n">router</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span>
-<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">click_static_initialize</span><span class="p">();</span><span class="c1">// Inicijalizacija</span>
-  <span class="c1">//...</span>
-  <span class="n">router</span> <span class="o">=</span> <span class="n">parse_configuration</span><span class="p">(</span><span class="n">router_file</span><span class="p">,</span> <span class="n">file_is_expr</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span><span class="c1">// Konfiguriranje</span>
-  <span class="c1">//...</span>
-  <span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">driver</span><span class="p">();</span> <span class="c1">// Pokretanje</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">click_static_initialize</span><span class="p">();</span><span class="c1">// Inicijalizacija</span>
+<span class="w">  </span><span class="c1">//...</span>
+<span class="w">  </span><span class="n">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse_configuration</span><span class="p">(</span><span class="n">router_file</span><span class="p">,</span><span class="w"> </span><span class="n">file_is_expr</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">errh</span><span class="p">);</span><span class="c1">// Konfiguriranje</span>
+<span class="w">  </span><span class="c1">//...</span>
+<span class="w">  </span><span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span><span class="o">-&gt;</span><span class="kr">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">driver</span><span class="p">();</span><span class="w"> </span><span class="c1">// Pokretanje</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Pogledajmo sada detaljnije svaku od točaka.</p>
 <h3 id="inicijalizacija">Inicijalizacija</h3>
 <p>Pri pozivanju <code>click_static_initialize()</code> funkcije definiraju se tipovi parametara za elemente, parametri usmjerivača te se stvara podatkovna struktura sa nazivima i ostalim potrebnim informacijama o svim dostupnim elementima.</p>
 <p>Kod koji ovaj redoslijed definira je vrlo jednostavan:</p>
-<div class="highlight"><pre><span></span><code><span class="n">cp_va_static_initialize</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">cp_va_static_initialize</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">Router</span><span class="o">::</span><span class="n">static_initialize</span><span class="p">();</span>
+<span class="n">Router</span><span class="o">::</span><span class="n">static_initialize</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">click_export_elements</span><span class="p">();</span>
+<span class="n">click_export_elements</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Dakako ovo nije potpuni kod, ali je dovoljan za razumijevanje strukture i redoslijeda odvijanja događaja.</p>
 <p>Detaljniji pogled na <code>cp_va_static_initialize()</code> i <code>Router::static_initialize()</code> nije potreban, no zanimljivo je pogledati što se događa pozivanjem <code>click_export_elements()</code> funkcije.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;click/config.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;click/package.hh&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;../elements/standard/delayshaper.hh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;../elements/threads/spinlockrelease.hh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;../elements/test/listtest.hh&quot;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;click/config.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;click/package.hh&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../elements/standard/delayshaper.hh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../elements/threads/spinlockrelease.hh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../elements/test/listtest.hh&quot;</span><span class="cp"></span>
 <span class="c1">//... (nastavak popisa elemenata) ...</span>
 
-<span class="n">beetlemonkey</span><span class="p">(</span><span class="kt">uintptr_t</span> <span class="n">heywood</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">switch</span> <span class="p">(</span><span class="n">heywood</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AdjustTimestamp</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AggregateCounter</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">AggregatePacketCounter</span><span class="p">;</span>
-    <span class="c1">//... (ostali elementi) ...</span>
-    <span class="k">case</span> <span class="mi">259</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ToRawSocket</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">260</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ToSocket</span><span class="p">;</span>
-    <span class="k">case</span> <span class="mi">261</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">UMLSwitch</span><span class="p">;</span>
-    <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="n">beetlemonkey</span><span class="p">(</span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">heywood</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">heywood</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AdjustTimestamp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AggregateCounter</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AggregatePacketCounter</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//... (ostali elementi) ...</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">259</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ToRawSocket</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">260</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ToSocket</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">261</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UMLSwitch</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">click_export_elements</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;AdjustTimestamp&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="c1">//... (ostali elementi) ...</span>
-  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToRawSocket&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">259</span><span class="p">);</span>
-  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToSocket&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">260</span><span class="p">);</span>
-  <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;UMLSwitch&quot;</span><span class="p">,</span> <span class="n">beetlemonkey</span><span class="p">,</span> <span class="mi">261</span><span class="p">);</span>
-  <span class="n">CLICK_DMALLOC_REG</span><span class="p">(</span><span class="s">&quot;nXXX&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">click_export_elements</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;AdjustTimestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beetlemonkey</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//... (ostali elementi) ...</span>
+<span class="w">  </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToRawSocket&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beetlemonkey</span><span class="p">,</span><span class="w"> </span><span class="mi">259</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;ToSocket&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beetlemonkey</span><span class="p">,</span><span class="w"> </span><span class="mi">260</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="s">&quot;UMLSwitch&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">beetlemonkey</span><span class="p">,</span><span class="w"> </span><span class="mi">261</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">CLICK_DMALLOC_REG</span><span class="p">(</span><span class="s">&quot;nXXX&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Definiramo dostupne elemente, uključujemo datoteke zaglavlja i dodjeljujemo redni broj svakom od elemenata. Funkcija <code>click_add_element_type_stable()</code> je zadužena da dodijeli ime svakom od elemenata i kreira ga, a ako pobliže pogledamo njenu realizaciju možemo vidjeti da se zapravo dodijeljeni parametri parsiraju u svrhu utvrđivanja postojanja i stablizacije samog koda.</p>
-<div class="highlight"><pre><span></span><code><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="kt">int</span>
-<span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ename</span><span class="p">,</span>
-                              <span class="n">Element</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">uintptr_t</span><span class="p">),</span>
-                              <span class="kt">uintptr_t</span> <span class="n">thunk</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">ename</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">Lexer</span> <span class="o">*</span><span class="n">l</span> <span class="o">=</span> <span class="n">click_lexer</span><span class="p">())</span>
-        <span class="k">return</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">add_element_type</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="n">make_stable</span><span class="p">(</span><span class="n">ename</span><span class="p">),</span>
-                                   <span class="n">func</span><span class="p">,</span>
-                                   <span class="n">thunk</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="mi">-99</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+<span class="n">click_add_element_type_stable</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">ename</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">Element</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">uintptr_t</span><span class="p">),</span><span class="w"></span>
+<span class="w">                              </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">thunk</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">ename</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Lexer</span><span class="w"> </span><span class="o">*</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">click_lexer</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">add_element_type</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="n">make_stable</span><span class="p">(</span><span class="n">ename</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                   </span><span class="n">func</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                   </span><span class="n">thunk</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-99</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Naime, funkcija <code>click_lexer()</code> (konstruktor objekta <code>l</code> tipa <code>Lexer</code>) dodavajući element u simulaciju ujedno provjerava postoji li i koji mu je redni broj.</p>
 <h3 id="konfiguracija">Konfiguracija</h3>
 <p>Konfiguriranje je bitan dio svake simulacije pa tako i simulacije usmjerivača. Zapravo sve bitno što možemo podešavati radimo upravo u dijelu koji zovemo konfiguriranje. Stoga, pogledajmo pobliže kod koji osigurava da je konfiguracija valjana te ju kreira/mijenja na usmjerivaču.</p>
-<div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="n">Router</span> <span class="o">*</span>
-<span class="n">parse_configuration</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">text_is_expr</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">hotswap</span><span class="p">,</span>
-                    <span class="n">ErrorHandler</span> <span class="o">*</span><span class="n">errh</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">Master</span> <span class="o">*</span><span class="n">master</span> <span class="o">=</span> <span class="p">(</span><span class="n">router</span> <span class="o">?</span> <span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span> <span class="o">:</span> <span class="k">new</span> <span class="n">Master</span><span class="p">(</span><span class="n">nthreads</span><span class="p">));</span>
-  <span class="n">Router</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="n">click_read_router</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">text_is_expr</span><span class="p">,</span> <span class="n">errh</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">master</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Router</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">parse_configuration</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">text_is_expr</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">hotswap</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="o">*</span><span class="n">errh</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Master</span><span class="w"> </span><span class="o">*</span><span class="n">master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">router</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">router</span><span class="o">-&gt;</span><span class="n">master</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Master</span><span class="p">(</span><span class="n">nthreads</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">Router</span><span class="w"> </span><span class="o">*</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">click_read_router</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">text_is_expr</span><span class="p">,</span><span class="w"> </span><span class="n">errh</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">master</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">//... (programski kod) ...</span>
+<span class="w">  </span><span class="c1">//... (programski kod) ...</span>
 
-  <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ova funkcija stvara konfigurirani usmjerivač na osnovu nekoliko parametara. Prvi parametar je uređeni niz znakova tipa <code>String</code> koji može biti ili ime datoteke u kojoj su konfiguracijski parametri ili sama konfiguracija, drugi parametar određuje kako će se interpretirati prvi parametar (na jedan od dva prethodno navedena načina), treći parametar označava mijenjamo li konfiguraciju, a četvrti je pokazivač na eventualno nastale greške.</p>
 <p>Nakon toga provjeravamo postoji li definiran <code>router</code> te ukoliko postoji dohvaćamo, u prvom poglavlju spomenut, <code>master</code> element, a ukoliko ne postoji stvaramo novu instancu <code>Master</code> klase kojoj dodjeljujemo željeni broj niti.</p>
 <p>Posljednje što je potrebno učiniti je pozvati funkciju <code>click_read_router()</code>. Sama ta funkcija izgleda ovako:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Router</span> <span class="o">*</span>
-<span class="nf">click_read_router</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">,</span>
-                  <span class="kt">bool</span> <span class="n">is_expr</span><span class="p">,</span>
-                  <span class="n">ErrorHandler</span> <span class="o">*</span><span class="n">errh</span><span class="p">,</span>
-                  <span class="kt">bool</span> <span class="n">initialize</span><span class="p">,</span>
-                  <span class="n">Master</span> <span class="o">*</span><span class="n">master</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">//... (1. dio koda) ...</span>
-    <span class="n">String</span> <span class="n">config_str</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">is_expr</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">config_str</span> <span class="o">=</span> <span class="n">filename</span><span class="p">;</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;config&quot;</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">config_str</span> <span class="o">=</span> <span class="n">file_string</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">filename</span> <span class="o">||</span> <span class="n">filename</span> <span class="o">==</span> <span class="s">&quot;-&quot;</span><span class="p">)</span>
-            <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">;</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">Router</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">click_read_router</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_expr</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">ErrorHandler</span><span class="w"> </span><span class="o">*</span><span class="n">errh</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialize</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">Master</span><span class="w"> </span><span class="o">*</span><span class="n">master</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//... (1. dio koda) ...</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">config_str</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_expr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">config_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;config&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">config_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file_string</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">errh</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">filename</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">//... (2. dio koda) ...</span>
+<span class="w">    </span><span class="c1">//... (2. dio koda) ...</span>
 
-    <span class="n">RequireLexerExtra</span> <span class="n">lextra</span><span class="p">(</span><span class="o">&amp;</span><span class="n">archive</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">cookie</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">begin_parse</span><span class="p">(</span><span class="n">config_str</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lextra</span><span class="p">,</span> <span class="n">errh</span><span class="p">);</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">ystatement</span><span class="p">())</span>
-        <span class="cm">/* ne čini ništa */</span><span class="p">;</span>
-    <span class="n">Router</span> <span class="o">*</span><span class="n">router</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">create_router</span><span class="p">(</span><span class="n">master</span> <span class="o">?</span> <span class="nl">master</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Master</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-    <span class="n">l</span><span class="o">-&gt;</span><span class="n">end_parse</span><span class="p">(</span><span class="n">cookie</span><span class="p">);</span>
+<span class="w">    </span><span class="n">RequireLexerExtra</span><span class="w"> </span><span class="n">lextra</span><span class="p">(</span><span class="o">&amp;</span><span class="n">archive</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cookie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">begin_parse</span><span class="p">(</span><span class="n">config_str</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lextra</span><span class="p">,</span><span class="w"> </span><span class="n">errh</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">ystatement</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="cm">/* ne čini ništa */</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Router</span><span class="w"> </span><span class="o">*</span><span class="n">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">create_router</span><span class="p">(</span><span class="n">master</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">master</span> <span class="p">:</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Master</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">l</span><span class="o">-&gt;</span><span class="n">end_parse</span><span class="p">(</span><span class="n">cookie</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">//... (3. dio koda)...</span>
+<span class="w">    </span><span class="c1">//... (3. dio koda)...</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">initialize</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">errh</span><span class="o">-&gt;</span><span class="n">nerrors</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">before</span> <span class="o">||</span> <span class="n">router</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">errh</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">delete</span> <span class="n">router</span><span class="p">;</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">initialize</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">errh</span><span class="o">-&gt;</span><span class="n">nerrors</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">router</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="n">errh</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">router</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">return</span> <span class="n">router</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">router</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Prvi dio koda osigurava da se ukoliko je zastavica <code>is_expr</code> postavljena zabilježi konfiguracijski string te postavi zadano ime datoteke na <code>config</code>, a ukoliko nije postavljena znači da je putanja do datoteke koja sadrži konfiguraciju pa ju je potrebno samo pročitati te osigurati da konfiguracija nije prazna (ukoliko je prazna koristi se predefinirana konfiguracija).</p>
 <p>Drugi dio koda parsira samu konfiguraciju i kreira usmjerivač sa tim postavkama.</p>
 <p>Treći dio koda provjerava je li sve prošlo u redu u drugom dijelu koda. Ukoliko je došlo do bilo kakve greške ili nepredviđenih rezultata usmjerivač se briše te se izlazi iz programa, a ukoliko je sve prošlo u redu u glavni program se vraća sam konfigurirani usmjerivač.</p>
 <h3 id="pokretanje">Pokretanje</h3>
 <p>Ovo poglavlje pojasnit će što se događa u trenutku pokretanja našeg usmjerivača. Kada u glavnom kodu pozovemo metodu <code>driver()</code> na način da ju zovemo nad instancom klase <code>Router</code> kao što slijedi: <code>router-&gt;master()-&gt;thread(0)-&gt;driver()</code> zapravo pokrećemo sam aplikativni softver na usmjerivaču čime ga "uključujemo". Kod koji realizira to je:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">RouterThread</span><span class="o">::</span><span class="n">driver</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">const</span> <span class="k">volatile</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">stopper</span> <span class="o">=</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">stopper_ptr</span><span class="p">();</span>
-  <span class="kt">int</span> <span class="n">iter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">RouterThread::driver</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">stopper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_master</span><span class="o">-&gt;</span><span class="n">stopper_ptr</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nl">driver_loop</span><span class="p">:</span>
+<span class="w">  </span><span class="nl">driver_loop</span><span class="p">:</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">stopper</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">stopper</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-        <span class="n">iter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
 
-        <span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_signals</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_signals</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
 
-        <span class="k">if</span> <span class="p">((</span><span class="n">iter</span> <span class="o">%</span> <span class="n">_iters_per_os</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="n">run_os</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">iter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">_iters_per_os</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">run_os</span><span class="p">();</span><span class="w"></span>
 
-        <span class="kt">bool</span> <span class="n">run_timers</span> <span class="o">=</span> <span class="p">(</span><span class="n">iter</span> <span class="o">%</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">timer_stride</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">run_timers</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_timers</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">run_timers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">_master</span><span class="o">-&gt;</span><span class="n">timer_stride</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">run_timers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">_master</span><span class="o">-&gt;</span><span class="n">run_timers</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// izvrši prvi zadatak (1)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">_pending_head</span><span class="p">)</span>
-        <span class="n">process_pending</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// izvrši prvi zadatak (1)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_pending_head</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">process_pending</span><span class="p">();</span><span class="w"></span>
 
-    <span class="n">run_tasks</span><span class="p">(</span><span class="n">_tasks_per_iter</span><span class="p">);</span>
+<span class="w">    </span><span class="n">run_tasks</span><span class="p">(</span><span class="n">_tasks_per_iter</span><span class="p">);</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">stopper</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">driver_unlock_tasks</span><span class="p">();</span>
-        <span class="kt">bool</span> <span class="n">b</span> <span class="o">=</span> <span class="n">_master</span><span class="o">-&gt;</span><span class="n">check_driver</span><span class="p">();</span>
-        <span class="n">driver_lock_tasks</span><span class="p">();</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span>
-            <span class="k">goto</span> <span class="n">finish_driver</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">stopper</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">driver_unlock_tasks</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_master</span><span class="o">-&gt;</span><span class="n">check_driver</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">driver_lock_tasks</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">goto</span><span class="w"> </span><span class="n">finish_driver</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">goto</span> <span class="n">driver_loop</span><span class="p">;</span>
+<span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">driver_loop</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nl">finish_driver</span><span class="p">:</span>
-    <span class="n">driver_unlock_tasks</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nl">finish_driver</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">driver_unlock_tasks</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ne objašnjavajući detaljno svaku od pojedinih linija koda recimo samo da se ovime pokreće usmjerivač te se zadaci koje obavlja vrte u beskonačnoj petlji simulirajući time stvarno ponašanje usmjerivača. Dakako postoji i mogućnost gašenja usmjerivača što činimo izlaskom iz petlje.</p>
 <p>Samo izvršavanje određenog zadatka vrši se funkcijom <code>run_tasks()</code> čija je realizacija dana kako slijedi:</p>
-<div class="highlight"><pre><span></span><code><span class="kr">inline</span> <span class="kt">void</span>
-<span class="n">RouterThread</span><span class="o">::</span><span class="n">run_tasks</span><span class="p">(</span><span class="kt">int</span> <span class="n">ntasks</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">Task</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(;</span> <span class="n">ntasks</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">ntasks</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">task_begin</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="k">this</span><span class="p">)</span>
-      <span class="k">break</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">RouterThread::run_tasks</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ntasks</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Task</span><span class="w"> </span><span class="o">*</span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">ntasks</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">ntasks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">task_begin</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">this</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 
-      <span class="n">t</span><span class="o">-&gt;</span><span class="n">fast_remove_from_scheduled_list</span><span class="p">();</span>
+<span class="w">      </span><span class="n">t</span><span class="o">-&gt;</span><span class="n">fast_remove_from_scheduled_list</span><span class="p">();</span><span class="w"></span>
 
-      <span class="n">_pass</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">_pass</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_pass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="o">-&gt;</span><span class="n">_pass</span><span class="p">;</span><span class="w"></span>
 
-      <span class="n">t</span><span class="o">-&gt;</span><span class="n">_status</span><span class="p">.</span><span class="n">is_scheduled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-      <span class="n">t</span><span class="o">-&gt;</span><span class="n">fire</span><span class="p">();</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">      </span><span class="n">t</span><span class="o">-&gt;</span><span class="n">_status</span><span class="p">.</span><span class="n">is_scheduled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">t</span><span class="o">-&gt;</span><span class="n">fire</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Izvršavanje određenog zadatka te pomicanje na sljedeći uz brisanje prethodnog zadatka iz niza zadataka koje usmjerivač treba obaviti. Još jedna važna metoda korištena u prethodnom bloku koda je <code>fire()</code> kojom zapravo "zakačimo" izvršavanje tog određenog zadatka za točno određeni element Clicka (podsjetimo se elementi su sastavnice koje obavljaju određenu funkciju).</p>
 <h2 id="dodatak-sucelje-prema-mreznom-simulatoru-ns-3">Dodatak: sučelje prema mrežnom simulatoru ns-3</h2>
 <p>Korištenje Click usmjerivača unutar ns-3 simulacije je prilično jednostavno zbog načina na koji su oba simulatora realizirana. Razlog zašto se Click implementira u ns-3 simulacije je mogućnost preciznijeg određivanja protokola na temelju kojeg će usmjerivač obrađivati pakete. Simulator ns-3 poznaje nekoliko osnovnih, standardnih modela te uglavnom ne dopušta izmjene njihove strukture bez izmjene programskog koda same implementacije, dok Click isključivo simulira usmjerivače te dopušta puno veću slobodu pri kreiranju protokola kojim će usmjeravati pakete.</p>
 <h3 id="nacin-koristenja">Način korištenja</h3>
 <p>Korištenje Click usmjerivača unutar ns-3 simulacije svodi se zapravo na pozivanje pomoćnika <code>ClickInternetStackHelper</code> te upućivanje simulacije na datoteku koja sadrži programski kod željenog Click usmjerivača</p>
-<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span> <span class="n">click</span><span class="p">;</span>
-<span class="n">click</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;mojUsmjerivac.click&quot;</span><span class="p">);</span>
-<span class="n">click</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s">&quot;u/rt&quot;</span><span class="p">);</span>
-<span class="n">click</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span><span class="w"> </span><span class="n">click</span><span class="p">;</span><span class="w"></span>
+<span class="n">click</span><span class="p">.</span><span class="n">SetClickFile</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mojUsmjerivac.click&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">click</span><span class="p">.</span><span class="n">SetRoutingTableElement</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;u/rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">click</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>pri čemu je <code>nodes</code> tipa <code>NodeContainer</code>. Usporedimo li ovaj kod s uobičajenim korištenjem <code>InternetStackHelper</code>-a oblika</p>
-<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>vidimo da je osnova ideja vrlo slična. Ostatak simulacije je identičan uobičajenoj ns-3 simulaciji.</p>
 <h3 id="primjeri-simulacija">Primjeri simulacija</h3>
@@ -5331,10 +5335,10 @@
 <p>Potom metodom <code>SetRoutingTableElement()</code> postavljamo metodu rada, prvi parametar je ponovno čvor na koji želimo postaviti usmjerivač, a drugi je metoda rada gdje može biti kernel (<code>kernel/rt</code>) ili samostalni model rada (<code>u/rt</code>).</p>
 <p>Nakon postavljanja pozivamo metodu <code>Install()</code> kojoj dodjeljujemo parametar kontejnera čvorova koje smo instalirali te time dovršavamo postavljanje našeg konfiguriranog Click usmjerivača na čvorove.</p>
 <p>Primjerice, ako ponovno uzmemo da se <code>NodeContainer</code> zove <code>nodes</code> tada za instalaciju na prvi čvor imamo kod oblika</p>
-<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span> <span class="n">clickinternet</span><span class="p">;</span>
-<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span>
-<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
-<span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">ClickInternetStackHelper</span><span class="w"> </span><span class="n">clickinternet</span><span class="p">;</span><span class="w"></span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>U širem kontekstu taj je kod oblika</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Topologija</span>
@@ -5350,110 +5354,110 @@
 <span class="c1">// - Svi čvorovi koriste Click model usmjeravanja.</span>
 <span class="c1">//</span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/core-module.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/network-module.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/internet-module.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/applications-module.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/csma-module.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/ipv4-click-routing.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/ipv4-l3-click-protocol.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;ns3/click-internet-stack-helper.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/core-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/network-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/internet-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/applications-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/csma-module.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/ipv4-click-routing.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/ipv4-l3-click-protocol.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ns3/click-internet-stack-helper.h&quot;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">NS_LOG_COMPONENT_DEFINE</span> <span class="p">(</span><span class="s">&quot;NsclickRouting&quot;</span><span class="p">);</span>
+<span class="n">NS_LOG_COMPONENT_DEFINE</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;NsclickRouting&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">int</span>
-<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Uključivanje loginga za Click klijenta i servera</span>
 <span class="c1">//</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;NsclickRoutingClient&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;NsclickRoutingServer&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;NsclickRoutingClient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;NsclickRoutingServer&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Kreiranje čvorova</span>
 <span class="c1">//</span>
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje čvorova.&quot;</span><span class="p">);</span>
-  <span class="n">NodeContainer</span> <span class="n">n</span><span class="p">;</span>
-  <span class="n">n</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Stvaranje čvorova.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">n</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Instalacija Clicka na čvorove</span>
 <span class="c1">//</span>
-  <span class="n">ClickInternetStackHelper</span> <span class="n">clickinternet</span><span class="p">;</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ClickInternetStackHelper</span><span class="w"> </span><span class="n">clickinternet</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;src/click/examples/nsclick-routing-node0.click&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// datoteke su proizvoljne, ove su iz primjera unutar samog ns-3-a</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-ip-router.click&quot;</span><span class="p">);</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&quot;src/click/examples/nsclick-routing-node2.click&quot;</span><span class="p">);</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&quot;u/rt&quot;</span><span class="p">);</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span>
-  <span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;src/click/examples/nsclick-ip-router.click&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetClickFile</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;src/click/examples/nsclick-routing-node2.click&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;u/rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">SetRoutingTableElement</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;kernel/rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clickinternet</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje kanala.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Stvaranje kanala.&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="c1">//</span>
 <span class="c1">// Stvaranje kanala</span>
 <span class="c1">//</span>
-  <span class="n">CsmaHelper</span> <span class="n">csma</span><span class="p">;</span>
-  <span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">DataRateValue</span> <span class="p">(</span><span class="n">DataRate</span> <span class="p">(</span><span class="mi">5000000</span><span class="p">)));</span>
-  <span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">MilliSeconds</span> <span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
-  <span class="n">csma</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;Mtu&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1400</span><span class="p">));</span>
-  <span class="n">NetDeviceContainer</span> <span class="n">d01</span> <span class="o">=</span> <span class="n">csma</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)));</span>
-  <span class="n">NetDeviceContainer</span> <span class="n">d12</span> <span class="o">=</span> <span class="n">csma</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+<span class="w">  </span><span class="n">CsmaHelper</span><span class="w"> </span><span class="n">csma</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DataRateValue</span><span class="w"> </span><span class="p">(</span><span class="n">DataRate</span><span class="w"> </span><span class="p">(</span><span class="mi">5000000</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">csma</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">MilliSeconds</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">csma</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Mtu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1400</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">d01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">csma</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">NodeContainer</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">d12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">csma</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">NodeContainer</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">ipv4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">ipv4</span><span class="p">;</span><span class="w"></span>
 <span class="c1">//</span>
 <span class="c1">// Postavljanje IP adresa</span>
 <span class="c1">//</span>
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Dodjeljivanje IP adresa&quot;</span><span class="p">);</span>
-  <span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;172.16.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">i01</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">d01</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Dodjeljivanje IP adresa&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;172.16.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">i01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">d01</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;172.16.2.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">i12</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">d12</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ipv4</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;172.16.2.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">i12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ipv4</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">d12</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Stvaranje aplikacija.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Stvaranje aplikacija.&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="c1">//</span>
 <span class="c1">// Kreiranje UDP serverske aplikacije na čvoru 2</span>
 <span class="c1">//</span>
-  <span class="kt">uint16_t</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">;</span>
-  <span class="n">UdpServerHelper</span> <span class="n">server</span> <span class="p">(</span><span class="n">port</span><span class="p">);</span>
-  <span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4000</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">UdpServerHelper</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="p">(</span><span class="n">port</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">server</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Kreiranje klijentske aplikacije na čvoru 0</span>
 <span class="c1">//</span>
-  <span class="kt">uint32_t</span> <span class="n">MaxPacketSize</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
-  <span class="n">Time</span> <span class="n">interPacketInterval</span> <span class="o">=</span> <span class="n">Seconds</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
-  <span class="kt">uint32_t</span> <span class="n">maxPacketCount</span> <span class="o">=</span> <span class="mi">320</span><span class="p">;</span>
-  <span class="n">UdpClientHelper</span> <span class="n">client</span> <span class="p">(</span><span class="n">i12</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">port</span><span class="p">);</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="n">maxPacketCount</span><span class="p">));</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">interPacketInterval</span><span class="p">));</span>
-  <span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="n">MaxPacketSize</span><span class="p">));</span>
-  <span class="n">apps</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">NodeContainer</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">MaxPacketSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="n">interPacketInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">maxPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">320</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">UdpClientHelper</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">(</span><span class="n">i12</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">port</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="n">maxPacketCount</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">interPacketInterval</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">client</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="n">MaxPacketSize</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">NodeContainer</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Omogućavanje Pcap-a</span>
 <span class="c1">//</span>
-  <span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span> <span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span> <span class="n">d01</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-  <span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span> <span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span> <span class="n">d12</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="w">  </span><span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">d01</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">csma</span><span class="p">.</span><span class="n">EnablePcap</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;nsclick-routing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">d12</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">//</span>
 <span class="c1">// Pokretanje simulacije</span>
 <span class="c1">//</span>
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Pokreni simulaciju.&quot;</span><span class="p">);</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.0</span><span class="p">));</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="n">NS_LOG_INFO</span> <span class="p">(</span><span class="s">&quot;Kraj.&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Pokreni simulaciju.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">20.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">NS_LOG_INFO</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Kraj.&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ovaj primjer je složen prema datoteci <code>src/click/examples/nsclick-routing.cc</code> koja je dio izvornog koda mrežnog simulatora ns-3.</p>
                 
@@ -5538,10 +5542,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

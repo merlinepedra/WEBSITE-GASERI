@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/rocm-rocblas/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3709,6 +3709,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4994,6 +4996,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5111,148 +5115,148 @@
 <h3 id="primjer-mnozenja-vektora-skalarom">Primjer množenja vektora skalarom</h3>
 <p>Službeni primjer <code>clients/samples/example_sscal.cpp</code> (<a href="https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/clients/samples/example_sscal.cpp">poveznica na kod</a>) implementira primjer množenja vektora <code>x</code> skalarom <code>alpha</code>, što radi <a href="https://www.netlib.org/lapack/explore-html/df/d28/group__single__blas__level1_ga3252f1f70b29d59941e9bc65a6aefc0a.html#ga3252f1f70b29d59941e9bc65a6aefc0a">BLAS-ova funkcija SSCAL</a> (Single-precision floating-point SCALar vector multiply; <a href="https://www.netlib.org/blas/#_blas_routines">pregled svih BLAS rutina</a>).</p>
 <p>Program izgleda ovako:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">rocblas_int</span>    <span class="n">N</span>      <span class="o">=</span> <span class="mi">10240</span><span class="p">;</span>
-  <span class="n">rocblas_status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">rocblas_status_success</span><span class="p">;</span>
-  <span class="kt">float</span>          <span class="n">alpha</span>  <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_int</span><span class="w">    </span><span class="n">N</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">10240</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w">          </span><span class="n">alpha</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hx</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hz</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-  <span class="kt">float</span><span class="o">*</span>             <span class="n">dx</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hx</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hz</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="o">*</span><span class="w">             </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
 
-  <span class="kt">double</span> <span class="n">gpu_time_used</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">rocblas_handle</span> <span class="n">handle</span><span class="p">;</span>
-  <span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="w">  </span><span class="n">rocblas_handle</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dx</span><span class="p">,</span> <span class="n">N</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="w">  </span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="n">rocblas_init</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">hx</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_init</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">hx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">hz</span> <span class="o">=</span> <span class="n">hx</span><span class="p">;</span>
+<span class="w">  </span><span class="n">hz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hx</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">);</span>
+<span class="w">  </span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;N        rocblas(us)     </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;N        rocblas(us)     </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">gpu_time_used</span> <span class="o">=</span> <span class="n">get_time_us_sync_device</span><span class="p">();</span> <span class="c1">// in microseconds</span>
+<span class="w">  </span><span class="n">gpu_time_used</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_time_us_sync_device</span><span class="p">();</span><span class="w"> </span><span class="c1">// in microseconds</span>
 
 
-  <span class="n">status</span> <span class="o">=</span> <span class="n">rocblas_sscal</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">rocblas_status_success</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_sscal</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="n">gpu_time_used</span> <span class="o">=</span> <span class="n">get_time_us_sync_device</span><span class="p">()</span> <span class="o">-</span> <span class="n">gpu_time_used</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gpu_time_used</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_time_us_sync_device</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">dx</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">hipMemcpyDeviceToHost</span><span class="p">);</span>
+<span class="w">  </span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyDeviceToHost</span><span class="p">);</span><span class="w"></span>
 
-  <span class="kt">bool</span> <span class="n">error_in_element</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">rocblas_int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">!=</span> <span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="p">{</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;error in element %d: CPU=%f, GPU=%f &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-          <span class="n">error_in_element</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-          <span class="k">break</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">error_in_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">rocblas_int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;error in element %d: CPU=%f, GPU=%f &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">          </span><span class="n">error_in_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d    %8.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">N</span><span class="p">,</span> <span class="n">gpu_time_used</span><span class="p">);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d    %8.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span><span class="p">(</span><span class="n">error_in_element</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST FAILS</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span>
-  <span class="p">{</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST PASSES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">error_in_element</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST FAILS</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST PASSES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="n">hipFree</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span>
-  <span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
-  <span class="k">return</span> <span class="n">rocblas_status_success</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">hipFree</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Krenimo promatrati funkciju <code>main()</code>. Na početku se definiraju varijable veličine vektora, statusa izvođenja i vrijednost skalara te im se dodjeljuju vrijednosti. Koristi se ranije navedeni tip podataka <code>rocblas_int</code> za varijablu <code>N</code> koja ima vrijednost 10240, što znači da će vektor imati 10240 elemenata. Inicijaliziramo varijablu <code>status</code> tipa <code>rocblas_status</code> na vrijednost <code>rocblas_status_success</code> koji označava da dosad nije došlo do greške; skalar <code>alpha</code> ima vrijednost postavljenu na 10.0.</p>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_int</span>    <span class="n">N</span>      <span class="o">=</span> <span class="mi">10240</span><span class="p">;</span>
-<span class="n">rocblas_status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">rocblas_status_success</span><span class="p">;</span>
-<span class="kt">float</span>          <span class="n">alpha</span>  <span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_int</span><span class="w">    </span><span class="n">N</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">10240</span><span class="p">;</span><span class="w"></span>
+<span class="n">rocblas_status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w">          </span><span class="n">alpha</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi inicijalizacija dva vektora <code>hx</code> i <code>hz</code> (<code>h</code> označava memoriju domaćina (engl. <em>host</em>), odnosno osnovnog procesora) te pokazivača tipa <code>float</code> naziva <code>dx</code> (memorija uređaja (engl. <em>device</em>), odnosno grafičkog procesora). Također, stvara se varijabla <code>gpu_time_used</code> koja se koristi u kasnijim koracima za dohvaćanje vremena izvođenja operacija.</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hx</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hz</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="kt">float</span><span class="o">*</span>             <span class="n">dx</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hx</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hz</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"></span>
+<span class="kt">float</span><span class="o">*</span><span class="w">             </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">double</span> <span class="n">gpu_time_used</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Stvara se rocBLAS drška <code>handle</code> preko koje ćemo provjeriti je li se putem pojavila greška. Nakon što smo stvorili <code>handle</code>, alocira se memorija na uređaju za vektor <code>x</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_handle</span> <span class="n">handle</span><span class="p">;</span>
-<span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_handle</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span><span class="w"></span>
+<span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dx</span><span class="p">,</span> <span class="n">N</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Koristeći funkciju <code>srand()</code>, program postavlja sjeme generatora slučajnih brojeva na vrijednost 1. Zatim funkcijom <code>rocblas_init()</code> generira slučajne vrijednosti elemenata vektora na domaćinu i vektor <code>z</code> postavlja na iste vrijednosti kao vektor <code>x</code> tako da se kopira vrijednost vektora <code>hx</code> u <code>hz</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">rocblas_init</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">hx</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">rocblas_init</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">hx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">hz</span> <span class="o">=</span> <span class="n">hx</span><span class="p">;</span>
+<span class="n">hz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hx</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Kopiramo podatke s domaćina na uređaj:</p>
-<div class="highlight"><pre><span></span><code><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Dohvaćamo vrijeme koje je bilo potrebno za operaciju putem funkcije <code>get_time_us_sync_device()</code> u mikrosekundama i počinjemo ispis iskorištenog vremena za izračun.</p>
-<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="p">(</span><span class="s">&quot;N        rocblas(us)     </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="p">(</span><span class="s">&quot;N        rocblas(us)     </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">gpu_time_used</span> <span class="o">=</span> <span class="n">get_time_us_sync_device</span><span class="p">();</span>
+<span class="n">gpu_time_used</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_time_us_sync_device</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Naposlijetku pokrećemo funkciju SSCAL na grafičkom procesoru. U varijabla <code>status</code> spremit ćemo status nakon izvođenja funkcije <code>rocblas_sscal()</code> u kojoj se koriste prije-definirani <code>handle</code>, <code>N</code>, adresa od <code>alpha</code> i <code>dx</code>. Ako <code>status</code> nije uspjeh (<code>rocblas_status_success</code>), vraćamo taj status.</p>
-<div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="o">=</span> <span class="n">rocblas_sscal</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">rocblas_status_success</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_sscal</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Računa se vrijeme potrebno za izvođenje operacije do ovog koraka, na način da se oduzima vrijednost koju smo računali prethodno sa istom varijablom.</p>
-<div class="highlight"><pre><span></span><code><span class="n">gpu_time_used</span> <span class="o">=</span> <span class="n">get_time_us_sync_device</span><span class="p">()</span> <span class="o">-</span> <span class="n">gpu_time_used</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">gpu_time_used</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_time_us_sync_device</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim, kopira se ispis podataka sa uređaja na domaćin.</p>
-<div class="highlight"><pre><span></span><code><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">dx</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">hipMemcpyDeviceToHost</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hx</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyDeviceToHost</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon svega, provjerava se je li uspješno provedena izračun vrijednosti svakog pojedinog elementa korištenjem funkcije <code>rocblas_scal</code>. Na početku je vrijednost varijable <code>error_in_element</code> koja označava moguću grešku u operaciji (tipa <code>bool</code>) na <code>false</code>. Ako u nekom elementu postji greška, ta vrijednost se mijenja u <code>true</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="n">error_in_element</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="n">rocblas_int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">!=</span> <span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;error in element %d: CPU=%f, GPU=%f &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-        <span class="n">error_in_element</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">error_in_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="n">rocblas_int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;error in element %d: CPU=%f, GPU=%f &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">hz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">hx</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="n">error_in_element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi ispis vremena potrebnog za izvršavanje operacije:</p>
-<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d    %8.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">N</span><span class="p">,</span> <span class="n">gpu_time_used</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d    %8.2f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">gpu_time_used</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Za kraj primjera, ispisuje se da, u slučaju da se kroz prijašnju <code>for</code> petlju pojavila greška, je izračun bio neuspješan. U suprotnom, ispisuje se da je test bio uspješan.</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">error_in_element</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST FAILS</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST PASSES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">error_in_element</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST FAILS</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SSCAL TEST PASSES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Oslobađa se prethodno alocirana memorija, te se <code>handle</code> uništava.</p>
-<div class="highlight"><pre><span></span><code><span class="n">hipFree</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span>
-<span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">hipFree</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span><span class="w"></span>
+<span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Ukoliko je program uspješno došao do kraja, vraća se status uspješnog izvođenja:</p>
-<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="n">rocblas_status_success</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">return</span><span class="w"> </span><span class="n">rocblas_status_success</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
@@ -5264,150 +5268,150 @@
 <h3 id="primjer-mnozenja-matrica">Primjer množenja matrica</h3>
 <p>Službeni primjer <code>clients/samples/example_sgemm.cpp</code> (<a href="https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/clients/samples/example_sgemm.cpp">poveznica na kod</a>) prikazuje kako provesti množenje matrica čiji su elementi realni brojevi jednostruke preciznosti <a href="https://www.netlib.org/lapack/explore-html/db/dc9/group__single__blas__level3_gafe51bacb54592ff5de056acabd83c260.html#gafe51bacb54592ff5de056acabd83c260">BLAS-ovom funkcijom SGEMM</a> (Single-precision floating-point GEneral Matrix Multiply; <a href="https://www.netlib.org/blas/#_blas_routines">pregled svih BLAS rutina</a>).</p>
 <p>Promotrimo funkciju <code>main()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">rocblas_operation</span> <span class="n">transa</span> <span class="o">=</span> <span class="n">rocblas_operation_none</span><span class="p">,</span> <span class="n">transb</span> <span class="o">=</span> <span class="n">rocblas_operation_transpose</span><span class="p">;</span>
-  <span class="kt">float</span>             <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_operation</span><span class="w"> </span><span class="n">transa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">,</span><span class="w"> </span><span class="n">transb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_operation_transpose</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w">             </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.9</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">rocblas_int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">DIM1</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">DIM2</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">DIM3</span><span class="p">;</span>
-  <span class="n">rocblas_int</span> <span class="n">lda</span><span class="p">,</span> <span class="n">ldb</span><span class="p">,</span> <span class="n">ldc</span><span class="p">,</span> <span class="n">size_a</span><span class="p">,</span> <span class="n">size_b</span><span class="p">,</span> <span class="n">size_c</span><span class="p">;</span>
-  <span class="kt">int</span>         <span class="n">a_stride_1</span><span class="p">,</span> <span class="n">a_stride_2</span><span class="p">,</span> <span class="n">b_stride_1</span><span class="p">,</span> <span class="n">b_stride_2</span><span class="p">;</span>
-  <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sgemm example&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">transa</span> <span class="o">==</span> <span class="n">rocblas_operation_none</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">lda</span>        <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-      <span class="n">size_a</span>     <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">lda</span><span class="p">;</span>
-      <span class="n">a_stride_1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">a_stride_2</span> <span class="o">=</span> <span class="n">lda</span><span class="p">;</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;N&quot;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span>
-  <span class="p">{</span>
-      <span class="n">lda</span>        <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-      <span class="n">size_a</span>     <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">lda</span><span class="p">;</span>
-      <span class="n">a_stride_1</span> <span class="o">=</span> <span class="n">lda</span><span class="p">;</span>
-      <span class="n">a_stride_2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;T&quot;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">transb</span> <span class="o">==</span> <span class="n">rocblas_operation_none</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">ldb</span>        <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-      <span class="n">size_b</span>     <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">ldb</span><span class="p">;</span>
-      <span class="n">b_stride_1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">b_stride_2</span> <span class="o">=</span> <span class="n">ldb</span><span class="p">;</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;N: &quot;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span>
-  <span class="p">{</span>
-      <span class="n">ldb</span>        <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-      <span class="n">size_b</span>     <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">ldb</span><span class="p">;</span>
-      <span class="n">b_stride_1</span> <span class="o">=</span> <span class="n">ldb</span><span class="p">;</span>
-      <span class="n">b_stride_2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;T: &quot;</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">ldc</span>    <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-  <span class="n">size_c</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">ldc</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rocblas_int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM2</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_int</span><span class="w"> </span><span class="n">lda</span><span class="p">,</span><span class="w"> </span><span class="n">ldb</span><span class="p">,</span><span class="w"> </span><span class="n">ldc</span><span class="p">,</span><span class="w"> </span><span class="n">size_a</span><span class="p">,</span><span class="w"> </span><span class="n">size_b</span><span class="p">,</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w">         </span><span class="n">a_stride_1</span><span class="p">,</span><span class="w"> </span><span class="n">a_stride_2</span><span class="p">,</span><span class="w"> </span><span class="n">b_stride_1</span><span class="p">,</span><span class="w"> </span><span class="n">b_stride_2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sgemm example&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transa</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">lda</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">size_a</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">a_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">a_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">lda</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">size_a</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">a_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">a_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transb</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ldb</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">size_b</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">b_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">b_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;N: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ldb</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">size_b</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">b_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">b_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">ldc</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">size_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldc</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Naming: da is in GPU (device) memory. ha is in CPU (host) memory</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">ha</span><span class="p">(</span><span class="n">size_a</span><span class="p">);</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hb</span><span class="p">(</span><span class="n">size_b</span><span class="p">);</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hc</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hc_gold</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Naming: da is in GPU (device) memory. ha is in CPU (host) memory</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ha</span><span class="p">(</span><span class="n">size_a</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hb</span><span class="p">(</span><span class="n">size_b</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hc</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hc_gold</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// initial data on host</span>
-  <span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_a</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">ha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_b</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">hb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_c</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">hc_gold</span> <span class="o">=</span> <span class="n">hc</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// initial data on host</span>
+<span class="w">  </span><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_a</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_b</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">hb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">hc_gold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hc</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// allocate memory on device</span>
-  <span class="kt">float</span> <span class="o">*</span><span class="n">da</span><span class="p">,</span> <span class="o">*</span><span class="n">db</span><span class="p">,</span> <span class="o">*</span><span class="n">dc</span><span class="p">;</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">da</span><span class="p">,</span> <span class="n">size_a</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">db</span><span class="p">,</span> <span class="n">size_b</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dc</span><span class="p">,</span> <span class="n">size_c</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
+<span class="w">  </span><span class="c1">// allocate memory on device</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">dc</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">size_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">size_b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">size_c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
 
-  <span class="c1">// copy matrices from host to device</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_a</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_b</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dc</span><span class="p">,</span> <span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_c</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
+<span class="w">  </span><span class="c1">// copy matrices from host to device</span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_a</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_b</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_c</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">rocblas_handle</span> <span class="n">handle</span><span class="p">;</span>
-  <span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">));</span>
+<span class="w">  </span><span class="n">rocblas_handle</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span>
-      <span class="n">rocblas_sgemm</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">transa</span><span class="p">,</span> <span class="n">transb</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span> <span class="n">da</span><span class="p">,</span> <span class="n">lda</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">ldb</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">beta</span><span class="p">,</span> <span class="n">dc</span><span class="p">,</span> <span class="n">ldc</span><span class="p">));</span>
+<span class="w">  </span><span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_sgemm</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">transa</span><span class="p">,</span><span class="w"> </span><span class="n">transb</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">lda</span><span class="p">,</span><span class="w"> </span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">ldb</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">ldc</span><span class="p">));</span><span class="w"></span>
 
-  <span class="c1">// copy output from device to CPU</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">dc</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_c</span><span class="p">,</span> <span class="n">hipMemcpyDeviceToHost</span><span class="p">));</span>
+<span class="w">  </span><span class="c1">// copy output from device to CPU</span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_c</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyDeviceToHost</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m, n, k, lda, ldb, ldc = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">lda</span>
-               <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ldb</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ldc</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;m, n, k, lda, ldb, ldc = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lda</span><span class="w"></span>
+<span class="w">               </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ldb</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ldc</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
-  <span class="kt">float</span> <span class="n">max_relative_error</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// calculate golden or correct result</span>
-  <span class="n">mat_mat_mult</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span>
-                      <span class="n">beta</span><span class="p">,</span>
-                      <span class="n">m</span><span class="p">,</span>
-                      <span class="n">n</span><span class="p">,</span>
-                      <span class="n">k</span><span class="p">,</span>
-                      <span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                      <span class="n">a_stride_1</span><span class="p">,</span>
-                      <span class="n">a_stride_2</span><span class="p">,</span>
-                      <span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                      <span class="n">b_stride_1</span><span class="p">,</span>
-                      <span class="n">b_stride_2</span><span class="p">,</span>
-                      <span class="n">hc_gold</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                      <span class="mi">1</span><span class="p">,</span>
-                      <span class="n">ldc</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// calculate golden or correct result</span>
+<span class="w">  </span><span class="n">mat_mat_mult</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">beta</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">m</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">n</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">k</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                      </span><span class="n">a_stride_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">a_stride_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                      </span><span class="n">b_stride_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">b_stride_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">hc_gold</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                      </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">ldc</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_c</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="kt">float</span> <span class="n">relative_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">relative_error</span>       <span class="o">=</span> <span class="n">relative_error</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">relative_error</span> <span class="p">:</span> <span class="o">-</span><span class="n">relative_error</span><span class="p">;</span>
-      <span class="n">max_relative_error</span>
-          <span class="o">=</span> <span class="n">relative_error</span> <span class="o">&lt;</span> <span class="n">max_relative_error</span> <span class="o">?</span> <span class="nl">max_relative_error</span> <span class="p">:</span> <span class="n">relative_error</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="kt">float</span> <span class="n">eps</span>       <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">();</span>
-  <span class="kt">float</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">max_relative_error</span> <span class="o">!=</span> <span class="n">max_relative_error</span> <span class="o">||</span> <span class="n">max_relative_error</span> <span class="o">&gt;</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">tolerance</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;FAIL: max_relative_error = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">max_relative_error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span>
-  <span class="p">{</span>
-      <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;PASS: max_relative_error = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">max_relative_error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">float</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">relative_error</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">relative_error</span> <span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">relative_error</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">max_relative_error</span><span class="w"></span>
+<span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">max_relative_error</span> <span class="p">:</span><span class="w"> </span><span class="n">relative_error</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">eps</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">eps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tolerance</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;FAIL: max_relative_error = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PASS: max_relative_error = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">da</span><span class="p">));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">db</span><span class="p">));</span>
-  <span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">dc</span><span class="p">));</span>
-  <span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">));</span>
-  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">da</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">db</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">dc</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Puno je pripreme prije i čišćenja nakon poziva funkcije <code>rocblas_sgemm()</code> (<a href="https://rocblas.readthedocs.io/en/master/functions.html#_CPPv413rocblas_sgemm14rocblas_handle17rocblas_operation17rocblas_operation11rocblas_int11rocblas_int11rocblas_intPKfPKf11rocblas_intPKf11rocblas_intPKfPf11rocblas_int">dokumentacija</a>) koji čini srž programa pa analirajmo kod dio po dio.</p>
 <p>Program počinje deklaracijom dvije varijable tipa <code>rocblas_operation</code> imena <code>transa</code> i <code>transb</code> čije su vrijednosti postavljene na <code>rocblas_operation_none</code> (nepromijenjena matrica) i <code>rocblas_operation_transpose</code> (transponirana matrica).</p>
 <p>Zatim se postavljaju varijable <code>alpha</code> i <code>beta</code> tipa <code>float</code> koje će biti iskorištene kao skalari na određene vrijednosti:</p>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_operation</span> <span class="n">transa</span> <span class="o">=</span> <span class="n">rocblas_operation_none</span><span class="p">,</span> <span class="n">transb</span> <span class="o">=</span> <span class="n">rocblas_operation_transpose</span><span class="p">;</span>
-<span class="kt">float</span>             <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_operation</span><span class="w"> </span><span class="n">transa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">,</span><span class="w"> </span><span class="n">transb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocblas_operation_transpose</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w">             </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.9</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Također se definiraju tri dimenzije koje će se koristiti, u obliku varijabli <code>m</code>, <code>n</code> i <code>k</code> ranije spomenutog tipa <code>rocblas_int</code>. Isto tako, definiraju se i vodeće dimenzije za matrice <code>a</code>, <code>b</code> i <code>c</code> te njihove veličine, također tipa <code>rocblas_int</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">DIM1</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">DIM2</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">DIM3</span><span class="p">;</span>
-<span class="n">rocblas_int</span> <span class="n">lda</span><span class="p">,</span> <span class="n">ldb</span><span class="p">,</span> <span class="n">ldc</span><span class="p">,</span> <span class="n">size_a</span><span class="p">,</span> <span class="n">size_b</span><span class="p">,</span> <span class="n">size_c</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM2</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DIM3</span><span class="p">;</span><span class="w"></span>
+<span class="n">rocblas_int</span><span class="w"> </span><span class="n">lda</span><span class="p">,</span><span class="w"> </span><span class="n">ldb</span><span class="p">,</span><span class="w"> </span><span class="n">ldc</span><span class="p">,</span><span class="w"> </span><span class="n">size_a</span><span class="p">,</span><span class="w"> </span><span class="n">size_b</span><span class="p">,</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon toga slijedi definicija int varijabli <code>stride</code> za <code>a</code> i <code>b</code>, koje označavaju broj lokacija u memoriji između elemenata nekog polja (u našem slučaju elementa retka i elementa idućeg retka unutar jednog stupca, odnosno elementa stupca i elementa idućeg stupca unutar jednog retka). U ovom slučaju imamo:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span>         <span class="n">a_stride_1</span><span class="p">,</span> <span class="n">a_stride_2</span><span class="p">,</span> <span class="n">b_stride_1</span><span class="p">,</span> <span class="n">b_stride_2</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w">         </span><span class="n">a_stride_1</span><span class="p">,</span><span class="w"> </span><span class="n">a_stride_2</span><span class="p">,</span><span class="w"> </span><span class="n">b_stride_1</span><span class="p">,</span><span class="w"> </span><span class="n">b_stride_2</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Ispisuje se putem <code>rocblas_cout</code>-a (koji proširuje <code>std::cout</code> da je ovo primjer SGEMM raučunanja, te krećemo na provjere o kojoj se varijanti izračuna radi ovisno o tome koje su matrice transponirane, a koje nepromijenjene.</p>
 <p>Vršimo provjeru je li matrica <code>a</code> bez operacije transponiranja, a ako je matrica <code>a</code> ostaje matrica formata <code>m * k</code> pa postavljamo:</p>
@@ -5418,15 +5422,15 @@
 <li><code>stride_2</code> od A se postavlja na vrijednost lda</li>
 <li>putem <code>rocblas_cout</code> program vraća slovo <code>N</code>, potvrđujući da matrica <code>a</code> ne prolazi transponiranje</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sgemm example&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">transa</span> <span class="o">==</span> <span class="n">rocblas_operation_none</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">lda</span>        <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-    <span class="n">size_a</span>     <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">lda</span><span class="p">;</span>
-    <span class="n">a_stride_1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">a_stride_2</span> <span class="o">=</span> <span class="n">lda</span><span class="p">;</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;N&quot;</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sgemm example&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transa</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">lda</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">size_a</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">a_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">a_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U protivnom, ako je matrica <code>a</code> transponirana (formata <code>k * m</code>) postavljamo:</p>
 <ul>
@@ -5436,163 +5440,163 @@
 <li><code>stride_2</code> od A se postavlja na 1</li>
 <li>putem <code>rocblas_cout</code>-a program vraća slovo <code>T</code>, potvrđujući da matrica <code>a</code> prolazi transponiranje</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">else</span>
-<span class="p">{</span>
-    <span class="n">lda</span>        <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-    <span class="n">size_a</span>     <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">lda</span><span class="p">;</span>
-    <span class="n">a_stride_1</span> <span class="o">=</span> <span class="n">lda</span><span class="p">;</span>
-    <span class="n">a_stride_2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;T&quot;</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">else</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">lda</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">size_a</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">a_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lda</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">a_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ako pogledamo sljedeći provjeru naredbom <code>if</code>, primjetit ćemo da je analogna prethodnoj i postavlja varijable vezane za matricu <code>b</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">transb</span> <span class="o">==</span> <span class="n">rocblas_operation_none</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ldb</span>        <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-    <span class="n">size_b</span>     <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">ldb</span><span class="p">;</span>
-    <span class="n">b_stride_1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">b_stride_2</span> <span class="o">=</span> <span class="n">ldb</span><span class="p">;</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;N: &quot;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="n">ldb</span>        <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-    <span class="n">size_b</span>     <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">ldb</span><span class="p">;</span>
-    <span class="n">b_stride_1</span> <span class="o">=</span> <span class="n">ldb</span><span class="p">;</span>
-    <span class="n">b_stride_2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;T: &quot;</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transb</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rocblas_operation_none</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ldb</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">size_b</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">b_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">b_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;N: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ldb</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">size_b</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">b_stride_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ldb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">b_stride_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi postavljanje vodeće dimezije za matricu <code>c</code> koja će biti formata <code>m * n</code>. Postavljamo je na <code>m</code> (<code>DIM1</code>) i njenu veličinu računamo kao umnožak <code>n</code> (<code>DIM2</code>) i <code>ldc</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ldc</span>    <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-<span class="n">size_c</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">ldc</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">ldc</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="n">size_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ldc</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Inicijaliziramo tri matrice na domaćinu pa ih nazivamo početnim slovom <code>h</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">ha</span><span class="p">(</span><span class="n">size_a</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hb</span><span class="p">(</span><span class="n">size_b</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hc</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">hc_gold</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ha</span><span class="p">(</span><span class="n">size_a</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hb</span><span class="p">(</span><span class="n">size_b</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hc</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hc_gold</span><span class="p">(</span><span class="n">size_c</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Uočimo da koristimo <code>std::vector</code> kao strukturu za pohranu podataka. Mogli smo koristiti i jednodimenzionalna polja, ali ne i ništa drugo jer BLAS očekuje matrice u tom obliku uz dodatne parametre koji navode njihov broj redaka i stupaca.</p>
 <p>Koristeći funkciju <code>rand()</code>, kroz tri <code>for</code> petlje postavljaju se početne vrijednosti na svaki element sva tri vektora. Nakon svih petlji varijabla <code>hc_gold</code> u koju ćemo spremiti rezultat računanja na domaćinu izjednačena je sa dodjeljenim vrijednostima od <code>hc</code> u koju ćemo spremiti rezultat računanja na uređaju.</p>
-<div class="highlight"><pre><span></span><code><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_a</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_b</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">hb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_c</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">17</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">hc_gold</span> <span class="o">=</span> <span class="n">hc</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">srand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_a</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_b</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">hb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">hc_gold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hc</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Alociramo memoriju za iste matrice na uređaju putem funkcije <code>hipMalloc</code> i provjeravamo uspješnost korištenjem pomoćne makro funkcije <code>CHECK_HIP_ERROR()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">float</span> <span class="o">*</span><span class="n">da</span><span class="p">,</span> <span class="o">*</span><span class="n">db</span><span class="p">,</span> <span class="o">*</span><span class="n">dc</span><span class="p">;</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">da</span><span class="p">,</span> <span class="n">size_a</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">db</span><span class="p">,</span> <span class="n">size_b</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dc</span><span class="p">,</span> <span class="n">size_c</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span>
+<div class="highlight"><pre><span></span><code><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">dc</span><span class="p">;</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">size_a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">size_b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">size_c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)));</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim se matrice sa domaćina kopiraju na uređaj, također pritom provjeravajući hoće li se pojaviti greška:</p>
-<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_a</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_b</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dc</span><span class="p">,</span> <span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_c</span><span class="p">,</span> <span class="n">hipMemcpyHostToDevice</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_a</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_b</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_c</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Stvara se rocBLAS-ova drška <code>handle</code> koja služi kao za provjeru je li se putem pojavila greška. Nakon što smo stvorili drška, napokon pozivamo funkciju <code>rocblas_sgemm</code> sa svim parametrima koje smo dosad definirali:</p>
-<div class="highlight"><pre><span></span><code><span class="n">rocblas_handle</span> <span class="n">handle</span><span class="p">;</span>
-<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">rocblas_handle</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span><span class="w"></span>
+<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_create_handle</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span>
-    <span class="n">rocblas_sgemm</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">transa</span><span class="p">,</span> <span class="n">transb</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span> <span class="n">da</span><span class="p">,</span> <span class="n">lda</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">ldb</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">beta</span><span class="p">,</span> <span class="n">dc</span><span class="p">,</span> <span class="n">ldc</span><span class="p">));</span>
+<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_sgemm</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">transa</span><span class="p">,</span><span class="w"> </span><span class="n">transb</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">da</span><span class="p">,</span><span class="w"> </span><span class="n">lda</span><span class="p">,</span><span class="w"> </span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">ldb</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="n">ldc</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Rezultat ove funkcije kopiramo sa uređaja domaćin uz provjeru makro funkcijom te ispisujemo dobivene vrijednosti:</p>
-<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">dc</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">size_c</span><span class="p">,</span> <span class="n">hipMemcpyDeviceToHost</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipMemcpy</span><span class="p">(</span><span class="n">hc</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">dc</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size_c</span><span class="p">,</span><span class="w"> </span><span class="n">hipMemcpyDeviceToHost</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;m, n, k, lda, ldb, ldc = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">lda</span>
-             <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ldb</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ldc</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;m, n, k, lda, ldb, ldc = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lda</span><span class="w"></span>
+<span class="w">             </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ldb</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ldc</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi inicijalizacija varijable maksimalne relativne greške <code>max_relative_error</code> tipa <code>float</code> na najnižu moguću pozitivnu vrijednost i onemogućuje da vrijednost ode u negativne brojeve (za više informacija ovoj funkciji proučite <a href="https://en.cppreference.com/w/cpp/types/numeric_limits/min">std::numeric_limits::min na cppreference.com</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="kt">float</span> <span class="n">max_relative_error</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="kt">float</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Došli smo do poziva funkcije <code>mat_mat_mult()</code> koja množi matrice na domaćinu i koja je definirana na početku datoteke kodom:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">mat_mat_mult</span><span class="p">(</span><span class="n">T</span>   <span class="n">alpha</span><span class="p">,</span>
-                  <span class="n">T</span>   <span class="n">beta</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">M</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">N</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">K</span><span class="p">,</span>
-                  <span class="n">T</span><span class="o">*</span>  <span class="n">A</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">As1</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">As2</span><span class="p">,</span>
-                  <span class="n">T</span><span class="o">*</span>  <span class="n">B</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">Bs1</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">Bs2</span><span class="p">,</span>
-                  <span class="n">T</span><span class="o">*</span>  <span class="n">C</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">Cs1</span><span class="p">,</span>
-                  <span class="kt">int</span> <span class="n">Cs2</span><span class="p">)</span>
- <span class="p">{</span>
-   <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i1</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i1</span><span class="o">++</span><span class="p">)</span>
-   <span class="p">{</span>
-     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i2</span><span class="o">++</span><span class="p">)</span>
-     <span class="p">{</span>
-       <span class="n">T</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-       <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i3</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="n">i3</span><span class="o">++</span><span class="p">)</span>
-       <span class="p">{</span>
-         <span class="n">t</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i1</span> <span class="o">*</span> <span class="n">As1</span> <span class="o">+</span> <span class="n">i3</span> <span class="o">*</span> <span class="n">As2</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i3</span> <span class="o">*</span> <span class="n">Bs1</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">*</span> <span class="n">Bs2</span><span class="p">];</span>
-       <span class="p">}</span>
-       <span class="n">C</span><span class="p">[</span><span class="n">i1</span> <span class="o">*</span> <span class="n">Cs1</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">*</span> <span class="n">Cs2</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">C</span><span class="p">[</span><span class="n">i1</span> <span class="o">*</span> <span class="n">Cs1</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">*</span> <span class="n">Cs2</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span>
-     <span class="p">}</span>
-   <span class="p">}</span>
- <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">mat_mat_mult</span><span class="p">(</span><span class="n">T</span><span class="w">   </span><span class="n">alpha</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">T</span><span class="w">   </span><span class="n">beta</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">T</span><span class="o">*</span><span class="w">  </span><span class="n">A</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">As1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">As2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">T</span><span class="o">*</span><span class="w">  </span><span class="n">B</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">Bs1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">Bs2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="n">T</span><span class="o">*</span><span class="w">  </span><span class="n">C</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">Cs1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="kt">int</span><span class="w"> </span><span class="n">Cs2</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i1</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i2</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i3</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">K</span><span class="p">;</span><span class="w"> </span><span class="n">i3</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">As1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">As2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Bs1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Bs2</span><span class="p">];</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="n">C</span><span class="p">[</span><span class="n">i1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cs1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cs2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cs1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cs2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U potpisu funkcije možemo vidjeti sve potrebne varijabli za skalare, matrice, njihove dimenzije, veličine i sl.</p>
 <p>U tijelu funkcije nalaze se tri <code>for</code> petlje koje uvjetuju jedna drugu; dok svaki brojač za svaku dimenziju vrti petlju do maksimalne vrijednosti svake dimezije, provodi se uvećavanje varijable <code>t</code>, čiji je iznos definiran umnoškom retka matrice <code>A</code> i stupca matrice <code>B</code>, čije su veličine zbroj umnožaka vrijednosti brojača i veličine trenutnog elementa. Matrica <code>C</code> se množi skalarom <code>beta</code> i uvećava za skalar <code>alpha</code> pomnožen s varijablom <code>t</code> u kojoj je vrijednost umnoška retka i stupca. Time je funkcija ekvivalentna BLAS-ovoj funkciji SGEMM.</p>
 <p>Ova funkcija je u <code>main()</code>-u pozvana kodom:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mat_mat_mult</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span>
-                    <span class="n">beta</span><span class="p">,</span>
-                    <span class="n">m</span><span class="p">,</span>
-                    <span class="n">n</span><span class="p">,</span>
-                    <span class="n">k</span><span class="p">,</span>
-                    <span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                    <span class="n">a_stride_1</span><span class="p">,</span>
-                    <span class="n">a_stride_2</span><span class="p">,</span>
-                    <span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                    <span class="n">b_stride_1</span><span class="p">,</span>
-                    <span class="n">b_stride_2</span><span class="p">,</span>
-                    <span class="n">hc_gold</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span>
-                    <span class="mi">1</span><span class="p">,</span>
-                    <span class="n">ldc</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">mat_mat_mult</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">beta</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">m</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">n</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">k</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ha</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="n">a_stride_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">a_stride_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">hb</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="n">b_stride_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">b_stride_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">hc_gold</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ldc</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Program nastavlja sa petljom <code>for</code> u kojoj se izračunava relativna greška između izračuna na domaćinu i uređaju i sprema u varijablu <code>relative_error</code> i onda se računa njegova apsolutna vrijednost. Varijabla <code>max_relative_error</code> sprema najveću vrijednost <code>relative_error</code>-a u svim iteracijama (podsjetimo se da je <code>?</code> uvjetni operator čiju dokumentaciju je moguće pronaći među <a href="https://en.cppreference.com/w/cpp/language/operator_other">ostalim operatorima na cppreference.com</a>).</p>
 <p>Zatim se i koristi vrijednost <code>epsilon()</code> iz <code>numeric_limits</code>, što je najmanja vrijednost veća od nule za neki tip podataka, u našem slučaju <code>float</code> (za više informacija o ovoj funkciji pogledajte <a href="https://en.cppreference.com/w/cpp/types/numeric_limits/epsilon">std::numeric_limits::epsilon na cppreference.com</a>) i postavlja se tolerancija <code>tolerance</code> na deset puta veću vrijednost od te.</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_c</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">float</span> <span class="n">relative_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="n">relative_error</span>       <span class="o">=</span> <span class="n">relative_error</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">relative_error</span> <span class="p">:</span> <span class="o">-</span><span class="n">relative_error</span><span class="p">;</span>
-    <span class="n">max_relative_error</span>
-        <span class="o">=</span> <span class="n">relative_error</span> <span class="o">&lt;</span> <span class="n">max_relative_error</span> <span class="o">?</span> <span class="nl">max_relative_error</span> <span class="p">:</span> <span class="n">relative_error</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">float</span> <span class="n">eps</span>       <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">();</span>
-<span class="kt">float</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size_c</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">hc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">hc_gold</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="n">relative_error</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">relative_error</span> <span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">relative_error</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_relative_error</span><span class="w"></span>
+<span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">relative_error</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">max_relative_error</span> <span class="p">:</span><span class="w"> </span><span class="n">relative_error</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">eps</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">();</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi ispis, ovisno o ishodu operacije:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">max_relative_error</span> <span class="o">!=</span> <span class="n">max_relative_error</span> <span class="o">||</span> <span class="n">max_relative_error</span> <span class="o">&gt;</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">tolerance</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;FAIL: max_relative_error = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">max_relative_error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="n">rocblas_cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;PASS: max_relative_error = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">max_relative_error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">eps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tolerance</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;FAIL: max_relative_error = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">rocblas_cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PASS: max_relative_error = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">max_relative_error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Naposlijetku dolazi oslobađanje prethodno alocirane memorije na uređaju (na domaćinu smo koristili <code>std::vector</code> koji ne moramo ručno dealocirati):</p>
-<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">da</span><span class="p">));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">db</span><span class="p">));</span>
-<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">dc</span><span class="p">));</span>
-<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">));</span>
-<span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">da</span><span class="p">));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">db</span><span class="p">));</span><span class="w"></span>
+<span class="n">CHECK_HIP_ERROR</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">dc</span><span class="p">));</span><span class="w"></span>
+<span class="n">CHECK_ROCBLAS_ERROR</span><span class="p">(</span><span class="n">rocblas_destroy_handle</span><span class="p">(</span><span class="n">handle</span><span class="p">));</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
@@ -5680,10 +5684,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

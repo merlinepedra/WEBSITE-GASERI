@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/llvm-backend-amdgpu/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2225,6 +2225,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4974,6 +4976,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5146,7 +5150,7 @@ Available CPUs <span class="k">for</span> this target:
 Available features <span class="k">for</span> this target:
 
   <span class="m">16</span>-bit-insts                - Has i16/f16 instructions.
-  DumpCode                    - Dump MachineInstrs in the CodeEmitter.
+  DumpCode                    - Dump MachineInstrs <span class="k">in</span> the CodeEmitter.
   a16                         - Support gfx10-style A16 <span class="k">for</span> <span class="m">16</span>-bit coordinates/gradients/lod/clamp/mip image operands.
   add-no-carry-insts          - Have VALU add/sub instructions without carry out.
   aperture-regs               - Has Memory Aperture Base and Size Registers.
@@ -5165,7 +5169,7 @@ Available features <span class="k">for</span> this target:
   dpp                         - Support DPP <span class="o">(</span>Data Parallel Primitives<span class="o">)</span> extension.
   dpp8                        - Support DPP8 <span class="o">(</span>Data Parallel Primitives<span class="o">)</span> extension.
   ds-src2-insts               - Has ds_*_src2 instructions.
-  dumpcode                    - Dump MachineInstrs in the CodeEmitter.
+  dumpcode                    - Dump MachineInstrs <span class="k">in</span> the CodeEmitter.
   enable-ds128                - Use ds_<span class="o">{</span>read<span class="p">|</span>write<span class="o">}</span>_b128.
   enable-prt-strict-null      - Enable zeroing of result registers <span class="k">for</span> sparse texture fetches.
   fast-denormal-f32           - Enabling denormals does not cause f32 instructions to run at f64 rates.
@@ -5175,7 +5179,7 @@ Available features <span class="k">for</span> this target:
   flat-global-insts           - Have global_* flat memory instructions.
   flat-inst-offsets           - Flat instructions have immediate offset addressing mode.
   flat-scratch-insts          - Have scratch_* flat memory instructions.
-  flat-segment-offset-bug     - GFX10 bug, inst_offset ignored in flat segment.
+  flat-segment-offset-bug     - GFX10 bug, inst_offset ignored <span class="k">in</span> flat segment.
   fma-mix-insts               - Has v_fma_mix_f32, v_fma_mixlo_f16, v_fma_mixhi_f16 instructions.
   fmaf                        - Enable single precision FMA <span class="o">(</span>not as fast as mul+add, but fused<span class="o">)</span>.
   fp64                        - Enable double precision operations.
@@ -5186,7 +5190,7 @@ Available features <span class="k">for</span> this target:
   gfx10-3-insts               - Additional instructions <span class="k">for</span> GFX10.3.
   gfx10-insts                 - Additional instructions <span class="k">for</span> GFX10+.
   gfx10_b-encoding            - Encoding format GFX10_B.
-  gfx7-gfx8-gfx9-insts        - Instructions shared in GFX7, GFX8, GFX9.
+  gfx7-gfx8-gfx9-insts        - Instructions shared <span class="k">in</span> GFX7, GFX8, GFX9.
   gfx8-insts                  - Additional instructions <span class="k">for</span> GFX8+.
   gfx9                        - GFX9 GPU generation.
   gfx9-insts                  - Additional instructions <span class="k">for</span> GFX9+.
@@ -5195,13 +5199,13 @@ Available features <span class="k">for</span> this target:
   int-clamp-insts             - Support clamp <span class="k">for</span> integer destination.
   inv-2pi-inline-imm          - Has <span class="m">1</span> / <span class="o">(</span><span class="m">2</span> * pi<span class="o">)</span> as inline immediate.
   lds-branch-vmem-war-hazard  - Switching between LDS and VMEM-tex not waiting <span class="nv">VM_VSRC</span><span class="o">=</span><span class="m">0</span>.
-  lds-misaligned-bug          - Some GFX10 bug with misaligned multi-dword LDS access in WGP mode.
+  lds-misaligned-bug          - Some GFX10 bug with misaligned multi-dword LDS access <span class="k">in</span> WGP mode.
   ldsbankcount16              - The number of LDS banks per compute unit..
   ldsbankcount32              - The number of LDS banks per compute unit..
   load-store-opt              - Enable SI load/store optimizer pass.
-  localmemorysize0            - The size of <span class="nb">local</span> memory in bytes.
-  localmemorysize32768        - The size of <span class="nb">local</span> memory in bytes.
-  localmemorysize65536        - The size of <span class="nb">local</span> memory in bytes.
+  localmemorysize0            - The size of <span class="nb">local</span> memory <span class="k">in</span> bytes.
+  localmemorysize32768        - The size of <span class="nb">local</span> memory <span class="k">in</span> bytes.
+  localmemorysize65536        - The size of <span class="nb">local</span> memory <span class="k">in</span> bytes.
   mad-mac-f32-insts           - Has v_mad_f32/v_mac_f32/v_madak_f32/v_madmk_f32 instructions.
   mad-mix-insts               - Has v_mad_mix_f32, v_mad_mixlo_f16, v_mad_mixhi_f16 instructions.
   mai-insts                   - Has mAI instructions.
@@ -5212,7 +5216,7 @@ Available features <span class="k">for</span> this target:
   mimg-r128                   - Support <span class="m">128</span>-bit texture resources.
   movrel                      - Has v_movrel*_b32 instructions.
   no-data-dep-hazard          - Does not need SW waitstates.
-  no-sdst-cmpx                - V_CMPX does not write VCC/SGPR in addition to EXEC.
+  no-sdst-cmpx                - V_CMPX does not write VCC/SGPR <span class="k">in</span> addition to EXEC.
   no-sram-ecc-support         - Hardware does not support SRAM ECC.
   no-xnack-support            - Hardware does not support XNACK.
   nsa-encoding                - Support NSA encoding <span class="k">for</span> image instructions.
@@ -5250,7 +5254,7 @@ Available features <span class="k">for</span> this target:
   vgpr-index-mode             - Has VGPR mode register indexing.
   vmem-to-scalar-write-hazard - VMEM instruction followed by scalar writing to EXEC mask, M0 or SGPR leads to incorrect execution..
   volcanic-islands            - VOLCANIC_ISLANDS GPU generation.
-  vop3-literal                - Can use one literal in VOP3.
+  vop3-literal                - Can use one literal <span class="k">in</span> VOP3.
   vop3p                       - Has VOP3P packed instructions.
   vscnt                       - Has separate store vscnt counter.
   wavefrontsize16             - The number of threads per wavefront.
@@ -5603,12 +5607,12 @@ For example, llc -mcpu<span class="o">=</span>mycpu -mattr<span class="o">=</spa
 <p>Uočimo kako je optimizirani kod bitno kraći i kako, primjerice, eliminira pet instrukcija <code>buffer_store_dword</code> i isto toliko instrukcija <code>buffer_load_dword</code>.</p>
 <h2 id="vektorske-instrukcije-i-tipovi-podataka">Vektorske instrukcije i tipovi podataka</h2>
 <p>Uočimo kako su instrukcije i registri koje smo dosad sreli vektorski, odnosno izvode ih sve niti koje izvode zrno. Ista je situacija kad kod ne koristi polja, primjerice:</p>
-<div class="highlight"><pre><span></span><code><span class="n">__kernel</span> <span class="kt">void</span> <span class="n">a_b_c</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">__kernel</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">a_b_c</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Prevođenjem ovog koda s uključenim optimizacijama nećemo dobiti ništa konkretno jer će program prevoditelj uočiti da se varijabla <code>c</code> nigdje ne koristi i eliminirati je, a zatim eliminirati varijable <code>a</code> i <code>b</code>. Iskoristimo parametar <code>-O0</code>:</p>
 <div class="highlight"><pre><span></span><code>$ clang -target amdgcn -mcpu<span class="o">=</span>gfx900 -O0 -S kernel.cl
@@ -5738,10 +5742,10 @@ For example, llc -mcpu<span class="o">=</span>mycpu -mattr<span class="o">=</spa
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

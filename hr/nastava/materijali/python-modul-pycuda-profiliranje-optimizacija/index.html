@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/python-modul-pycuda-profiliranje-optimizacija/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3359,6 +3359,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5015,6 +5017,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5219,13 +5223,13 @@ method,gputime,cputime,occupancy
 <p>Jedna memorijska instrukcija se šalje za pristup broju bajtova koji je potencija broja 2 ($2^1, 2^2, \dots, 2^{16}$), koji su prirodno poravnati. Svi ostali pristupi dijele se u više od jedne instrukcije.</p>
 <p>Funkcija <code>cudaMalloc()</code> vraća memoriju koja je poravnata na 256 bajta.</p>
 <p>Poravnanje redaka za linearizirana 2D polja može se poboljšati korištenjem funkcije <code>cudaMallocPitch()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">data_t</span> <span class="o">*</span><span class="n">devData</span><span class="p">;</span> <span class="cm">/* e.g. float *devData */</span>
-<span class="kt">size_t</span> <span class="n">pitch</span><span class="p">;</span>
-<span class="n">cudaMallocPitch</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">devData</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pitch</span><span class="p">,</span> <span class="n">numCols</span><span class="o">*</span><span class="k">sizeof</span> <span class="p">(</span><span class="n">data_t</span><span class="p">),</span> <span class="n">numRows</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">devData</span><span class="p">;</span><span class="w"> </span><span class="cm">/* e.g. float *devData */</span><span class="w"></span>
+<span class="kt">size_t</span><span class="w"> </span><span class="n">pitch</span><span class="p">;</span><span class="w"></span>
+<span class="n">cudaMallocPitch</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">devData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pitch</span><span class="p">,</span><span class="w"> </span><span class="n">numCols</span><span class="o">*</span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">data_t</span><span class="p">),</span><span class="w"> </span><span class="n">numRows</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Varijabla <code>pitch</code> sadržava veličinu danu u bajtovima. Elementu <code>(redak, stupac)</code> se tada može pristupiti s <code>((data_t*)((char*)devData + row*pitch))[col]</code>.</p>
 <p>Kopiranje tako alocirane memorije vrši se pomoću funkcije <code>cudaMemcpy2D()</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">cudaMemcpy2D</span> <span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">destpitch</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">srcpitch</span><span class="p">,</span> <span class="n">row_width</span><span class="p">,</span> <span class="n">numrows</span><span class="p">,</span> <span class="n">direction</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">cudaMemcpy2D</span><span class="w"> </span><span class="p">(</span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="n">destpitch</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">srcpitch</span><span class="p">,</span><span class="w"> </span><span class="n">row_width</span><span class="p">,</span><span class="w"> </span><span class="n">numrows</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>gdje su <code>destpitch</code>, <code>srcpitch</code> i <code>row_width</code> dane u bajtovima i redom su:</p>
 <ul>
@@ -5359,10 +5363,10 @@ method,gputime,cputime,occupancy
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

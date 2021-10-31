@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/doxygen-dokumentiranje-programskog-koda/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1637,6 +1637,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4974,6 +4976,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5068,7 +5072,7 @@
 <span class="cm"> * \brief Dokumentirana datoteka.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Datoteka u kojoj su dokumentirane funkcije.</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 
 <span class="cm">/**</span>
 <span class="cm"> * \brief Funkcija vraća 1.</span>
@@ -5076,8 +5080,8 @@
 <span class="cm"> * Funkcija ne prima nikakve ulazne parametre i uvijek vraća vrijednost 1.</span>
 <span class="cm"> *</span>
 <span class="cm"> * \return cjelobrojna vrijednost 1</span>
-<span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">funkcija1</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">funkcija1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Uočimo kako Doxygenov blok kreće znakom višeretčanog komentara <code>/*</code> i još jednim dodatnim znakom zvjezdice <code>*</code>. Prvi od blokova je dokumentacija same datoteke koja kreće naredbom <code>\file</code> i imenom datoteke. Zatim imamo krati opis naveden korištenjem naredbe <code>\brief</code> i dugi opis odmaknut od njega za jedan prazni redak.</p>
 <p>Dokumentacija pojedine funkcije također ima kratak (<code>\brief</code>) i dugi opis te navodi što funkcija vraća naredbom <code>\return</code>.</p>
@@ -5090,8 +5094,8 @@
 <span class="cm"> * \param a prvi cijeli broj</span>
 <span class="cm"> * \param b drugi cijeli broj</span>
 <span class="cm"> * \return zbroj</span>
-<span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">zbroji</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">zbroji</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ovdje vidimo i korištenje naredbi <code>\param</code> kojima navodimo pojedine parametre s njihovim imenima i ulogom. Ukupno je sada kod oblika:</p>
 <div class="highlight"><pre><span></span><code><span class="cm">/**</span>
@@ -5099,7 +5103,7 @@
 <span class="cm"> * \brief Dokumentirana datoteka.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Datoteka u kojoj su dokumentirane funkcije.</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 
 <span class="cm">/**</span>
 <span class="cm"> * \brief Funkcija vraća 1.</span>
@@ -5107,8 +5111,8 @@
 <span class="cm"> * Funkcija ne prima nikakve ulazne parametre i uvijek vraća vrijednost 1.</span>
 <span class="cm"> *</span>
 <span class="cm"> * \return cjelobrojna vrijednost 1</span>
-<span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">funkcija1</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">funkcija1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
 <span class="cm">/**</span>
 <span class="cm"> * \brief Funkcija vrši zbrajanje brojeva.</span>
@@ -5118,8 +5122,8 @@
 <span class="cm"> * \param a prvi cijeli broj</span>
 <span class="cm"> * \param b drugi cijeli broj</span>
 <span class="cm"> * \return zbroj</span>
-<span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">zbroji</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">zbroji</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="generiranje-html-a-i-pdf-a">Generiranje HTML-a i PDF-a</h2>
 <p>Pokrenimo generiranje dokumentacije Doxygenom:</p>
@@ -5237,10 +5241,10 @@ Document Class: book <span class="m">2019</span>/12/20 v1.4l Standard LaTeX docu
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

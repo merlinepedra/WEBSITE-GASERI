@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/simulator-ns3-modeli-gresaka/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3863,6 +3863,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5001,6 +5003,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5104,26 +5108,26 @@
 <p>Da bi mogli razumijeti način korištenja modela grešaka (i kasnije redova čekanja), moramo prvo proširiti znanje o programiranju.</p>
 <h3 id="pametni-pokazivaci-i-predlosci">Pametni pokazivači i predlošci</h3>
 <p>Prisjetimo se da u C/C++-u razlikujemo statičku i dinamičku alokaciju memorije. Kod statičke alokacije, tip <code>int</code> i klasu <code>Node</code> alocirali bi i koristili na način</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">broj</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="n">Node</span> <span class="n">node0</span><span class="p">;</span>
-<span class="n">node0</span><span class="p">.</span><span class="n">GetDevice</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">broj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="n">Node</span><span class="w"> </span><span class="n">node0</span><span class="p">;</span><span class="w"></span>
+<span class="n">node0</span><span class="p">.</span><span class="n">GetDevice</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>i ne bi bilo potrebno izvršavati brisanje jer to program odrađuje sam. Kod dinamičke alokacije i dealokacije objektima pristupamo pomoću pokazivača, što je za tip <code>int</code> i klasu <code>Node</code> oblika</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="o">*</span><span class="n">broj</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span> <span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="n">Node</span> <span class="o">*</span><span class="n">node0</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span> <span class="p">();</span>
-<span class="n">node0</span><span class="o">-&gt;</span><span class="n">GetDevice</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// ekvivalentno (*node0).GetDevice (0);</span>
-<span class="k">delete</span> <span class="n">broj</span><span class="p">;</span>
-<span class="k">delete</span> <span class="n">node0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">broj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="n">node0</span><span class="o">-&gt;</span><span class="n">GetDevice</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// ekvivalentno (*node0).GetDevice (0);</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">broj</span><span class="p">;</span><span class="w"></span>
+<span class="k">delete</span><span class="w"> </span><span class="n">node0</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Naravno, u C-u bi koristili <code>malloc()</code> i <code>free()</code> umjesto <code>new</code> i <code>delete</code> (respektivno).</p>
 <p>Uočimo da metodi <code>GetDevice()</code> pristupamo na drugačiji način nego u statički alociranoj varijanti, obzirom da je <code>node0</code> pokazivač na objekt tipa <code>Node</code> te je prvo potrebno napraviti dereferenciranje. Operator <code>-&gt;</code> je samo kraći zapis za dereferenciranje pokazivača i pristup metodi objekta.</p>
 <p>Uočimo također da klasa <code>Node</code> ne zahtijeva navođenje parametara kod stvaranja; općenito za klase to ne mora biti slučaj. Jedini problem ovog načina rada je dosta složeno baratanje objektima u situaciji kada imate više od jednog pokazivača na isti objekt; postavlja se pitanje kada pozvati <code>delete</code>.</p>
 <p>Odgovor na to pitanje ns-3 nudi u vidu <strong>pametnih pokazivača</strong> (engl. <em>smart pointers</em>), koji su implementirani u klasi <code>Ptr</code>. Za <code>Node</code> je pametni pokazivač oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">node0</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">node0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 <span class="c1">// metode objekta se koriste se na isti način kao kod i običnih pokazivača</span>
-<span class="n">node0</span><span class="o">-&gt;</span><span class="n">GetDevice</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">node0</span><span class="o">-&gt;</span><span class="n">GetDevice</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// pokazivači se dereferenciraju na isti način kao i obični pokazivači</span>
-<span class="p">(</span><span class="o">*</span><span class="n">node0</span><span class="p">).</span><span class="n">GetId</span> <span class="p">();</span>
+<span class="p">(</span><span class="o">*</span><span class="n">node0</span><span class="p">).</span><span class="n">GetId</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>U ovom slučaju funkcija <code>CreateObject&lt;Node&gt;()</code> preuzima ulogu naredbe <code>new</code>; naime, ona će stvoriti objekt tipa <code>Node</code> i vratiti pokazivač na njega tipa <code>Ptr&lt;Node&gt;</code> koji će biti pohranjen u varijablu <code>node0</code>. S tim na umu, uočite kako ovdje nije napravljen <code>delete</code>; naime pametni pokazivač učinit će da program će u izvođenju sam izvodi dealokaciju memorije za objekte na koje više niti jedan pokazivač ne pokazuje (u tome je njegova "pametnost"). Način rada koji se ovime postiže naziva se sakupljanjem smeća (engl. <em>garbage collection</em>) i vrlo je čest u praksi.</p>
 <p>Pored toga, uočimo još nešto: "špičaste" zagrade su oznaka za <a href="https://en.wikipedia.org/wiki/Template_(C++)">predloške</a> (engl. <em>templates</em>). Mi se ovdje definiranjem funkcija s predlošcima nećemo baviti, obzirom da ćete se s njima sresti na kolegiju Objektno orjentirano programiranje, već ćemo samo ukratko objasniti ideju i primjene.</p>
@@ -5135,30 +5139,30 @@
 </div>
 <h3 id="povratni-poziv-funkcije">Povratni poziv funkcije</h3>
 <p><a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)">Povratni poziv funkcije</a> (engl. <em>callback</em>) je referenca na funkciju koja se prosljeđuje funkciji kao argument na sličan način kao i obično korišteni tipovi podataka. Primjerice, u kodu</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="nf">IspisDvaBroja</span> <span class="p">(</span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">izvorBrojeva</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">izvorBrojeva</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; i &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">izvorBrojeva</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">IspisDvaBroja</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">izvorBrojeva</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">izvorBrojeva</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; i &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">izvorBrojeva</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">double</span> <span class="nf">prviIzvorBrojeva</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="mf">2.7</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">prviIzvorBrojeva</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">2.7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">double</span> <span class="nf">drugiIzvorBrojeva</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">drugiIzvorBrojeva</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">IspisDvaBroja</span> <span class="p">(</span><span class="n">prviIzvorBrojeva</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-  <span class="n">IspisDvaBroja</span> <span class="p">(</span><span class="n">drugiIzvorBrojeva</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">IspisDvaBroja</span><span class="w"> </span><span class="p">(</span><span class="n">prviIzvorBrojeva</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">IspisDvaBroja</span><span class="w"> </span><span class="p">(</span><span class="n">drugiIzvorBrojeva</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>funkcija <code>IspisDvaBroja()</code> prima kao prvi argument fukciju koja prima jedan parametar tipa <code>int</code> i vraća rezultat tipa <code>double</code>. Preciznije rečeno, ona kao prvi argument prima referencu na funkciju, odnosno <em>povratni poziv</em>; moguće funkcije za taj povratni poziv su <code>prviIzvorBrojeva()</code> i <code>drugiIzvorBrojeva()</code> jer su prikladnog tipa (primaju jedan parametar tipa <code>int</code> i vraćaju rezultat tipa <code>double</code>).</p>
 <p>Ovaj primjer je prilično jednostavan pa nije sasvim očita prednost ovog načina rada, ali uočimo da općenito daje mogućnost da se funkcija za ispis implementira odvojeno od algoritma koji rješava problem, te je moguće kombinirati različite prikladno definirane funkcije jedne i druge skupine.</p>
@@ -5172,24 +5176,24 @@
 <p><strong>Odvod za praćenje događaja simulacije</strong> (engl. <em>trace sink</em>) je funkcija koju sami definiramo u našoj simulaciji. Ona je uvijek tipa <code>void</code>, a argumenti koje prima ovise o izvoru na koji će se spajati.</p>
 <p>Da bi povezali izvor i odvod iskoristit ćemo metodu <code>TraceConnectWithoutContext()</code> koji ima svaki objekt i koja služi za povezivanje izvora za praćenje događaja simulacije (koji je dio objekta) sa željenim odvodom (koji mora biti prikladnog oblika). Postoji i funkcija <code>TraceConnect()</code> koja uzima kontekst u obzir, međutim, zasad ćemo zanemariti taj dio u vezi s kontekstom jer nam nije bitan.</p>
 <p>Konkretno, ukoliko želimo pratiti slanje koje vrši neka mrežna kartica, tada ćemo iz <code>NetDeviceContainer</code>-a <code>devices</code> dohvatiti tu mrežnu karticu i na njen izvor za praćenje početka slanja paketa na fizički medij <code>PhyTxBegin</code> povezati funkciju odgovarajućeg tipa kodom</p>
-<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span> <span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span> <span class="n">MakeCallback</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MakeCallback</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Ovdje funkcija <code>MakeCallback()</code> radi povratni poziv od reference na funkciju koja joj se proslijedi kao argument.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Funkcija <code>TraceConnectWithoutContext()</code> <strong>vrši</strong> provjeru je li niz znakova koji prima kao prvi argument (u našem slučaju <code>"PhyTxBegin"</code>) ispravan, i korisniku to signalizira na način da vraća <code>true</code> ako je, i <code>false</code> ako nije. Zbog toga program neće prekinuti izvođenje ako je uneseni niz znakova neispravan. Dakle, ako želite biti sigurni da se povezivanje zaista dogodilo, možete to provjeriti na način:</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span> <span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span> <span class="n">MakeCallback</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Povezivanje uspjelo: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">success</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MakeCallback</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Povezivanje uspjelo: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Radi čistoće koda to ovdje nećemo raditi.</p>
 <p>Zbog načina na koji je definiran izvor <code>PhyTxBegin</code>, funkcija <code>PhyTxLogging</code> koja služi kao odvod za praćenje mora biti tipa <code>void</code> i kao argument primati pokazivač na nepromjenjivi paket. Za ispis na ekran ćemo iskoristiti uobičajeni <code>std::cout</code> definiran u zaglavlju <code>iostream</code> (koje je već uključeno unutar ns-3-ovog zaglavlja <code>core-module.h</code>).</p>
 <p>Želimo znati kada su počela slanja paketa. Informaciju o sadašnjem trenutku u simuliranom vremenu moguće je dobiti pozivom funkcije <code>Simulator::Now()</code> koja vraća objekt tipa <code>Time</code>. Objekti tipa <code>Time</code> imaju definiranu metodu <code>GetSeconds()</code> koja izražava simulirano vrijeme sadašnjeg trenutka u sekundama.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="nf">PhyTxLogging</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Packet</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Begging physical transmission of a packet at &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span> <span class="p">().</span><span class="n">GetSeconds</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">PhyTxLogging</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Begging physical transmission of a packet at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span><span class="w"> </span><span class="p">().</span><span class="n">GetSeconds</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Na sličan način kao <code>PhyTxBegin</code> rade i <code>PhyTxEnd</code>, koja prati događaje završetka prijenosa na fizički medij i <code>PhyTxDrop</code>, koja prati odbacivanja paketa prije slanja. Potpuno analogno njima rade i izvori za praćenje primanja paketa</p>
 <ul>
@@ -5199,102 +5203,102 @@
 </ul>
 <p>Svi navedeni izvori opisani su u <a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_point_to_point_net_device.html">dokumentaciji klase PointToPointNetDevice</a>.</p>
 <p>Cjelokupan kod primjera je</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="nf">PhyTxLogging</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Packet</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Begging physical transmission of a packet at &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span> <span class="p">().</span><span class="n">GetSeconds</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">PhyTxLogging</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Begging physical transmission of a packet at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span><span class="w"> </span><span class="p">().</span><span class="n">GetSeconds</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span> <span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span> <span class="n">MakeCallback</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span>
+<span class="w">  </span><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PhyTxBegin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MakeCallback</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">PhyTxLogging</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-  <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">UdpEchoServerHelper</span> <span class="n">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="w">  </span><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="n">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">UdpEchoClientHelper</span> <span class="n">echoClient</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">4</span><span class="p">));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">)));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<span class="w">  </span><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="n">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="dodatak-koristenje-ns-3-logging-podsustava">Dodatak: korištenje ns-3 logging podsustava</h2>
 <p>Kada bi htjeli biti konzistentni s ostatkom ns-3-a, mogli bi koristiti makro funkciju <code>NS_LOG_UNCOND()</code> koja bezuvjetno (engl. <em>unconditionally</em>) ispisuje na <em>standardni izlaz za greške</em> vrijednost danog argumenta, i koristi <code>std::cerr</code>. Da bi makro funkcija <code>NS_LOG_UNCOND()</code> mogla raditi, potrebno je definirati ime naše simulacije koje će se koristiti za praćenje. Za to ćemo iskoristiti makro funkciju <code>NS_LOG_COMPONENT_DEFINE()</code> na početku našeg simulacijskog programa, nakon <code>#include&lt;&gt;</code> naredbi i prije funkcije <code>main()</code>. Ona kao argument prima upravo to ime, koje može biti proizvoljno ali mora biti jedinstveno u ns-3-u.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NS_LOG_COMPONENT_DEFINE</span> <span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">NS_LOG_COMPONENT_DEFINE</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim unutar funkcije <code>main()</code> možemo koristiti <code>NS_LOG_UNCOND()</code> na način</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="c1">// ...</span>
-  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="n">NS_LOG_UNCOND</span> <span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">);</span>
-  <span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">NS_LOG_UNCOND</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Postoji nekoliko nivoa logginga, od kojih smo već vidjeli <code>LOG_LEVEL_INFO</code> koji uključuje prikazivanje nivoa informativnih poruka i viših. Specifično, to znači da su poruke koje se koriste u debugiranju skrivene; za prikaz istih morali bi umjesto <code>LOG_LEVEL_INFO</code> koristiti <code>LOG_LEVEL_DEBUG</code>. Svakom nivou logginga pripada makro funkcija; primjerice, <code>LOG_LEVEL_INFO</code> pripada makro funkcija <code>NS_LOG_INFO()</code>, a <code>LOG_LEVEL_DEBUG</code> pripada makro funkcija <code>NS_LOG_DEBUG()</code>.</p>
 <p>Implikacije ovog pristupa su vrlo zanimljive. U kodu</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="c1">// ...</span>
-  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="n">NS_LOG_DEBUG</span> <span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">);</span>
-  <span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">NS_LOG_DEBUG</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>na ekranu neće biti prikazana poruka <code>Varijabla x ima vrijednost</code> i vrijednost varijable <code>x</code>, dok će u kodu</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_DEBUG</span><span class="p">);</span>
-  <span class="c1">// ...</span>
-  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="n">NS_LOG_DEBUG</span> <span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">);</span>
-  <span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;VjezbaTracing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_DEBUG</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">NS_LOG_DEBUG</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Varijabla x ima vrijednost &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ekvivalentno std::cerr &lt;&lt; &quot;Varijabla x ima vrijednost &quot; &lt;&lt; x &lt;&lt; std::endl;</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>ta poruka biti prikazana. Uočimo da razliku čini količina logginga uključena pozivom funkcije <code>LogComponentEnable()</code>. Ovo omogućuje fino razdvajanje poruka koje pojedina komponenta ispisuje na ekran, što olakšava rad s većim simulacijama.</p>
 <div class="admonition note">
@@ -5305,7 +5309,7 @@
 <p>Najjednostavniji model grešaka je <code>RateErrorModel</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_rate_error_model.html">dokumentacija</a>) koji određeni broj paketa u uzorku označava iskrivljenim.</p>
 <p>Kao i do sada, u primjeru korištenja objasnit ćemo samo one dijelove koji su novi u odnosu na prethodnu vježbu. Ukoliko ima kakvih nejasnoća u dijelu koda koji ovdje nije objašnjen preporuka je da ponovno proučite prethodnu vježbu.</p>
 <p>Prvo inicijaliziramo pokazivač <code>em</code> na objekt tipa <code>RateErrorModel</code> koji stvaramo.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span> <span class="n">em</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span> <span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Postavljamo atribute:</p>
 <ul>
@@ -5322,90 +5326,90 @@
 </li>
 <li><code>RanVar</code>, koji je slučajna varijabla na temelju čije vrijednosti će se odlučivati o tome hoće li paket biti označen kao iskrivljen ili ne, na vrijednost uobičajeno korištene uniformne slučajne variajble.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ErrorUnit&quot;</span><span class="p">,</span> <span class="n">EnumValue</span> <span class="p">(</span><span class="n">RateErrorModel</span><span class="o">::</span><span class="n">ERROR_UNIT_PACKET</span><span class="p">));</span>
-<span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ErrorRate&quot;</span><span class="p">,</span> <span class="n">DoubleValue</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">));</span>
-<span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;RanVar&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=0.0|Max=1.0]&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ErrorUnit&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">EnumValue</span><span class="w"> </span><span class="p">(</span><span class="n">RateErrorModel</span><span class="o">::</span><span class="n">ERROR_UNIT_PACKET</span><span class="p">));</span><span class="w"></span>
+<span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ErrorRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DoubleValue</span><span class="w"> </span><span class="p">(</span><span class="mf">0.01</span><span class="p">));</span><span class="w"></span>
+<span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;RanVar&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=0.0|Max=1.0]&quot;</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim iz <code>NetDeviceContainer</code>-a <code>devices</code> dohvaćamo karticu čvora koji ima odvod za pakete i postavljamo na njen atribut <code>ReceiveErrorModel</code> vrijednost upravo stvorenog modela grešaka, koja je u sustavu atributa tipa <code>PointerValue</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ReceiveErrorModel&quot;</span><span class="p">,</span> <span class="n">PointerValue</span> <span class="p">(</span><span class="n">em</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ReceiveErrorModel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PointerValue</span><span class="w"> </span><span class="p">(</span><span class="n">em</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Ovo će učiniti da će neki paketi biti odbačeni kod primitka (u prosjeku 1 na njih 100). Da bi to vidjeli, definirat ćemo funkciju <code>PrintPhyRxPacketDrop()</code> koja će služiti kao odvod za praćenje. Ime funkcije je proizvoljno, a zadano je da je tipa <code>void</code> i da prima jedan argument tipa <code>Ptr&lt;const Packet&gt;</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="nf">PrintPhyRxPacketDrop</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Packet</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Packet with UID &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">GetUid</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; dropped on reception at &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span> <span class="p">().</span><span class="n">GetSeconds</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">PrintPhyRxPacketDrop</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Packet with UID &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">GetUid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dropped on reception at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span><span class="w"> </span><span class="p">().</span><span class="n">GetSeconds</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim je potrebno spojiti funkciju koja je povratni poziv na <code>PhyRxDrop</code> izvor mrežne kartice drugog čvora.</p>
-<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span> <span class="p">(</span><span class="s">&quot;PhyRxDrop&quot;</span><span class="p">,</span> <span class="n">MakeCallback</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">PrintPhyRxPacketDrop</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PhyRxDrop&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MakeCallback</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">PrintPhyRxPacketDrop</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon pokretanja simulacije, na ekran će se ispisati u kojim su vremenskim trenucima odbačeni paketi kod primanja. Za razliku od paketa u stvarnosti, svaki paket stvoren u simulaciji ima identifikator (UID) koji služi za međusobno razlikovanje paketa i nije dio podataka koje paket nosi.</p>
 <p>Cjelokupan kod primjera je</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="nf">PrintPhyRxPacketDrop</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Packet</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Packet with UID &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">GetUid</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; dropped on reception at &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span> <span class="p">().</span><span class="n">GetSeconds</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;s&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">PrintPhyRxPacketDrop</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Packet with UID &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">GetUid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dropped on reception at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Now</span><span class="w"> </span><span class="p">().</span><span class="n">GetSeconds</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;ErrorModel&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ErrorModel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-rate-error-model&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-rate-error-model&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span> <span class="n">em</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span> <span class="p">();</span>
-  <span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ErrorUnit&quot;</span><span class="p">,</span> <span class="n">EnumValue</span> <span class="p">(</span><span class="n">RateErrorModel</span><span class="o">::</span><span class="n">ERROR_UNIT_PACKET</span><span class="p">));</span>
-  <span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ErrorRate&quot;</span><span class="p">,</span> <span class="n">DoubleValue</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">));</span>
-  <span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;RanVar&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=0.0|Max=1.0]&quot;</span><span class="p">));</span>
-  <span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;ReceiveErrorModel&quot;</span><span class="p">,</span> <span class="n">PointerValue</span> <span class="p">(</span><span class="n">em</span><span class="p">));</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">RateErrorModel</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ErrorUnit&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">EnumValue</span><span class="w"> </span><span class="p">(</span><span class="n">RateErrorModel</span><span class="o">::</span><span class="n">ERROR_UNIT_PACKET</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ErrorRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DoubleValue</span><span class="w"> </span><span class="p">(</span><span class="mf">0.01</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">em</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;RanVar&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=0.0|Max=1.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ReceiveErrorModel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PointerValue</span><span class="w"> </span><span class="p">(</span><span class="n">em</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">devices</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span> <span class="p">(</span><span class="s">&quot;PhyRxDrop&quot;</span><span class="p">,</span> <span class="n">MakeCallback</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">PrintPhyRxPacketDrop</span><span class="p">));</span>
+<span class="w">  </span><span class="n">devices</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">TraceConnectWithoutContext</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PhyRxDrop&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MakeCallback</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">PrintPhyRxPacketDrop</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-  <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PacketSinkHelper</span> <span class="n">sink</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">sink</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">11.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="n">sink</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sink</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">11.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">OnOffHelper</span> <span class="n">onOffApp</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">2048</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">OnOffHelper</span><span class="w"> </span><span class="n">onOffApp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="dodatak-model-praskavih-gresaka-paketa">Dodatak: model praskavih grešaka paketa</h2>
 <p>Nešto složeniji model grešaka je <code>BurstErrorModel</code> koji...</p>
@@ -5495,10 +5499,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

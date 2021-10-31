@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/python-modul-pycuda-redukcija/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3373,6 +3373,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4967,6 +4969,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5036,27 +5040,27 @@
 <p>Kada procesna nit treba pročitati podatke zapisane od strane neke druge procesne niti unutar istog bloka, mora osigurati da je zapisivanje završilo. To se rješava čekanjem na ostale procesne niti korištenjem <code>__syncthreads()</code> naredbe. (Dakle, ne koriste se zaključavanja varijabli.)</p>
 <p>Polja u dijeljenoj memoriji mogu se deklarirati <em>statički</em> u zrnu (veličina se definira u trenutku prevođenja programa) ili <em>dinamički</em> (veličina se definira kod poziva).</p>
 <p>Primjer statičke alokacije (dinamičku alokaciju demonstriramo kasnije):</p>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">some_kernel</span><span class="p">(...)</span>
-<span class="p">{</span>
-  <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">shared_memory</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">some_kernel</span><span class="p">(...)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">shared_memory</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">some_kernel</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div>
 <p>Redukcija je sama po sebi paralelan proces. Da bi ga paralelizirali za izvođenje na heterogenim sustavima, vršimo dekompoziciju na veći broj nezavisnih, paralelnih mini-redukcija. U dijeljenoj memoriji, kada primjerice tražimo minimalnu vrijednost u polju, to se čini korištenjem petlje oblika:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// ...</span>
-<span class="kt">int</span> <span class="n">active</span> <span class="o">=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="k">do</span>
-  <span class="p">{</span>
-    <span class="n">__syncthreads</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">active</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmin</span> <span class="p">(</span><span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">],</span> <span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">active</span><span class="p">]);</span>
-      <span class="p">}</span>
-    <span class="n">active</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="k">do</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmin</span><span class="w"> </span><span class="p">(</span><span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">],</span><span class="w"> </span><span class="n">shared_memory</span><span class="p">[</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">active</span><span class="p">]);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">active</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// ...</span>
 </code></pre></div>
 <p>U svakom koraku prepolavljamo broj aktivnih procesnih niti, i to tako da svaka aktivna procesna nit uspoređuje svoju vrijednost s pripadnom vrijednosti u drugoj polovici dijeljene memorije</p>
@@ -5066,30 +5070,30 @@
 <li>i tako redom, sve do trenutka dok ne ostane samo jedna vrijednost.</li>
 </ul>
 <p>Primjer; zrno koje radi redukciju je oblika</p>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">find_min</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">find_min</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="w"></span>
 
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">active</span> <span class="o">=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">do</span>
-    <span class="p">{</span>
-      <span class="n">__syncthreads</span><span class="p">();</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">active</span><span class="p">)</span>
-        <span class="p">{</span>
-          <span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">cache</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">active</span><span class="p">]);</span>
-        <span class="p">}</span>
-      <span class="n">active</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmin</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="n">idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">active</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">active</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ostatak koda je oblika</p>
 <div class="highlight"><pre><span></span><code><span class="n">mod</span> <span class="o">=</span> <span class="n">SourceModule</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;redukcija.cu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -5123,11 +5127,11 @@
 <ul>
 <li>Uočite da argument <code>shared</code> u pozivu funkcije <code>some_kernel()</code> mjeri veličinu u <strong>broju elemenata polja</strong>, ne u bitovima ili bajtovima</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">some_kernel</span><span class="p">(...)</span>
-<span class="p">{</span>
-  <span class="k">extern</span> <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">shared_memory</span><span class="p">[];</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">some_kernel</span><span class="p">(...)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">shared_memory</span><span class="p">[];</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">some_kernel</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">shared</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 </code></pre></div>
@@ -5146,44 +5150,44 @@
 <li>Ako je pokrenuto više od jednog bloka, potrebni su dodatni koraci za redukciju do slučaja u kojem je jedan blok dovoljan.</li>
 </ul>
 <p>Kod učitavanja iz globalne u dijeljenu memoriju, moguće je napraviti inicijalnu redukciju time što svaka procesna nit može učitati više od jedne vrijednosti iz globalne memorije, i sprema u dijeljenu memoriju samo krajnji rezultat. Primjerice, kod</p>
-<div class="highlight"><pre><span></span><code><span class="n">uint</span> <span class="n">gix</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-<span class="kt">float</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">CUDART_NAN_F</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">gix</span> <span class="o">&lt;</span> <span class="n">dim</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">acc</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">dSrc</span><span class="p">[</span><span class="n">gix</span><span class="p">]);</span>
-    <span class="n">gix</span> <span class="o">+=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">shMem</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">uint</span><span class="w"> </span><span class="n">gix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">acc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CUDART_NAN_F</span><span class="p">;</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">gix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dim</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">acc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmin</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">dSrc</span><span class="p">[</span><span class="n">gix</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">gix</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="o">*</span><span class="n">gridDim</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">shMem</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>omogućuje proizvoljan broj blokova, i oni će pročitati koliko god elemenata iz globalne memorije je potrebno da se popuni čitavo polje. To znači da pokretanje jednog zrna može izvesti čitavu redukciju polja; međutim, to nije efikacsno jer se većina procesnih resursa uređaja ne koristi.</p>
 <p>Zrno koje pokrećemo slično je kao i ranije, jedino što sada brine i o indeksu niti unutar bloka.</p>
 <ul>
 <li>Uočite da je veličina dijeljene memorije jednaka 16, jer je ona pridružena <em>jednom</em> bloku i dijeljena isključivo među nitima <em>istog</em> bloka, pa je ukupna veličina memorije koja se koristi 64.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">find_min</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">find_min</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="w"></span>
 
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">tidx</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">active</span> <span class="o">=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tidx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">do</span>
-    <span class="p">{</span>
-      <span class="n">__syncthreads</span><span class="p">();</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">&lt;</span> <span class="n">active</span><span class="p">)</span>
-        <span class="p">{</span>
-          <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">],</span> <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span> <span class="o">+</span> <span class="n">active</span><span class="p">]);</span>
-        <span class="p">}</span>
-      <span class="n">active</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmin</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">],</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">active</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">active</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Najefikasniji od svih pristupa pokreće dva zrna, jednu s brojem blokova dovoljnim da zasiti hardver, a drugu s jednim blokom koji "završava" redukciju.</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -5220,33 +5224,33 @@ $$</p>
 <span class="n">compute_norm</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Out</span><span class="p">(</span><span class="n">result_gpu</span><span class="p">),</span> <span class="n">drv</span><span class="o">.</span><span class="n">In</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div>
 <p>Zrno je oblika</p>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">compute_norm</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">compute_norm</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="w"></span>
 
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">tidx</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="c1">// kvadriramo brojeve kod spremanja u međuspremnik</span>
-  <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">active</span> <span class="o">=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tidx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// kvadriramo brojeve kod spremanja u međuspremnik</span>
+<span class="w">  </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">src</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">do</span>
-    <span class="p">{</span>
-      <span class="n">__syncthreads</span><span class="p">();</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">&lt;</span> <span class="n">active</span><span class="p">)</span>
-        <span class="p">{</span>
-          <span class="c1">// redukcija korištenjem zbrajanja</span>
-          <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span> <span class="o">+</span> <span class="n">active</span><span class="p">];</span>
-        <span class="p">}</span>
-      <span class="n">active</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="c1">// redukcija korištenjem zbrajanja</span>
+<span class="w">          </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">active</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">active</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// korjenujemo kod spremanja u završni rezultat</span>
-      <span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// korjenujemo kod spremanja u završni rezultat</span>
+<span class="w">      </span><span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
@@ -5261,32 +5265,32 @@ $$</p>
 <span class="n">compute_scalar_product</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Out</span><span class="p">(</span><span class="n">result_gpu</span><span class="p">),</span> <span class="n">drv</span><span class="o">.</span><span class="n">In</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">drv</span><span class="o">.</span><span class="n">In</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div>
 <p>Zrno je oblika</p>
-<div class="highlight"><pre><span></span><code><span class="n">__global__</span> <span class="kt">void</span> <span class="n">compute_scalar_product</span> <span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">src1</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">src2</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">compute_scalar_product</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">src1</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">src2</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span><span class="w"></span>
 
-  <span class="k">const</span> <span class="kt">int</span> <span class="n">tidx</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="c1">// brojeve množimo kod spremanja u međuspremnik</span>
-  <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">src1</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">src2</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">active</span> <span class="o">=</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tidx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// brojeve množimo kod spremanja u međuspremnik</span>
+<span class="w">  </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src1</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">src2</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">do</span>
-    <span class="p">{</span>
-      <span class="n">__syncthreads</span><span class="p">();</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">&lt;</span> <span class="n">active</span><span class="p">)</span>
-        <span class="p">{</span>
-          <span class="c1">// redukcija korištenjem zbrajanja</span>
-          <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">cache</span><span class="p">[</span><span class="n">tidx</span> <span class="o">+</span> <span class="n">active</span><span class="p">];</span>
-        <span class="p">}</span>
-      <span class="n">active</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="c1">// redukcija korištenjem zbrajanja</span>
+<span class="w">          </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="n">tidx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">active</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">active</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">tidx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tidx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">dest</span><span class="p">[</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cache</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
@@ -5374,10 +5378,10 @@ $$</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

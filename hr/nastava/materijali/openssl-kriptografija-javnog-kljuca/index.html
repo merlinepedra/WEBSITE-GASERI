@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openssl-kriptografija-javnog-kljuca/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2491,6 +2491,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5063,6 +5065,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5288,20 +5292,20 @@ writing RSA key
 <h3 id="mjerenje-performansi-rsa-kljuceva">Mjerenje performansi RSA ključeva</h3>
 <p>OpenSSL omogućuje mjerenje brzine stvaranja tajnih i javnih RSA ključeva opcijom <code>speed rsa</code>:</p>
 <div class="highlight"><pre><span></span><code>$ openssl speed rsa
-Doing <span class="m">512</span> bits private rsa<span class="s1">&#39;s for 10s: 276416 512 bits private RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">512</span> bits public rsa<span class="s1">&#39;s for 10s: 4679174 512 bits public RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">1024</span> bits private rsa<span class="s1">&#39;s for 10s: 130765 1024 bits private RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">1024</span> bits public rsa<span class="s1">&#39;s for 10s: 1944320 1024 bits public RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">2048</span> bits private rsa<span class="s1">&#39;s for 10s: 18717 2048 bits private RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">2048</span> bits public rsa<span class="s1">&#39;s for 10s: 625187 2048 bits public RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">3072</span> bits private rsa<span class="s1">&#39;s for 10s: 6198 3072 bits private RSA&#39;</span>s in <span class="m">9</span>.99s
-Doing <span class="m">3072</span> bits public rsa<span class="s1">&#39;s for 10s: 302978 3072 bits public RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">4096</span> bits private rsa<span class="s1">&#39;s for 10s: 2782 4096 bits private RSA&#39;</span>s in <span class="m">9</span>.99s
-Doing <span class="m">4096</span> bits public rsa<span class="s1">&#39;s for 10s: 175534 4096 bits public RSA&#39;</span>s in <span class="m">9</span>.97s
-Doing <span class="m">7680</span> bits private rsa<span class="s1">&#39;s for 10s: 289 7680 bits private RSA&#39;</span>s in <span class="m">9</span>.98s
-Doing <span class="m">7680</span> bits public rsa<span class="s1">&#39;s for 10s: 49636 7680 bits public RSA&#39;</span>s in <span class="m">9</span>.89s
-Doing <span class="m">15360</span> bits private rsa<span class="s1">&#39;s for 10s: 54 15360 bits private RSA&#39;</span>s in <span class="m">10</span>.00s
-Doing <span class="m">15360</span> bits public rsa<span class="s1">&#39;s for 10s: 13626 15360 bits public RSA&#39;</span>s in <span class="m">9</span>.97s
+Doing <span class="m">512</span> bits private rsa<span class="s1">&#39;s for 10s: 276416 512 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">512</span> bits public rsa<span class="s1">&#39;s for 10s: 4679174 512 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">1024</span> bits private rsa<span class="s1">&#39;s for 10s: 130765 1024 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">1024</span> bits public rsa<span class="s1">&#39;s for 10s: 1944320 1024 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">2048</span> bits private rsa<span class="s1">&#39;s for 10s: 18717 2048 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">2048</span> bits public rsa<span class="s1">&#39;s for 10s: 625187 2048 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">3072</span> bits private rsa<span class="s1">&#39;s for 10s: 6198 3072 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.99s
+Doing <span class="m">3072</span> bits public rsa<span class="s1">&#39;s for 10s: 302978 3072 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">4096</span> bits private rsa<span class="s1">&#39;s for 10s: 2782 4096 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.99s
+Doing <span class="m">4096</span> bits public rsa<span class="s1">&#39;s for 10s: 175534 4096 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.97s
+Doing <span class="m">7680</span> bits private rsa<span class="s1">&#39;s for 10s: 289 7680 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.98s
+Doing <span class="m">7680</span> bits public rsa<span class="s1">&#39;s for 10s: 49636 7680 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.89s
+Doing <span class="m">15360</span> bits private rsa<span class="s1">&#39;s for 10s: 54 15360 bits private RSA&#39;</span>s <span class="k">in</span> <span class="m">10</span>.00s
+Doing <span class="m">15360</span> bits public rsa<span class="s1">&#39;s for 10s: 13626 15360 bits public RSA&#39;</span>s <span class="k">in</span> <span class="m">9</span>.97s
 OpenSSL <span class="m">1</span>.1.1b  <span class="m">26</span> Feb <span class="m">2019</span>
 built on: Wed Apr  <span class="m">3</span> <span class="m">10</span>:50:23 <span class="m">2019</span> UTC
 options:bn<span class="o">(</span><span class="m">64</span>,64<span class="o">)</span> rc4<span class="o">(</span>16x,int<span class="o">)</span> des<span class="o">(</span>int<span class="o">)</span> aes<span class="o">(</span>partial<span class="o">)</span> blowfish<span class="o">(</span>ptr<span class="o">)</span>
@@ -5378,11 +5382,11 @@ writing DSA key
 <p>OpenSSL omogućuje mjerenje brzine potpisivanja DSA ključevima i provjere potpisa opcijom <code>speed dsa</code>:</p>
 <div class="highlight"><pre><span></span><code>$ openssl speed dsa
 Doing <span class="m">512</span> bits sign dsa<span class="s1">&#39;s for 10s: 192335 512 bits DSA signs in 9.99s</span>
-<span class="s1">Doing 512 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">325914</span> <span class="m">512</span> bits DSA verify in <span class="m">10</span>.00s
+<span class="s1">Doing 512 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">325914</span> <span class="m">512</span> bits DSA verify <span class="k">in</span> <span class="m">10</span>.00s
 Doing <span class="m">1024</span> bits sign dsa<span class="s1">&#39;s for 10s: 110027 1024 bits DSA signs in 9.99s</span>
-<span class="s1">Doing 1024 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">148698</span> <span class="m">1024</span> bits DSA verify in <span class="m">10</span>.00s
+<span class="s1">Doing 1024 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">148698</span> <span class="m">1024</span> bits DSA verify <span class="k">in</span> <span class="m">10</span>.00s
 Doing <span class="m">2048</span> bits sign dsa<span class="s1">&#39;s for 10s: 43267 2048 bits DSA signs in 10.00s</span>
-<span class="s1">Doing 2048 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">49308</span> <span class="m">2048</span> bits DSA verify in <span class="m">9</span>.99s
+<span class="s1">Doing 2048 bits verify dsa&#39;</span>s <span class="k">for</span> 10s: <span class="m">49308</span> <span class="m">2048</span> bits DSA verify <span class="k">in</span> <span class="m">9</span>.99s
 OpenSSL <span class="m">1</span>.1.1b  <span class="m">26</span> Feb <span class="m">2019</span>
 built on: Wed Apr  <span class="m">3</span> <span class="m">10</span>:50:23 <span class="m">2019</span> UTC
 options:bn<span class="o">(</span><span class="m">64</span>,64<span class="o">)</span> rc4<span class="o">(</span>16x,int<span class="o">)</span> des<span class="o">(</span>int<span class="o">)</span> aes<span class="o">(</span>partial<span class="o">)</span> blowfish<span class="o">(</span>ptr<span class="o">)</span>
@@ -5580,10 +5584,10 @@ Verified OK
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

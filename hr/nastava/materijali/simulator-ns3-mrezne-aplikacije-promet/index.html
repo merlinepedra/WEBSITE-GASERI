@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/simulator-ns3-mrezne-aplikacije-promet/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3877,6 +3877,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4988,6 +4990,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5074,48 +5078,48 @@
 </ul>
 <h2 id="udp-on-off-aplikacija">UDP on-off aplikacija</h2>
 <p>Ponovno ćemo analizirati kod liniju po liniju. Zaglavlja</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>identična su kao u prethodnom primjeru.</p>
 <p>S druge strane, uočimo da su linije</p>
-<div class="highlight"><pre><span></span><code><span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-<span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>različite; naime, kako ćemo ovdje koristiti on-off aplikaciju i odvod za pakete umjesto UDP echo klijenta i poslužitelja, linije su promijenjene te uključujemo loging za <code>OnOffApplication</code> te <code>PacketSink</code>. Općenito, ovaj mehanizam služi da bi ispisivao poruke određenih komponenata simulatora ns-3; kada bi ns-3 ispisivao <em>sve</em> poruke koje simulacija stvara, čak i najjednostavnija simulacija imala bi izlaz reda veličine nekoliko tisuća redova.</p>
 <p>Stvaramo jednostavnu topologiju kao i ranije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-<span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-<span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-<span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>PacketSinkHelper</code> je pomoćnik koji stvara "odvod" (engl. sink) za pakete, odnosno stvara aplikaciju koja će primati pakete i biti svojevrsni "poslužitelj" za "klijentsku" on-off aplikaciju. Za razliku od poslužiteljske aplikacije, odvod neće slati nikakav odgovor on-off aplikaciji već će sve što stigne na odgovarajuću adresu i vrata biti odbačeno ("pušteno u odvod").</p>
 <p><code>PacketSinkHelper</code> imena <code>sink</code> kod stvaranja prima 2 parametra; prvi parametar je znakovni niz, u ovom slučaju "ns3::UdpSocketFactory", koji označava protokol koji on-off aplikacija koristi. Preciznije, definira na koji će način biti stvorena mrežna utičnica (engl. <em>network socket</em>) te aplikacije, odnosno koja će se "tvornica" koristiti (odakle i <em>factory</em> u nazivu).</p>
 <p>Drugi parametar je mrežna adresa na kojoj će paketi biti pušteni u odvod. Obzirom da se očekuje adresa procesa, ona se sastoji od IPv4 adrese i vrata; u ns-3-u je ta kombinacija tip <code>InetSocketAddress</code>. Prvi dio dohvaćamo metodom <code>GetAddress()</code> iz objekta interfaces koji smo ranije kreirali, odnosno dohvaćamo IPv4 adresu drugog čvora, a drugi dio je broj vrata na kojima će aplikacija primati pakete (u našem slučaju je to 9).</p>
 <p>Nakon toga u kontejner za aplikacije imena <code>apps</code> instaliramo taj odvod, i definiramo vremena početka i kraja rada. Ovdje smo stavili da odvod počinje s radom sekundu prije pripadne on-off aplikacije i završava sekundu nakon da stignu i budu primljeni svi paketi koji su eventualno poslani u posljednjem trenutku.</p>
-<div class="highlight"><pre><span></span><code><span class="n">PacketSinkHelper</span> <span class="nf">sink</span> <span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-<span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">sink</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-<span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">11.0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="nf">sink</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sink</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">11.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p><code>OnOffHelper</code> je pomoćnik koji služi za stvaranje on-off aplikacije. Kao i <code>PacketSinkHelper</code> prima dva parametra od kojih je prvi protokol, a drugi mrežna adresa tipa <code>InetSocketAddress</code> <strong>na koju će aplikacija slati podatke</strong>, dakle adresa odredišta.</p>
 <p>Pomoću metode <code>SetAttribute()</code> kao i do sada postavljamo različite atribute. Atributi koje postavljamo su redom</p>
@@ -5125,17 +5129,17 @@
 <li><code>OnTime</code> i <code>OffTime</code>, odnosno trajanje vremena (izraženo u sekundama) u kojem je aplikacija aktivna i trajanje vremena u kojem je neaktivna (respektivno).</li>
 </ul>
 <p><code>OnTime</code> i <code>OffTime</code> su atributi koji imaju donekle specifičnu sintaksu, koja ovisi od vrste slučajne varijable koju će on-off aplikacija koristiti. Primjer za <code>ConstantRandomVariable</code> i <code>UniformRandomVariable</code> demonstriramo u nastavku.</p>
-<div class="highlight"><pre><span></span><code><span class="n">OnOffHelper</span> <span class="nf">onOffApp</span> <span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">2048</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">OnOffHelper</span><span class="w"> </span><span class="nf">onOffApp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Dakle, ovim kodom stvorena je aplikacija koja u vremenu kada je aktivna šalje pakete veličine 2048 bajta brzinom 1 Mbit/s. Period aktivnosti traje uvijek točno 2 sekunde, nakon čega slijedi period neaktivnosti koje traje najmanje 1 sekundu, a najviše 3 sekunde.</p>
 <p>Instalaciju on-off aplikacije vršimo na isti način kao i instalaciju UDP echo aplikacije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Važno je spomenuti da on-off aplikacija nakon početka rada ima prvo period neaktivnosti.</p>
 <p>Ovo je dovoljno da bi aplikacija radila. Međutim, iskoristit ćemo još jednu metodu objekta tipa <code>PointToPointHelper</code>, a to je <code>EnableAsciiAll()</code> koja čini da se stvaraju tekstualne datoteke koje sadrže izvještaj o paketima u simulaciji. Ta metoda prima niz znakova koji će biti prefiks imena datoteka koje će stvoriti.</p>
@@ -5162,134 +5166,134 @@
 <p>Četvrti i ostali stupci su niz tipova zaglavlja (primjerice, <code>ns3::PppHeader</code>, <code>ns3::Ipv4Header</code> i <code>ns3::UdpHeader</code>), korisnog dijela (<code>Payload</code>) i eventualno repova za pakete koji ih imaju. Svaki od tipova ima u zagradama navedene neke od informacija koje su specifične za protokol.</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-udp-on-off-app&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-udp-on-off-app&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupan kod primjera je</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-udp-on-off-app&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-udp-on-off-app&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-  <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PacketSinkHelper</span> <span class="n">sink</span> <span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">sink</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">11.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="n">sink</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sink</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">11.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">OnOffHelper</span> <span class="n">onOffApp</span> <span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">2048</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">OnOffHelper</span><span class="w"> </span><span class="n">onOffApp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UdpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="tcp-on-off-aplikacija">TCP on-off aplikacija</h2>
 <p>TCP on-off aplikacija radi na vrlo sličan način kao UDP on-off aplikacija. Ovdje ćemo pojasniti dio koda koji različit.</p>
 <p><code>PacketSinkHelper</code> ima kao prvi parametar znakovni niz "ns3::TcpSocketFactory". Ostalo je isto kao kod UDP aplikacije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">PacketSinkHelper</span> <span class="nf">sink</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-<span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">sink</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-<span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">11.0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="nf">sink</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sink</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">11.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p><code>OnOffHelper</code> ima kao prvi parametar "ns3::TcpSocketFactory". Ostalo je isto kao kod UDP aplikacije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">OnOffHelper</span> <span class="nf">onOffApp</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">2048</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span>
-<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">OnOffHelper</span><span class="w"> </span><span class="nf">onOffApp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Uzgred budi rečeno da kada bi sami pisali programsku logiku aplikacije, odnosno kada bi radili na nižoj razini i sami implementirali povezivanje putem TCP-a, korištenje UDP-a ili TCP-a uzrokovalo bi da postoje određene razlike. Međutim, kako ovdje radimo na relativno visokoj razini apstrakcije ns-3 simulator se umjesto nas brine o tom dijelu.</p>
 <p>Radi preciznosti, promijenit ćemo i ime datoteke za AsciiTrace izlaz. To nije bilo potrebno, obzirom da je ime proizvoljno.</p>
-<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-tcp-on-off-app&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-tcp-on-off-app&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupan kod primjera je</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnOffApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSink&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-tcp-on-off-app&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-tcp-on-off-app&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-  <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PacketSinkHelper</span> <span class="n">sink</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">ApplicationContainer</span> <span class="n">apps</span> <span class="o">=</span> <span class="n">sink</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">apps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">11.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="n">sink</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">apps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sink</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">apps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">11.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">OnOffHelper</span> <span class="n">onOffApp</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">2048</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span>
-  <span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">OnOffHelper</span><span class="w"> </span><span class="n">onOffApp</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OnTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::ConstantRandomVariable[Constant=2.0]&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;OffTime&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::UniformRandomVariable[Min=1.0|Max=3.0]&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onOffApp</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="dodatak-usporedba-asciitrace-datoteka-koje-stvaraju-udp-i-tcp-on-off-aplikacije">Dodatak: usporedba AsciiTrace datoteka koje stvaraju UDP i TCP on-off aplikacije</h2>
 <p>Usporedimo li AsciiTrace datoteke koje stvaraju UDP i TCP on-off aplikacije (dakle, datoteke <code>vjezba-udp-on-off-app-0-0.tr</code> i <code>vjezba-tcp-on-off-app-0-0.tr</code> te <code>vjezba-udp-on-off-app-1-0.tr</code> i <code>vjezba-tcp-on-off-app-1-0.tr</code>), vidjet ćemo da među njima postoji razlika.</p>
@@ -5319,25 +5323,25 @@
 </ul>
 <p>Sve one nasljeđuju klasu <code>RandomVariableStream</code> i imaju isto sučelje kao <code>ConstantRandomVariable</code> i <code>UniformRandomVariable</code> osim parametara koje je potrebno dati kod stvaranja obzirom da oni ovise o samoj vjerojatnosnoj razdiobi. Zbog toga možete jednostavno zamijeniti dosad korištene slučajne varijable za <code>OnTime</code> i <code>OffTime</code> on-off aplikacije nekim drugim po vlastitom izboru i vidjeti na koji način one utječu na broj poslanih paketa.</p>
 <p>U simulatoru ns-3, svaka slučajna varijabla ima metodu <code>GetValue()</code> koja kod poziva vraća slučajan realan broj i metodu <code>GetInteger()</code> koja kod poziva vraća slučajan cijeli broj. Iako metode <code>GetValue()</code> i <code>GetInteger()</code> nećemo koristiti, radi potpunosti je ovdje dan kod koji definira dvije slučajne varijable <code>var1</code> i <code>var2</code>. Vrijedi spomenuti da će kod dati isti rezultat kod višestrukog pokretanja zbog načina na koji je "slučajnost" implementirana u simulatoru ns-3, o čemu više možete pročitati u <a href="https://www.nsnam.org/docs/manual/html/random-variables.html">dijelu koji govori o slučajnim varijabla u ns-3 Manualu</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RandomVariableStream</span><span class="o">&gt;</span> <span class="n">var1</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">ConstantRandomVariable</span><span class="o">&gt;</span> <span class="p">();</span>
-  <span class="n">var1</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Constant&quot;</span><span class="p">,</span> <span class="n">DoubleValue</span> <span class="p">(</span><span class="mf">5.0</span><span class="p">));</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var1</span><span class="o">-&gt;</span><span class="n">GetValue</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// vraća 5.0</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var1</span><span class="o">-&gt;</span><span class="n">GetInteger</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// vraća 5.0</span>
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RandomVariableStream</span><span class="o">&gt;</span> <span class="n">var2</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">UniformRandomVariable</span><span class="o">&gt;</span> <span class="p">();</span>
-  <span class="n">var2</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Min&quot;</span><span class="p">,</span> <span class="n">DoubleValue</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">));</span>
-  <span class="n">var2</span><span class="o">-&gt;</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Max&quot;</span><span class="p">,</span> <span class="n">DoubleValue</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var2</span><span class="o">-&gt;</span><span class="n">GetValue</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// vraća realan broj čija je vrijednost između 0.0 i 10.0</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var2</span><span class="o">-&gt;</span><span class="n">GetInteger</span> <span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// vraća cijeli broj čija je vrijednost između 0.0 i 10.0</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RandomVariableStream</span><span class="o">&gt;</span><span class="w"> </span><span class="n">var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">ConstantRandomVariable</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">var1</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Constant&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DoubleValue</span><span class="w"> </span><span class="p">(</span><span class="mf">5.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var1</span><span class="o">-&gt;</span><span class="n">GetValue</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// vraća 5.0</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var1</span><span class="o">-&gt;</span><span class="n">GetInteger</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// vraća 5.0</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">RandomVariableStream</span><span class="o">&gt;</span><span class="w"> </span><span class="n">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">UniformRandomVariable</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">var2</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Min&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DoubleValue</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">var2</span><span class="o">-&gt;</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Max&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DoubleValue</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var2</span><span class="o">-&gt;</span><span class="n">GetValue</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// vraća realan broj čija je vrijednost između 0.0 i 10.0</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var2</span><span class="o">-&gt;</span><span class="n">GetInteger</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// vraća cijeli broj čija je vrijednost između 0.0 i 10.0</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="dodatak-pojmovi-nasljeivanja-i-apstraktne-klase">Dodatak: pojmovi nasljeđivanja i apstraktne klase</h2>
 <p>U objektno orjentiranom programiranju postoji koncept nasljeđivanja; drugim riječima, omogućuje se da klasa (koju nazivamo <em>podklasom</em>) dobije sve ili dio atributa i metoda druge klase (koju nazivamo <em>nadklasom</em>). To je vrlo korisno, jer smanjuje duplikaciju koda.</p>
@@ -5351,16 +5355,16 @@
 <p>U ovom dijelu ćemo napraviti vlastitu aplikaciju, u dosadašnjoj terminologiji "on" aplikaciju. Za razliku od on-off aplikacije, ova nema "off" period pa je nešto jednostavnija. Bez obzira, demonstirati će neka od sučelja koja je potrebno koristiti za programiranje vlastitih aplikacija. Ono što je olakotna okolnost je da su sučelja u simulatoru vrlo slična onima u stvarnim operacijskim sutavima, a sama programska logika mrežne aplikacije potpuno ista, te je lako znanje stečeno u jednom području primijeniti na ono drugo.</p>
 <p>Naša jednostavna aplikacija raditi će tako da će slati određen broj paketa određene veličine, na određenu adresu. Kada završi s time, neće zakazivati dodatne događaje i čekati će kraj simulacije. Kako je ns-3 sustav zasnovan na C++ klasama, za stvaranje takve aplikacije potrebno je poznavati osnovne objektno orjentiranog programiranja.</p>
 <p>Simulator ns-3 implementira osnovne značajke aplikacije u klasi <code>Application</code>. Naša aplikacija, nazvana jednostavno <code>MojaAplikacija</code> ,nasljeđuje klasu <code>Application</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MojaAplikacija</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Application</span>
-<span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MojaAplikacija</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Application</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
 </code></pre></div>
 <p>U dijelu klase koji je <code>public</code> deklariramo konstruktor, destruktor i funkciju <code>Setup()</code> tipa void koja podešava aplikaciju, a kao argumente prima redom socket koji će aplikacija koristiti, adresu na koju će slati podatke, veličinu paketa koji će slati, broj paketa i brzinu slanja.</p>
-<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="o">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="o">:</span><span class="w"></span>
 
-  <span class="n">MojaAplikacija</span> <span class="p">();</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">MojaAplikacija</span> <span class="p">();</span>
+<span class="w">  </span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="nf">Setup</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">socket</span><span class="p">,</span> <span class="n">Address</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">packetSize</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nPackets</span><span class="p">,</span> <span class="n">DataRate</span> <span class="n">dataRate</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Setup</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packetSize</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">nPackets</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="n">dataRate</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>U dijelu klase koji je <code>private</code> deklariramo virtualne metode <code>StartApplication()</code> i <code>StopApplication()</code>, koje služe za pokretanje i zaustavljanje aplikacije (respektivno). Zatim deklariramo metodu <code>ScheduleTx()</code>, koja se pokreće nakon svakog slanja i zakazuje iduće slanje, i metodu <code>SendPacket()</code>, koja šalje paket.</p>
 <p>Pored metoda, deklarirani su i idući atributi:</p>
@@ -5374,273 +5378,273 @@
 <li><code>m_running</code>, je li aplikacija pokrenuta,</li>
 <li><code>m_packetsSent</code>, broj poslanih paketa.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">StartApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">StopApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">StartApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">StopApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="nf">ScheduleTx</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-  <span class="kt">void</span> <span class="nf">SendPacket</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTx</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">SendPacket</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span>     <span class="n">m_socket</span><span class="p">;</span>
-  <span class="n">Address</span>         <span class="n">m_peer</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_packetSize</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_nPackets</span><span class="p">;</span>
-  <span class="n">DataRate</span>        <span class="n">m_dataRate</span><span class="p">;</span>
-  <span class="n">EventId</span>         <span class="n">m_sendEvent</span><span class="p">;</span>
-  <span class="kt">bool</span>            <span class="n">m_running</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_packetsSent</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w">     </span><span class="n">m_socket</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Address</span><span class="w">         </span><span class="n">m_peer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_packetSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_nPackets</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">DataRate</span><span class="w">        </span><span class="n">m_dataRate</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">EventId</span><span class="w">         </span><span class="n">m_sendEvent</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w">            </span><span class="n">m_running</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_packetsSent</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 </code></pre></div>
 <p>U konstruktoru postavljamo vrijednosti svih atributa na zadane.</p>
-<div class="highlight"><pre><span></span><code><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">MojaAplikacija</span> <span class="p">()</span>
-  <span class="o">:</span> <span class="n">m_socket</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_peer</span> <span class="p">(),</span>
-    <span class="n">m_packetSize</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_nPackets</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_dataRate</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_sendEvent</span> <span class="p">(),</span>
-    <span class="n">m_running</span> <span class="p">(</span><span class="nb">false</span><span class="p">),</span>
-    <span class="n">m_packetsSent</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">m_socket</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_peer</span><span class="w"> </span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_packetSize</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_nPackets</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_dataRate</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_sendEvent</span><span class="w"> </span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_running</span><span class="w"> </span><span class="p">(</span><span class="nb">false</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_packetsSent</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U destruktoru pokazivač na socket postavljamo na vrijednost 0, kako bi se dealokacija memorije koju je taj socket objekt zauzeo mogla uspješno izvršiti kad bude potrebno.</p>
-<div class="highlight"><pre><span></span><code><span class="n">MojaAplikacija</span><span class="o">::~</span><span class="n">MojaAplikacija</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">m_socket</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">MojaAplikacija</span><span class="o">::~</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Metoda <code>Setup()</code> postavlja vrijednosti atributa <code>m_socket</code>, <code>m_peer</code>, <code>m_packetSize</code>, <code>m_nPackets</code> i <code>m_dataRate</code> na vrijednosti koje joj se proslijede.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">Setup</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">socket</span><span class="p">,</span> <span class="n">Address</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">packetSize</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nPackets</span><span class="p">,</span> <span class="n">DataRate</span> <span class="n">dataRate</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">;</span>
-  <span class="n">m_peer</span> <span class="o">=</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">m_packetSize</span> <span class="o">=</span> <span class="n">packetSize</span><span class="p">;</span>
-  <span class="n">m_nPackets</span> <span class="o">=</span> <span class="n">nPackets</span><span class="p">;</span>
-  <span class="n">m_dataRate</span> <span class="o">=</span> <span class="n">dataRate</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">MojaAplikacija::Setup</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packetSize</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">nPackets</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="n">dataRate</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_peer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_packetSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_nPackets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nPackets</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_dataRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataRate</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Metoda <code>StartApplication()</code> pokreće aplikaciju: postavlja vrijednost atributa koji kaže je li aplikacija pokrenuta na <code>true</code>, broj poslanih paketa na 0, radi <code>Bind()</code> na socketu (dobiva adresu i vrata s kojih će slati pakete), radi <code>Connect()</code> na socketu (povezuje se s drugom stranom), i zatim pokreće slanje paketa metodom <code>SendPacket()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StartApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_running</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-  <span class="n">m_packetsSent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Bind</span> <span class="p">();</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Connect</span> <span class="p">(</span><span class="n">m_peer</span><span class="p">);</span>
-  <span class="n">SendPacket</span> <span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">MojaAplikacija::StartApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_packetsSent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Bind</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Connect</span><span class="w"> </span><span class="p">(</span><span class="n">m_peer</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">SendPacket</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Metoda <code>StopApplication()</code> zaustavlja aplijkaciju: postavlja vrijednost atributa koji kaže je li aplikacija pokrenuta na <code>false</code>, a zatim otkazuje zadnji događaj slanja paketa ako je još aktivan, i zatvara socket ako postoji.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StopApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_running</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">MojaAplikacija::StopApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_sendEvent</span><span class="p">.</span><span class="n">IsRunning</span> <span class="p">())</span>
-    <span class="p">{</span>
-      <span class="n">Simulator</span><span class="o">::</span><span class="n">Cancel</span> <span class="p">(</span><span class="n">m_sendEvent</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sendEvent</span><span class="p">.</span><span class="n">IsRunning</span><span class="w"> </span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Cancel</span><span class="w"> </span><span class="p">(</span><span class="n">m_sendEvent</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_socket</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Close</span> <span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_socket</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Close</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Metoda <code>SendPacket()</code> šalje paket; prvo stvara paket veličine koja je određena kod podešavanja aplikacije, a zatim na socketu pokreće metodu <code>Send()</code>. Ako je tada broj poslanih paketa manji od ukupnog broja paketa koji će se poslati, zakazuje iduće slanje.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span> <span class="n">packet</span> <span class="o">=</span> <span class="n">Create</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">m_packetSize</span><span class="p">);</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Send</span> <span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">MojaAplikacija::SendPacket</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">packet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Create</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m_packetSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Send</span><span class="w"> </span><span class="p">(</span><span class="n">packet</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">m_packetsSent</span> <span class="o">&lt;</span> <span class="n">m_nPackets</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">ScheduleTx</span> <span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">++</span><span class="n">m_packetsSent</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_nPackets</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ScheduleTx</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Metoda <code>ScheduleTx()</code> zakazuje slanje idućeg paketa. U slučaju da je aplikacija pokrenuta, vrijeme slanja idućeg paketa $t_{next}$ određuje se po formuli</p>
 <p>$$
 t_{next} = \frac{packetSize \times 8}{dataRate},
 $$</p>
 <p>pri čemu je $packetSize$ veličina paketa u bajtovima, i množimo je s 8 kako bi dobili veličinu u bitovima, a $dataRate$ brzina slanja izražena u bitovima po sekundi. Zatim se metodom <code>Simulator::Schedule()</code> o kojoj ćemo više reći u idućj vježbi za taj trenutak zakazuje slanje paketa, odnosno pokretanje metode <code>MojaAplikacija::SendPacket()</code> na objektu <code>this</code>, odnosno samoj toj aplikaciji. Vrijednost koju metoda <code>Simulator::Schedule()</code> vraća je identifikator zakazanog događaja i sprema se u varijablu <code>m_sendEvent</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">ScheduleTx</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_running</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">Time</span> <span class="nf">tNext</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="n">m_packetSize</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">/</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">m_dataRate</span><span class="p">.</span><span class="n">GetBitRate</span> <span class="p">())));</span>
-      <span class="n">m_sendEvent</span> <span class="o">=</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Schedule</span> <span class="p">(</span><span class="n">tNext</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">MojaAplikacija::ScheduleTx</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_running</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Time</span><span class="w"> </span><span class="n">tNext</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="n">m_packetSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m_dataRate</span><span class="p">.</span><span class="n">GetBitRate</span><span class="w"> </span><span class="p">())));</span><span class="w"></span>
+<span class="w">      </span><span class="n">m_sendEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Schedule</span><span class="w"> </span><span class="p">(</span><span class="n">tNext</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Time je implementirana cjelokupna aplikacijska logika. Unutar <code>main()</code> funkcije, <code>PacketSink</code> za našu aplikaciju napraviti ćemo na isti način kao za <code>OnOffApplication</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">uint16_t</span> <span class="n">sinkPort</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span>
-<span class="n">PacketSinkHelper</span> <span class="nf">packetSinkHelper</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">Ipv4Address</span><span class="o">::</span><span class="n">GetAny</span> <span class="p">(),</span> <span class="n">sinkPort</span><span class="p">));</span>
-<span class="n">ApplicationContainer</span> <span class="n">sinkApps</span> <span class="o">=</span> <span class="n">packetSinkHelper</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">sinkApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">0.</span><span class="p">));</span>
-<span class="n">sinkApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sinkPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8080</span><span class="p">;</span><span class="w"></span>
+<span class="n">PacketSinkHelper</span><span class="w"> </span><span class="nf">packetSinkHelper</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">Ipv4Address</span><span class="o">::</span><span class="n">GetAny</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="n">sinkPort</span><span class="p">));</span><span class="w"></span>
+<span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">sinkApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSinkHelper</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">sinkApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">));</span><span class="w"></span>
+<span class="n">sinkApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">20.</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim stvaramo socket (koji može biti TCP ili UDP socket, ali mora biti istog tipa kao socket za pripadni <code>PacketSink</code>), i stvaramo aplikaciju tipa <code>MojaAplikacija</code>. Na njoj pokrećemo metodu <code>Setup()</code>, a zatim je dodajemo na prvi čvor i podešavamo vrijeme početka i završetka.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">ns3TcpSocket</span> <span class="o">=</span> <span class="n">Socket</span><span class="o">::</span><span class="n">CreateSocket</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">TcpSocketFactory</span><span class="o">::</span><span class="n">GetTypeId</span> <span class="p">());</span>
-<span class="n">Ptr</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span> <span class="n">app</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span> <span class="p">();</span>
-<span class="n">app</span><span class="o">-&gt;</span><span class="n">Setup</span> <span class="p">(</span><span class="n">ns3TcpSocket</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">sinkPort</span><span class="p">),</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">DataRate</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-<span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddApplication</span> <span class="p">(</span><span class="n">app</span><span class="p">);</span>
-<span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStartTime</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.</span><span class="p">));</span>
-<span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStopTime</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ns3TcpSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Socket</span><span class="o">::</span><span class="n">CreateSocket</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">TcpSocketFactory</span><span class="o">::</span><span class="n">GetTypeId</span><span class="w"> </span><span class="p">());</span><span class="w"></span>
+<span class="n">Ptr</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="n">app</span><span class="o">-&gt;</span><span class="n">Setup</span><span class="w"> </span><span class="p">(</span><span class="n">ns3TcpSocket</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">sinkPort</span><span class="p">),</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddApplication</span><span class="w"> </span><span class="p">(</span><span class="n">app</span><span class="p">);</span><span class="w"></span>
+<span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStartTime</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">));</span><span class="w"></span>
+<span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStopTime</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">20.</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupni kod primjera je</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">MojaAplikacija</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Application</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
+<span class="k">class</span> <span class="nc">MojaAplikacija</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Application</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
 
-  <span class="n">MojaAplikacija</span> <span class="p">();</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">MojaAplikacija</span> <span class="p">();</span>
+<span class="w">  </span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="nf">Setup</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">socket</span><span class="p">,</span> <span class="n">Address</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">packetSize</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nPackets</span><span class="p">,</span> <span class="n">DataRate</span> <span class="n">dataRate</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">Setup</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packetSize</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">nPackets</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="n">dataRate</span><span class="p">);</span><span class="w"></span>
 
-<span class="k">private</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">StartApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">StopApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">StartApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">StopApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="nf">ScheduleTx</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-  <span class="kt">void</span> <span class="nf">SendPacket</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTx</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">SendPacket</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span>     <span class="n">m_socket</span><span class="p">;</span>
-  <span class="n">Address</span>         <span class="n">m_peer</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_packetSize</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_nPackets</span><span class="p">;</span>
-  <span class="n">DataRate</span>        <span class="n">m_dataRate</span><span class="p">;</span>
-  <span class="n">EventId</span>         <span class="n">m_sendEvent</span><span class="p">;</span>
-  <span class="kt">bool</span>            <span class="n">m_running</span><span class="p">;</span>
-  <span class="kt">uint32_t</span>        <span class="n">m_packetsSent</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w">     </span><span class="n">m_socket</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Address</span><span class="w">         </span><span class="n">m_peer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_packetSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_nPackets</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">DataRate</span><span class="w">        </span><span class="n">m_dataRate</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">EventId</span><span class="w">         </span><span class="n">m_sendEvent</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w">            </span><span class="n">m_running</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">m_packetsSent</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">MojaAplikacija</span> <span class="p">()</span>
-  <span class="o">:</span> <span class="n">m_socket</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_peer</span> <span class="p">(),</span>
-    <span class="n">m_packetSize</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_nPackets</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_dataRate</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">m_sendEvent</span> <span class="p">(),</span>
-    <span class="n">m_running</span> <span class="p">(</span><span class="nb">false</span><span class="p">),</span>
-    <span class="n">m_packetsSent</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="p">}</span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">m_socket</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_peer</span><span class="w"> </span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_packetSize</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_nPackets</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_dataRate</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_sendEvent</span><span class="w"> </span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_running</span><span class="w"> </span><span class="p">(</span><span class="nb">false</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_packetsSent</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">MojaAplikacija</span><span class="o">::~</span><span class="n">MojaAplikacija</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">m_socket</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">MojaAplikacija</span><span class="o">::~</span><span class="n">MojaAplikacija</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">Setup</span> <span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">socket</span><span class="p">,</span> <span class="n">Address</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">packetSize</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">nPackets</span><span class="p">,</span> <span class="n">DataRate</span> <span class="n">dataRate</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">;</span>
-  <span class="n">m_peer</span> <span class="o">=</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">m_packetSize</span> <span class="o">=</span> <span class="n">packetSize</span><span class="p">;</span>
-  <span class="n">m_nPackets</span> <span class="o">=</span> <span class="n">nPackets</span><span class="p">;</span>
-  <span class="n">m_dataRate</span> <span class="o">=</span> <span class="n">dataRate</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">Setup</span><span class="w"> </span><span class="p">(</span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packetSize</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">nPackets</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="n">dataRate</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_peer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_packetSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_nPackets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nPackets</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_dataRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataRate</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StartApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_running</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-  <span class="n">m_packetsSent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Bind</span> <span class="p">();</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Connect</span> <span class="p">(</span><span class="n">m_peer</span><span class="p">);</span>
-  <span class="n">SendPacket</span> <span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StartApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_packetsSent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Bind</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Connect</span><span class="w"> </span><span class="p">(</span><span class="n">m_peer</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">SendPacket</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StopApplication</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">m_running</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">StopApplication</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_sendEvent</span><span class="p">.</span><span class="n">IsRunning</span> <span class="p">())</span>
-    <span class="p">{</span>
-      <span class="n">Simulator</span><span class="o">::</span><span class="n">Cancel</span> <span class="p">(</span><span class="n">m_sendEvent</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sendEvent</span><span class="p">.</span><span class="n">IsRunning</span><span class="w"> </span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Cancel</span><span class="w"> </span><span class="p">(</span><span class="n">m_sendEvent</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_socket</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Close</span> <span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_socket</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Close</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span> <span class="n">packet</span> <span class="o">=</span> <span class="n">Create</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">m_packetSize</span><span class="p">);</span>
-  <span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Send</span> <span class="p">(</span><span class="n">packet</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">packet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Create</span><span class="o">&lt;</span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m_packetSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">m_socket</span><span class="o">-&gt;</span><span class="n">Send</span><span class="w"> </span><span class="p">(</span><span class="n">packet</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">m_packetsSent</span> <span class="o">&lt;</span> <span class="n">m_nPackets</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">ScheduleTx</span> <span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">++</span><span class="n">m_packetsSent</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_nPackets</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ScheduleTx</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span>
-<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">ScheduleTx</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">m_running</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">Time</span> <span class="nf">tNext</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="n">m_packetSize</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">/</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">m_dataRate</span><span class="p">.</span><span class="n">GetBitRate</span> <span class="p">())));</span>
-      <span class="n">m_sendEvent</span> <span class="o">=</span> <span class="n">Simulator</span><span class="o">::</span><span class="n">Schedule</span> <span class="p">(</span><span class="n">tNext</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">ScheduleTx</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_running</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Time</span><span class="w"> </span><span class="nf">tNext</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="n">m_packetSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m_dataRate</span><span class="p">.</span><span class="n">GetBitRate</span><span class="w"> </span><span class="p">())));</span><span class="w"></span>
+<span class="w">      </span><span class="n">m_sendEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Schedule</span><span class="w"> </span><span class="p">(</span><span class="n">tNext</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">MojaAplikacija</span><span class="o">::</span><span class="n">SendPacket</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.252&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.252&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="kt">uint16_t</span> <span class="n">sinkPort</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span>
-  <span class="n">PacketSinkHelper</span> <span class="nf">packetSinkHelper</span> <span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">Ipv4Address</span><span class="o">::</span><span class="n">GetAny</span> <span class="p">(),</span> <span class="n">sinkPort</span><span class="p">));</span>
-  <span class="n">ApplicationContainer</span> <span class="n">sinkApps</span> <span class="o">=</span> <span class="n">packetSinkHelper</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">sinkApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">0.</span><span class="p">));</span>
-  <span class="n">sinkApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.</span><span class="p">));</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sinkPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8080</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">PacketSinkHelper</span><span class="w"> </span><span class="nf">packetSinkHelper</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ns3::TcpSocketFactory&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">Ipv4Address</span><span class="o">::</span><span class="n">GetAny</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="n">sinkPort</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">sinkApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSinkHelper</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">sinkApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">0.</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">sinkApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">20.</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span> <span class="n">ns3TcpSocket</span> <span class="o">=</span> <span class="n">Socket</span><span class="o">::</span><span class="n">CreateSocket</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">TcpSocketFactory</span><span class="o">::</span><span class="n">GetTypeId</span> <span class="p">());</span>
-  <span class="n">Ptr</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span> <span class="n">app</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span> <span class="p">();</span>
-  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Setup</span> <span class="p">(</span><span class="n">ns3TcpSocket</span><span class="p">,</span> <span class="n">InetSocketAddress</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">sinkPort</span><span class="p">),</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">DataRate</span> <span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddApplication</span> <span class="p">(</span><span class="n">app</span><span class="p">);</span>
-  <span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStartTime</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.</span><span class="p">));</span>
-  <span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStopTime</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">20.</span><span class="p">));</span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">Socket</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ns3TcpSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Socket</span><span class="o">::</span><span class="n">CreateSocket</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">TcpSocketFactory</span><span class="o">::</span><span class="n">GetTypeId</span><span class="w"> </span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ptr</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateObject</span><span class="o">&lt;</span><span class="n">MojaAplikacija</span><span class="o">&gt;</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">app</span><span class="o">-&gt;</span><span class="n">Setup</span><span class="w"> </span><span class="p">(</span><span class="n">ns3TcpSocket</span><span class="p">,</span><span class="w"> </span><span class="n">InetSocketAddress</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">sinkPort</span><span class="p">),</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="n">DataRate</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;1Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">AddApplication</span><span class="w"> </span><span class="p">(</span><span class="n">app</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStartTime</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">app</span><span class="o">-&gt;</span><span class="n">SetStopTime</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">20.</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span> <span class="p">(</span><span class="s">&quot;vjezba-vlastita-tcp-app&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnableAsciiAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-vlastita-tcp-app&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
                 
                   
@@ -5724,10 +5728,10 @@ $$</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/gluster-distribuirani-datotecni-sustav/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1847,6 +1847,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4974,6 +4976,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5048,31 +5052,31 @@
 <h2 id="rad-s-jednim-serverom">Rad s jednim serverom</h2>
 <p>Ukoliko radimo samo sa jednim računalom koje preuzima ulogu servera, pristup datotekama je nešto jasniji. Dakako, na jednom serveru možemo imati više djeljenih mapa koje mogu biti na različitim diskovima te time ubrzati vrijeme pristupa različitim podacima jer smanjujemo opterećenost koji se vrši na jednom disku. Na serveru se definiraju datoteke koje se žele podijeliti sa ostalim korisnicima pa tada možemo te datoteke raspodijeliti po našim djeljenim mapama. Nebitno je koja datoteka se tada nalazi u kojoj mapi jer sam sustav rješava pristupanje i usmjeravanje na prave datoteke. Ukoliko radimo sa većim datotekama, te velike datoteke je također moguće podijeliti na manje i raspodjeliti ih po dijeljenim mapama. Sustav sam pronalazi najbolje mjesto na koje postavlja datoteke prema opterećenosti dijeljene mape i raspoloživom diskovnom prostoru.</p>
 <p>Slika prikazuje osnovni način rada GlusterFS sustava. Sustav komunicira sa svojim djeljenim mapama (koje su u ovom slučaju zasebni diskovi) te dijeli datoteke među njima. Na korisnikov zahtjev pristupa podacima na jednoj od ove dvije lokacije i vraća korisniku tražene datoteke. Datoteke se također mogu i kopirati među diskovima što nam osigurava protočnost prometa ako jedan od diskova prestane funkcionirati.</p>
-<div class="highlight"><pre><span></span><code>digraph G {
-   node [shape = box];
-   GlusterFS -&gt; &quot;Brick #1&quot;;
-   &quot;Brick #1&quot; -&gt; GlusterFS;
-   GlusterFS -&gt; &quot;Brick #2&quot;;
-   &quot;Brick #2&quot; -&gt; GlusterFS;
-   &quot;Brick #1&quot; -&gt; &quot;Brick #2&quot;;
-   &quot;Brick #2&quot; -&gt; &quot;Brick #1&quot;;
-}
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">box</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">GlusterFS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Brick #1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Brick #1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">GlusterFS</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">GlusterFS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Brick #2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Brick #2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">GlusterFS</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Brick #1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Brick #2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Brick #2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Brick #1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="rad-s-vise-servera">Rad s više servera</h2>
 <p>Rad sa više servera ne razlikuje se drastično od rada sa jednim serverom. Razlika kod pristupa podacima je u tome što sada moramo i znati na kojem serveru i u kojoj mapi se nalazi tražena datoteka. Kako jedan server može imati veći broj mapa i isto tako može postojati veći broj servera, način pristupa podacima postaje kompleksniji. Datoteke se raspršuju po serverima ovisno o opterećenosti i dostupnom prostoru. Prema istom algoritmu za raspršivanje datoteka među serverima, klijentska strana izračuna na kojem serveru se tražena datoteka nalazi.</p>
-<div class="highlight"><pre><span></span><code>digraph G {
-   node [shape = box];
-   &quot;Storage node 1&quot; -&gt; &quot;Storage node 2&quot;;
-   &quot;Storage node 2&quot; -&gt; &quot;Storage node 1&quot;;
-   &quot;Storage node 1&quot; -&gt; &quot;Storage node 3&quot;;
-   &quot;Storage node 3&quot; -&gt; &quot;Storage node 1&quot;;
-   &quot;Storage node 2&quot; -&gt; &quot;Storage node 3&quot;;
-   &quot;Storage node 3&quot; -&gt; &quot;Storage node 2&quot;;
-   node [shape = circle];
-   &quot;Storage node 1&quot; -&gt; {&quot;/export1-1&quot;, &quot;/export1-2&quot;, &quot;/export1-3&quot;};
-   &quot;Storage node 2&quot; -&gt; {&quot;/export2-1&quot;, &quot;/export2-2&quot;, &quot;/export2-3&quot;, &quot;/export2-4&quot;, &quot;/export2-5&quot;};
-   &quot;Storage node 3&quot; -&gt; {&quot;/export3-1&quot;, &quot;/export3-2&quot;, &quot;/export3-3&quot;, &quot;/export3-4&quot;};
-}
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">box</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 3&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 3&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;Storage node 2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">circle</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;/export1-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export1-2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export1-3&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;/export2-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export2-2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export2-3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export2-4&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export2-5&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;Storage node 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;/export3-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export3-2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export3-3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;/export3-4&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Kako bismo mogli najbolje iskoristiti mogućnost redundancije datoteka u svrhu neometanog rada, preporuka je da dijeljene mape budu iste veličine. Tako se može cijela mapa bez poteškoća prebaciti na drugi server te tamo čuvati u slučaju pada nekog drugog servera.</p>
 <h2 id="prakticna-primjena">Praktična primjena</h2>
@@ -5242,10 +5246,10 @@ Brick2: HOST2:/exp2
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

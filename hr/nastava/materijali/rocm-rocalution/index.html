@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/rocm-rocalution/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3695,6 +3695,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4973,6 +4975,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5075,191 +5079,191 @@
 <p>Službeni primjer [clients/samples/cg.cpp) (<a href="https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/clients/samples/cg.cpp">poveznica na kod</a>) koristi jednu od Krylovih potprostornih metoda CR (Conjugate Residual Method).
 To je iterativna metoda za riješavanje rijetkih simetričnih polu-pozitivnih određenih linearnih sustava Ax=b. (Za više informacija o ovoj metodi pogledajte <a href="https://rocalution.readthedocs.io/en/master/solvers.html#cr">dio službene dokumentacije koji govori o solverima</a>.)</p>
 <p>Kod je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="c1">// Check command line parameters</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &lt;matrix&gt; [Num threads]&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Check command line parameters</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;matrix&gt; [Num threads]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="c1">// Initialize rocALUTION</span>
-  <span class="n">init_rocalution</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Initialize rocALUTION</span>
+<span class="w">  </span><span class="n">init_rocalution</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Check command line parameters for number of OMP threads</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">set_omp_threads_rocalution</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Check command line parameters for number of OMP threads</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">set_omp_threads_rocalution</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="c1">// Print rocALUTION info</span>
-  <span class="n">info_rocalution</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Print rocALUTION info</span>
+<span class="w">  </span><span class="n">info_rocalution</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// rocALUTION objects</span>
-  <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">;</span>
-  <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">rhs</span><span class="p">;</span>
-  <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">;</span>
-  <span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">mat</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// rocALUTION objects</span>
+<span class="w">  </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mat</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Read matrix from MTX file</span>
-  <span class="n">mat</span><span class="p">.</span><span class="n">ReadFileMTX</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+<span class="w">  </span><span class="c1">// Read matrix from MTX file</span>
+<span class="w">  </span><span class="n">mat</span><span class="p">.</span><span class="n">ReadFileMTX</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span><span class="w"></span>
 
-  <span class="c1">// Move objects to accelerator</span>
-  <span class="n">mat</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-  <span class="n">x</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-  <span class="n">rhs</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-  <span class="n">e</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Move objects to accelerator</span>
+<span class="w">  </span><span class="n">mat</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">rhs</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Allocate vectors</span>
-  <span class="n">x</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span>
-  <span class="n">rhs</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;rhs&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetM</span><span class="p">());</span>
-  <span class="n">e</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span>
+<span class="w">  </span><span class="c1">// Allocate vectors</span>
+<span class="w">  </span><span class="n">x</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="n">rhs</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;rhs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetM</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;e&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span><span class="w"></span>
 
-  <span class="c1">// Linear Solver</span>
-  <span class="n">CG</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">ls</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Linear Solver</span>
+<span class="w">  </span><span class="n">CG</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ls</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Preconditioner</span>
-  <span class="n">Jacobi</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Preconditioner</span>
+<span class="w">  </span><span class="n">Jacobi</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Initialize rhs such that A 1 = rhs</span>
-  <span class="n">e</span><span class="p">.</span><span class="n">Ones</span><span class="p">();</span>
-  <span class="n">mat</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Initialize rhs such that A 1 = rhs</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">Ones</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">mat</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Initial zero guess</span>
-  <span class="n">x</span><span class="p">.</span><span class="n">Zeros</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Initial zero guess</span>
+<span class="w">  </span><span class="n">x</span><span class="p">.</span><span class="n">Zeros</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Set solver operator</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">SetOperator</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
-  <span class="c1">// Set solver preconditioner</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">SetPreconditioner</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Set solver operator</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">SetOperator</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Set solver preconditioner</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">SetPreconditioner</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Build solver</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Build solver</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Verbosity output</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">Verbose</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Verbosity output</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">Verbose</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Print matrix info</span>
-  <span class="n">mat</span><span class="p">.</span><span class="n">Info</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Print matrix info</span>
+<span class="w">  </span><span class="n">mat</span><span class="p">.</span><span class="n">Info</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Start time measurement</span>
-  <span class="kt">double</span> <span class="n">tick</span><span class="p">,</span> <span class="n">tack</span><span class="p">;</span>
-  <span class="n">tick</span> <span class="o">=</span> <span class="n">rocalution_time</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Start time measurement</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">tick</span><span class="p">,</span><span class="w"> </span><span class="n">tack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">tick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocalution_time</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Solve A x = rhs</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Solve A x = rhs</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Stop time measurement</span>
-  <span class="n">tack</span> <span class="o">=</span> <span class="n">rocalution_time</span><span class="p">();</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Solver execution:&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">tack</span> <span class="o">-</span> <span class="n">tick</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; sec&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Stop time measurement</span>
+<span class="w">  </span><span class="n">tack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocalution_time</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Solver execution:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">tack</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tick</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e6</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; sec&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Clear solver</span>
-  <span class="n">ls</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Clear solver</span>
+<span class="w">  </span><span class="n">ls</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Compute error L2 norm</span>
-  <span class="n">e</span><span class="p">.</span><span class="n">ScaleAdd</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
-  <span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">Norm</span><span class="p">();</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;||e - x||_2 = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Compute error L2 norm</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">ScaleAdd</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Norm</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;||e - x||_2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Stop rocALUTION platform</span>
-  <span class="n">stop_rocalution</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Stop rocALUTION platform</span>
+<span class="w">  </span><span class="n">stop_rocalution</span><span class="p">();</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Krenimo od funkcije <code>main()</code>.</p>
 <p>Prvo se pojavljuje uvjet <code>if</code> sa postavljenim ispitivanjem je li broj argumenata <code>argc</code> jednak 1. U slučaju da jest, provodi se ispis operatorom <code>&lt;&lt;</code> na na standardni izlaz za greške <code>std::cerr</code> (<a href="https://en.cppreference.com/w/cpp/io/cerr">za više infromacija proučite std::cerr na cppreference.com</a>).
 Dakle, u slučaju bez pojavljivanja greške, vrši se output za <code>argv[0]</code>, amtricu i broj niti:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &lt;matrix&gt; [Num threads]&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;matrix&gt; [Num threads]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Poziva se funkcija <code>init_rocalution()</code>. Ova funkcija definira backend deskriptor sa informacijama o hardveru i njegovim specifikacijama. (Za više detalja pogledajte <a href="https://rocalution.readthedocs.io/en/master/basics.html#initialization-of-rocalution">službenu dokumentaciju</a>.)</p>
 <p>Slijedi uvjetovanje <code>if</code> gdje u slučaju da je <code>argc</code> veći od 2, poziva se funkcija <code>set_omp_threads_rocalution()</code>, kojom se postavlja broj niti koji će rocALUTION koristiti. To će se također postići pomoću funkcije <code>atoi()</code>, obzirom da je <code>argv</code> tipa char.</p>
 <p>Iza toga stoji poziv funkciji <code>info_rocalution()</code> koja ispisuje informacije o rocALUTION platformi.</p>
 <p>Za više informacija o funkciji za postavljanje broja niti pogledajte <a href="https://rocalution.readthedocs.io/en/master/api.html#_CPPv4N10rocalution26set_omp_threads_rocalutionEi">API dokumentaciju</a>, a a više informacija o funkciji <code>atoi()</code> pogledajte <a href="https://en.cppreference.com/w/c/string/byte/atoi">cppreference</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">init_rocalution</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">init_rocalution</span><span class="p">();</span><span class="w"></span>
 
-<span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">set_omp_threads_rocalution</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
-<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">set_omp_threads_rocalution</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">info_rocalution</span><span class="p">();</span>
+<span class="n">info_rocalution</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Kreće inicijalizacija objekata/vektora i matrice koji će se koristiti u nastavku.
 Iza inicijalizacije stoji funkcija za čitanje MTX (Matrix Market Format) datoteke, te se pomoću novog objekta za matricu otvara ta datoteka.</p>
-<div class="highlight"><pre><span></span><code><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">;</span>
-<span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">rhs</span><span class="p">;</span>
-<span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">;</span>
-<span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">mat</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"></span>
+<span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mat</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">mat</span><span class="p">.</span><span class="n">ReadFileMTX</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+<span class="n">mat</span><span class="p">.</span><span class="n">ReadFileMTX</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span><span class="w"></span>
 </code></pre></div>
 <p>Sve objekte koje smo u prijašnjem koraku stvorili sada pomoću funkcije <code>MoveToAccelerator()</code> mičemo u akcelerator.
 Nakon toga slijedi alokacija novih imena i veličine za vektore. Funkcija <code>GetN()</code> vraća broj stupaca u matrici, a <code>GetM()</code> broj redaka u matrici.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mat</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-<span class="n">x</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-<span class="n">rhs</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
-<span class="n">e</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">mat</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="n">x</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="n">rhs</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
+<span class="n">e</span><span class="p">.</span><span class="n">MoveToAccelerator</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">x</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span>
-<span class="n">rhs</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;rhs&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetM</span><span class="p">());</span>
-<span class="n">e</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;e&quot;</span><span class="p">,</span> <span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span>
+<span class="n">x</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span><span class="w"></span>
+<span class="n">rhs</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;rhs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetM</span><span class="p">());</span><span class="w"></span>
+<span class="n">e</span><span class="p">.</span><span class="n">Allocate</span><span class="p">(</span><span class="s">&quot;e&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">GetN</span><span class="p">());</span><span class="w"></span>
 </code></pre></div>
 <p>U CG slover učitavamo matricu na kojoj će biti vršene operacije, vektor i njegov tip i tip nove varijable. Jednako tako radimo za Jacobi preconditioner. Jacobi riješava linearni sustav u kojem dominiraju dijagonale (Za više informacija o ovoj metodi pogledajte <a href="https://rocalution.readthedocs.io/en/master/precond.html#jacobi-method">službenu dokumentaciju</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">CG</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">ls</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">CG</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ls</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">Jacobi</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">Jacobi</span><span class="o">&lt;</span><span class="n">LocalMatrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">LocalVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Na vektoru <code>e</code> putem funkcije <code>Ones()</code> postavljamo sve jedinice, te putem <code>Apply()</code> funkcije primjenjujemo te promjene na matricu.
 Na sličan način na vektor <code>x</code> postavljaju se nule funkcijom <code>Zeros()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">Ones</span><span class="p">();</span>
-<span class="n">mat</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">Ones</span><span class="p">();</span><span class="w"></span>
+<span class="n">mat</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">x</span><span class="p">.</span><span class="n">Zeros</span><span class="p">();</span>
+<span class="n">x</span><span class="p">.</span><span class="n">Zeros</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Pomoću varijable prije stvorene putem CG solvera, postavljamo operator i prekondicioner. Zatim se solver izgrađuje putem funkcije <code>Build()</code>. U to ulaze alokacija podataka, struktura i numerička komputacija.
 <code>Verbose()</code> pruža opširniji ispis slovera. Ako je postavljen na 0, neće ispisati ništa. Ako je postavljen na 1, ispisati će informacije o solveru, početak i kraj. Ako je postavljen na 2, ispisati će informacije o iteratoru.
 Zatim, ispisuju se informacije o određenom objektu, u ovom slučaju matrici <code>mat</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ls</span><span class="p">.</span><span class="n">SetOperator</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
-<span class="n">ls</span><span class="p">.</span><span class="n">SetPreconditioner</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">ls</span><span class="p">.</span><span class="n">SetOperator</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span><span class="w"></span>
+<span class="n">ls</span><span class="p">.</span><span class="n">SetPreconditioner</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">ls</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="n">ls</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">ls</span><span class="p">.</span><span class="n">Verbose</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ls</span><span class="p">.</span><span class="n">Verbose</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">mat</span><span class="p">.</span><span class="n">Info</span><span class="p">();</span>
+<span class="n">mat</span><span class="p">.</span><span class="n">Info</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Kreće mjerenje vremena izvođenja operacija.
 Iza toga se pokreće operacija riješavanja <code>Solve()</code> koju riješava solver. Nakon toga završava mjerenje vremena.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">double</span> <span class="n">tick</span><span class="p">,</span> <span class="n">tack</span><span class="p">;</span>
-<span class="n">tick</span> <span class="o">=</span> <span class="n">rocalution_time</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">tick</span><span class="p">,</span><span class="w"> </span><span class="n">tack</span><span class="p">;</span><span class="w"></span>
+<span class="n">tick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocalution_time</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">ls</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="n">ls</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">tack</span> <span class="o">=</span> <span class="n">rocalution_time</span><span class="p">();</span>
+<span class="n">tack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocalution_time</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi ispis vremena potrebnog kroz operaciju, te se oslobađa memorija zauzeta sa strane solvera.</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Solver execution:&quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">tack</span> <span class="o">-</span> <span class="n">tick</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; sec&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Solver execution:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">tack</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tick</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e6</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; sec&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">ls</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+<span class="n">ls</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Ažurira se vektor <code>e</code> sa navedenim vrijednostima unutar funkcije <code>ScaleAdd()</code>. Također, računa se i norma vektora u obliku novog objekta <code>error</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">ScaleAdd</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
-<span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">Norm</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;||e - x||_2 = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">error</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">e</span><span class="p">.</span><span class="n">ScaleAdd</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Norm</span><span class="p">();</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;||e - x||_2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Zaustavlja se rocALUTION, i program završava.</p>
-<div class="highlight"><pre><span></span><code>  <span class="n">stop_rocalution</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">stop_rocalution</span><span class="p">();</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Kraj programa.</p>
 <h3 id="primjer-asynccpp">Primjer <code>async.cpp</code></h3>
@@ -5376,10 +5380,10 @@ Iza toga se pokreće operacija riješavanja <code>Solve()</code> koju riješava 
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

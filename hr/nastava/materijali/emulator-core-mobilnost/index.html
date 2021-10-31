@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/emulator-core-mobilnost/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -4923,6 +4923,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4948,42 +4950,42 @@
                 
                 <h1 id="mobilnost">Mobilnost</h1>
 <p>Emulator CORE nam omogućuje da za (bežične) čvorove koristimo <a href="https://www.isi.edu/nsnam/ns/doc/node172.html">skripte mobilnosti mrežnog simulatora ns-2</a> (desni klik na mrežu, opcija <code>Configure</code>, gumb <code>ns-2 mobility script</code> pa se na kartici <code>ns-2 Mobility Script Parameters</code> može navesti datoteka pod <code>mobility script file</code>). Skripte mobilnosti pisane su u <a href="https://www.tcl-lang.org/">jeziku Tcl</a> i sadrže naredbe pozicija i kretanja oblika</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">200.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">100.0</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">1.0</span> <span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">9.0</span> <span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
 </code></pre></div>
 <p>U ovom slučaju čvor <code>n2</code> postavljen je inicijalno na poziciju (200, 100), a sekundu kasnije pomiče se na poziciju (300, 150) brzinom 20 piksela po sekundi. Osam sekundi nakon toga, odnosu u trenutku t = 9 sekundi, čvor se pomiče na poziciju (500, 240) brzinom 35 piksela po sekundi.</p>
 <p>Obzirom da CORE skripte ponavlja za vrijeme izvođenja emulacije, dobra je praksa postaviti da se čvorovi vrate na početnu poziciju kako kod ponavljanja kretanja ne bi "skakali" po platnu. Primjerice, ovdje ćemo postaviti da se iz posljednje pozicije čvor vrati na početnu u trenutku t = 20 sekundi na način</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">200.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">100.0</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">1.0</span> <span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">9.0</span> <span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">20.0</span> <span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
 </code></pre></div>
 <p>Analogno navedenom primjeru možemo definirati mobilnost u obliku trokuta, kvadrata, kao i proizvoljnog poligona koji aproksimira kružno kretanje.</p>
 <p>U slučaju kada definiramo mobilnost dva ili više čvorova, njihove naredbe pozicija i kretaja se mogu dati čvor po čvor pa je skripta oblika</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">200.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">100.0</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">1.0</span> <span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">9.0</span> <span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">20.0</span> <span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
 
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">550.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">575.0</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">2.0</span> <span class="s2">&quot;$node_(3) setdest 400.0 350.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">12.0</span> <span class="s2">&quot;$node_(3) setdest 550.0 575.0 25.0&quot;</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">550.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">575.0</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="s2">&quot;$node_(3) setdest 400.0 350.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">12.0</span><span class="w"> </span><span class="s2">&quot;$node_(3) setdest 550.0 575.0 25.0&quot;</span>
 </code></pre></div>
 <p>ili se mogu isprepletati pa je skripta oblika</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">200.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">100.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span> <span class="k">set</span> X_ <span class="mf">550.0</span>
-<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span> <span class="k">set</span> Y_ <span class="mf">575.0</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">1.0</span> <span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">2.0</span> <span class="s2">&quot;$node_(3) setdest 400.0 350.0 20.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">9.0</span> <span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">12.0</span> <span class="s2">&quot;$node_(3) setdest 550.0 575.0 25.0&quot;</span>
-<span class="nv">$ns_</span> <span class="nv">at</span> <span class="mf">20.0</span> <span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">550.0</span>
+<span class="nv">$node_</span><span class="k">(</span><span class="nv">3</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">575.0</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="s2">&quot;$node_(3) setdest 400.0 350.0 20.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">12.0</span><span class="w"> </span><span class="s2">&quot;$node_(3) setdest 550.0 575.0 25.0&quot;</span>
+<span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5071,10 +5073,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

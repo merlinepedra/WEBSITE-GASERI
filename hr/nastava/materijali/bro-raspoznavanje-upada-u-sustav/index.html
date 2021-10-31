@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/bro-raspoznavanje-upada-u-sustav/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1385,6 +1385,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4994,6 +4996,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5089,14 +5093,14 @@
 </ul>
 <h2 id="arhitektura">Arhitektura</h2>
 <p>Bro ima <a href="https://www.bro.org/sphinx/intro/index.html">tri glavne komponente</a> pomoću kojih nadzire mrežu: libpcap biblioteku za hvatanje mrežnog prometa, generator događaja (engl. <em>event engine</em>) koji analizira mrežni promet u stvarnom vremenu ili snimljeni promet i pretvara u događaje (engl. <em>events</em>) kao što su <code>connection_attempt</code>, <code>http_reply</code>, <code>user_logged_in</code> i interpreter sigurnosnih pravila. Događaji odražavaju stanje mreže, a uspoređuju se s pravilima odnosno skriptama u kojima su pravila definirana. Skripte zapravo opisuju sigurnosnu politiku sustava koji će se nadzirati odnosno aktivnosti koje se poduzimaju ukoliko se uoči neka nepravilnost. Primjerice, svaki HTTP zahtjev ima odgovarajući http_request događaj koji sadrži IP adrese ishodišta i odredišta paketa, portove, traženi URI. No, taj događaj ne nosi informaciju o možebitnom malicioznom sadržaju tražene stranice ili informaciju da li se radi o zloćudnoj stranici. Interpreter sigurnosnih pravila izvodi upravljače događajima (engl. <em>event handlers</em>) pisane u Bro skriptnom jeziku, analizira događaje i sadržaj stranice te poduzima određenu aktivnost kao što je automatski zapis u log datoteku, slanje alarmnih poruka u realnom vremenu, slanje maila ili pozivanje druge Bro skripte. Interpreter sigurnosnih pravila je zapravo najvažniji dio alata Bro jer otkriva maliciozne događaje odnosno pakete korištenjem unaprijed definiranih pravila. Ukoliko se neki događaj poklapa s određenim pravilom, obavljaju se određene radnje nad paketom ili se on odbacuje.</p>
-<div class="highlight"><pre><span></span><code>digraph G {
-   node [shape = box];
-   mreža -&gt; libpcap [label = paketi];
-   libpcap -&gt; &quot;generator događaja&quot;;
-   &quot;generator događaja&quot; -&gt; &quot;interpreter sigurnosnih pravila&quot; [label = događaji];
-   &quot;interpreter sigurnosnih pravila&quot; -&gt; &quot;korisnik&quot; [label = logovi];
-   &quot;interpreter sigurnosnih pravila&quot; -&gt; &quot;korisnik&quot; [label = notifikacije];
-}
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">box</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">mreža</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">libpcap</span><span class="w"> </span><span class="p">[</span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">paketi</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">libpcap</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;generator događaja&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;generator događaja&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;interpreter sigurnosnih pravila&quot;</span><span class="w"> </span><span class="p">[</span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">događaji</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;interpreter sigurnosnih pravila&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;korisnik&quot;</span><span class="w"> </span><span class="p">[</span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">logovi</span><span class="p">];</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;interpreter sigurnosnih pravila&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;korisnik&quot;</span><span class="w"> </span><span class="p">[</span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">notifikacije</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="instalacija-i-konfiguracija-alata">Instalacija i konfiguracija alata</h2>
 <p>Instalacija alata ovisi o operativnom sustavu odnosno zahtijeva Unix-bazirani OS. Prije instalacije alata Bro, potrebno je instalirati sljedeće biblioteke i alate:</p>
@@ -5360,10 +5364,10 @@ HTTP protokol sadrži vlastite mehanizme za autentifikaciju korisnika:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

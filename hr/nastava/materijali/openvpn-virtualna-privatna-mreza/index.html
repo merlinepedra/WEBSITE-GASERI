@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openvpn-virtualna-privatna-mreza/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2533,6 +2533,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4960,6 +4962,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5075,7 +5079,7 @@ secret static.key
 <p>Zatim konfiguriramo IP adresu (<code>ifconfig</code>) poslužitelja (<code>172.20.0.1</code>) i klijenta koji će se tek povezati (<code>172.20.0.2</code>).</p>
 <p>Naposlijetku navodimo ime datoteke u kojoj se nalazi tajni ključ koji će se koristiti (<code>secret static.key</code>). Pokrenimo poslužitelj:</p>
 <div class="highlight"><pre><span></span><code>$ sudo openvpn --config server.ovpn
-Tue May <span class="m">19</span> <span class="m">19</span>:51:32 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not in P2MP client or server mode
+Tue May <span class="m">19</span> <span class="m">19</span>:51:32 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not <span class="k">in</span> P2MP client or server mode
 Tue May <span class="m">19</span> <span class="m">19</span>:51:32 <span class="m">2020</span> OpenVPN <span class="m">2</span>.4.9 <span class="o">[</span>git:makepkg/9b0dafca6c50b8bb+<span class="o">]</span> x86_64-pc-linux-gnu <span class="o">[</span>SSL <span class="o">(</span>OpenSSL<span class="o">)]</span> <span class="o">[</span>LZO<span class="o">]</span> <span class="o">[</span>LZ4<span class="o">]</span> <span class="o">[</span>EPOLL<span class="o">]</span> <span class="o">[</span>PKCS11<span class="o">]</span> <span class="o">[</span>MH/PKTINFO<span class="o">]</span> <span class="o">[</span>AEAD<span class="o">]</span> built on Apr <span class="m">20</span> <span class="m">2020</span>
 Tue May <span class="m">19</span> <span class="m">19</span>:51:32 <span class="m">2020</span> library versions: OpenSSL <span class="m">1</span>.1.1g  <span class="m">21</span> Apr <span class="m">2020</span>, LZO <span class="m">2</span>.10
 Tue May <span class="m">19</span> <span class="m">19</span>:51:32 <span class="m">2020</span> WARNING: INSECURE cipher with block size less than <span class="m">128</span> bit <span class="o">(</span><span class="m">64</span> bit<span class="o">)</span>.  This allows attacks like SWEET32.  Mitigate by using a --cipher with a larger block size <span class="o">(</span>e.g. AES-256-CBC<span class="o">)</span>.
@@ -5114,7 +5118,7 @@ Tue May 19 19:54:19 2020 SIGINT[hard,] received, process exiting
 <p>Uočimo da treća linija s konfiguracijskom naredbom <code>ifconfig</code> ima obrnute adrese od iste konfiguracijske naredbe na poslužitelju, odnosno prvo je sada klijentska adresa (<code>172.20.0.2</code>), a onda poslužiteljska (<code>172.20.0.1</code>). Pokrenimo klijent:</p>
 <div class="highlight"><pre><span></span><code>$ sudo openvpn --config client.ovpn
 <span class="o">[</span>sudo<span class="o">]</span> lozinka za vedranm:
-Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not in P2MP client or server mode
+Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not <span class="k">in</span> P2MP client or server mode
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> OpenVPN <span class="m">2</span>.4.9 <span class="o">[</span>git:makepkg/9b0dafca6c50b8bb+<span class="o">]</span> x86_64-pc-linux-gnu <span class="o">[</span>SSL <span class="o">(</span>OpenSSL<span class="o">)]</span> <span class="o">[</span>LZO<span class="o">]</span> <span class="o">[</span>LZ4<span class="o">]</span> <span class="o">[</span>EPOLL<span class="o">]</span> <span class="o">[</span>PKCS11<span class="o">]</span> <span class="o">[</span>MH/PKTINFO<span class="o">]</span> <span class="o">[</span>AEAD<span class="o">]</span> built on Apr <span class="m">20</span> <span class="m">2020</span>
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> library versions: OpenSSL <span class="m">1</span>.1.1g  <span class="m">21</span> Apr <span class="m">2020</span>, LZO <span class="m">2</span>.10
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> WARNING: INSECURE cipher with block size less than <span class="m">128</span> bit <span class="o">(</span><span class="m">64</span> bit<span class="o">)</span>.  This allows attacks like SWEET32.  Mitigate by using a --cipher with a larger block size <span class="o">(</span>e.g. AES-256-CBC<span class="o">)</span>.
@@ -5124,7 +5128,7 @@ Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> /usr/bin/ip addr add dev tun1 <span class="nb">local</span> <span class="m">172</span>.20.0.2 peer <span class="m">172</span>.20.0.1
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> TCP/UDP: Preserving recently used remote address: <span class="o">[</span>AF_INET6<span class="o">]</span>::1:1194
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> setsockopt<span class="o">(</span><span class="nv">IPV6_V6ONLY</span><span class="o">=</span><span class="m">0</span><span class="o">)</span>
-Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> TCP/UDP: Socket <span class="nb">bind</span> failed on <span class="nb">local</span> address <span class="o">[</span>AF_INET<span class="o">][</span>undef<span class="o">]</span>:1194: Address already in use <span class="o">(</span><span class="nv">errno</span><span class="o">=</span><span class="m">98</span><span class="o">)</span>
+Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> TCP/UDP: Socket <span class="nb">bind</span> failed on <span class="nb">local</span> address <span class="o">[</span>AF_INET<span class="o">][</span>undef<span class="o">]</span>:1194: Address already <span class="k">in</span> use <span class="o">(</span><span class="nv">errno</span><span class="o">=</span><span class="m">98</span><span class="o">)</span>
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> Exiting due to fatal error
 Tue May <span class="m">19</span> <span class="m">19</span>:51:49 <span class="m">2020</span> /usr/bin/ip addr del dev tun1 <span class="nb">local</span> <span class="m">172</span>.20.0.2 peer <span class="m">172</span>.20.0.1
 </code></pre></div>
@@ -5137,7 +5141,7 @@ secret<span class="w"> </span>static.key<span class="w"></span>
 </code></pre></div>
 <p>Pokretanje klijenta je sada uspješno:</p>
 <div class="highlight"><pre><span></span><code>$ sudo openvpn --config client.ovpn
-Tue May <span class="m">19</span> <span class="m">19</span>:52:48 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not in P2MP client or server mode
+Tue May <span class="m">19</span> <span class="m">19</span>:52:48 <span class="m">2020</span> disabling NCP mode <span class="o">(</span>--ncp-disable<span class="o">)</span> because not <span class="k">in</span> P2MP client or server mode
 Tue May <span class="m">19</span> <span class="m">19</span>:52:48 <span class="m">2020</span> OpenVPN <span class="m">2</span>.4.9 <span class="o">[</span>git:makepkg/9b0dafca6c50b8bb+<span class="o">]</span> x86_64-pc-linux-gnu <span class="o">[</span>SSL <span class="o">(</span>OpenSSL<span class="o">)]</span> <span class="o">[</span>LZO<span class="o">]</span> <span class="o">[</span>LZ4<span class="o">]</span> <span class="o">[</span>EPOLL<span class="o">]</span> <span class="o">[</span>PKCS11<span class="o">]</span> <span class="o">[</span>MH/PKTINFO<span class="o">]</span> <span class="o">[</span>AEAD<span class="o">]</span> built on Apr <span class="m">20</span> <span class="m">2020</span>
 Tue May <span class="m">19</span> <span class="m">19</span>:52:48 <span class="m">2020</span> library versions: OpenSSL <span class="m">1</span>.1.1g  <span class="m">21</span> Apr <span class="m">2020</span>, LZO <span class="m">2</span>.10
 Tue May <span class="m">19</span> <span class="m">19</span>:52:48 <span class="m">2020</span> WARNING: INSECURE cipher with block size less than <span class="m">128</span> bit <span class="o">(</span><span class="m">64</span> bit<span class="o">)</span>.  This allows attacks like SWEET32.  Mitigate by using a --cipher with a larger block size <span class="o">(</span>e.g. AES-256-CBC<span class="o">)</span>.
@@ -5278,10 +5282,10 @@ secret static-direction1.key 1
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

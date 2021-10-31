@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/c-mrezne-aplikacije/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -1469,6 +1469,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4974,6 +4976,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5075,30 +5079,30 @@
 <p>Zaglavlje <code>sys/socket.h</code> (<a href="https://www.gnu.org/software/libc/manual/html_node/Sockets.html">dokumentacija</a>) nudi pristup POSIX socket sučelju pod operacijskim sustavima sličnim Unixu.</p>
 <h2 id="posluziteljska-strana">Poslužiteljska strana</h2>
 <p>U ovom primjeru napisat ćemo poslužiteljsku stranu mrežne aplikacije. Pored zaglavlja uobičajenih za programski jezik C koja nude često korištene pomoćne funkcije, uključujemo i <code>sys/socket.h</code> za baratanje socketima i <code>netinet/in.h</code> za baratanje internetskim adresama.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
 </code></pre></div>
 <p>Definiramo pomoćnu funkciju <code>error()</code> koja prima dani niz znakova i ispisuje ga na ekran kao grešku korištenjem funkcije <code>perror()</code>, a zatim završava izvođenje programa korištenjem funkcije <code>exit()</code> i argumentom različitim od 0, koji označava da program nije završio izvođenje na uobičajen način.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="nf">error</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">perror</span> <span class="p">(</span><span class="n">msg</span><span class="p">);</span>
-  <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">error</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">perror</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Unutar funkcije <code>main()</code> provjerava se je li korisnik unio dovoljan broj argumenata; u slučaju da nije, program završava izvođenje.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span>
-<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;ERROR, no port provided</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-      <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ERROR, no port provided</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim deklariramo varijable koje ćemo kasnije koristiti:</p>
 <ul>
@@ -5107,137 +5111,137 @@
 <li><code>clilen</code> je duljina adrese klijenta (kod IP adresa verzije 4 to je 32 bita, ali općenito ne mora biti),</li>
 <li><code>serv_addr</code> i <code>cli_addr</code> su adrese poslužitelja i klijenta.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">newsockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-<span class="kt">socklen_t</span> <span class="n">clilen</span><span class="p">;</span>
-<span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">,</span> <span class="n">cli_addr</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="n">portno</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span><span class="w"></span>
+<span class="kt">socklen_t</span><span class="w"> </span><span class="n">clilen</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="n">cli_addr</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Vršimo stvaranje socketa, i javljamo grešku u slučaju da nije uspješno.</p>
-<div class="highlight"><pre><span></span><code><span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Postavljamo bajtove u memoriji koja pripada strukturi <code>serv_addr</code> na vrijednost 0, kako bi u njih mogli zapisati familiju adresa (ovdje <code>AF_INET</code>) i samu adresu (ovdje <code>INADDR_ANY</code>, što znači da će poslužitelj primati sa svih adresa koje poznaje kao svoje). Zatim postavljamo vrijednost broja vrata na vrijednost koju je korisnik dao kao argument, uz prethodnu pretvorbu znakovnog niza u cijeli broj korištenjem funkcije <code>atoi()</code> (<a href="https://en.cppreference.com/w/c/string/byte/atoi">C dokumentacija</a>, <a href="https://en.cppreference.com/w/cpp/string/byte/atoi">C++ dokumentacija</a>). Funkcija <code>htons()</code> služi za pretvorbu zapisa broja iz domaćinskog u mrežni, <a href="https://en.wikipedia.org/wiki/Endianness">u slučaju da nisu isti po pitanju poretka bajtova</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">memset</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
-<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
-<span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span> <span class="p">(</span><span class="n">portno</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span><span class="w"></span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w"></span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INADDR_ANY</span><span class="p">;</span><span class="w"></span>
+<span class="n">portno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="w"> </span><span class="p">(</span><span class="n">portno</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon stvaranja socketa i postavljanja adrese slijedi <code>bind()</code>, odnosno pridruživanje socketa adresi, te <code>listen()</code>, odnosno postavljanje socketa u stanje u kojem čeka povezivanje klijenata. U slučaju da dođe do greške, ona se ispisuje na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">bind</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span>
-          <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR on binding&quot;</span><span class="p">);</span>
-<span class="n">listen</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bind</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR on binding&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">listen</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon povezivanja klijenta prihvaća ga se funkcijom <code>accept()</code>, a njegova se adresa sprema u varijablu <code>cli_addr</code>. U slučaju da dođe do greške, ona se ispisuje na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="n">clilen</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">cli_addr</span><span class="p">);</span>
-<span class="n">newsockfd</span> <span class="o">=</span> <span class="n">accept</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span>
-                    <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">cli_addr</span><span class="p">,</span>
-                    <span class="o">&amp;</span><span class="n">clilen</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">newsockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR on accept&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">clilen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">cli_addr</span><span class="p">);</span><span class="w"></span>
+<span class="n">newsockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accept</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cli_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="o">&amp;</span><span class="n">clilen</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR on accept&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Sve vrijednosti u međuspremniku se postavljaju na 0, a zatim se vrši čitanje (funkcija <code>read()</code>). Vrijednost varijable <code>n</code> bit će broj pročitanih znakova; u slučaju da dođe do greške, bit će manji od 0 i greška će se ispisati na ekran. Zatim se na ekrani ispisuje <code>Here is the message:</code> i sadržaj poruke koju je klijent poslao.</p>
-<div class="highlight"><pre><span></span><code><span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">read</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span>
-<span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Here is the message: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Here is the message: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Klijentu se šalje <code>I got your message</code> poruka zapisivanjem u socket ((funkcija <code>write()</code>). Vrijednost varijable <code>n</code> bit će broj zapisanih znakova; u slučaju da dođe do greške, bit će manji od 0 i greška će se ispisati na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="n">write</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span> <span class="s">&quot;I got your message&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;I got your message&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Zatvara se prvo socket koji je korišten za komunikaciju s tim klijentom, a zatim i socket koji služi za povezivanje klijenata. Naredba <code>return 0;</code> završava funkciju <code>main()</code>.</p>
-<div class="highlight"><pre><span></span><code>  <span class="n">close</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">);</span>
-  <span class="n">close</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupan programski primjera koji opisujemo u dijelovima dan je postavljen ispod kako bi olakšali kopiranje koda za isprobavanje i vježbu.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span>
-<span class="nf">error</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">perror</span> <span class="p">(</span><span class="n">msg</span><span class="p">);</span>
-  <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">error</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">perror</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span>
-<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;ERROR, no port provided</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-      <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">newsockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">;</span>
-  <span class="kt">socklen_t</span> <span class="n">clilen</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-  <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">,</span> <span class="n">cli_addr</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-  <span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span>
-  <span class="n">memset</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
-  <span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
-  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span> <span class="p">(</span><span class="n">portno</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">bind</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span>
-            <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR on binding&quot;</span><span class="p">);</span>
-  <span class="n">listen</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-  <span class="n">clilen</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">cli_addr</span><span class="p">);</span>
-  <span class="n">newsockfd</span> <span class="o">=</span> <span class="n">accept</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span>
-                      <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">cli_addr</span><span class="p">,</span>
-                      <span class="o">&amp;</span><span class="n">clilen</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">newsockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR on accept&quot;</span><span class="p">);</span>
-  <span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">read</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span>
-  <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Here is the message: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">write</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span> <span class="s">&quot;I got your message&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span>
-  <span class="n">close</span> <span class="p">(</span><span class="n">newsockfd</span><span class="p">);</span>
-  <span class="n">close</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ERROR, no port provided</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="n">portno</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">clilen</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="n">cli_addr</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">portno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INADDR_ANY</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="w"> </span><span class="p">(</span><span class="n">portno</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bind</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR on binding&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">listen</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">clilen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">cli_addr</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">newsockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accept</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cli_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="o">&amp;</span><span class="n">clilen</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR on accept&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Here is the message: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;I got your message&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">newsockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="klijentska-strana">Klijentska strana</h2>
 <p>Sad ćemo napisati i klijentsku stranu za ranije napisani poslužitelj. Zaglavlja su ista, osim što klijentska strana uključuje i <code>netdb.h</code> koje nam nudi funkciju za pretvorbu DNS adresa u IP adrese.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
 </code></pre></div>
 <p>Funkcija za ispis greške ista je kao kod poslužitelja.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span>
-<span class="nf">error</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">perror</span> <span class="p">(</span><span class="n">msg</span><span class="p">);</span>
-  <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"></span>
+<span class="nf">error</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">perror</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Kao i kod poslužitelja, unutar funkcije <code>main()</code> provjerava se je li korisnik unio dovoljan broj argumenata; u slučaju da nije, program završava izvođenje.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span>
-<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;usage %s hostname port</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-      <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;usage %s hostname port</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim deklariramo varijable koje ćemo kasnije koristiti:</p>
 <ul>
@@ -5246,120 +5250,120 @@
 <li><code>server</code> je struktura koja sadrži informacije o poslužitelju,</li>
 <li><code>serv_addr</code> je adresa poslužitelja.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
-<span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
-<span class="k">struct</span> <span class="nc">hostent</span> <span class="o">*</span><span class="n">server</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">portno</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">hostent</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">;</span><span class="w"></span>
+<span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span><span class="w"></span>
 </code></pre></div>
 <p>Vršimo stvaranje socketa, i javljamo grešku u slučaju da nije uspješno.</p>
-<div class="highlight"><pre><span></span><code><span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Funkcija <code>gethostbyname()</code> prima kao argument niz znakova koje je korisnik unio kao argument kod pokretanja programa. Taj niz znakova može biti IP ili DNS adresa zapisana kao niz znakova (obzirom da ćemo koristiti klijent i poslužitelj na istom računalu, to će biti "127.0.0.1" ili "localhost").</p>
-<div class="highlight"><pre><span></span><code><span class="n">server</span> <span class="o">=</span> <span class="n">gethostbyname</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">server</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;ERROR, no such host</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gethostbyname</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">server</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ERROR, no such host</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Postavljamo bajtove u memoriji koja pripada strukturi <code>serv_addr</code> na vrijednost 0, kako bi u njih mogli zapisati familiju adresa (ovdje <code>AF_INET</code>) i samu adresu poslužitelja. Adresu poslužitelja dobivamo iz rezultata pretrage funkcijom <code>gethostbyname()</code>, koji je spremljen u varijablu <code>server</code>. Odatle funkcijom <code>memcpy()</code> vršimo kopiranje adrese u <code>serv_addr</code>.</p>
 <p>Zatim postavljamo vrijednost broja vrata na vrijednost koju je korisnik dao kao argument. Funkcije <code>atoi()</code> i <code>htons()</code> imaju isti cilj kao i kod poslužitelja.</p>
-<div class="highlight"><pre><span></span><code><span class="n">memset</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
-<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-<span class="n">memcpy</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span>
-       <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span>
-       <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
-<span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span> <span class="p">(</span><span class="n">portno</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span><span class="w"></span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w"></span>
+<span class="n">memcpy</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span><span class="w"></span>
+<span class="n">portno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="w"></span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="w"> </span><span class="p">(</span><span class="n">portno</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Povezivanje na server vrši se funkcijom <code>connect()</code>; ako je rezultat koji ona vrati manji od 0, došlo je do pogreške i informacija o tome ispisuje se na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">connect</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR connecting&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connect</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR connecting&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Od korisnika se traži unos poruke koja će se poslati, međuspremnik za poruku se postavlja na vrijednost 0, a zatim se poruka koju korisnik unese zapisuje u njega.</p>
-<div class="highlight"><pre><span></span><code><span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Please enter the message: &quot;</span><span class="p">);</span>
-<span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-<span class="n">fgets</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Please enter the message: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="n">fgets</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Poruka se zapisuje u socket korištenjem funkcije <code>write()</code>. Vrijednost varijable <code>n</code> bit će broj zapisanih znakova; u slučaju da dođe do greške, bit će manji od 0 i greška će se ispisati na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="n">write</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">strlen</span> <span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Vrijednost međuspremnika se ponovno postavlja na 0, i u njega se učitava korištenjem funkcije <code>read()</code> poruka primljena od poslužitelja. Vrijednost varijable <code>n</code> bit će broj pročitanih znakova; u slučaju da dođe do greške, bit će manji od 0 i greška će se ispisati na ekran. Poruka se zatim ispisuje na ekran.</p>
-<div class="highlight"><pre><span></span><code><span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">read</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span>
-<span class="n">printf</span> <span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Vrši se zatvaranje socketa. Naredba <code>return 0;</code> završava funkciju <code>main()</code>.</p>
-<div class="highlight"><pre><span></span><code>  <span class="n">close</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupan programski primjera koji opisujemo u dijelovima dan je postavljen ispod kako bi olakšali kopiranje koda za isprobavanje i vježbu.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span>
-<span class="nf">error</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">perror</span> <span class="p">(</span><span class="n">msg</span><span class="p">);</span>
-  <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">error</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">perror</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span>
-<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;usage %s hostname port</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-      <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
-  <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
-  <span class="k">struct</span> <span class="nc">hostent</span> <span class="o">*</span><span class="n">server</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-  <span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-  <span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span>
-  <span class="n">server</span> <span class="o">=</span> <span class="n">gethostbyname</span> <span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">server</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;ERROR, no such host</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-      <span class="n">exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="n">memset</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
-  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-  <span class="n">memcpy</span> <span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span>
-         <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span>
-         <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
-  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span> <span class="p">(</span><span class="n">portno</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">connect</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR connecting&quot;</span><span class="p">);</span>
-  <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Please enter the message: &quot;</span><span class="p">);</span>
-  <span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-  <span class="n">fgets</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">write</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">strlen</span> <span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span>
-  <span class="n">memset</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">read</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">error</span> <span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span>
-  <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
-  <span class="n">close</span> <span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;usage %s hostname port</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">portno</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span> <span class="nc">hostent</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="n">portno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR opening socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gethostbyname</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">server</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">fprintf</span><span class="w"> </span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ERROR, no such host</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">memcpy</span><span class="w"> </span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="w"> </span><span class="p">(</span><span class="n">portno</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connect</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR connecting&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Please enter the message: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">fgets</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR writing to socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ERROR reading from socket&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">close</span><span class="w"> </span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="pregled-koristenih-funkcija">Pregled korištenih funkcija</h2>
 <p>Srž programa je, kronološki poredano:</p>
@@ -5469,10 +5473,10 @@ $ gcc -o client client.c
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

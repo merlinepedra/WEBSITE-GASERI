@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/rocm-rocprim/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3737,6 +3737,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5001,6 +5003,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5152,453 +5156,453 @@
 <p>Službeni primjer <code>example/example_temporary_storage.cpp</code> (<a href="https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/example/example_temporary_storage.cpp">datoteka u repozitoriju rocPRIM na GitHubu</a>) za prevođenje u izvršni kod zahtijeva i datoteku zaglavlja <code>example/example_utils.hpp</code> (<a href="https://github.com/ROCmSoftwarePlatform/rocPRIM/blob/develop/example/example_utils.hpp">datoteka u repozitoriju rocPRIM na GitHubu</a>).</p>
 <p>Program pokazuje korištenje 4 vrste memorije za izvođenje <a href="https://en.wikipedia.org/wiki/Prefix_sum">prefiksne sume</a> (poznate i pod nazivom kumulativna suma, inkluzivna suma, sken) primjenom redukcije pojedinih elemenata na jedan element zbrajanjem.</p>
 <p>Promotrimo funkciju <code>main()</code> od koje program kreće:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="c1">// Initializing HIP device</span>
-  <span class="n">hipDeviceProp_t</span> <span class="n">device_properties</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Initializing HIP device</span>
+<span class="w">  </span><span class="n">hipDeviceProp_t</span><span class="w"> </span><span class="n">device_properties</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_properties</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="c1">// Show device info</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Selected device:         %s  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">device_properties</span><span class="p">.</span><span class="n">name</span>              <span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Available global memory: %lu </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">device_properties</span><span class="p">.</span><span class="n">totalGlobalMem</span>    <span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Shared memory per block: %lu </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">device_properties</span><span class="p">.</span><span class="n">sharedMemPerBlock</span> <span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Warp size:               %d  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">device_properties</span><span class="p">.</span><span class="n">warpSize</span>          <span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Max threads per block:   %d  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">device_properties</span><span class="p">.</span><span class="n">maxThreadsPerBlock</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Show device info</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Selected device:         %s  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">device_properties</span><span class="p">.</span><span class="n">name</span><span class="w">              </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Available global memory: %lu </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">device_properties</span><span class="p">.</span><span class="n">totalGlobalMem</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Shared memory per block: %lu </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">device_properties</span><span class="p">.</span><span class="n">sharedMemPerBlock</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Warp size:               %d  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">device_properties</span><span class="p">.</span><span class="n">warpSize</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Max threads per block:   %d  </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">device_properties</span><span class="p">.</span><span class="n">maxThreadsPerBlock</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Running kernels</span>
-  <span class="n">run_example_global_memory_storage</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
-  <span class="n">run_example_shared_memory</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
-  <span class="n">run_example_union_storage_types</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
-  <span class="n">run_example_dynamic_shared_memory</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// Running kernels</span>
+<span class="w">  </span><span class="n">run_example_global_memory_storage</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">run_example_shared_memory</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">run_example_union_storage_types</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">run_example_dynamic_shared_memory</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U funkcije se prvo inicijalizira HIP uređaj i provjerava da je inicijalizacija uspješna.</p>
 <p>Zatim se objekt <code>device_properties</code> koristi za ispis svojstava uređaja kao što su ime, dostupna globalna memorija (na suvremnim grafičkim karticama to je GDDR6 ili HBM memorija koja se navodi u specifikacijama), dijeljena memorija po bloku...</p>
 <p>Kao zadnji korak, pozivaju se sve funkcije za pokretanje svih zrna u ovom programu s parametrima koji definiraju veličinu vektora. U nastavku analiziramo svaku od pojedinih funkcija.</p>
 <p>Funkcija za pokretanje zrna koje koristi globalnu memoriju je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">run_example_global_memory_storage</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
-  <span class="c1">// Make sure size is a multiple of block_size</span>
-  <span class="k">auto</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">block_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">block_size</span><span class="p">;</span>
-  <span class="n">size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="o">*</span> <span class="n">grid_size</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">run_example_global_memory_storage</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Make sure size is a multiple of block_size</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">grid_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">block_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grid_size</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Generate input on host and copy it to device</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_input</span> <span class="o">=</span> <span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-  <span class="c1">// Generating expected output for kernel</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_expected_output</span> <span class="o">=</span> <span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span> <span class="n">block_size</span><span class="p">);</span>
-  <span class="c1">// For reading device output</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Generate input on host and copy it to device</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Generating expected output for kernel</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_expected_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// For reading device output</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Device memory allocation</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_input</span><span class="p">;</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_output</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span> <span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
+<span class="w">  </span><span class="c1">// Device memory allocation</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_input</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_output</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
 
-  <span class="c1">// Writing input data to device memory</span>
-  <span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Writing input data to device memory</span>
+<span class="w">  </span><span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Allocating temporary storage in global memory</span>
-  <span class="k">using</span> <span class="n">storage_type</span> <span class="o">=</span> <span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span>
-  <span class="n">storage_type</span> <span class="o">*</span><span class="n">global_storage</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span> <span class="p">(</span><span class="n">grid_size</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span>
+<span class="w">  </span><span class="c1">// Allocating temporary storage in global memory</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">storage_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">storage_type</span><span class="w"> </span><span class="o">*</span><span class="n">global_storage</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">grid_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span><span class="w"></span>
 
-  <span class="c1">// Launching kernel example_shared_memory</span>
-  <span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-    <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>
-    <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span><span class="p">,</span> <span class="n">global_storage</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Launching kernel example_shared_memory</span>
+<span class="w">  </span><span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">global_storage</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Reading output from device</span>
-  <span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">device_output</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Reading output from device</span>
+<span class="w">  </span><span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Validating output</span>
-  <span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span>
-    <span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">host_expected_output</span><span class="p">)</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Validating output</span>
+<span class="w">  </span><span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_expected_output</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">global_storage</span><span class="p">));</span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">global_storage</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Kernel run_example_global_memory_storage run was successful!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Kernel run_example_global_memory_storage run was successful!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U deklaraciji ove funkcije možemo vidjeti da je inicijalizirana varijabla size tipa <code>size_t</code>, koju ćemo koristiti u sljedećim koracima.</p>
 <p>Na početku funkcije možemo vidjeti da je veličina bloka postavljena na 265:</p>
-<div class="highlight"><pre><span></span><code><span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Kako nam je kasnije u kodu potrebna veličina mreže, moramo ju saznati, a to ćemo postići na sljedeći način, pritom koristeći prije spomenutu varijablu <em>size</em> koja mora biti umnožak od veličine bloka i mreže:</p>
-<div class="highlight"><pre><span></span><code><span class="k">auto</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">block_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">block_size</span><span class="p">;</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="o">*</span> <span class="n">grid_size</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">grid_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">block_size</span><span class="p">;</span><span class="w"></span>
+<span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grid_size</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>U sljedećem koraku funkcije generiraju se unos, očekivani ispis i dobiveni ispis. Oni su svi tipa <code>std::vector&lt;T&gt;</code> (za više informacija pogledajte <a href="https://en.cppreference.com/w/cpp/container/vector">cppreference</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_input</span> <span class="o">=</span> <span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_expected_output</span> <span class="o">=</span> <span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span> <span class="n">block_size</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_expected_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Slijedi alokacija memorije uređaja. Potrebno je alocirati memoriju i za unos i za ispis. Putem <code>HIP_CHECK</code> provjeravamo hoće li alokacija biti uspješna. Alokaciju memorije za unos i ispis vršimo putem funkcije hipMalloc na sljedeći način (za više informacija o <code>hipMalloc()</code> možete pogledati <a href="https://rocmdocs.amd.com/en/latest/ROCm_API_References/HIP_API/Memory-Management.html">službenu dokumentaciju</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="n">T</span> <span class="o">*</span> <span class="n">device_input</span><span class="p">;</span>
-<span class="n">T</span> <span class="o">*</span> <span class="n">device_output</span><span class="p">;</span>
-<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
-<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span> <span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
+<div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_input</span><span class="p">;</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_output</span><span class="p">;</span><span class="w"></span>
+<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
+<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
 </code></pre></div>
 <p>Koristimo prethodno definirane varijable <code>device_input</code> i <code>host_input</code> za upisivanje unosa na za to predodređenu memoriju na uređaju.</p>
 <p>Slijedi alokacija privremene pohrane podataka u globalnoj memoriji:</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">storage_type</span> <span class="o">=</span> <span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span>
-<span class="n">storage_type</span> <span class="o">*</span><span class="n">global_storage</span><span class="p">;</span>
-<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span> <span class="p">(</span><span class="n">grid_size</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span>
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">storage_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span><span class="w"></span>
+<span class="n">storage_type</span><span class="w"> </span><span class="o">*</span><span class="n">global_storage</span><span class="p">;</span><span class="w"></span>
+<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">grid_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span><span class="w"></span>
 </code></pre></div>
 <p>Ovdje se javlja prethodno definirana funkcija rocPRIM-a, <code>block_scan()</code>. Za više informacija pogledajte podnaslov <em>Block-wide</em>. Ponovno se, slično prethodnim koracima, putem <code>HIP_CHECK</code> traži provjera uspješne alokacije memorije hipMalloc.</p>
 <p>Pokreće se zrno koje koristi globalnu memoriju za pohranu (više informacija o funkciji <code>hipLaunchKernellGGL()</code> koja se koristi u ovom primjeru možete saznati u <a href="https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-GUIDE.html">službenoj dokumentaciji</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-  <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>
-  <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span><span class="p">,</span> <span class="n">global_storage</span>
-<span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">global_storage</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Prije nego što pogledamo kojeg je zrno oblika, postoji još par koraka pri kraju ove funkcije. Sljedeće što je potrebno je čitanje ispisa sa uređaja:</p>
-<div class="highlight"><pre><span></span><code><span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">device_output</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Taj je ispis potrebno validirati odnosno pokrenuti provjeru da se utvrdi je li sve u redu sa ispisom:</p>
-<div class="highlight"><pre><span></span><code><span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span>
-  <span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">host_expected_output</span><span class="p">)</span>
-<span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_expected_output</span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Kada su svi koraci zadovoljeni, sada je vrijeme za oslobađanje memorije koju smo prethodno alocirali, i pritom provjeravamo hoće li ta akcija proći uspješno, a to činimo na sljedeći način:</p>
-<div class="highlight"><pre><span></span><code><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span>
-<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span>
-<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">global_storage</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span><span class="w"></span>
+<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span><span class="w"></span>
+<span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">global_storage</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Ako je sve prošlo po planu, funkcija će ispisati da je pokretanje zrna bilo uspješno.</p>
 <p>Uspješno smo prošli kroz prvi primjer pokretanja zrna.</p>
 <p>Naposlijetku, zrno koje smo pokretali je oblika:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Kernel 4 - Using global memory for storage</span>
-<span class="k">template</span><span class="o">&lt;</span>
-  <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">BlockSize</span><span class="p">,</span>
-  <span class="k">class</span> <span class="nc">T</span>
-<span class="o">&gt;</span>
-<span class="n">__global__</span>
-<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span> <span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span>
-<span class="kt">void</span> <span class="n">example_global_memory_storage</span><span class="p">(</span>
-  <span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span>
-  <span class="n">T</span> <span class="o">*</span><span class="n">output</span><span class="p">,</span>
-  <span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="o">&gt;::</span><span class="n">storage_type</span> <span class="o">*</span><span class="n">global_storage</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="c1">// Indexing for  this block</span>
-  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">hipBlockIdx_x</span> <span class="o">*</span> <span class="n">BlockSize</span><span class="p">)</span> <span class="o">+</span> <span class="n">hipThreadIdx_x</span><span class="p">;</span>
-  <span class="c1">// specialize block_scan for type T and block of 256 threads</span>
-  <span class="k">using</span> <span class="n">block_scan_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span>
-  <span class="c1">// Variables required for performing a scan</span>
-  <span class="n">T</span> <span class="n">input_value</span><span class="p">,</span> <span class="n">output_value</span><span class="p">;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span> <span class="nc">T</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"></span>
+<span class="n">__global__</span><span class="w"></span>
+<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">example_global_memory_storage</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="w"> </span><span class="o">*</span><span class="n">global_storage</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Indexing for  this block</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hipBlockIdx_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hipThreadIdx_x</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// specialize block_scan for type T and block of 256 threads</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">block_scan_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Variables required for performing a scan</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="n">input_value</span><span class="p">,</span><span class="w"> </span><span class="n">output_value</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// execute inclusive scan</span>
-  <span class="n">input_value</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// execute inclusive scan</span>
+<span class="w">  </span><span class="n">input_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"></span>
 
-  <span class="n">block_scan_type</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span>
-       <span class="n">input_value</span><span class="p">,</span> <span class="n">output_value</span><span class="p">,</span>
-       <span class="n">global_storage</span><span class="p">[</span><span class="n">hipBlockIdx_x</span><span class="p">],</span>
-       <span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span>
-    <span class="p">);</span>
+<span class="w">  </span><span class="n">block_scan_type</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span><span class="w"></span>
+<span class="w">       </span><span class="n">input_value</span><span class="p">,</span><span class="w"> </span><span class="n">output_value</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="n">global_storage</span><span class="p">[</span><span class="n">hipBlockIdx_x</span><span class="p">],</span><span class="w"></span>
+<span class="w">       </span><span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">output</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_value</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">output</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output_value</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ponovno u početnom dijelu koda stoji funkcija <code>block_scan</code>, nakon čega slijedi indeksiranje niti za blokove.</p>
 <p>Indeks niti računamo na način:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">hipBlockIdx_x</span> <span class="o">*</span> <span class="n">BlockSize</span><span class="p">)</span> <span class="o">+</span> <span class="n">hipThreadIdx_x</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hipBlockIdx_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hipThreadIdx_x</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Usmjerimo funkciju <code>block_scan</code> na T i block koji smo prije postavili na 256 niti.</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">block_scan_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">block_scan_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim postavljamo varijable koje su nam potrebne za provođenje skeniranja putem funkcije <code>block_scan_type</code> (specificirana funkcija s parametrom <code>type</code>, kako bi se odredilo koji algoritam funkcija treba pratiti).</p>
 <p>Skeniranje započinje, te se podatci pohranjuju u memoriju određenu za ispis.</p>
 <p>Prošli smo jedno zrno i njegovu funkciju za pokretanje. Nastavimo dalje promatrati sljedeće funkcije koje se pozivaju u prije pokazanoj main() funkciji.</p>
 <p>Sljedeća funkcija koju ćemo promatrati je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">run_example_shared_memory</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
-  <span class="c1">// Make sure size is a multiple of block_size</span>
-  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">block_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">block_size</span><span class="p">;</span>
-  <span class="n">size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="o">*</span> <span class="n">grid_size</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">run_example_shared_memory</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Make sure size is a multiple of block_size</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">grid_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">block_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grid_size</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Generate input on host and copy it to device</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_input</span> <span class="o">=</span> <span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-  <span class="c1">// Generating expected output for kernel</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_expected_output</span> <span class="o">=</span> <span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span> <span class="n">block_size</span><span class="p">);</span>
-  <span class="c1">// For reading device output</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Generate input on host and copy it to device</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Generating expected output for kernel</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_expected_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// For reading device output</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Device memory allocation</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_input</span><span class="p">;</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_output</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span> <span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
+<span class="w">  </span><span class="c1">// Device memory allocation</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_input</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_output</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
 
-  <span class="c1">// Writing input data to device memory</span>
-  <span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Writing input data to device memory</span>
+<span class="w">  </span><span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Launching kernel example_shared_memory</span>
-  <span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-    <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_shared_memory</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>
-    <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Launching kernel example_shared_memory</span>
+<span class="w">  </span><span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_shared_memory</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Reading output from device</span>
-  <span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">device_output</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Reading output from device</span>
+<span class="w">  </span><span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Validating output</span>
-  <span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span>
-    <span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">host_expected_output</span><span class="p">)</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Validating output</span>
+<span class="w">  </span><span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_expected_output</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Kernel run_example_shared_memory run was successful!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Kernel run_example_shared_memory run was successful!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Usporedite funkciju <code>run_example_global_memory_storage</code> s funkcijom <code>run_example_shared_memory</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">run_example_global_memory_storage</span>                                                        <span class="n">run_example_shared_memory</span>
+<div class="highlight"><pre><span></span><code><span class="n">run_example_global_memory_storage</span><span class="w">                                                        </span><span class="n">run_example_shared_memory</span><span class="w"></span>
 
-  <span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">);</span>                                    <span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">);</span><span class="w">                                    </span><span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">using</span> <span class="n">storage_type</span> <span class="o">=</span> <span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span>
-  <span class="n">storage_type</span> <span class="o">*</span><span class="n">global_storage</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span> <span class="p">(</span><span class="n">grid_size</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">storage_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typename</span> <span class="nc">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="o">&gt;::</span><span class="n">storage_type</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">storage_type</span><span class="w"> </span><span class="o">*</span><span class="n">global_storage</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">global_storage</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">grid_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">storage_type</span><span class="p">))));</span><span class="w"></span>
 
-<span class="n">hipLaunchKernelGGL</span><span class="p">(</span>                                                                      <span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-  <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>                           <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_shared_memory</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>
-  <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>                                                       <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>                                                                                    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span><span class="p">,</span> <span class="n">global_storage</span>                                              <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span>
-<span class="p">);</span>                                                                                       <span class="p">);</span>
+<span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w">                                                                      </span><span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_global_memory_storage</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span><span class="w">                           </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_shared_memory</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w">                                                       </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">                                                                                    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">global_storage</span><span class="w">                                              </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="w"></span>
+<span class="p">);</span><span class="w">                                                                                       </span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Primjetiti ćete da se razlikuju jedino u dijelu gdje se "run_example_global_memory_storage" bavi globalnom memorijom. Sve ostalo je postavljeno na jednak način.</p>
 <p>Naime, zrno koje se pokreće u funkciji <code>run_example_shared_memory()</code> je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span>
-  <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">BlockSize</span><span class="p">,</span>
-  <span class="k">class</span> <span class="nc">T</span>
-<span class="o">&gt;</span>
-<span class="n">__global__</span>
-<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span> <span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span>
-<span class="kt">void</span> <span class="n">example_shared_memory</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">output</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="c1">// Indexing for  this block</span>
-  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">hipBlockIdx_x</span> <span class="o">*</span> <span class="n">BlockSize</span><span class="p">)</span> <span class="o">+</span> <span class="n">hipThreadIdx_x</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span> <span class="nc">T</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"></span>
+<span class="n">__global__</span><span class="w"></span>
+<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">example_shared_memory</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Indexing for  this block</span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hipBlockIdx_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hipThreadIdx_x</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Allocating storage in shared memory for the block</span>
-  <span class="k">using</span> <span class="n">block_scan_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span>
-  <span class="n">__shared__</span> <span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">storage</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Allocating storage in shared memory for the block</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">block_scan_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">storage</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Variables required for performing a scan</span>
-  <span class="n">T</span> <span class="n">input_value</span><span class="p">,</span> <span class="n">output_value</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Variables required for performing a scan</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="n">input_value</span><span class="p">,</span><span class="w"> </span><span class="n">output_value</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Execute inclusive plus scan</span>
-  <span class="n">input_value</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// Execute inclusive plus scan</span>
+<span class="w">  </span><span class="n">input_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"></span>
 
-  <span class="n">block_scan_type</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span>
-       <span class="n">input_value</span><span class="p">,</span>
-       <span class="n">output_value</span><span class="p">,</span>
-       <span class="n">storage</span><span class="p">,</span>
-       <span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="n">block_scan_type</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span><span class="w"></span>
+<span class="w">       </span><span class="n">input_value</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="n">output_value</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="n">storage</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">output</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_value</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">output</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output_value</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Ovo zrno možete usporediti sa zrnom "example_global_memory_storage" koje smo prvo promatrali. Primjetiti ćete da su razlike minimalne,
 upravo iz razloga jer su oba zrna namijenjena za istu svrhu, no koriste dva različita tipa memorije.</p>
 <p>Konkretno ovo zrno namjenjeno je za dijeljenu memoriju, dok je "example_global_memory_storage" namijenjeno za globalnu memoriju.</p>
 <p>Funkcija sljedeća na redu pozivanja u main() funkciji je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">run_example_union_storage_types</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
-  <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">items_per_thread</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-  <span class="c1">// Make sure size is a multiple of block_size</span>
-  <span class="k">auto</span> <span class="n">grid_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">block_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">block_size</span><span class="p">;</span>
-  <span class="n">size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="o">*</span> <span class="n">grid_size</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">run_example_union_storage_types</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">items_per_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Make sure size is a multiple of block_size</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">grid_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">block_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grid_size</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Generate input on host and copy it to device</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_input</span> <span class="o">=</span> <span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-  <span class="c1">// Generating expected output for kernel</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_expected_output</span> <span class="o">=</span> <span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span> <span class="n">block_size</span><span class="p">,</span> <span class="n">items_per_thread</span><span class="p">);</span>
-  <span class="c1">// For reading device output</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Generate input on host and copy it to device</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_random_data</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Generating expected output for kernel</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_expected_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">items_per_thread</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// For reading device output</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_output</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Device memory allocation</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_input</span><span class="p">;</span>
-  <span class="n">T</span> <span class="o">*</span> <span class="n">device_output</span><span class="p">;</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span> <span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span>
+<span class="w">  </span><span class="c1">// Device memory allocation</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_input</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">device_output</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_input</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_output</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">typename</span> <span class="nc">decltype</span><span class="p">(</span><span class="n">host_output</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">)));</span><span class="w"></span>
 
-  <span class="c1">// Writing input data to device memory</span>
-  <span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span> <span class="n">host_input</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Writing input data to device memory</span>
+<span class="w">  </span><span class="n">hip_write_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">host_input</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Launching kernel example_union_storage_types</span>
-  <span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-     <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_union_storage_types</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">items_per_thread</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">),</span>
-     <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-     <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Launching kernel example_union_storage_types</span>
+<span class="w">  </span><span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_union_storage_types</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">items_per_thread</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Reading output from device</span>
-  <span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">device_output</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Reading output from device</span>
+<span class="w">  </span><span class="n">hip_read_device_memory</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Validating output</span>
-  <span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span>
-     <span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span> <span class="n">host_expected_output</span><span class="p">)</span>
-  <span class="p">);</span>
+<span class="w">  </span><span class="c1">// Validating output</span>
+<span class="w">  </span><span class="n">OUTPUT_VALIDATION_CHECK</span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="n">validate_device_output</span><span class="p">(</span><span class="n">host_output</span><span class="p">,</span><span class="w"> </span><span class="n">host_expected_output</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span>
-  <span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_input</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">HIP_CHECK</span><span class="p">(</span><span class="n">hipFree</span><span class="p">(</span><span class="n">device_output</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Kernel run_example_union_storage_types run was successful!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Kernel run_example_union_storage_types run was successful!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Vidjeli smo do sada dvije funkcije <code>run_example...</code> koje su podosta slične, razlikuju se u detaljima oko globalne memorije. Ova funkcija je isto tako slična, jedine razlike koje postoje su:</p>
-<div class="highlight"><pre><span></span><code><span class="p">...</span>
+<div class="highlight"><pre><span></span><code><span class="p">...</span><span class="w"></span>
 
-<span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
-<span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">items_per_thread</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="p">...</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">block_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">256</span><span class="p">;</span><span class="w"></span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">items_per_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">host_expected_output</span> <span class="o">=</span> <span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span> <span class="n">block_size</span><span class="p">,</span> <span class="n">items_per_thread</span><span class="p">);</span>
-<span class="p">...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">host_expected_output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_expected_output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">host_input</span><span class="p">,</span><span class="w"> </span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">items_per_thread</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 
-<span class="n">hipLaunchKernelGGL</span><span class="p">(</span>
-    <span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_union_storage_types</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span> <span class="n">items_per_thread</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">),</span>
-    <span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span> <span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">device_input</span><span class="p">,</span> <span class="n">device_output</span>
-<span class="p">);</span>
-<span class="p">...</span>
+<span class="n">hipLaunchKernelGGL</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">HIP_KERNEL_NAME</span><span class="p">(</span><span class="n">example_union_storage_types</span><span class="o">&lt;</span><span class="n">block_size</span><span class="p">,</span><span class="w"> </span><span class="n">items_per_thread</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">dim3</span><span class="p">(</span><span class="n">grid_size</span><span class="p">),</span><span class="w"> </span><span class="n">dim3</span><span class="p">(</span><span class="n">block_size</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">device_input</span><span class="p">,</span><span class="w"> </span><span class="n">device_output</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 </code></pre></div>
 <p>Ako pogledate malo pažljivije, ovdje je uvedena nova int varijabla; <em>items_per_thread</em>. S obzirom da se radi o unijama memorija, potrebna nam je ta varijabla za zrno koje pozivamo putem te funkcije, a ono je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span>
-  <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">BlockSize</span><span class="p">,</span>
-  <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">ItemsPerThread</span><span class="p">,</span>
-  <span class="k">class</span> <span class="nc">T</span>
-<span class="o">&gt;</span>
-<span class="n">__global__</span>
-<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span> <span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span>
-<span class="kt">void</span> <span class="n">example_union_storage_types</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span> <span class="n">T</span> <span class="o">*</span><span class="n">output</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="c1">// Specialize primitives</span>
-  <span class="k">using</span> <span class="n">block_scan_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan_algorithm</span><span class="o">::</span><span class="n">using_warp_scan</span>
-  <span class="o">&gt;</span><span class="p">;</span>
-  <span class="k">using</span> <span class="n">block_load_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_load</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">ItemsPerThread</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_load_method</span><span class="o">::</span><span class="n">block_load_transpose</span>
-  <span class="o">&gt;</span><span class="p">;</span>
-  <span class="k">using</span> <span class="n">block_store_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_store</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">ItemsPerThread</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_store_method</span><span class="o">::</span><span class="n">block_store_transpose</span>
-  <span class="o">&gt;</span><span class="p">;</span>
-  <span class="c1">// Allocate storage in shared memory for both scan and sort operations</span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span> <span class="nc">T</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"></span>
+<span class="n">__global__</span><span class="w"></span>
+<span class="n">__launch_bounds__</span><span class="p">(</span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ROCPRIM_DEFAULT_MIN_WARPS_PER_EU</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">example_union_storage_types</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Specialize primitives</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">block_scan_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan_algorithm</span><span class="o">::</span><span class="n">using_warp_scan</span><span class="w"></span>
+<span class="w">  </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">block_load_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_load</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_load_method</span><span class="o">::</span><span class="n">block_load_transpose</span><span class="w"></span>
+<span class="w">  </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">block_store_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_store</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_store_method</span><span class="o">::</span><span class="n">block_store_transpose</span><span class="w"></span>
+<span class="w">  </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Allocate storage in shared memory for both scan and sort operations</span>
 
-  <span class="n">__shared__</span> <span class="k">union</span>
-  <span class="p">{</span>
-     <span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">scan</span><span class="p">;</span>
-     <span class="k">typename</span> <span class="nc">block_load_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">load</span><span class="p">;</span>
-     <span class="k">typename</span> <span class="nc">block_store_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">store</span><span class="p">;</span>
-  <span class="p">}</span> <span class="n">storage</span><span class="p">;</span>
+<span class="w">  </span><span class="n">__shared__</span><span class="w"> </span><span class="k">union</span>
+  <span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">scan</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_load_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">load</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_store_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">store</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">storage</span><span class="p">;</span><span class="w"></span>
 
-  <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">items_per_block</span> <span class="o">=</span> <span class="n">BlockSize</span> <span class="o">*</span> <span class="n">ItemsPerThread</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">block_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">hipBlockIdx_x</span> <span class="o">*</span> <span class="n">items_per_block</span><span class="p">);</span>
+<span class="w">  </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">items_per_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BlockSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">block_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hipBlockIdx_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">items_per_block</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// Input/output array for block scan primitive</span>
-  <span class="n">T</span> <span class="n">values</span><span class="p">[</span><span class="n">ItemsPerThread</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// Input/output array for block scan primitive</span>
+<span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">ItemsPerThread</span><span class="p">];</span><span class="w"></span>
 
-  <span class="c1">// Loading data for this thread</span>
-  <span class="n">block_load_type</span><span class="p">().</span><span class="n">load</span><span class="p">(</span>
-     <span class="n">input</span> <span class="o">+</span> <span class="n">block_offset</span><span class="p">,</span>
-     <span class="n">values</span><span class="p">,</span>
-     <span class="n">storage</span><span class="p">.</span><span class="n">load</span>
-  <span class="p">);</span>
-  <span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Loading data for this thread</span>
+<span class="w">  </span><span class="n">block_load_type</span><span class="p">().</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="n">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">values</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">storage</span><span class="p">.</span><span class="n">load</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Perform scan</span>
-  <span class="n">block_scan_type</span><span class="p">()</span>
-     <span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span>
-         <span class="n">values</span><span class="p">,</span> <span class="c1">// as input</span>
-         <span class="n">values</span><span class="p">,</span> <span class="c1">// as output</span>
-         <span class="n">storage</span><span class="p">.</span><span class="n">scan</span><span class="p">,</span>
-         <span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span>
-     <span class="p">);</span>
-  <span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Perform scan</span>
+<span class="w">  </span><span class="n">block_scan_type</span><span class="p">()</span><span class="w"></span>
+<span class="w">     </span><span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span><span class="w"></span>
+<span class="w">         </span><span class="n">values</span><span class="p">,</span><span class="w"> </span><span class="c1">// as input</span>
+<span class="w">         </span><span class="n">values</span><span class="p">,</span><span class="w"> </span><span class="c1">// as output</span>
+<span class="w">         </span><span class="n">storage</span><span class="p">.</span><span class="n">scan</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">     </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Save elements to output</span>
-  <span class="n">block_store_type</span><span class="p">().</span><span class="n">store</span><span class="p">(</span>
-     <span class="n">output</span> <span class="o">+</span> <span class="n">block_offset</span><span class="p">,</span>
-     <span class="n">values</span><span class="p">,</span>
-     <span class="n">storage</span><span class="p">.</span><span class="n">store</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// Save elements to output</span>
+<span class="w">  </span><span class="n">block_store_type</span><span class="p">().</span><span class="n">store</span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="n">output</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">values</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">storage</span><span class="p">.</span><span class="n">store</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>U slučaju ovog zrna, koristiti će se operacije već definirane u samom rocPRIMu:</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">block_scan_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan_algorithm</span><span class="o">::</span><span class="n">using_warp_scan</span>
- <span class="o">&gt;</span><span class="p">;</span>
- <span class="k">using</span> <span class="n">block_load_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_load</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">ItemsPerThread</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_load_method</span><span class="o">::</span><span class="n">block_load_transpose</span>
- <span class="o">&gt;</span><span class="p">;</span>
- <span class="k">using</span> <span class="n">block_store_type</span> <span class="o">=</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_store</span><span class="o">&lt;</span>
-     <span class="n">T</span><span class="p">,</span> <span class="n">BlockSize</span><span class="p">,</span> <span class="n">ItemsPerThread</span><span class="p">,</span> <span class="n">rocprim</span><span class="o">::</span><span class="n">block_store_method</span><span class="o">::</span><span class="n">block_store_transpose</span>
- <span class="o">&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">block_scan_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_scan_algorithm</span><span class="o">::</span><span class="n">using_warp_scan</span><span class="w"></span>
+<span class="w"> </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">block_load_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_load</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_load_method</span><span class="o">::</span><span class="n">block_load_transpose</span><span class="w"></span>
+<span class="w"> </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">block_store_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_store</span><span class="o">&lt;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">BlockSize</span><span class="p">,</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">,</span><span class="w"> </span><span class="n">rocprim</span><span class="o">::</span><span class="n">block_store_method</span><span class="o">::</span><span class="n">block_store_transpose</span><span class="w"></span>
+<span class="w"> </span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Ovo su tzv. primitive (za više informacija o svakoj od ovih operacija pogledajte početak ovog teksta podnaslov <em>Block-wide</em>).</p>
 <p>Slijedi alokacija prostora za pohranu u dijeljenoj memoriji za ove operacije:</p>
-<div class="highlight"><pre><span></span><code><span class="n">__shared__</span> <span class="k">union</span>
-<span class="p">{</span>
-     <span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">scan</span><span class="p">;</span>
-     <span class="k">typename</span> <span class="nc">block_load_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">load</span><span class="p">;</span>
-     <span class="k">typename</span> <span class="nc">block_store_type</span><span class="o">::</span><span class="n">storage_type</span> <span class="n">store</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">storage</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">__shared__</span><span class="w"> </span><span class="k">union</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_scan_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">scan</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_load_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">load</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">typename</span> <span class="nc">block_store_type</span><span class="o">::</span><span class="n">storage_type</span><span class="w"> </span><span class="n">store</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">storage</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">constexpr</span> <span class="kt">int</span> <span class="n">items_per_block</span> <span class="o">=</span> <span class="n">BlockSize</span> <span class="o">*</span> <span class="n">ItemsPerThread</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">block_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">hipBlockIdx_x</span> <span class="o">*</span> <span class="n">items_per_block</span><span class="p">);</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">items_per_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BlockSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ItemsPerThread</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">block_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hipBlockIdx_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">items_per_block</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Stvara se input/output polje za skeniranje prije navedenih blokova, nakon čega se učitavaju dobiveni podatci u ovoj sekvenci naredbi. Pritom se pokreće i skeniranje:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Input/output array for block scan primitive</span>
- <span class="n">T</span> <span class="n">values</span><span class="p">[</span><span class="n">ItemsPerThread</span><span class="p">];</span>
+<span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">ItemsPerThread</span><span class="p">];</span><span class="w"></span>
 
 <span class="c1">// Loading data for this thread</span>
-<span class="n">block_load_type</span><span class="p">().</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">input</span> <span class="o">+</span> <span class="n">block_offset</span><span class="p">,</span>
-    <span class="n">values</span><span class="p">,</span>
-    <span class="n">storage</span><span class="p">.</span><span class="n">load</span>
-<span class="p">);</span>
-<span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span>
+<span class="n">block_load_type</span><span class="p">().</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">values</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">storage</span><span class="p">.</span><span class="n">load</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span><span class="w"></span>
 
 <span class="c1">// Perform scan</span>
-<span class="n">block_scan_type</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span>
-        <span class="n">values</span><span class="p">,</span> <span class="c1">// as input</span>
-        <span class="n">values</span><span class="p">,</span> <span class="c1">// as output</span>
-        <span class="n">storage</span><span class="p">.</span><span class="n">scan</span><span class="p">,</span>
-        <span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span>
-    <span class="p">);</span>
-<span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span>
+<span class="n">block_scan_type</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">inclusive_scan</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">values</span><span class="p">,</span><span class="w"> </span><span class="c1">// as input</span>
+<span class="w">        </span><span class="n">values</span><span class="p">,</span><span class="w"> </span><span class="c1">// as output</span>
+<span class="w">        </span><span class="n">storage</span><span class="p">.</span><span class="n">scan</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">rocprim</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="n">rocprim</span><span class="o">::</span><span class="n">syncthreads</span><span class="p">();</span><span class="w"></span>
 
 <span class="c1">// Save elements to output</span>
-<span class="n">block_store_type</span><span class="p">().</span><span class="n">store</span><span class="p">(</span>
-    <span class="n">output</span> <span class="o">+</span> <span class="n">block_offset</span><span class="p">,</span>
-    <span class="n">values</span><span class="p">,</span>
-    <span class="n">storage</span><span class="p">.</span><span class="n">store</span>
-<span class="p">);</span>
-<span class="p">}</span>
+<span class="n">block_store_type</span><span class="p">().</span><span class="n">store</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block_offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">values</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">storage</span><span class="p">.</span><span class="n">store</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Na kraju skeniranja podatci se pohranjuju u memoriju koja će se kopirati natrag na domaćina.</p>
                 
@@ -5683,10 +5687,10 @@ upravo iz razloga jer su oba zrna namijenjena za istu svrhu, no koriste dva razl
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

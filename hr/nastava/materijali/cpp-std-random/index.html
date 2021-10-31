@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/cpp-std-random/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -4923,6 +4923,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4949,16 +4951,16 @@
                 <h1 id="generiranje-pseudoslucajnih-brojeva-u-c-aplikacijama">Generiranje pseudoslučajnih brojeva u C++ aplikacijama</h1>
 <p>Od verzije standarda C++11 moguće je generirati (pseudo)slučajne brojeve korištenjem standardne biblioteke (<a href="https://en.cppreference.com/w/cpp/numeric/random">detaljna dokumentacija na cppreference.com</a>).</p>
 <p>Za početak ćemo uključiti zaglavlje <code>random</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;random&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span><span class="cp"></span>
 </code></pre></div>
 <p>Inicijalizirat ćemo generator <code>rd</code> tipa <code>std::random_device</code> (<a href="https://en.cppreference.com/w/cpp/numeric/random/random_device">dokumentacija na cppreference.com</a>) koji će nam trebati za sijanje pogona za generirane slučajnih brojeva:</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Inicijalizirat ćemo dva pogona za generiranje slučajnih brojeva. Prvi je tipa <code>std::default_random_engine</code> i implementacije standardne biblioteke definira po želi koji će od mogućih pogona biti korišten i prilikom inicijalizacije traži samo jednu vrijednost sjemenke slučajnih brojeva koja se tada generira pomoću generatora <code>rd</code>; drugi tipa <code>std::mt19937</code> i implementira (32-bitni) Mersenneov Twister i može koristiti više vrijednosti sjemenki pa inicijaliziramo varijablu <code>seed</code> tipa <code>std::seed_seq</code> koja te vrijednosti sadrži:</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">engine1</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="w"> </span><span class="nf">engine1</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span><span class="w"></span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">seed_seq</span> <span class="n">seed</span><span class="p">{</span><span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">()};</span>
-<span class="n">std</span><span class="o">::</span><span class="n">mt19937</span> <span class="n">engine2</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">seed_seq</span><span class="w"> </span><span class="n">seed</span><span class="p">{</span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">()};</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="nf">engine2</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Detalji o dostupnim predefiniranim pogonima i njihovim parametrima mogu se naći u dokumentaciji osnovnih pogona:</p>
 <ul>
@@ -4973,41 +4975,41 @@
 <li><a href="https://en.cppreference.com/w/cpp/numeric/random/shuffle_order_engine">std::shuffle_order_engine na cppreference.com</a>.</li>
 </ul>
 <p>Inicijalizirati ćemo za korištenje uniformnu cjelobrojnu distribuciju u rasponu od 1 do 10 i normalnu distribuciju sa srednjom vrijednosti 5.0 i standardnom devijacijom 1.8:</p>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">uniform_dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span> <span class="n">normal_dist</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">uniform_dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">normal_dist</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.8</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Slučajne vrijednosti generiramo korištenjem distribucije i pogona na način:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">value1</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="p">(</span><span class="n">engine1</span><span class="p">);</span>
-<span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (uniform integer distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">value1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uniform_dist</span><span class="p">(</span><span class="n">engine1</span><span class="p">);</span><span class="w"></span>
+<span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (uniform integer distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value1</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">double</span> <span class="n">value2</span> <span class="o">=</span> <span class="n">normal_dist</span><span class="p">(</span><span class="n">engine2</span><span class="p">);</span>
-<span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (normal distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">value2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal_dist</span><span class="p">(</span><span class="n">engine2</span><span class="p">);</span><span class="w"></span>
+<span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (normal distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value2</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupan kod je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;fmt/format.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fmt/format.h&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;random&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"></span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">engine1</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="w"> </span><span class="n">engine1</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span><span class="w"></span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">seed_seq</span> <span class="n">seed</span><span class="p">{</span><span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">(),</span> <span class="n">rd</span><span class="p">()};</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">mt19937</span> <span class="n">engine2</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">seed_seq</span><span class="w"> </span><span class="n">seed</span><span class="p">{</span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">(),</span><span class="w"> </span><span class="n">rd</span><span class="p">()};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">engine2</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"></span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">uniform_dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span> <span class="n">normal_dist</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">uniform_dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">normal_dist</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
 
-    <span class="kt">int</span> <span class="n">value1</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="p">(</span><span class="n">engine1</span><span class="p">);</span>
-    <span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (uniform integer distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uniform_dist</span><span class="p">(</span><span class="n">engine1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (uniform integer distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value1</span><span class="p">);</span><span class="w"></span>
 
-    <span class="kt">double</span> <span class="n">value2</span> <span class="o">=</span> <span class="n">normal_dist</span><span class="p">(</span><span class="n">engine2</span><span class="p">);</span>
-    <span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (normal distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal_dist</span><span class="p">(</span><span class="n">engine2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">fmt</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Randomly-chosen value (normal distribution): {}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value2</span><span class="p">);</span><span class="w"></span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
@@ -5100,10 +5102,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

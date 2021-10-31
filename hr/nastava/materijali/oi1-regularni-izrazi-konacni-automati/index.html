@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/oi1-regularni-izrazi-konacni-automati/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2421,6 +2421,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5021,6 +5023,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5369,19 +5373,19 @@ Jednostavnija i evidentnija uporaba jest u groupnoj sintaksi DTD-a.
 <li>Optimalan alat za izvršavanje regularnog izraza.</li>
 <li>Mogu opisivati i mnoge druge pojave vezane za svijet oko nas.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>digraph finite_state_machine {
-  rankdir=LR;
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">finite_state_machine</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="na">rankdir</span><span class="p">=</span><span class="s">LR</span><span class="p">;</span><span class="w"></span>
 
-  node [ shape = point ]; s
-  node [ shape = doublecircle, label = &quot;S1&quot; ] S1;
-  node [ shape = circle, label = &quot;S2&quot; ] S2;
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">point</span><span class="w"> </span><span class="p">];</span><span class="w"> </span><span class="nb">s</span><span class="w"></span>
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">doublecircle</span><span class="p">,</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nt">S1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">circle</span><span class="p">,</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nt">S2</span><span class="p">;</span><span class="w"></span>
 
-  s -&gt; S1;
-  S1 -&gt; S1 [ label = &quot;1&quot; ];
-  S1 -&gt; S2 [ label = &quot;0&quot; ];
-  S2 -&gt; S1 [ label = &quot;0&quot; ];
-  S2 -&gt; S2 [ label = &quot;1&quot; ];
-}
+<span class="w">  </span><span class="nb">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">S1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S1</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">S1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S2</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">S2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S1</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">S2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S2</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <ul>
 <li>Čitanjem određenog ulaznog znaka, konačni automat prelazi u novo stanje i generira neki izlazni znak.</li>
@@ -5469,18 +5473,18 @@ $$</p>
 </li>
 <li>
 <p>Grafički prikaz istog automata:</p>
-<div class="highlight"><pre><span></span><code>digraph finite_state_machine {
-  rankdir=LR;
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">finite_state_machine</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="na">rankdir</span><span class="p">=</span><span class="s">LR</span><span class="p">;</span><span class="w"></span>
 
-  node [ shape = point ]; s
-  node [ shape = circle, label = &quot;S&quot; ] S;
-  node [ shape = doublecircle, label = &quot;A&quot; ] A;
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">point</span><span class="w"> </span><span class="p">];</span><span class="w"> </span><span class="nb">s</span><span class="w"></span>
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">circle</span><span class="p">,</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nt">S</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">doublecircle</span><span class="p">,</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="nt">A</span><span class="p">;</span><span class="w"></span>
 
-  s -&gt; S;
-  S -&gt; A [ label = &quot;a, b&quot; ];
-  A -&gt; S [ label = &quot;a&quot; ];
-  A -&gt; A [ label = &quot;b&quot; ];
-}
+<span class="w">  </span><span class="nb">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">S</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">A</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;a, b&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">A</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">S</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="nt">A</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">A</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
@@ -5598,10 +5602,10 @@ $$</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

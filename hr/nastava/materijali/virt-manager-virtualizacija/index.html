@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/virt-manager-virtualizacija/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -2029,6 +2029,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5028,6 +5030,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5186,13 +5190,13 @@ Usage: cloud-localds <span class="o">[</span> options <span class="o">]</span> o
      -d <span class="p">|</span> --disk-format D    disk format to output. default: raw
                              can be anything supported by qemu-img or
                              tar, tar-seed-local, tar-seed-net
-     -H <span class="p">|</span> --hostname    H    <span class="nb">set</span> hostname in metadata to H
+     -H <span class="p">|</span> --hostname    H    <span class="nb">set</span> hostname <span class="k">in</span> metadata to H
      -f <span class="p">|</span> --filesystem  F    filesystem format <span class="o">(</span>vfat or iso<span class="o">)</span>, default: iso9660
 
      -i <span class="p">|</span> --interfaces  F    write network interfaces file into metadata
      -N <span class="p">|</span> --network-config F write network config file to <span class="nb">local</span> datasource
      -m <span class="p">|</span> --dsmode      M    add <span class="s1">&#39;dsmode&#39;</span> <span class="o">(</span><span class="s1">&#39;local&#39;</span> or <span class="s1">&#39;net&#39;</span><span class="o">)</span> to the metadata
-                             default in cloud-init is <span class="s1">&#39;net&#39;</span>, meaning network is
+                             default <span class="k">in</span> cloud-init is <span class="s1">&#39;net&#39;</span>, meaning network is
                              required.
      -V <span class="p">|</span> --vendor-data F    vendor-data file
      -v <span class="p">|</span> --verbose          increase verbosity
@@ -5309,8 +5313,8 @@ backend myservers
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Address received is: <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;myIP&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Headers</span><span class="p">({</span> <span class="nx">Accept</span><span class="o">:</span> <span class="s2">&quot;application/json&quot;</span> <span class="p">});</span>
-    <span class="kr">const</span> <span class="nx">myInit</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">headers</span><span class="o">:</span> <span class="nx">myHeaders</span> <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">myHeaders</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Headers</span><span class="p">({</span> <span class="nx">Accept</span><span class="o">:</span> <span class="s2">&quot;application/json&quot;</span> <span class="p">});</span>
+    <span class="kd">const</span> <span class="nx">myInit</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">headers</span><span class="o">:</span> <span class="nx">myHeaders</span> <span class="p">};</span>
     <span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;http://app.miletic.net/ip/&quot;</span><span class="p">,</span> <span class="nx">myInit</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -5408,10 +5412,10 @@ backend myservers
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>

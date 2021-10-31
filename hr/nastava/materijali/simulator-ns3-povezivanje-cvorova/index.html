@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/simulator-ns3-povezivanje-cvorova/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.db9e7362.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -3905,6 +3905,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -4974,6 +4976,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
   
   
@@ -5037,51 +5041,51 @@
 <h2 id="jednostavna-simulacija-s-izravno-povezanim-cvorovima">Jednostavna simulacija s izravno povezanim čvorovima</h2>
 <p>U ovom primjeru stvorit ćemo dva čvora; instalirat ćemo komunikacijske uređaje i podršku za potrebne protokole i uspostaviti komunikaciju korištenjem UDP-a između klijentske aplikacije na prvom čvoru i poslužiteljske na drugom.</p>
 <p>Na početku programa uključujemo zaglavlja pojedinih modula simulatora ns-3 naredbom <code>#include&lt;&gt;</code>. Svi simboli koje ns-3 koristi su unutar imenika <code>ns3</code>; zbog toga je potrebno uključiti korištenje tog imenika kako bi pojednostavili pisanje koda (u protivnom bilo bi potrebno pisati, primjerice, <code>ns3::NodeContainer</code> umjesto <code>NodeContainer</code> i <code>ns3::PointToPointHelper</code> umjesto <code>PointToPointHelper</code>).</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 </code></pre></div>
 <p>using namespace ns3;</p>
 <p>Cjelokupan program nalazi se unutar funkcije <code>main()</code>, što je i realno za očekivati zbog njegove jednostavnosti. Zanemarimo za sada linije</p>
-<div class="highlight"><pre><span></span><code><span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-<span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>koje se tiču logginga. Za sada je dovoljno znati da su one potrebne da bi simulacija dala ikakav izlaz na ekran. Na počeku simulacije stvaramo objekt <code>nodes</code> koji je instanca klase <code>NodeContainer</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_node_container.html">dokumentacija</a>). Zatim u tom objektu stvaramo dva čvora metodom <code>Create()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-<span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>PointToPointHelper</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_point_to_point_helper.html">dokumentacija</a>) je pomoćnik (ili čarobnjak kako možemo vidjeti u mnogim programima) koji stvara sve što je potrebno za rad veze tipa točka-do-točke između dva čvora (stvara mreže uređaje, dodaje ih čvorovima i povezuje ih kanalom). Stvaramo instancu te klase i nazivamo ju pointToPoint, a zatim metodom <code>SetDeviceAttribute()</code> postavljamo atribute budućih uređaja. Vrijednosti parametara su tipa znakovni niz i zapravo eksplicitno govore o čemu se radi: konkretno, atribut <code>DataRate</code> je brzina prijenosa podataka i iznosi <code>"5Mbps"</code>.</p>
 <p>Metoda <code>SetChannelAttribute()</code> postavlja atribute same veze. <code>Delay</code> je zadržavanje veze i ono iznosi <code>"2ms"</code>. Funkciju StringValue koristimo da bismo pretvorili eventualni varijable tipa <code>const char *</code> (podaci <code>"5Mbps"</code> i <code>"2ms"</code> su tog tipa, kao i svi ostali znakovni nizovi navedeni u izvornom kodu) u tip <code>StringValue</code> koji metode SetDeviceAttribute i SetChannelAttribute primaju kao drugi parametar.</p>
-<div class="highlight"><pre><span></span><code><span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p><code>NetDeviceContainer</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_net_device_container.html">dokumentacija</a>) je klasa koja služi kao kontejner za mrežne uređaja. Kreiramo instancu <code>devices</code>, a zatim metodom <code>Install()</code> na objekt <code>nodes</code> instaliramo uređaje na čvorove i istovremeno ih pohranjujemo u kontejner da lakše s njima baratamo. (Uočite da je u dokumentaciji navedena metoda <code>Get()</code> koja nam olakšava dohvaćanje elementa kontejnera.)</p>
-<div class="highlight"><pre><span></span><code><span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-<span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>InternetStackHelper</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_internet_stack_helper.html">dokumentacija</a>) je još jedan u nizu pomoćnika koje koristimo. Metodom <code>Install()</code> na objekt <code>nodes</code> instaliramo TCP/UDP i IP funkcionalnost na čvorove koji su unutar tog kontejnera.</p>
-<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>Ipv4AddressHelper</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_ipv4_address_helper.html">dokumentacija</a>) je pomoćnik koji dodjeljuje IPv4 adrese mrežnim uređajima (podsjetite se zašto su IPv4 adrese vezane za mrežne uređaje, a ne za čvorove). <code>SetBase()</code> je metoda koja prima dva parametra: prvi parametar je adresa, a drugi maska podmreže.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>Ipv4InterfaceContainer</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_ipv4_interface_container.html">dokumentacija</a>) je kontejner za IPv4 sučelja na mrežnim uređajima. Metoda <code>Assign()</code> klase <code>Ipv4AddressHelper</code> dodjeljuje adrese uređajima unutar kontejnera <code>devices</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-<span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p><code>UdpEchoServerHelper</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_udp_echo_server_helper.html">dokumentacija</a>) je pomoćnik. Kod stvaranja instance <code>echoServer</code> prosljeđuje se jedan parametar; iz dokumentacije se može iščitati da se radi o broju vrata (u ovom slučaju 9) na kojima će komunikacija biti omogućena.</p>
-<div class="highlight"><pre><span></span><code><span class="n">UdpEchoServerHelper</span> <span class="nf">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="nf">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Zatim kreiramo serversku aplikaciju. <code>ApplicationContainer</code> je još jedan u nizu kontejnera u koje spremamo određene elemente simulacije; instancu nazivamo <code>serverApps</code>. Metoda <code>Install()</code> dobiva kao parametar objekt tipa <code>Node</code>, jer je to povratni tip metode <code>Get()</code> objekta <code>nodes</code>. Pritom pripazimo na indeksiranje; radi se o <em>drugom</em> elementu, obzirom da brojanje počinje od 0.</p>
 <p><code>Start()</code> i <code>Stop()</code> su metode koje zakazuju vrijeme pokretanja i zaustavljanja rada serverske aplikacije, a kao parametre primaju sekunde. Ono na što treba obratiti pozornost je da se serverska aplikacija pokreće prije i gasi nakon pokretanja klijentske aplikacije, osim u slučajevima gdje baš želimo testirati specifično ponašanje.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-<span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p><code>UdpEchoClientHelper</code> (<a href="https://www.nsnam.org/docs/doxygen/classns3_1_1_udp_echo_client_helper.html">dokumentacija</a>) imena <code>echoClient</code> koristimo na sličan način za kreiranje klijentske aplikacije. Parametri koje prima kod stvaranja su adresa i vrata poslužiteljske aplikacije. Ovdje je to IPv4 sučelje drugog čvora (<code>interfaces.GetAddress(1)</code>) i vrata 9. Zatim postavljamo razne atribute klijentske aplikacije.</p>
 <ul>
@@ -5089,25 +5093,25 @@
 <li><code>Interval</code> je razmak između slanja svakog pojedinog paketa, zapravo frekvencija slanja, vrijednost tipa <code>TimeValue</code>. Ovdje je vrijednost postavljena na 1 sekundu što znači da će se paketi slati u pravilnom vremenskom intervalu od jedne sekunde.</li>
 <li><code>PacketSize</code> je veličina paketa, također vrijednost tipa <code>UintegerValue</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span> <span class="nf">echoClient</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="nf">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Alternativno, mogli smo IPv4 adresu poslužitelja navesti i eksplicitno.</p>
-<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span> <span class="nf">echoClient</span> <span class="p">(</span><span class="n">Ipv4Address</span> <span class="p">(</span><span class="s">&quot;10.1.1.2&quot;</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="nf">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">Ipv4Address</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.2&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Kao i serversku aplikaciju i klijentsku instaliramo na određeni čvor. Ovdje je to čvor sa indeksom <code>0</code> odnosno prvi čvor unutar kontejnera <code>nodes</code>. Za klijentsku aplikaciju je potrebno zakazati pokretanje i zaustavljanje u određenim trenutcima metodama <code>Start()</code> i <code>Stop()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Na kraju ne preostaje ništa drugo nego pokrenuti simulator sa metodom <code>Run()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Uočite da se ova metoda pokreće na drugačiji način, odnosno da nema instancu klase. Radi se o takozvanoj <em>statičkoj klasi</em> koja se ne može instancirati; time se nećemo ovdje nećemo više baviti (uzimati ćemo da to jednostavno radi tako), obzirom da se o tome više govori na kolegiju Objektno orjentirano programiranje.</p>
 <p>Nakon što je simulator završio sa radom valja počistiti memoriju, a to činimo metodom <code>Destroy()</code>. Dvije potonje linije koda zapravo slijede jedna drugu iz razloga što u samom simulatoru određujemo vrijeme trajanja simulacije definicijom topologije i zakazivanjem događaja. Simulacija se u cijelosti izvršava pozivom metode <code>Run()</code> pa tek nakon završetka izvođenje programa dolazi do linije u kojoj se poziva metoda <code>Destroy()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupni kod primjera je</p>
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
@@ -5115,78 +5119,78 @@
 <span class="cm"> *            10.1.1.0               10.1.2.0</span>
 <span class="cm"> *      n1 ------------------n2------------------n3</span>
 <span class="cm"> *         point-to-point       point-to-point</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">allNodes</span><span class="p">,</span> <span class="n">nodes12</span><span class="p">,</span> <span class="n">nodes23</span><span class="p">;</span>
-  <span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-  <span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">allNodes</span><span class="p">,</span><span class="w"> </span><span class="n">nodes12</span><span class="p">,</span><span class="w"> </span><span class="n">nodes23</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices12</span><span class="p">,</span> <span class="n">devices23</span><span class="p">;</span>
-  <span class="n">devices12</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes12</span><span class="p">);</span>
-  <span class="n">devices23</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes23</span><span class="p">);</span>
-  <span class="c1">// pointToPoint.EnablePcapAll (&quot;vjezba-udp-echo-neizravna-veza&quot;);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices12</span><span class="p">,</span><span class="w"> </span><span class="n">devices23</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes12</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes23</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// pointToPoint.EnablePcapAll (&quot;vjezba-udp-echo-neizravna-veza&quot;);</span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces12</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices12</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices12</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces23</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices23</span><span class="p">);</span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices23</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span> <span class="p">();</span>
+<span class="w">  </span><span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="n">UdpEchoServerHelper</span> <span class="n">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="w">  </span><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="n">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">UdpEchoClientHelper</span> <span class="n">echoClient</span> <span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<span class="w">  </span><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="n">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="pracenje-i-analiza-simuliranog-mreznog-prometa">Praćenje i analiza simuliranog mrežnog prometa</h2>
 <p>Sve dosad opisano je dovoljno da bi aplikacija radila. Međutim, iskoristit ćemo još jednu metodu objekta tipa <code>PointToPointHelper</code>, a to je <code>EnablePcapAll()</code> koja čini da se stvaraju snimke mrežnog prometa (engl. <em>packet capture</em>, kraće <a href="https://en.wikipedia.org/wiki/Pcap">pcap</a>), odnosno datoteke koje sadrže simulirane pakete. Ta metoda prima niz znakova koji će biti prefiks imena datoteka koje će stvoriti.</p>
 <p>Važno je da se ova metoda pozove <strong>nakon</strong> svih poziva <code>Install()</code> metode nad objektom <code>pointToPoint</code>, što je najlakše napraviti tako da pozovete metodu neposredno prije samog pokretanja simulacije sa <code>Simulator::Run()</code>. Time se izbjegava mogućnost nepravovremenog poziva metode koja u tom slučaju neće generirati ništa ili će pak generirati pogrešan izvještaj.</p>
 <p>Datoteka koju generira ova metoda bit će smještena u direktoriju gdje se događa kompajliranje vašeg programskog koda. U slučaju da ste kao odredište spremanja datoteka projekta odabrali vaš kućni direktorij (u virtualnoj mašini to je <code>/home/student</code>), a projekt nazvali ga <code>rm2-vj1-primjer1i</code>, direktorij u kojem se nalazi pcap datoteke zove se <code>rm2-vj1-primjer1i-build-&lt;verzija Qt biblioteke i program prevoditelja&gt;</code>. Taj direktorij, sadrži izvršnu datoteku vašeg projekta, datoteke s objektnim kodom (<code>*.o</code>) i pcap datoteke koje imaju prefiks u imenu koji ste zadali. Naravno, pretpostavka je da ste prethodno pokrenuli izvršnu datoteku koja će stvoriti pcap datoteke (upravo zbog toga što ih stvara izvršna datoteka simulacije pcap datoteke se i nalaze u tom direktoriju).</p>
 <p>Imena pcap datoteka generirana su prema uzorku <code>&lt;odabrani niz znakova&gt;-X-Y.pcap</code>, pri čemu je <code>X</code> je identifikator čvora, a <code>Y</code> identifikator mrežnog sučelja na čvoru. Sadržaj pcap datoteka moguće je pregledati korištenjem <a href="https://en.wikipedia.org/wiki/Wireshark">Wiresharka</a> ili <a href="https://en.wikipedia.org/wiki/tcpdump">tcpdumpa</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnablePcapAll</span> <span class="p">(</span><span class="s">&quot;vjezba-udp-echo&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnablePcapAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-udp-echo&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>S ciljem optimizacije izvođenja simulacije, kontrolni zbroj paketa se u zadanim postavkama ne računa i postavlja se uvijek na vrijednost <code>0</code>. Posljedica toga je da su svi paketi u Wiresharku označeni crvenom bojom, odnosno označeni su kao iskrivljeni. U slučaju da želite pregledavati pakete, uključite računanje kontrolnog zbroja funkcijom</p>
-<div class="highlight"><pre><span></span><code><span class="n">Config</span><span class="o">::</span><span class="n">SetGlobal</span> <span class="p">(</span><span class="s">&quot;ChecksumEnabled&quot;</span><span class="p">,</span> <span class="n">BooleanValue</span> <span class="p">(</span><span class="nb">true</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">Config</span><span class="o">::</span><span class="n">SetGlobal</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ChecksumEnabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">BooleanValue</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>koju je potrebno pokrenuti <strong>prije stvaranja objekata simulacije</strong>. Iako to ne pravi razliku, radi konzistentnosti uzet ćemo dogovorno da se funkcije iz <code>Config</code> imenika pokreću prije funkcija <code>LogComponentEnable()</code>, i to prvo funkcije <code>Config::SetGlobal()</code>, a zatim <code>Config::SetDefault()</code>.</p>
 <p>Cjelokupni kod primjera je</p>
@@ -5195,62 +5199,62 @@
 <span class="cm"> *   10.1.1.1          10.1.1.2</span>
 <span class="cm"> *      n1 -------------- n2</span>
 <span class="cm"> *         point-to-point</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Config</span><span class="o">::</span><span class="n">SetGlobal</span> <span class="p">(</span><span class="s">&quot;ChecksumEnabled&quot;</span><span class="p">,</span> <span class="n">BooleanValue</span> <span class="p">(</span><span class="nb">true</span><span class="p">));</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Config</span><span class="o">::</span><span class="n">SetGlobal</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ChecksumEnabled&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">BooleanValue</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">nodes</span><span class="p">;</span>
-  <span class="n">nodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices</span><span class="p">;</span>
-  <span class="n">devices</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnablePcapAll</span> <span class="p">(</span><span class="s">&quot;vjezba-udp-echo&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">EnablePcapAll</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;vjezba-udp-echo&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces</span><span class="p">;</span>
-  <span class="n">interfaces</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">UdpEchoServerHelper</span> <span class="n">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="w">  </span><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="n">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">UdpEchoClientHelper</span> <span class="n">echoClient</span> <span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<span class="w">  </span><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="n">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="neizravno-povezivanje-cvorova">Neizravno povezivanje čvorova</h2>
 <p>Želimo stvoriti linearnu topologiju od tri čvora oblika</p>
@@ -5259,58 +5263,58 @@
 <p>pri čemu su, radi jednostavnosti, postavke obaju veza jednake. Uočimo da ovdje postoje dvije podmreže, prva koja sadrži čvorove <code>n1</code> i <code>n2</code>, i druga koja sadrži <code>n2</code> i <code>n3</code>. Kako je komunikacija između različitih podmreža neizravna, potrebno će biti uključiti usmjeravanje da bi <code>n1</code> mogao komunicirati sa <code>n3</code>.</p>
 <p>Instancirajmo tri objekta klase <code>NodeContainer</code>; to su redom <code>allNodes</code>, <code>nodes12</code> i <code>nodes23</code>. Ideja je prva dva čvora iz kontejnera svih čvorova pospremiti u prvi kontejner, a posljednja dva čvora u drugi kontejner. To će nam olakšati instalaciju mrežnih u uređaja i dodjelu IPv4 adresa.</p>
 <p>Metodom <code>Create()</code> stvaramo 3 nova čvora samo u kontejneru <code>allNodes</code>. Metoda Add() koju nismo do sada koristi ima za cilj dodati neki od prethodno stvorenih čvorova; metodom <code>Get()</code> dohvaćamo određeni čvor iz <code>NodeContainer</code>-a, u ovom slučaju prvi i treći jednom, a drugi dvaput. Nemojmo zaboraviti da <code>NodeContainer</code> indeksira kao polja u C/C++-u, što konkretno znači: prvi čvor svakog <code>NodeContainer</code>-a ima indeks 0, drugi čvor ima indeks 1, treći indeks 2.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span> <span class="n">allNodes</span><span class="p">,</span> <span class="n">nodes12</span><span class="p">,</span> <span class="n">nodes23</span><span class="p">;</span>
-<span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-<span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span><span class="w"> </span><span class="n">allNodes</span><span class="p">,</span><span class="w"> </span><span class="n">nodes12</span><span class="p">,</span><span class="w"> </span><span class="n">nodes23</span><span class="p">;</span><span class="w"></span>
+<span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Pomoćnik za stvaranje veza tipa točka-do-točke možemo iskoristiti dvaput, obzirom da obje veze imaju ista svojstva. Uočite da sada postoje četiri mrežna uređaja, od kojih prvi i posljednji čvor imaju po jedan, a srednji čvor dva.</p>
-<div class="highlight"><pre><span></span><code><span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">NetDeviceContainer</span> <span class="n">devices12</span><span class="p">,</span> <span class="n">devices23</span><span class="p">;</span>
-<span class="n">devices12</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes12</span><span class="p">);</span>
-<span class="n">devices23</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes23</span><span class="p">);</span>
+<span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices12</span><span class="p">,</span><span class="w"> </span><span class="n">devices23</span><span class="p">;</span><span class="w"></span>
+<span class="n">devices12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes12</span><span class="p">);</span><span class="w"></span>
+<span class="n">devices23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes23</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Kod instalacije složaja internetskih protokola treba paziti da ne instaliramo prokole na neki čvor više od jednom; zbog toga je najpraktičnije pokrenuti instalaciju na kontejner <code>allNodes</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Alternativno, mogli smo to napraviti na način da prvo instaliramo na prvi i drugi čvor, a zatim na treći.</p>
-<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes12</span><span class="p">);</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes12</span><span class="p">);</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Dodjela IPv4 adresa radi se analogno prvom primjeru, osim što treba paziti da se dodijele različiti rasponi dvjema podmrežama kako bi algoritmi usmjeravanja mogli raditi. Time je omogućena komunikacija prvog i drugog čvora, te drugog i trećeg. Komunikacija prvog i trećeg čvora preko drugog čvora još nije omogućena.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-<span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces12</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices12</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices12</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-<span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces23</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices23</span><span class="p">);</span>
+<span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices23</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Obzirom da imamo više od jedne podmreže koje su vezane neizravno, potrebno je ispuniti tablice usmjeravanja čvorova. Statička funkcija <code>PopulateRoutingTables()</code> iz klase <code>Ipv4GlobalRoutingHelper</code> puni tablice usmjeravanja svih čvorova u simulaciji. Ovime je omogućena komunikacija prvog i trećeg čvora preko drugog čvora.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span> <span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
 <p>Instalacija aplikacija vrši se na isti način kao u prvom primjeru, jedino je potrebno pripaziti na adresu poslužitelja kod stvaranja klijenta i identifikatore čvorova na koje ćemo instalirati aplikacije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">UdpEchoServerHelper</span> <span class="nf">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="nf">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
-<span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-<span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Ovim postavkama dobiti ćemo klijentsku na prvom čvoru koja komunicira s poslužiteljskom na trećem čvoru.</p>
-<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span> <span class="nf">echoClient</span> <span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span>
-<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="nf">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span><span class="w"></span>
+<span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 
-<span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Cjelokupni kod primjera je</p>
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
@@ -5318,68 +5322,68 @@
 <span class="cm"> *            10.1.1.0               10.1.2.0</span>
 <span class="cm"> *      n1 ------------------n2------------------n3</span>
 <span class="cm"> *         point-to-point       point-to-point</span>
-<span class="cm"> */</span>
+<span class="cm"> */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/core-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/network-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/internet-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/point-to-point-module.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/applications-module.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">ns3</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ns3</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
-  <span class="n">LogComponentEnable</span> <span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span> <span class="n">LOG_LEVEL_INFO</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoClientApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">LogComponentEnable</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;UdpEchoServerApplication&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">LOG_LEVEL_INFO</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">NodeContainer</span> <span class="n">allNodes</span><span class="p">,</span> <span class="n">nodes12</span><span class="p">,</span> <span class="n">nodes23</span><span class="p">;</span>
-  <span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-  <span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="w">  </span><span class="n">NodeContainer</span><span class="w"> </span><span class="n">allNodes</span><span class="p">,</span><span class="w"> </span><span class="n">nodes12</span><span class="p">,</span><span class="w"> </span><span class="n">nodes23</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes12</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodes23</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">PointToPointHelper</span> <span class="n">pointToPoint</span><span class="p">;</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span> <span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span>
-  <span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span> <span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span> <span class="n">StringValue</span> <span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">PointToPointHelper</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetDeviceAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;DataRate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;5Mbps&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">SetChannelAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Delay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringValue</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;2ms&quot;</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">NetDeviceContainer</span> <span class="n">devices12</span><span class="p">,</span> <span class="n">devices23</span><span class="p">;</span>
-  <span class="n">devices12</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes12</span><span class="p">);</span>
-  <span class="n">devices23</span> <span class="o">=</span> <span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">nodes23</span><span class="p">);</span>
-  <span class="c1">// pointToPoint.EnablePcapAll (&quot;vjezba-udp-echo-neizravna-veza&quot;);</span>
+<span class="w">  </span><span class="n">NetDeviceContainer</span><span class="w"> </span><span class="n">devices12</span><span class="p">,</span><span class="w"> </span><span class="n">devices23</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes12</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">devices23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointToPoint</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">nodes23</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// pointToPoint.EnablePcapAll (&quot;vjezba-udp-echo-neizravna-veza&quot;);</span>
 
-  <span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-  <span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">);</span>
+<span class="w">  </span><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4AddressHelper</span> <span class="n">address</span><span class="p">;</span>
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces12</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices12</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Ipv4AddressHelper</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.1.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices12</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">address</span><span class="p">.</span><span class="n">SetBase</span> <span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span> <span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span>
-  <span class="n">Ipv4InterfaceContainer</span> <span class="n">interfaces23</span> <span class="o">=</span> <span class="n">address</span><span class="p">.</span><span class="n">Assign</span> <span class="p">(</span><span class="n">devices23</span><span class="p">);</span>
+<span class="w">  </span><span class="n">address</span><span class="p">.</span><span class="n">SetBase</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;10.1.2.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Ipv4InterfaceContainer</span><span class="w"> </span><span class="n">interfaces23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="n">Assign</span><span class="w"> </span><span class="p">(</span><span class="n">devices23</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span> <span class="p">();</span>
+<span class="w">  </span><span class="n">Ipv4GlobalRoutingHelper</span><span class="o">::</span><span class="n">PopulateRoutingTables</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="n">UdpEchoServerHelper</span> <span class="n">echoServer</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="w">  </span><span class="n">UdpEchoServerHelper</span><span class="w"> </span><span class="n">echoServer</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">serverApps</span> <span class="o">=</span> <span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">2</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
-  <span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">serverApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoServer</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">serverApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">UdpEchoClientHelper</span> <span class="n">echoClient</span> <span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span> <span class="n">TimeValue</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span>
-  <span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span> <span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span> <span class="n">UintegerValue</span> <span class="p">(</span><span class="mi">1024</span><span class="p">));</span>
+<span class="w">  </span><span class="n">UdpEchoClientHelper</span><span class="w"> </span><span class="n">echoClient</span><span class="w"> </span><span class="p">(</span><span class="n">interfaces23</span><span class="p">.</span><span class="n">GetAddress</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;MaxPackets&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeValue</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">)));</span><span class="w"></span>
+<span class="w">  </span><span class="n">echoClient</span><span class="p">.</span><span class="n">SetAttribute</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;PacketSize&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UintegerValue</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">ApplicationContainer</span> <span class="n">clientApps</span> <span class="o">=</span> <span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">));</span>
-  <span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span> <span class="p">(</span><span class="n">Seconds</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">ApplicationContainer</span><span class="w"> </span><span class="n">clientApps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">echoClient</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Start</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">clientApps</span><span class="p">.</span><span class="n">Stop</span><span class="w"> </span><span class="p">(</span><span class="n">Seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span> <span class="p">();</span>
-  <span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span> <span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Run</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Simulator</span><span class="o">::</span><span class="n">Destroy</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="dodatak-optimizirano-usmjeravanje">Dodatak: optimizirano usmjeravanje</h2>
 <p>Nix-Vector je protokol usmjeravanja specifičan za simulaciju i namijenjen za veće mrežne topologije. On radi na zahtjev, odnosno ne računa tablice usmjeravanja unaprijed, te ima manje zauzeće memorije i time bolje performanse (odnosno kraće vrijeme izvođenja simulacije) u odnosu na GlobalRouting, što se naročito dobro vidi kod simulacija koje imaju nekoliko stotina ili čak tisuća čvorova. Nix-Vector usmjeravanje rute računa  korištenjem breadth-first pretraživanja, a izračunate rute se spremaju u efikasnu strukturu koja se zove nix-vector.</p>
@@ -5393,31 +5397,31 @@
 <p>Kada se paket stvori na čvoru i spreman je za slanje, ruta se računa i gradi se nix-vector; nix-vector sprema indeks susjeda za svaki skok po putu. Taj se indeks koristi da se odredi koji će se mrežni uređaj koristiti za slanje podataka. Da bi mogao usmjeriti paket, nix-vector mora biti poslan zajedno s paketom. Na svakom skoku, trenutni čvor uzima prikladni indeks susjeda iz nix-vectora i šalje paket kroz odgovarajući mrežni uređaj. To se nastavlja sve dok paket ne dođe do odredišta.</p>
 <p>Trenutna implementacija u simulatoru ns-3 podržava IPv4 na point-to-point i CSMA vezama. IPv6 za sada nije podržan. Pored toga, u slučaju kvara neke od veza, vrši se pražnjenje postojećih tablica i algoritam kreće ispočetka.</p>
 <p>Kreiranje čvorova i kontejnera koji ih sadrže jednako je kao u prethodnim primjerima. Ono što je potrebno napraviti da bi <code>nix-vector-routing</code> protokol radio ispravno je nakon kreiranja svih čvorova smjestiti ih u jedan kontejner. Prvo uključujemo zaglavlje <code>nix-vector-routing-module.h</code> u našu simulaciju.</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ns3/nix-vector-routing-module.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ns3/nix-vector-routing-module.h&gt;</span><span class="cp"></span>
 </code></pre></div>
 <p>Zatim sve čvorove smještamo u jedan kontejner za čvorove kao i ranije.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span> <span class="n">allNodes</span><span class="p">;</span>
-<span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span> <span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-<span class="n">NodeContainer</span> <span class="n">nodes01</span> <span class="o">=</span> <span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes01</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">nodes01</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">NodeContainer</span> <span class="n">nodes12</span> <span class="o">=</span> <span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes12</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">nodes12</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">NodeContainer</span> <span class="n">nodes23</span> <span class="o">=</span> <span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span> <span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="n">NodeContainer</span><span class="w"> </span><span class="n">allNodes</span><span class="p">;</span><span class="w"></span>
+<span class="n">allNodes</span><span class="p">.</span><span class="n">Create</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes01</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">nodes01</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes12</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">nodes12</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="n">NodeContainer</span><span class="w"> </span><span class="n">nodes23</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NodeContainer</span><span class="p">(</span><span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">nodes23</span><span class="p">.</span><span class="n">Get</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
 <p>Nakon kreiranja kontejnera incijaliziramo pomoćnika za Nix-Vector, a zatim u popis protokola usmjeravanja dodajemo pomoćnika za Nix-Vector protokol. Zbog trenutne implementacije potrebno je uključiti i statičko usmjeravanje ranije korištenim pomoćnikom <code>Ipv4StaticRoutingHelper</code>. Za to kreiramo varijablu <code>list</code> koja će pohraniti popis protokola usmjeravanja, i metodom <code>Add</code> dodajemo u popis protokole usmjeravanja:</p>
 <ul>
 <li>prvi parametar je pomoćnik protokola usmjeravanja,</li>
 <li>drugi parametar je prioritet protokola usmjeravanja i određuje koji će protokol biti preferiran nad kojim u slučaju da se oba mogu koristiti, i tu što je veći broj to je veći prioritet. Ustaljena praksa je dodijeliti statičkom usmjeravanju prioritet 0, a nix-vector protokolu 10.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">Ipv4NixVectorHelper</span> <span class="n">nixHelper</span><span class="p">;</span>
-<span class="n">Ipv4StaticRoutingHelper</span> <span class="n">staticRouting</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">Ipv4NixVectorHelper</span><span class="w"> </span><span class="n">nixHelper</span><span class="p">;</span><span class="w"></span>
+<span class="n">Ipv4StaticRoutingHelper</span><span class="w"> </span><span class="n">staticRouting</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">Ipv4ListRoutingHelper</span> <span class="n">list</span><span class="p">;</span>
-<span class="n">list</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">staticRouting</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="n">list</span><span class="p">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">nixHelper</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">Ipv4ListRoutingHelper</span><span class="w"> </span><span class="n">list</span><span class="p">;</span><span class="w"></span>
+<span class="n">list</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">staticRouting</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="n">list</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="p">(</span><span class="n">nixHelper</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Potom postavljamo stog kao u prethodnim primjerima uz izmjenu da moramo specifično odrediti popis protokola usmjeravanja koje koristimo. To činimo metodom <code>SetRoutingHelper</code> koja prima za parametar popis koji je prethodno kreiran i pohranjen u varijabli <code>list</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span> <span class="n">stack</span><span class="p">;</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">SetRoutingHelper</span> <span class="p">(</span><span class="n">list</span><span class="p">);</span>
-<span class="n">stack</span><span class="p">.</span><span class="n">Install</span> <span class="p">(</span><span class="n">allNodes</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">InternetStackHelper</span><span class="w"> </span><span class="n">stack</span><span class="p">;</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">SetRoutingHelper</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">);</span><span class="w"></span>
+<span class="n">stack</span><span class="p">.</span><span class="n">Install</span><span class="w"> </span><span class="p">(</span><span class="n">allNodes</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>Ostale postavke simulacije ostaju nepromijenjene.</p>
                 
@@ -5502,10 +5506,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>
