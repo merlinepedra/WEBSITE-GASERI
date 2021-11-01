@@ -2744,8 +2744,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dodatak-oblikovanje-json-a-u-sucelju-naredbenog-retka" class="md-nav__link">
-    Dodatak: oblikovanje JSON-a u sučelju naredbenog retka
+  <a href="#oblikovanje-json-a-u-sucelju-naredbenog-retka" class="md-nav__link">
+    Oblikovanje JSON-a u sučelju naredbenog retka
   </a>
   
 </li>
@@ -5025,8 +5025,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dodatak-oblikovanje-json-a-u-sucelju-naredbenog-retka" class="md-nav__link">
-    Dodatak: oblikovanje JSON-a u sučelju naredbenog retka
+  <a href="#oblikovanje-json-a-u-sucelju-naredbenog-retka" class="md-nav__link">
+    Oblikovanje JSON-a u sučelju naredbenog retka
   </a>
   
 </li>
@@ -5239,7 +5239,7 @@ php &gt; echo $arr2[&quot;drugi broj&quot;];
     [spouse] =&gt;
 )
 </code></pre></div>
-<h2 id="dodatak-oblikovanje-json-a-u-sucelju-naredbenog-retka">Dodatak: oblikovanje JSON-a u sučelju naredbenog retka</h2>
+<h2 id="oblikovanje-json-a-u-sucelju-naredbenog-retka">Oblikovanje JSON-a u sučelju naredbenog retka</h2>
 <p>Van interpretera PHP-a, odnosno u ljusci operacijskog sustava možemo iskoristiti programski alat jq (<a href="https://stedolan.github.io/jq/">službena stranica</a>, <a href="https://stedolan.github.io/jq/manual/">dokumentacija</a>) za obradu JSON-a slično kao što za obradu običnog teksta koristimo <code>sed</code>. Željeni ispis dobivamo naredbom <code>jq</code> s filterom ulaza <code>.</code> koji kopira ulaz na izlaz bez da mijenja njegov sadržaj, ali ga pritom lijepo oblikuje:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;{&quot;moj kljuc&quot;:&quot;moja vrijednost&quot;,&quot;broj&quot;:8,&quot;drugi broj&quot;:3.5,&quot;je li istina&quot;:true}&#39;</span> <span class="p">|</span> jq .
 <span class="o">{</span>

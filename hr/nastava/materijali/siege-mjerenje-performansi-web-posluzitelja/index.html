@@ -3862,6 +3862,26 @@
     Mjerenje performansi poslužitelja pokrenutih na lokalnom računalu
   </a>
   
+    <nav class="md-nav" aria-label="Mjerenje performansi poslužitelja pokrenutih na lokalnom računalu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mjerenje-performansi-ugraenog-web-posluzitelja-u-interpreteru-jezika-php" class="md-nav__link">
+    Mjerenje performansi ugrađenog web poslužitelja u interpreteru jezika PHP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mjerenje-performansi-apache-http-servera" class="md-nav__link">
+    Mjerenje performansi Apache HTTP Servera
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4996,6 +5016,26 @@
     Mjerenje performansi poslužitelja pokrenutih na lokalnom računalu
   </a>
   
+    <nav class="md-nav" aria-label="Mjerenje performansi poslužitelja pokrenutih na lokalnom računalu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mjerenje-performansi-ugraenog-web-posluzitelja-u-interpreteru-jezika-php" class="md-nav__link">
+    Mjerenje performansi ugrađenog web poslužitelja u interpreteru jezika PHP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mjerenje-performansi-apache-http-servera" class="md-nav__link">
+    Mjerenje performansi Apache HTTP Servera
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5111,10 +5151,60 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="mjerenje-performansi-posluzitelja-pokrenutih-na-lokalnom-racunalu">Mjerenje performansi poslužitelja pokrenutih na lokalnom računalu</h2>
-<p>Siege možemo na isti način koristiti i na web poslužiteljima pokrenutim na lokalnom računalu. Primjerice, ako imamo pokrenut PHP-ov ugrađeni web poslužitelj na vratima 8000, onda ćemo mu pristupiti naredbom:</p>
-<div class="highlight"><pre><span></span><code>$ siege -c <span class="m">1</span> http://localhost:8000/
+<p>Siege možemo na isti način koristiti i na web poslužiteljima pokrenutim na lokalnom računalu.</p>
+<h3 id="mjerenje-performansi-ugraenog-web-posluzitelja-u-interpreteru-jezika-php">Mjerenje performansi ugrađenog web poslužitelja u interpreteru jezika PHP</h3>
+<p>Primjerice, ako imamo pokrenut PHP-ov ugrađeni web poslužitelj na vratima 8000, onda ćemo mu pristupiti naredbom:</p>
+<div class="highlight"><pre><span></span><code>$ siege -c <span class="m">10</span> http://localhost:8000/
 </code></pre></div>
-<p>Kako PHP-ov ugrađeni web poslužitelj u zadanim postavkama ne podržava istovremene zahtjeve više korisnika, broj istovremenih korisnika ćemo postaviti na 1. (Ako želite eksperimentirati s većim brojem istovremenim korisnika, od verzije PHP-a 7.4.0 nadalje možete postaviti varijablu okoline <code>PHP_CLI_SERVER_WORKERS</code> (<a href="https://www.php.net/manual/ro/features.commandline.webserver.php">dokumentacija</a>) na broj veći od 1 kod pokretanja ugrađenog web poslužitelja pa taj isti broj iskoristiti u Siegeu.)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+        <span class="nt">&quot;transactions&quot;</span><span class="p">:</span>                         <span class="mi">9953</span><span class="p">,</span>
+        <span class="nt">&quot;availability&quot;</span><span class="p">:</span>                       <span class="mf">100.00</span><span class="p">,</span>
+        <span class="nt">&quot;elapsed_time&quot;</span><span class="p">:</span>                         <span class="mf">9.35</span><span class="p">,</span>
+        <span class="nt">&quot;data_transferred&quot;</span><span class="p">:</span>                   <span class="mf">973.37</span><span class="p">,</span>
+        <span class="nt">&quot;response_time&quot;</span><span class="p">:</span>                        <span class="mf">0.01</span><span class="p">,</span>
+        <span class="nt">&quot;transaction_rate&quot;</span><span class="p">:</span>                  <span class="mf">1064.49</span><span class="p">,</span>
+        <span class="nt">&quot;throughput&quot;</span><span class="p">:</span>                         <span class="mf">104.10</span><span class="p">,</span>
+        <span class="nt">&quot;concurrency&quot;</span><span class="p">:</span>                          <span class="mf">9.97</span><span class="p">,</span>
+        <span class="nt">&quot;successful_transactions&quot;</span><span class="p">:</span>              <span class="mi">9953</span><span class="p">,</span>
+        <span class="nt">&quot;failed_transactions&quot;</span><span class="p">:</span>                     <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;longest_transaction&quot;</span><span class="p">:</span>                  <span class="mf">0.02</span><span class="p">,</span>
+        <span class="nt">&quot;shortest_transaction&quot;</span><span class="p">:</span>                 <span class="mf">0.00</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>PHP-ov ugrađeni web poslužitelj u zadanim postavkama ne koristi konkurentnost u obradi zahtjeva više korisnika, odnosno izvodi se u jednoj niti za svih 10 istovremenih korisnika čije opterećenje Siege generira. Brojevi veći od toga u načelu neće donijeti veći broj izvršenih zahtjeva po sekundi.</p>
+<p>Od verzije PHP-a 7.4.0 nadalje moguće je PHP-ov ugrađeni web poslužitelj pokrenuti u više procesa koji se pritom nazivaju radnicima (engl. <em>workers</em>). To možemo izvesti je postaviti varijablu okoline <code>PHP_CLI_SERVER_WORKERS</code> (<a href="https://www.php.net/manual/ro/features.commandline.webserver.php">dokumentacija</a>) na broj veći od 1 kod pokretanja ugrađenog web poslužitelja, primjerice 10 na način:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">PHP_CLI_SERVER_WORKERS</span><span class="o">=</span><span class="m">10</span> php -S localhost:8000 -t public
+<span class="o">[</span><span class="m">351093</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351092</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351094</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351095</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351096</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351097</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351098</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351099</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351100</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351091</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+<span class="o">[</span><span class="m">351101</span><span class="o">]</span> <span class="o">[</span>Mon Nov  <span class="m">1</span> <span class="m">20</span>:00:37 <span class="m">2021</span><span class="o">]</span> PHP <span class="m">7</span>.4.25 Development Server <span class="o">(</span>http://localhost:8000<span class="o">)</span> started
+</code></pre></div>
+<p>Pokretanjem Siegea s većim brojem konkurentnih korisnika, npr. 100, možemo uočiti da je broj obrađenih zahjeva nešto veći:</p>
+<div class="highlight"><pre><span></span><code>$ siege -c <span class="m">100</span> -t 10s http://localhost:8000/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+        <span class="nt">&quot;transactions&quot;</span><span class="p">:</span>                        <span class="mi">24991</span><span class="p">,</span>
+        <span class="nt">&quot;availability&quot;</span><span class="p">:</span>                       <span class="mf">100.00</span><span class="p">,</span>
+        <span class="nt">&quot;elapsed_time&quot;</span><span class="p">:</span>                         <span class="mf">9.09</span><span class="p">,</span>
+        <span class="nt">&quot;data_transferred&quot;</span><span class="p">:</span>                  <span class="mf">2445.78</span><span class="p">,</span>
+        <span class="nt">&quot;response_time&quot;</span><span class="p">:</span>                        <span class="mf">0.04</span><span class="p">,</span>
+        <span class="nt">&quot;transaction_rate&quot;</span><span class="p">:</span>                  <span class="mf">2749.28</span><span class="p">,</span>
+        <span class="nt">&quot;throughput&quot;</span><span class="p">:</span>                         <span class="mf">269.06</span><span class="p">,</span>
+        <span class="nt">&quot;concurrency&quot;</span><span class="p">:</span>                         <span class="mf">99.20</span><span class="p">,</span>
+        <span class="nt">&quot;successful_transactions&quot;</span><span class="p">:</span>             <span class="mi">24991</span><span class="p">,</span>
+        <span class="nt">&quot;failed_transactions&quot;</span><span class="p">:</span>                     <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;longest_transaction&quot;</span><span class="p">:</span>                  <span class="mf">0.32</span><span class="p">,</span>
+        <span class="nt">&quot;shortest_transaction&quot;</span><span class="p">:</span>                 <span class="mf">0.00</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="mjerenje-performansi-apache-http-servera">Mjerenje performansi Apache HTTP Servera</h3>
 <p>Apache HTTP Server može baratati s više korisnika pa možemo varirati broj korisnika ovisno o snazi računala na kojemu radimo. Ako Apache je pokrenut upotrebom Dockera, Siege s 50 istovremenih korisnika ćemo pokrenuti na način:</p>
 <div class="highlight"><pre><span></span><code>$ siege -c <span class="m">50</span> http://172.17.0.2/
 </code></pre></div>
