@@ -5444,7 +5444,7 @@
 &lt; Content-Type: application/json
 &lt;
 * Closing connection <span class="m">0</span>
-<span class="o">{</span><span class="s2">&quot;ime:&quot;</span>Ivan<span class="s2">&quot;,&quot;</span>prezime<span class="s2">&quot;:&quot;</span>Horvat<span class="s2">&quot;,&quot;</span>studij<span class="s2">&quot;:&quot;</span>Informatika<span class="s2">&quot;}</span>
+<span class="o">{</span><span class="s2">&quot;ime&quot;</span>:<span class="s2">&quot;Ivan&quot;</span>,<span class="s2">&quot;prezime&quot;</span>:<span class="s2">&quot;Horvat&quot;</span>,<span class="s2">&quot;studij&quot;</span>:<span class="s2">&quot;Informatika&quot;</span><span class="o">}</span>
 </code></pre></div>
 <p>Zatim zatražimo HTML pa čisti tekst:</p>
 <div class="highlight"><pre><span></span><code>$ curl -v -H <span class="s2">&quot;Accept: text/html&quot;</span> http://localhost:8000/
@@ -5506,7 +5506,7 @@ Ivan,Horvat,Informatika
 * Closing connection <span class="m">0</span>
 </code></pre></div>
 <h3 id="provjera-ostalih-zaglavlja">Provjera ostalih zaglavlja</h3>
-<p>Osim spomenutih zaglavlja HTTP zahtjeva, možemo obrađivati i sva druga. Sva zaglavlja koja zahtjev sadrži dohvatit ćemo funkcijom <code>getallheaders()</code> (<a href="https://www.php.net/manual/en/function.getallheaders.php">dokumentacija</a>), a zatim svako pojedino zaglavlje dohvaćamo kao i ranije.</p>
+<p>Osim spomenutih zaglavlja HTTP zahtjeva, možemo obrađivati i sva druga. Sva zaglavlja koja zahtjev sadrži dohvatit ćemo funkcijom <code>getallheaders()</code> (<a href="https://www.php.net/manual/en/function.getallheaders.php">dokumentacija</a>), a zatim svako pojedino zaglavlje dohvaćamo kao i ranije. Taj skup zaglavlja spremit ćemo u varijablu <code>$request_headers</code>. Uočimo kako varijable u jeziku PHP, slično kao i u drugim skriptnim jezicima, kod deklaracije ne moraju imati naveden tip. Uočimo također da se kod deklaracije i kod korištenja varijabli navodi znak <code>$</code> i ime varijable (<a href="https://www.php.net/manual/en/language.variables.basics.php">dokumentacija</a>), što smo već mogli primijetiti kod korištenja uvijek dostupne varijable <code>$_SERVER</code>.</p>
 <p>Primjerice, u zahtjevu možemo dodati zaglavlje <code>Najjaci-Fakultet</code> koje nije standardizirano, ali se nama sviđa da ima vrijednost <code>Odjel za informatiku</code>. Na poslužitelju možemo funkcijom <code>array_key_exists()</code> (<a href="https://www.php.net/manual/en/function.array-key-exists.php">dokumentacija</a>) provjeriti je li zaglavlje postavljeno pa onda ima li odgovarajuću vrijednost na način:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
@@ -5598,6 +5598,28 @@ $ curl -v -H <span class="s2">&quot;Najjaci-Fakultet: Odjel za informatiku&quot;
 &lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
 &lt;
 &lt;p&gt;Vi ste Ivan Horvat.&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+</code></pre></div>
+<p>Vrijednosti pojedinih GET varijabli mogu sadržavati znak razmaka. U tom slučaju je potrebno znak razmaka kodirati znakom plusa (<code>+</code>; <a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding">više detalja o kodiranju znakova u URL-ima na MDN-u</a>) na način:</p>
+<div class="highlight"><pre><span></span><code>$ curl -v <span class="s2">&quot;http://localhost:8000/profil?ime=Ivan+Tomislav&amp;prezime=Horvat&quot;</span>
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /profil?ime<span class="o">=</span>Ivan+Tomislav<span class="p">&amp;</span><span class="nv">prezime</span><span class="o">=</span>Horvat HTTP/1.1
+&gt; Host: localhost:8000
+&gt; User-Agent: curl/7.79.1
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: localhost:8000
+&lt; Date: Thu, <span class="m">04</span> Nov <span class="m">2021</span> <span class="m">16</span>:51:19 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.0.12
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Vi ste Ivan Tomislav Horvat.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
 <h2 id="specificnosti-metode-post">Specifičnosti metode POST</h2>
