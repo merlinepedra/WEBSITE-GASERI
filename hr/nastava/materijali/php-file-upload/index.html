@@ -5159,7 +5159,22 @@
 &lt;
 * Closing connection <span class="m">0</span>
 </code></pre></div>
+<p>Uočite kako smo u zahtjevu naveli direktorij znakom <code>/</code> na kraju putanje u URL-u. Ako ne želimo da zahtjevi navode taj znak <code>/</code>, kod treba biti oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$webroot</span> <span class="o">=</span> <span class="nb">getcwd</span><span class="p">();</span>
+<span class="hll">    <span class="nb">mkdir</span><span class="p">(</span><span class="nv">$webroot</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]);</span>
+</span>    <span class="nb">move_uploaded_file</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">[</span><span class="s2">&quot;popis_poklona&quot;</span><span class="p">][</span><span class="s2">&quot;tmp_name&quot;</span><span class="p">],</span> <span class="nv">$webroot</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;/&quot;</span> <span class="o">.</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s2">&quot;popis_poklona&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]);</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Jedina je promjena u ovom kodu u odnosu na prethodni dodan znak <code>"\"</code> između <code>$_SERVER["REQUEST_URI"]</code> i <code>$_FILES["popis_poklona"]["name"])</code>.</p>
 <p>Izlistavanjem sadržaja radnog direktorija web poslužitelja možemo se uvjeriti da je u njemu stvoren direktorij <code>datoteke-za-djeda-mraza</code> i da se u tom direktoriju nalazi datoteka <code>pokloni.txt</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Kako sad direktorij postoji, PHP-ov ugrađeni poslužitelj će ga posluživati kao statički sadržaj bez obzira na korištenu metodu pa neće biti moguće postaviti još jednu datoteku u isti direktorij (postavljanje datoteka se uredno može izvršiti u drugi direktorij). Studentima prepuštamo za istraživanje radi li se o svojstvu standarda HTTP ili implementacijskom odabiru PHP-ovih programera.</p>
+</div>
 <h2 id="postavljanje-datoteke-metodom-put">Postavljanje datoteke metodom PUT</h2>
 <p>Osim HTTP metodom POST, postavljanje datoteke na poslužitelj <a href="https://www.php.net/manual/en/features.file-upload.put-method.php">moguće je izvesti i HTTP metodom PUT</a> (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT">više detalja o HTTP metodi PUT na MDN-u</a>). Kod postavljanja datoteke HTTP metodom PUT sadržaj datoteke nalazit će se u tijelu HTTP zahtjeva koje nam je u jeziku PHP dostupno na već ranije korištenoj putanji <code>php://input</code>.</p>
 <p>Sadržaj tijela zahtjeva ćemo u PHP-u dohvatiti s putanje <code>php://input</code> funkcijom <code>file_get_contents()</code>, a zatim ćemo funkcijom <code>file_put_contents()</code> spremiti u datoteku <code>popis.txt</code> dohvaćeni sadržaj. Kako se koristi HTTP metoda PUT, očekujemo da <code>$_SERVER["REQUEST_METHOD"]</code> ima vrijednost <code>"PUT"</code> i da klijent šalje zahtjeve na putanju <code>http://localhost:8000/upload</code> pa je kod oblika:</p>
