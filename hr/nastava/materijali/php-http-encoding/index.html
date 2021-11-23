@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/php-http-encoding/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b2">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.450eaa28.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0c73cc44.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -5002,7 +5002,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
-                
+
 <h1 id="kodiranje-http-sadrzaja-i-kompresija-u-jeziku-php">Kodiranje HTTP sadržaja i kompresija u jeziku PHP</h1>
 <p>HTTP zaglavlje <code>Accept-Encoding</code> u zahtjevu navodi koja kodiranja sadržaja (u konkretnom slučaju najčešće algoritme kompresije sadržaja) klijent može primiti i razumijeti (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding">više detalja o HTTP zaglavlju Accept-Encoding na MDN-u</a>). Primjerice, zaglavlje može biti oblika <code>Accept-Encoding: br, gzip;q=1.0, *;q=0.5</code> i reći da klijent razumije <a href="https://brotli.org/">Brotli</a> (<a href="https://en.wikipedia.org/wiki/Brotli">Wikipedia</a>) (implicitno s kvalitetom 1.0), <a href="https://www.gzip.org/">Gzip</a> (<a href="https://en.wikipedia.org/wiki/Gzip">Wikipedia</a>) s kvalitetom 1.0 i sve ostale oblike kodiranja sadržaja s kvalitetom 0.5.</p>
 <p>Poslužitelj na temelju primljene vrijednosti odabire jedno od predloženih kodiranja sadržaja pa njime kodira (u konkretnom slučaju najčešće komprimira) sadržaj i navodi korištenu metodu u HTTP zaglavlju <code>Content-Encoding</code> u odgovoru koji šalje klijentu (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding">više detalja o HTTP zaglavlju Content-Encoding na MDN-u</a>).</p>
@@ -5091,7 +5091,7 @@
 </code></pre></div>
 <h2 id="opci-odabir-kodiranja-sadrzaja">Opći odabir kodiranja sadržaja</h2>
 <p>U situaciji kad klijent navodi kvalitetu razumijevanja za pojedina kodiranja postupak odabira je sličan kao kod odabira jezika.</p>
-                
+
               
   
     <p><small>Author: Vedran Miletić</small></p>
@@ -5167,7 +5167,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.0d86bc28.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.0885dc41.min.js"></script>
       
     
   </body>

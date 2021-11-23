@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/dhcp-posluzitelj-klijent/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b2">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.450eaa28.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0c73cc44.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -5152,7 +5152,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
-                
+
 <h1 id="dinamicko-dodjeljivanje-adresa-domacinima">Dinamičko dodjeljivanje adresa domaćinima</h1>
 <p><a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">Dynamic Host Configuration Protocol</a> (kraće DHCP) je mrežni protokol koji se koristi za konfiguraciju mrežnih uređaja kako bi mogli komunicirati u IP mreži.</p>
 <p>DHCP je prvi put standardiziran 1993. godine (<a href="https://tools.ietf.org/html/rfc1541">RFC 1541</a>) kao dodatak protokolu <a href="https://en.wikipedia.org/wiki/Bootstrap_Protocol">Bootstrap Protocol</a> (kraće BOOTP). Motivacija za nadogradnju BOOTP-a je njegova potreba za ručnim unosom konfiguracijskih informacija za svaki od klijenata i nedostatak mehanizma za uzimanje nekorištenih IP adresa. DHCP je postao popularan i od 1997. godine (<a href="https://tools.ietf.org/html/rfc2131">RFC 2131</a>) postaje samostalni protokol, ali nastavlja koristiti vrata koja je IANA dodjelila za BOOTP: UDP vrata 67 za slanje podataka poslužitelju i UDP vrata 68 za slanje podataka klijentu. Danas je standard na gotovo svim uređajima koji koriste IP.</p>
@@ -5292,7 +5292,7 @@ eth0: <span class="nv">flags</span><span class="o">=</span><span class="m">4163<
 <p>Budući da DHCP poslužitelj nema sigurnog mehanizma za provjeru klijenata, klijenti mogu neautorizirano prestupiti IP adresama prezentirajući se kao drugi DHCP klijenti. Ovo omogućava da se iskoriste sve dostupne IP adrese i onemogući pristup pravim korisnicima.</p>
 <p>DHCP ipak ima neke mehanizme za rješavanje ovih problema. The Relay Agent Information Option protokol omogućuje mrežnim operaterima da dodaju potpis na DHCP poruke. Ovaj potpis se koristi kao provjera kako bi se kontrolirao pristup mrežama od strane klijenata.</p>
 <p>Jos jedna mogućnost je Authentication for DHCP Messages koja omogućuje provjeru DHCP poruka. Problem kod ove metode je spremanje ključeva za velik broj DHCP klijenata.</p>
-                
+
               
   
     <p><small>Author: Nikola Barković, Vedran Miletić</small></p>
@@ -5368,7 +5368,7 @@ eth0: <span class="nv">flags</span><span class="o">=</span><span class="m">4163<
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.0d86bc28.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.0885dc41.min.js"></script>
       
     
   </body>

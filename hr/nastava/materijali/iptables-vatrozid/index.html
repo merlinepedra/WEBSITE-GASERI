@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/iptables-vatrozid/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b2">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.450eaa28.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0c73cc44.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -5166,7 +5166,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
-                
+
 <h1 id="filtriranje-paketa-vatrozidom">Filtriranje paketa vatrozidom</h1>
 <h2 id="pojam-vatrozida-i-proces-filtriranja-paketa-vatrozidom">Pojam vatrozida i proces filtriranja paketa vatrozidom</h2>
 <p><a href="https://en.wikipedia.org/wiki/Firewall_(computing)">Vatrozid</a> (engl. <em>firewall</em>) je uređaj ili aplikacija koja služi da dozvoli ili zabrani prijenos podataka mrežom na osnovu određenog skupa pravila. Najčešće se koristi za istovremeno dozvoljavanje legitimnog i onemogućavanje nelegitimnog pristupa izvana lokalnim mrežama (ili specifičnom domaćinu unutar mreže).</p>
@@ -5377,7 +5377,7 @@ n2----n4----n5---n6---n8
 <div class="highlight"><pre><span></span><code><span class="c1"># iptables -A OUTPUT -p tcp --dport 25 -j DROP</span>
 </code></pre></div>
 <p>Generiranjem odgovarajućeg prometa i hvatanjem prometa putem alata Wireshark ispitajmo stanje veze. Uočimo kako poruke s odredišnim vratima 25 računalo n1 više ne može poslati niti jednom čvoru u mreži te na svaki poslani paket dobiva odgovor <code>"Connection timed out"</code>.</p>
-                
+
               
   
     <p><small>Author: Domagoj Margan, Vedran Miletić</small></p>
@@ -5453,7 +5453,7 @@ n2----n4----n5---n6---n8
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.0d86bc28.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.0885dc41.min.js"></script>
       
     
   </body>
