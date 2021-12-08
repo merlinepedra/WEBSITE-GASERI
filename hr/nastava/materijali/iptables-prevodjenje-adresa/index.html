@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/iptables-prevodjenje-adresa/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.816931ca.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a617204b.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -40,15 +40,13 @@
       
     
     
-    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../../../..":"../../../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-
   
 
 
   
-
   
 
 
@@ -1560,6 +1558,20 @@
     <li class="md-nav__item">
       <a href="../dnsmasq-dhcp-dns-posluzitelj/" class="md-nav__link">
         DHCP i DNS poslužitelj dnsmasq
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-compose-kompozicije-kontejnera/" class="md-nav__link">
+        Komponiranje kontejnera alatom Docker Compose
       </a>
     </li>
   
@@ -5119,12 +5131,12 @@ n2----n4----n5---n6---n8
     n3                  n9
 </code></pre></div>
 <h3 id="primjer-1">Primjer 1</h3>
-<p>Želimo omogućiti da n1, n2 i n3 mogu komunicirati s ostatkom mreže (n7 i n9) preko vanjske adrese.</p>
-<p>Pokrenemo li na n1 <code>ping</code> čvora n9, moguće je da ćemo uočiti da čvorovi iz različitih podmreža ne mogu međusobno komunicirati.</p>
+<p>Pokrenemo li na n1 <code>ping</code> čvora n9, uočit ćemo da čvorovi iz različitih podmreža mogu međusobno komunicirati izravno. U toj situaciji emulacija zapravo odstupa od stvarnosti (kako bi nam olakšala korištenje); u stvarnosti se usmjeravanje ne vrši na privatne raspone adresa (između ostalog, to je zato što velik broj kućnih korisnika ima svoju kućnu mrežu na rasponu adresi 192.168.5.0/24 pa je pitanje kojem od njih bi paketi trebali stići).</p>
+<p>Želimo omogućiti da n1, n2 i n3 mogu komunicirati s ostatkom mreže (n7 i n9) preko vanjske adrese korištenjem prevođenja adresa. Tada će se prilikom prolaska paketa poslanih s n1, n2 i n3 promijeniti izvorišna adresa u vanjsku adresu od n5, a kod primanja odgovora će se odredišna adresa od n5 promijeniti u adresu od n1, n2 ili n3, ovisno o korištenim odredišnim vratima.</p>
 <p>Uočimo da se izvodi prevođenje izvorišne adrese što ne utječe na usmjeravanje, te možemo pravila naizgled dodati ili u PREROUTING ili u POSTROUTING. Međutim, kako bi pravila filtriranja vatrozida zadana u terminima privatnih adresa bila ispravno primijenjena, dodajemo ih u lanac POSTROUTING. Koristimo IP maškaradu naredbom na usmjerivaču n5</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE</span>
 </code></pre></div>
-<p>Ova naredba je specifična za ovu mrežu iznad jer je eth0 mrežno sučelje usmjerivača n5 prema van (iz perspektive mreže u kojoj su n1, n2, n3 i n5), odnosno prema n6. U nekoj drugoj mreži to može biti eth1, eth2 ili bilo koja treće mrežno sučelje, ovisno o načinu na koji su domaćini u mreži povezani.</p>
+<p>Ova naredba je specifična za ovu mrežu iznad jer je eth1 mrežno sučelje usmjerivača n5 prema van (iz perspektive mreže u kojoj su n1, n2, n3 i n5), odnosno prema n6. U nekoj drugoj mreži to može biti eth0, eth2 ili bilo koja treće mrežno sučelje, ovisno o načinu na koji su domaćini u mreži povezani.</p>
 <p>Ponovo provjerimo stanje veze alatom <code>ping</code>. Uočimo da sada možemo slati ICMP poruke između čvorova u različitim podmrežama. Ova postavka obuhvaća n1, n2 i n3.</p>
 <p>SNAT ne možemo koristiti jer imamo više od jednog računala te bi moglo doći do kolizije vrata s vanjske strane u slučaju da operacijski sustavi na oba računala otvore ista kratkoživuća vrata u istom trenutku.</p>
 <h3 id="primjer-2">Primjer 2</h3>
@@ -5137,7 +5149,7 @@ n2----n4----n5---n6---n8
 <p>Za potrebe idućeg primjera potrebno je odstraniti čvorove n1 i n2. Dakle, sada je n3 jedino računalo na eth1 sučelju usmjerivača n5. Na n5 iskoristiti ćemo SNAT za n3.</p>
 <p>Pokrenemo li na n3 <code>ping</code> čvora n7, uočit ćemo da ne možemo slati ICMP poruke između n3 i ostatka mreže.</p>
 <p>Kako sada imamo samo jedno računalo, možemo koristiti SNAT jer se sva vrata dostupna na vanjskoj adresi mogu izravno preslikati u vrata računala n1. Ukoliko to želimo, u POSTROUTING na usmjerivaču n5 ćemo uključiti SNAT naredbom</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># iptables -t nat -A POSTROUTING -o eth0 -j SNAT -s 10.0.3.1 --to-source 192.168.4.22</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># iptables -t nat -A POSTROUTING -o eth1 -j SNAT -s 10.0.3.1 --to-source 192.168.4.22</span>
 </code></pre></div>
 <p>Ova naredba je također specifična za ovu mrežu iznad zbog navedenog izlaznog mrežnog sučelja i adrese domaćina.</p>
 <p>Ponovo provjerimo stanje veze alatom <code>ping</code>. Uočimo da sada možemo slati ICMP poruke između čvora n3 i ostatka mreže.</p>
@@ -5214,10 +5226,10 @@ n2----n4----n5---n6---n8
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.01824240.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.cefbb252.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.a87c2adc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
       
     
   </body>
