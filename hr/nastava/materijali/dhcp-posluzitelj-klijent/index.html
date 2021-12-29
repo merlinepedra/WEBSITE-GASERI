@@ -2510,6 +2510,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5333,6 +5347,16 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># dhclient -cf mydhclient.conf eth0</span>
 </code></pre></div>
 <p>unutar koje se mogu nalaziti konfiguracijske naredbe isteka vremena (<code>timeout</code>), vremena prije ponovnog pokušaja (<code>retry</code>) i druge. Opis pojedinih konfiguracijskih naredbi dan je u man stranici <code>dhclient.conf(5)</code> (naredba <code>man 5 dhclient.conf</code>).</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Moguće je da <code>dhclient</code> kod pokretanja javi pogrešku oblika:</p>
+<div class="highlight"><pre><span></span><code>System has not been booted with systemd as init system (PID 1). Can&#39;t operate.
+Failed to connect to bus: Host is down
+</code></pre></div>
+<p>Suvremeni operacijski sustavi temeljeni na Linuxu koriste <a href="https://systemd.io/">systemd</a> (izvedenica od <strong>system</strong> <strong>d</strong>aemon) za pokretanje sustavskih procesa, ali čvorovi u CORE-u to ne rade jer ima je cilj zauzeti što manje memorije (i time omogućiti pokretanje većih emulacija). To objašnjava prvi redak pogreške.</p>
+<p>Što se drugog retka, za međuprocesnu komunikaciju koristi se <a href="https://www.freedesktop.org/wiki/Software/dbus/">D-Bus</a> koji također nije pokrenut (iz istih motiva kao i systemd) pa se proces na njega ne može povezati.</p>
+<p>Procesi koje koristimo u emuliranim čvorovima, uključujući i <code>dhclient</code>, uredno rade bez obzira na ove pogreške pa ih možemo ignorirati.</p>
+</div>
 <h3 id="posluziteljska-strana">Poslužiteljska strana</h3>
 <p>ISC DHCP poslužitelj naziva se <code>dhcpd</code>; slovo <code>d</code> na kraju imena oznaka je da se radi o <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemonu</a>. Poslužitelj se pokreće naredbom</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># dhcpd -cf mydhcpd.conf</span>
@@ -5350,10 +5374,10 @@
 </code></pre></div>
 <p>Za svaku od podmreža možemo definirati posebne postavke. Uzmimo da nam je, kao tipičnom kućnom ADSL/VDSL korisniku, dana podmreža 192.168.5.0/24 i da DHCP poslužitelj ima adresu 192.168.5.1 i služi kao izlaz iz mreže. Konfiguracijske naredbe su tada</p>
 <div class="highlight"><pre><span></span><code><span class="k">subnet</span> <span class="mi">192</span><span class="s">.168.5.0</span> <span class="s">netmask</span> <span class="mi">255</span><span class="s">.255.255.0</span> <span class="p">{</span>
-     <span class="kn">option</span> <span class="s">routers</span>           <span class="mi">192</span><span class="s">.168.5.1</span><span class="p">;</span>
-     <span class="kn">option</span> <span class="s">subnet-mask</span>       <span class="mi">255</span><span class="s">.255.255.0</span><span class="p">;</span>
-     <span class="kn">option</span> <span class="s">broadcast-address</span> <span class="mi">192</span><span class="s">.168.5.255</span><span class="p">;</span>
-     <span class="kn">range</span>  <span class="mi">192</span><span class="s">.168.5.101</span>     <span class="mi">192</span><span class="s">.168.5.200</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">routers</span>           <span class="mi">192</span><span class="s">.168.5.1</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">subnet-mask</span>       <span class="mi">255</span><span class="s">.255.255.0</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">broadcast-address</span> <span class="mi">192</span><span class="s">.168.5.255</span><span class="p">;</span>
+    <span class="kn">range</span>  <span class="mi">192</span><span class="s">.168.5.101</span>     <span class="mi">192</span><span class="s">.168.5.200</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>DHCP klijenti koji zatraže IP adresu od poslužitelja dobit će adresu u rasponu navedenom naredbom <code>range</code>. Detaljniji opis pojedinih konfiguracijskih naredbi dan je u man stranici <code>dhcpd.conf(5)</code>.</p>
@@ -5378,10 +5402,10 @@ n2
 <span class="k">lease-file-name</span>    <span class="s">&quot;/tmp/dhcpd.leases&quot;</span><span class="p">;</span>
 
 <span class="k">subnet</span> <span class="mi">172</span><span class="s">.16.25.0</span> <span class="s">netmask</span> <span class="mi">255</span><span class="s">.255.255.0</span> <span class="p">{</span>
-     <span class="kn">option</span> <span class="s">routers</span>           <span class="mi">172</span><span class="s">.16.25.1</span><span class="p">;</span>
-     <span class="kn">option</span> <span class="s">subnet-mask</span>       <span class="mi">255</span><span class="s">.255.255.0</span><span class="p">;</span>
-     <span class="kn">option</span> <span class="s">broadcast-address</span> <span class="mi">172</span><span class="s">.16.25.255</span><span class="p">;</span>
-     <span class="kn">range</span>  <span class="mi">172</span><span class="s">.16.25.20</span>      <span class="mi">172</span><span class="s">.16.25.249</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">routers</span>           <span class="mi">172</span><span class="s">.16.25.1</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">subnet-mask</span>       <span class="mi">255</span><span class="s">.255.255.0</span><span class="p">;</span>
+    <span class="kn">option</span> <span class="s">broadcast-address</span> <span class="mi">172</span><span class="s">.16.25.255</span><span class="p">;</span>
+    <span class="kn">range</span>  <span class="mi">172</span><span class="s">.16.25.20</span>      <span class="mi">172</span><span class="s">.16.25.249</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Kako bismo mogli pokrenuti <code>dhcpd</code>, treba nam i datoteka <code>/tmp/dhcpd.leases</code> pa ćemo je stvoriti (praznu) naredbom</p>
@@ -5412,9 +5436,9 @@ eth0: <span class="nv">flags</span><span class="o">=</span><span class="m">4163<
         inet <span class="m">172</span>.16.25.20  netmask <span class="m">255</span>.255.255.0  broadcast <span class="m">172</span>.16.25.255
         inet6 fe80::200:ff:feaa:0  prefixlen <span class="m">64</span>  scopeid 0x20&lt;link&gt;
         ether <span class="m">00</span>:00:00:aa:00:00  txqueuelen <span class="m">1000</span>  <span class="o">(</span>Ethernet<span class="o">)</span>
-   RX packets <span class="m">113</span>  bytes <span class="m">12804</span> <span class="o">(</span><span class="m">12</span>.5 KiB<span class="o">)</span>
-   RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>
-   TX packets <span class="m">26</span>  bytes <span class="m">2508</span> <span class="o">(</span><span class="m">2</span>.4 KiB<span class="o">)</span>
+        RX packets <span class="m">113</span>  bytes <span class="m">12804</span> <span class="o">(</span><span class="m">12</span>.5 KiB<span class="o">)</span>
+        RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>
+        TX packets <span class="m">26</span>  bytes <span class="m">2508</span> <span class="o">(</span><span class="m">2</span>.4 KiB<span class="o">)</span>
         TX errors <span class="m">0</span>  dropped <span class="m">0</span> overruns <span class="m">0</span>  carrier <span class="m">0</span>  collisions <span class="m">0</span>
 </code></pre></div>
 <p>Isti postupak ponovimo na čvoru n2. Sada je komunikacija omogućena kao da u situaciji kad se koriste statičke adrese.</p>

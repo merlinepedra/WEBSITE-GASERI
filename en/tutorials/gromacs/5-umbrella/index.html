@@ -2381,6 +2381,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5233,7 +5247,7 @@ a harmonic potential. The different distances are "windows". In a regular
 simulation, like the one we did in tutorial 3, some of these windows are rarely
 sampled. Umbrella sampling solves this by forcing the molecules to stay within a
 certain range of a set distance.</p>
-<p>At the end we'll use the GROMACS implementation of weighted histogram analysis
+<p>At the end, we'll use the GROMACS implementation of weighted histogram analysis
 (WHAM) to reconstruct the PMF. <a href="https://www.alchemistry.org/wiki/Weighted_Histogram_Analysis_Method">An article on the Alchemistry
 wiki</a>
 discusses WHAM in the context of alchemical changes. Here our reaction
@@ -5247,7 +5261,7 @@ nm in each direction for this tutorial.</p>
 <h3 id="create-index-file">Create index file</h3>
 <p>We also need to create an index file with the two groups we are interested in
 restraining with our umbrella potential. Create an index file using <em>gmx index</em>
-creating a group containing just one carbon from one of the methanes and name
+creating a group containing just one carbon from one of the methanes and naming
 them <code>CA</code> and <code>CB</code> respectively.</p>
 <div class="highlight"><pre><span></span><code>$ gmx make_ndx -f conf.gro
 </code></pre></div>
@@ -5271,7 +5285,7 @@ and <code>CB</code>.</p>
 <p>We're pretty much reusing the parameter files from the first few tutorials,
 except we'll be adding a section on center-of-mass (COM) pulling. The pull code
 is how we'll keep our methanes a specified distance apart. There are probably a
-few different ways to set this up, but for this system we'll manually specify
+few different ways to set this up, but for this system, we'll manually specify
 each distance we want for the two methanes.</p>
 <p>The parameter files for each step are <a href="mdp.tar.gz">found here</a>.</p>
 <p>Just like in the free energy tutorial, these files are templates with a keyword
@@ -5301,7 +5315,7 @@ one.</p>
 <tr>
 <td>pull-group1-name</td>
 <td>CA</td>
-<td>We specified this in the index file. For us this will be the carbon of one of the methanes, although we probably could have chosen the entire methane. If we did that it would have been pulled along the COM of the entire molecule.</td>
+<td>We specified this in the index file. For us, this will be the carbon of one of the methanes, although we probably could have chosen the entire methane. If we did that it would have been pulled along the COM of the entire molecule.</td>
 </tr>
 <tr>
 <td>pull-group2-name</td>
@@ -5326,7 +5340,7 @@ one.</p>
 <tr>
 <td>pull-coord1-groups</td>
 <td>1 2</td>
-<td>For this pull coordinate these are the two groups (defined below) which will be pulled. You can actually have more thane one pull coordinate and so do pulling across different sets of molecules, but that's not applicable here.</td>
+<td>For this pull coordinate these are the two groups (defined below) that will be pulled. You can actually have more thane one pull coordinate and so do pulling across different sets of molecules, but that's not applicable here.</td>
 </tr>
 <tr>
 <td>pull-coord1-k</td>
@@ -5350,13 +5364,13 @@ one.</p>
 </tr>
 </tbody>
 </table>
-<p>The parameter files are setup for a 100 ps NVT equilbiration, then a 1 ns NPT
+<p>The parameter files are set up for a 100 ps NVT equilibration, then a 1 ns NPT
 equilibration, and lastly a 5 ns production run. We are planning on the methanes
 getting to the correct distances when the umbrella potential is applied during
-the equilibrations. For some other systems you may have to be more methodical in
+the equilibrations. For some other systems, you may have to be more methodical in
 how you generate your initial configurations for each window.</p>
 <h2 id="simulation">Simulation</h2>
-<p>For the simulations we're going to use a bash script to replace the <code>WINDOW</code>
+<p>For the simulations, we're going to use a bash script to replace the <code>WINDOW</code>
 keyword in our mdp files, very similar to what we did in the free energy
 simulation. Here is the script:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
@@ -5389,11 +5403,11 @@ simulation. Here is the script:</p>
 <span class="k">done</span>
 </code></pre></div>
 <p>We are simulating 26 windows from 0.05 to around 1.3 nm in distance. Notice that
-I've added <code>-pf</code> and <code>-px</code> flags for the pull force and pull distance for each
+I've added <code>-pf</code> and <code>-px</code> flags for the pulling force and pulling distance for each
 step. This is because with <code>-deffnm</code> GROMACS will try to write both to the same
-file. Also I've specified the index file with <code>-n</code> since <em>gmx grompp</em> needs to
+file. Also, I've specified the index file with <code>-n</code> since <em>gmx grompp</em> needs to
 get the groups we specified with the pull parameters. Note that I am using a
-little trick with <code>bc</code> in order to do math with floating point numbers in bash.</p>
+little trick with <code>bc</code> in order to do math with floating-point numbers in bash.</p>
 <h2 id="analysis">Analysis</h2>
 <p>We're going to use <em>gmx wham</em> to get the PMF. The program takes a file
 containing a list of the <code>.tpr</code> files and another file containing a list of the
@@ -5418,7 +5432,7 @@ PMF needs to be removed. Recall that the Gibbs free energy in the isothermal
 isobaric ensemble is -kTln(W) where W is the partition function. In the case of
 our methane dancing around the surface of a sphere, W is proportional to the
 surface area of that sphere. So, a correction of 2kTln(r) needs to be added.
-Additionally we need to shift the plot up such that its tail goes to zero. I
+Additionally, we need to shift the plot up such that its tail goes to zero. I
 found adding about 77 worked for my particular system, but yours may be
 different. To plot this in gnuplot do the following in a gnuplot terminal:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&gt;</span> <span class="k">plot</span> <span class="s">&#39;profile.xvg&#39;</span> <span class="nb">u</span> <span class="mi">1</span><span class="o">:</span><span class="p">(</span><span class="err">$</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="mf">8.314e-3</span><span class="o">*</span><span class="mf">298.15</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">77</span><span class="p">)</span> <span class="nb">w</span> <span class="n">l</span>
@@ -5435,11 +5449,11 @@ other, which is why we have to add the umbrella potentials to keep them there.</
 enough overlap between windows. Here is a plot of each histogram for this
 simulation:</p>
 <p><img alt="Histogram" src="histo.png" /></p>
-<p>Clearly we our windows are overlapping sufficiently. If they were not, we might
+<p>Clearly, our windows are overlapping sufficiently. If they were not, we might
 have to choose a smaller window size or pick specific spots that were missing to
 simulate.</p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial we used GROMACS COM pull code to do window sampling on two
+<p>In this tutorial, we used GROMACS COM pull code to do window sampling on two
 methanes in water. From there we used <em>gmx wham</em> to extract the potential of
 mean force.</p>
 

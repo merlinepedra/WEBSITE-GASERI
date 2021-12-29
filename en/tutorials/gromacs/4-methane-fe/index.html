@@ -2381,6 +2381,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5209,7 +5223,7 @@
 
 
 <h1 id="gromacs-tutorial-4-methane-free-energy-of-solvation">GROMACS Tutorial 4 -- Methane Free Energy of Solvation</h1>
-<p>In this tutorial I'll show you how to perform a free energy of solvation
+<p>In this tutorial, I'll show you how to perform a free energy of solvation
 simulation using GROMACS, as well as how to calculate the free energy change
 using <a href="https://aip.scitation.org/doi/10.1063/1.2978177">MBAR</a>. As always, this
 tutorial builds off of the previous ones, especially <a href="../1-tip4pew-water/">Tutorial 1</a>
@@ -5236,7 +5250,7 @@ molecules ]</code>. We'll be using one methane, so if you have more listed, chan
 to 1 now.</p>
 <p>This time we're using a different box type so that we won't have to use as much
 water. We'll use a dodecahedron box at 1.2 nm out in each direction from the
-methane. First create the box:</p>
+methane. First, create the box:</p>
 <div class="highlight"><pre><span></span><code>$ gmx editconf -f methane.pdb -bt dodec -d <span class="m">1</span>.2 -o box.gro
 </code></pre></div>
 <p>Now fill with solvent:</p>
@@ -5245,10 +5259,10 @@ methane. First create the box:</p>
 <h3 id="parameter-files">Parameter files</h3>
 <p>The parameter files we'll be using are almost exactly the same as previous
 tutorials, except we're adding a free energy section in order to slowly turn off
-our methane. Additionally we need a parameter file for each state. We have
-15 minimizations, 15 equilbirations, etc. But we'll use a script to simply
+our methane. Additionally, we need a parameter file for each state. We have
+15 minimizations, 15 equilibrations, etc. But we'll use a script to simply
 update the appropriate values in a template, so we actually only will have to
-have one for each part of the simulation. At each state we'll do our two
+have one for each part of the simulation. At each state, we'll do our two
 minimizations, equilibrate at NVT for 100 ps, equilibrate at NPT for 1 ns, and
 then do a production run for 5 ns.</p>
 <p>The files can be downloaded <a href="mdp.tar.gz">here</a>.</p>
@@ -5330,7 +5344,7 @@ then do a production run for 5 ns.</p>
 <tr>
 <td>sc-coul</td>
 <td>no</td>
-<td>Don't use soft core for electrostatics.</td>
+<td>Don't use soft-core for electrostatics.</td>
 </tr>
 </tbody>
 </table>
@@ -5420,7 +5434,7 @@ results:</p>
 </code></pre></div>
 <p>This is the free energy of removing a methane, so the free energy of solvation
 is actually negative one times this, since it is the reverse process. Our result
-of 2.289 kcal / mol is comparable to published figures. <a href="https://aip.scitation.org/doi/10.1063/1.1587119">In a paper that
+of 2.289 kcal/mol is comparable to published figures. <a href="https://aip.scitation.org/doi/10.1063/1.1587119">In a paper that
 simulated OPLS methane with TIP3P</a>,
 they achieved a result of 2.44 kcal/mol. The difference can probably be
 attributed to using a different water model.</p>
@@ -5433,13 +5447,13 @@ as well. I reran the script to gather some more analysis:</p>
 </code></pre></div>
 <p>Here is a visual comparison of the calculated value for each segment:</p>
 <p><img alt="Methods" src="dF_state.png" /></p>
-<p>I can see that one of the methods (DEXP) gets a different results for
+<p>I can see that one of the methods (DEXP) gets different results for
 calculations between states 5 and 6 as well as between 6 and 7. I'm not too
 concerned about this, since the other methods line up well and DEXP is not one
 of the "better" methods.</p>
 <p>And here is the <code>&lt;dHdl&gt;</code> curve:</p>
 <p><img alt="dHdl" src="dhdl_TI.png" /></p>
-<p>Here we are looking for places where the curvature is high.The curvature is
+<p>Here we are looking for places where the curvature is high. The curvature is
 higher around states 10, 11, and 12. Depending on our application, we might want
 to possibly sample more states in that area.</p>
 <p>Lastly, here is a plot of the result calculated as a function of time, both
@@ -5451,16 +5465,16 @@ flat for any significant portion of the first part of the plot, this would
 indicate our system may not be well equilibrated before we started the
 simulation. We could discard that non-equilibrated data and redo the
 calculation.</p>
-<p>There are a couple of other command line flags you can use with the
-<code>alchemical_analysis</code> script. Be sure to checkout the homepage of the script and
+<p>There are a couple of other command-line flags you can use with the
+<code>alchemical_analysis</code> script. Be sure to check out the homepage of the script and
 the <a href="https://link.springer.com/article/10.1007/s10822-015-9840-9">paper on best practices in free energy analysis</a>
 which goes much more into detail on these and other plots. I won't go into
-detail of all the options here.</p>
+detail about all the options here.</p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial we performed a free energy simulation on methane in water. We
+<p>In this tutorial, we performed a free energy simulation on methane in water. We
 turned off electrostatics linearly first, and then we used a soft-core potential
 to turn off the van der Waals interactions. The intramolecular interactions for
-methane remained on, so its as if we were removing the methane from the water
+methane remained on, so it's as if we were removing the methane from the water
 and placing it in a vacuum. Our result of 2.289 kcal /mol is comparable to
 published results.</p>
 

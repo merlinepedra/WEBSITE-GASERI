@@ -9,17 +9,17 @@
         <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Informatics and Digital Technologies">
       
       
-        <meta name="author" content="Vedran Miletić, Vanja Slavuj, Sanja Pavkov">
+        <meta name="author" content="Vedran Miletić">
       
       
-        <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/emacs-text-datoteke/">
+        <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/mariadb-replikacija/">
       
       <link rel="icon" href="../../../../images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
     
     
       
-        <title>Rad s tekstualnim datotekama - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB - Group for apps and services on exascale research infrastructure (GASERI)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rad-s-tekstualnim-datotekama" class="md-skip">
+        <a href="#replikacija-sadrzaja-posluzitelja-sustava-za-upravljanje-bazom-podataka-mariadb" class="md-skip">
           Preskočite na sadržaj
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rad s tekstualnim datotekama
+              Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
             
           </span>
         </div>
@@ -1811,59 +1811,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Rad s tekstualnim datotekama
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../emacs-text-datoteke/" class="md-nav__link">
         Rad s tekstualnim datotekama
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Sadržaj
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#kodiranje-znakova" class="md-nav__link">
-    Kodiranje znakova
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ureivaci-teksta" class="md-nav__link">
-    Uređivači teksta
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2433,11 +2385,79 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../mariadb-replikacija/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postavljanje-replikacije" class="md-nav__link">
+    Postavljanje replikacije
+  </a>
+  
+    <nav class="md-nav" aria-label="Postavljanje replikacije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postavljanje-primarnog-posluzitelja" class="md-nav__link">
+    Postavljanje primarnog poslužitelja
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postavljanje-replike" class="md-nav__link">
+    Postavljanje replike
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ogranicavanje-replike-na-citanje" class="md-nav__link">
+    Ograničavanje replike na čitanje
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5123,15 +5143,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kodiranje-znakova" class="md-nav__link">
-    Kodiranje znakova
+  <a href="#postavljanje-replikacije" class="md-nav__link">
+    Postavljanje replikacije
   </a>
+  
+    <nav class="md-nav" aria-label="Postavljanje replikacije">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postavljanje-primarnog-posluzitelja" class="md-nav__link">
+    Postavljanje primarnog poslužitelja
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postavljanje-replike" class="md-nav__link">
+    Postavljanje replike
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ureivaci-teksta" class="md-nav__link">
-    Uređivači teksta
+  <a href="#ogranicavanje-replike-na-citanje" class="md-nav__link">
+    Ograničavanje replike na čitanje
   </a>
   
 </li>
@@ -5149,133 +5189,138 @@
               
   
                 
-<a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/emacs-text-datoteke.md" title="Uredi stranicu" class="md-content__button md-icon">
+<a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/mariadb-replikacija.md" title="Uredi stranicu" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="rad-s-tekstualnim-datotekama">Rad s tekstualnim datotekama</h1>
-<h2 id="kodiranje-znakova">Kodiranje znakova</h2>
+<h1 id="replikacija-sadrzaja-posluzitelja-sustava-za-upravljanje-bazom-podataka-mariadb">Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB</h1>
+<p><a href="https://mariadb.com/kb/en/replication-overview/">Replikacija</a> je značajka sustava za upravljanje bazom podataka koja omogućuje da sadržaji (baze podataka i tablice u bazama podataka) jednog ili više poslužitelja (koje nazivamo <strong>primarnim</strong>, engl. <em>primary</em>) budu dodatno dostupni na nekom drugom poslužitelju ili više njih (koje nazivamo <strong>replikama</strong>, engl. <em>replica</em>). Replikacija se koristi u više slučajeva, a nama su najzanimljiviji:</p>
 <ul>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Character_encoding">kodiranje znakova</a> je zapis znakova nizom 0 i 1</p>
+<li>skalabilnost: veći broj poslužitelja omogućuje da se čitanja iz baze podataka raspodijele na veći broj poslužitelja, što smanjuje opterećenje primarnog poslužitelja i naročito je primjenjivo za sustave koji imaju velik broj čitanja u odnosu na broj pisanja, npr. <a href="https://commons.wikimedia.org/wiki/File:Wikipedia_webrequest_flow_2020.png">Wikipedia</a></li>
+<li><a href="https://mariadb.com/kb/en/replication-as-a-backup-solution/">pomoć u izradi rezervnih kopija podataka</a>: rezervne kopije je lakše izraditi kad se poodaci ne mijenjaju pa je tipičan postupak izrada replikacije, odspajanje replike od primarnog poslužitelja (čime ona prestaje izvoditi promjene na podacima) i izrada pohrane podataka na replici</li>
+</ul>
+<p>Mehanizam koji omogućuje replikaciju je <a href="https://mariadb.com/kb/en/binary-log/">binarni zapisnik</a> koji sprema sve promjene na bazi podataka i omogućuje replikama da izvedu iste promjene na svojim kopijama podataka. Prilikom izvođenja replikacije stvara se <a href="https://mariadb.com/kb/en/relay-log/">relejni zapisnik</a> na svakoj od replika koji je istog oblika kao binarni zapisnik. Primarni poslužitelj i replike komuniciraju kontinuirano; u slučaju privremenog prekida komunikacije, replikacija će se zaustaviti. Nakon ponovnog uspostavljanja komunikacije replikacija će se nastaviti tamo gdje je stala.</p>
+<p>Standardna replikacija uključuje jedan primarni poslužitelj i jednu ili više replika. Time se dobiva neograničeno skaliranje operacija čitanja podataka, a dodatno se može jedna od replika po potrebi pretvoriti u primarni poslužitelj i time postići visoka raspoloživost usluge u slučaju prekida rada primarnog poslužitelja.</p>
+<h2 id="postavljanje-replikacije">Postavljanje replikacije</h2>
+<p>U nastavku pretpostavljamo da je primarni poslužitelj pokrenut na virtualnom stroju s adresom 192.168.122.100, a replika na virtualnom stroju s adresom 192.168.122.101.</p>
+<h3 id="postavljanje-primarnog-posluzitelja">Postavljanje primarnog poslužitelja</h3>
+<p>Na primarnom poslužitelju postavit ćemo redom:</p>
 <ul>
-<li>npr. <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>, <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859">ISO/IEC 8-bitna kodiranja</a>, <a href="https://en.wikipedia.org/wiki/Windows_code_page#ANSI">ANSI kodne stranice</a>, <a href="https://en.wikipedia.org/wiki/Unicode">Unicode kodiranja</a></li>
+<li>stvaranje binarnog zapisnika konfiguracijskom naredbom <code>bin_log</code> (<a href="https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#log_bin">dokumentacija</a>, <a href="https://mariadb.com/kb/en/activating-the-binary-log/">više detalja</a>)</li>
+<li>jedinstveni identifikator poslužitelja konfiguracijskom naredbom <code>server_id</code> (<a href="https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#server_id">dokumentacija</a>); replike će također imati identifikator i to različit od primarnog poslužitelja</li>
+<li>jedinstveno ime replikacijskog zapsnika naredbom <code>log_basename</code> (<a href="https://mariadb.com/kb/en/mysqld-options/#-log-basename">dokumentacija</a>)</li>
+<li>postaviti oblik zapisan na konfiguracijskom naredbom <code>binlog_format</code> (<a href="https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#binlog_format">dokumentacija</a>); mogućnosti su zapis temeljen na retcima koji su promijenjeni, zapis temeljen na naredbama koje mijenjaju podatke te kombinacija ta dva zapisa koju ćemo i koristiti (<a href="https://mariadb.com/kb/en/binary-log-formats/">više detalja</a>)</li>
 </ul>
-</li>
-<li>
-<p>Unicode je industrijski standard kodiranja koji omogućuje kodiranje većinu postojećih znakova</p>
+<p>Stvorimo datoteku <code>/etc/mysql/mariadb.conf.d/90-replication.cnf</code> tako da je njen sadržaj:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+<span class="na">log_bin</span>
+<span class="na">server_id</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">log_basename</span> <span class="o">=</span> <span class="s">primary1</span>
+<span class="na">binlog_format</span> <span class="o">=</span> <span class="s">mixed</span>
+</code></pre></div>
+<p>Stvorimo korisnika koji će se koristiti za replikaciju:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;victorglushkov&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;h4k3r1n3c3pr0b1t10v0&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<p>Uočimo da smo korisniku omogućili pristup od bilo kuda navođenjem znaka postotka (<code>%</code>) u imenu domaćina. Dodijelimo korisniku privilegiju repliciranja baze (<a href="https://mariadb.com/kb/en/grant/#replication-slave">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span> <span class="n">REPLICATION</span> <span class="n">SLAVE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;victorglushkov&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.000 sec)
+</code></pre></div>
+<p>Naposlijetku, postavimo da se MariaDB poslužitelj veže i na adrese do kojih je moguće doći izvan lokalnog računala. To ćemo učiniti promjenom vrijednosti konfiguracijske naredbe <code>bind-address</code> (<a href="https://mariadb.com/kb/en/server-system-variables/#bind_address">dokumentacija</a>) u datoteci <code>/etc/mysql/mariadb.conf.d/50-server.cnf</code> iz vezivanja na lokalnu adresu:</p>
+<div class="highlight"><pre><span></span><code><span class="na">bind-address</span>            <span class="o">=</span> <span class="s">127.0.0.1</span>
+</code></pre></div>
+<p>u vezivanje na sve adrese:</p>
+<div class="highlight"><pre><span></span><code><span class="na">bind-address</span>            <span class="o">=</span> <span class="s">0.0.0.0</span>
+</code></pre></div>
+<p>Nakon promjena postavki pokrenimo ponovno poslužitelj:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl restart mariadb
+</code></pre></div>
+<p>U nastavku uzimamo da je korisnik koji pristupa bazi podataka na primarnom poslužitelju i na replikama <code>ivanzhegalkin</code>, a baza podataka <code>mojabaza</code>. Zaključajmo tablice za promjene SQL upitom <code>FLUSH</code> (<a href="https://mariadb.com/kb/en/flush/">dokumentacija</a>) tako da prvo spremimo sve podatke u tablice, a potom ih zaključamo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">FLUSH</span> <span class="n">TABLES</span> <span class="k">WITH</span> <span class="k">READ</span> <span class="k">LOCK</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.001 sec)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">MASTER</span> <span class="n">STATUS</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------------------+----------+--------------+------------------+
+| File               | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++--------------------+----------+--------------+------------------+
+| master1-bin.000096 |      568 |              |                  |
++--------------------+----------+--------------+------------------+
+</code></pre></div>
+<p>Zapamtimo ime datoteke <code>master1-bin.000096</code> i mjesto u njoj <code>568</code> koji će nam trebati kod postavljanja replike.</p>
+<p>Iskoristimo u novom terminalu naredbu ljuske <code>mariadb-dump</code> (<a href="https://mariadb.com/kb/en/mariadb-dump/">dokumentacija</a>) za spremanje podataka iz baze <code>mojabaza</code> u datoteku <code>mojabaza-dump.sql</code> koja će sadržavati niz SQL upita kojima će se stvoriti baza iste strukture s istim podacima na drugom mjestu. Naredba je oblika:</p>
+<div class="highlight"><pre><span></span><code>$ mariadb-dump -u ivanzhegalkin -p mojabaza &gt; mojabaza-dump.sql
+</code></pre></div>
+<p>Otključajmo tablice SQL upitom <code>UNLOCK TABLES</code> (<a href="https://mariadb.com/kb/en/lock-tables/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.001 sec)
+</code></pre></div>
+<h3 id="postavljanje-replike">Postavljanje replike</h3>
+<p>Na replici postavit ćemo <code>server_id</code> na vrijednost različitu od one na primarnom poslužitelju, npr. <code>server_id = 2</code>. U nastavku pretpostavljamo da su korisnik <code>ivanzhegalkin</code> i baza podataka <code>mojabaza</code> stvoreni na isti način kao na primarnom poslužitelju. Uočimo da to nisu isti korisnik i ista baza jer se nalaze u drugoj instanci sustava za upravljanje bazom podataka.</p>
+<p>Iskoristimo MariaDB klijent <code>mariadb</code> (<a href="https://mariadb.com/kb/en/mariadb-command-line-client/">dokumentacija</a>) za uvoz podataka iz datoteke:</p>
+<div class="highlight"><pre><span></span><code>$ mariadb -u ivanzhegalkin -p mojabaza &lt; mojabaza-dump.sql
+</code></pre></div>
+<p>Nakon uvoza podataka povežimo repliku na primarni poslužitelj SQL upitom <code>CHANGE MASTER TO</code> (<a href="https://mariadb.com/kb/en/change-master-to/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span>
+  <span class="n">MASTER_HOST</span> <span class="o">=</span> <span class="s1">&#39;192.168.122.100&#39;</span><span class="p">,</span>
+  <span class="n">MASTER_PORT</span> <span class="o">=</span> <span class="mi">3306</span><span class="p">,</span>
+  <span class="n">MASTER_CONNECT_RETRY</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">MASTER_USER</span> <span class="o">=</span> <span class="s1">&#39;victorglushkov&#39;</span><span class="p">,</span>
+  <span class="n">MASTER_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;h4k3r1n3c3pr0b1t10v0&#39;</span><span class="p">,</span>
+  <span class="n">MASTER_LOG_FILE</span> <span class="o">=</span> <span class="s1">&#39;master1-bin.000096&#39;</span><span class="p">,</span>
+  <span class="n">MASTER_LOG_POS</span> <span class="o">=</span> <span class="mi">568</span><span class="p">,</span>
+
+  <span class="n">MASTER_USE_GTID</span> <span class="o">=</span> <span class="n">slave_pos</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.001 sec)
+</code></pre></div>
+<p>Ovdje smo naveli redom:</p>
 <ul>
-<li>najčešće se koristi <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, nešto rjeđe <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a>, <a href="https://en.wikipedia.org/wiki/UTF-32">UTF-32</a></li>
+<li>adresu domaćina na kojem se nalazi primarni poslužitelj: <code>MASTER_HOST = '192.168.122.100'</code></li>
+<li>vrata na kojima je pokrenut primarni poslužitelj: <code>MASTER_PORT = 3306</code></li>
+<li>broj pokušaja povezivanja na primarni poslužitelj prije odustajanja: <code>MASTER_CONNECT_RETRY = 10</code></li>
+<li>ime korisnika na primarnom poslužitelju: <code>MASTER_USER = 'victorglushkov'</code></li>
+<li>zaporku korisnika na primarnom poslužitelju: <code>MASTER_PASSWORD = 'h4k3r1n3c3pr0b1t10v0'</code></li>
+<li>ime datoteke zapisnika koje smo ranije očitali na primarnom poslužitelju: <code>MASTER_LOG_FILE = 'master1-bin.000096'</code></li>
+<li>mjesto u datoteci zapisnika koje smo ranije očitali na primarnom poslužitelju <code>MASTER_LOG_POS = 568</code></li>
+<li>uključivanje korištenja <a href="https://mariadb.com/kb/en/gtid/">globalnih transakcijskih identifikatora (GTID)</a>: <code>MASTER_USE_GTID = slave_pos</code></li>
 </ul>
-</li>
-<li>
-<p>tekstualna datoteka je datoteka koja sadrži čisti tekst kodiran nekim od kodiranja</p>
-<ul>
-<li>iako datoteke mogu biti tekstualnog oblika bez obzira na ekstenziju, radi lakšeg snalaženja, označavat ćemo ih ekstenzijom <code>.txt</code>, primjerice <code>file1.txt</code></li>
-</ul>
-</li>
-<li>
-<p><code>locale</code> ispisuje trenutne lokalne i regionalne postavke operacijskog sustava</p>
-<ul>
-<li><code>en_US.UTF-8</code> (zadane), <code>hr_HR.UTF-8</code> (naše), <code>en_DK.UTF-8</code> (često korištene, donekle hakeraj; Danske regionalne i lokalne postavke slične našima)</li>
-</ul>
-</li>
-<li>
-<p><code>locale -m</code> ispisuje popis podržanih kodiranja na sustavu</p>
-<ul>
-<li>osim Unicode kodiranja, ISO-8859-2 je kodiranje koje sadrži Hrvatske znakove</li>
-</ul>
-</li>
-</ul>
-<div class="admonition admonition">
-<p class="admonition-title">Dodatni zadatak</p>
-<p>Naredba <code>iconv</code> se koristi se za konverziju između različitih kodiranja. Mi ćemo od sada nadalje koristiti samo UTF-8, ali se u praksi često sreću datoteke kodirane i drugim kodnim stranicama.</p>
-<p>Proučite <code>man</code> stranicu naredbe <code>iconv</code>, a zatim je isprobajte kod prebacivanja datoteke iz <code>UTF-8</code> kodiranja u <code>UTF-7</code>, <code>UTF-16</code>, <code>ISO-8859-2</code>.</p>
-</div>
-<h2 id="ureivaci-teksta">Uređivači teksta</h2>
-<ul>
-<li>prije grafičkih sučelja, programi bili dizajnirani na način da koriste plain text</li>
-<li>programi za rad s tekstom u komandnoj liniji nisu <a href="https://en.wikipedia.org/wiki/Word_processor">programi za obradu teksta</a> (engl. <em>word processors</em>) nego <a href="https://en.wikipedia.org/wiki/Text_editor">uređivači teksta</a> (engl. <em>text editors</em> )</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/GNU_Emacs">GNU Emacs</a>, naredba <code>emacs</code></p>
-<ul>
-<li>iznimno moćan uređivač teksta, velike mogućnost prilagodbe i proširenja funkcionalnosti</li>
-<li>podržava bojenje sintakse, kompletiranje naredbi i automatsko uvlačenje koda za desetke različitih programskih jezika</li>
-<li>podržava UTF-8 i koristi ga kao zadani ako je on zadan sustavskim lokalnim i regionalnim postavkama; <a href="http://www.emacswiki.org/emacs/ChangingEncodings">više detalja o kodiranjima u Emacsu</a></li>
-<li>ne sadrži modove, za razliku od popularnog <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim</a>-a</li>
-<li><a href="https://xkcd.com/378/">xkcd: Real Programmers</a></li>
-</ul>
-</li>
-</ul>
-<div class="admonition admonition">
-<p class="admonition-title">Zadatak</p>
-<ul>
-<li>
-<p>Proučite <a href="https://ccrma.stanford.edu/guides/package/emacs/emacs.html">vodič za Emacs od Stanfordovog Centra za računalna istraživanja u glazbi i akustici</a> ili papir s Emacsovim naredbama. Isprobajte iduću funkcionalnost:</p>
-<ul>
-<li>open, close, read, save</li>
-<li>mark, copy, cut, paste</li>
-<li>search forward, search backward</li>
-</ul>
-</li>
-<li>
-<p>Napravite u svom kućnom direktoriju datoteku <code>mjeseci.txt</code> i u nju upišite nazive mjeseci tako da je svaki naziv u svome retku.</p>
-</li>
-<li>Kopirajte sav sadržaj i zalijepite ga na kraj datoteke tri puta.</li>
-<li>Sačuvajte Vašu datoteku pod nazivom <code>mjeseci3.txt</code>.</li>
-<li>Dodajte svoje ime i prezime na kraj datoteke i sačuvajte Vaš trenutni rad.</li>
-<li>Odaberite dvije stvorene kopije sadržaja, izrežite ih, a zatim spremite u novu datoteku <code>mjeseci2.txt</code>.</li>
-<li>Pozicionirajte se u neki redak datoteke <code>mjeseci2.txt</code> i otkrijte broj linije u kojoj se trenutno nalazite.</li>
-<li>Pronađite u datoteci string <code>anj</code> i zamijenite ga sa rječju <code>ZAMJENA</code>.</li>
-</ul>
-</div>
-<div class="admonition admonition">
-<p class="admonition-title">Dodatni zadatak</p>
-<ul>
-<li>Otvorite u Emacsu datoteku nazvanu <code>moj_program.cpp</code>. Uočite u koji način rada (mode) vas postavlja.</li>
-<li>Unesite kod hello world C++ programa i spremite ga, a zatim ponovno spremite datoteku pod imenom <code>moj_program2.cpp</code>.</li>
-<li>Otvorite obje datoteke istovremeno i prebacite se iz jedne u drugu.</li>
-<li>Uočite da Emacs u zadanim postavkama ne vrši bojenje pripadnih zagrada <code>()</code>, odnosno <code>[]</code>, odnosno <code>{}</code>, odnosno <code>&lt;&gt;</code>. Pronađite u "Options" način da to uključite.</li>
-</ul>
-<p>(<strong>Napomena:</strong> Vremenom ćemo naučiti kako koristiti program-prevoditelj za prevođenje C++ programa na Linuxu.)</p>
-</div>
-<div class="admonition admonition">
-<p class="admonition-title">Dodatni zadatak</p>
-<ul>
-<li>Proučite program Vi IMproved (naredba <code>vim</code>).</li>
-</ul>
-</div>
-<div class="admonition admonition">
-<p class="admonition-title">Dodatni zadatak</p>
-<ul>
-<li>Pokrenite GNU nano (naredba <code>nano</code>), koji je vrlo jednostavan uređivač teksta, zamjena za nekoć popularni <code>pico</code>.</li>
-<li>
-<p>Isprobajte u GNU nano-u iduću funkcionalnost:</p>
-<ul>
-<li><code>^X -&gt; Exit</code>,</li>
-<li><code>^C -&gt; Cur Pos</code>,</li>
-<li><code>^O -&gt; WriteOut</code>,</li>
-<li><code>^R -&gt; Read File</code>,</li>
-<li><code>^K -&gt; Cut Text</code> i <code>^U -&gt; UnCut Text</code>,</li>
-<li><code>^W -&gt; Where Is</code> (i varijante <code>^W^R</code>, <code>^W^Y</code>, <code>^W^V</code>, <code>^W^T</code>).</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="admonition admonition">
-<p class="admonition-title">Ponovimo!</p>
-<ul>
-<li>Što je kodiranje znakova?</li>
-<li>Što je UTF-8? A UTF-32?</li>
-<li>Na što sve utječu lokalne i regionalne postavke sustava?</li>
-<li>Što je Emacs i čemu služi?</li>
-</ul>
-</div>
+<p>Pokrenimo repliku SQL upitom <code>START SLAVE</code> (<a href="https://mariadb.com/kb/en/start-replica/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Query OK, 0 rows affected (0.001 sec)
+</code></pre></div>
+<p>Uvjerimo se da je replikacija uspješno pokrenuta SQL upitom <code>SHOW SLAVE STATUS</code> (<a href="https://mariadb.com/kb/en/show-replica-status/">dokumentacija</a>). Ovdje ćemo iskoristiti završetak upita <code>\G</code> umjesto <code>;</code> kako bismo dobili čitljivi vertikalni ispis umjesto horizontalnog ispisa u retku tablice. Naredba je oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span> <span class="n">SLAVE</span> <span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>*************************** 1. row ***************************
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: db01.example.com
+                  Master_User: replicant
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: mariadb-bin.000096
+          Read_Master_Log_Pos: 568
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+...
+</code></pre></div>
+<p>Uočimo <code>Yes</code> u stupcima <code>Slave_IO_Running</code> i <code>Slave_SQL_Running</code>, koji označavaju da je replikacija uspješno postavljena.</p>
+<p>Više detalja može se pronaći u <a href="https://mariadb.com/kb/en/setting-up-replication/">službenoj dokumentaciji o postavljanju replikacije</a>, uključujući i <a href="https://mariadb.com/kb/en/replication-commands/">pregled naredbi</a>.</p>
+<h2 id="ogranicavanje-replike-na-citanje">Ograničavanje replike na čitanje</h2>
+<p>Replike je moguće <a href="https://mariadb.com/kb/en/read-only-replicas/">ograničiti samo na čitanje</a> postavljanjem konfiguracijske naredbe <code>read_only</code> (<a href="https://mariadb.com/docs/reference/mdb/system-variables/read_only/">dokumentacija</a>) na vrijednost 1 na način:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[mariadb]</span>
+<span class="na">read_only</span> <span class="o">=</span> <span class="s">1</span>
+</code></pre></div>
 
               
   
-    <p><small>Author: Vedran Miletić, Vanja Slavuj, Sanja Pavkov</small></p>
+    <p><small>Author: Vedran Miletić</small></p>
   
 
             </article>
@@ -5289,7 +5334,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../elasticsearch-distribuirano-pretrazivanje/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch" rel="prev">
+        <a href="../llvm-frontend-clang-opencl-c/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Prevođenje OpenCL C koda program prevoditeljem Clang" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -5298,20 +5343,20 @@
               <span class="md-footer__direction">
                 Prethodno
               </span>
-              Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch
+              Prevođenje OpenCL C koda program prevoditeljem Clang
             </div>
           </div>
         </a>
       
       
         
-        <a href="../emulator-core-bezicne-mreze/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Emulacija bežičnih mreža" rel="next">
+        <a href="../mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Konfiguracija sustava za upravljanje bazom podataka MariaDB" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Sljedeće
               </span>
-              Emulacija bežičnih mreža
+              Konfiguracija sustava za upravljanje bazom podataka MariaDB
             </div>
           </div>
           <div class="md-footer__button md-icon">

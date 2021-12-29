@@ -2381,6 +2381,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5292,7 +5306,7 @@
 
 <h1 id="gromacs-tutorial-1-water">GROMACS Tutorial 1 -- Water</h1>
 <p>In this introductory tutorial, I'll show you how to create a box of water and
-run a simple simulation on it with constant temperature and pressure. At the end
+run a simple simulation on it with constant temperature and pressure. In the end,
 we'll find out the density of water.</p>
 <h2 id="setup">Setup</h2>
 <p>Every GROMACS simulations needs three essential files: structure (.gro/.pdb),
@@ -5304,14 +5318,14 @@ information is provided by the force field. Non-bonded interactions included van
 der Waals interactions and Coulomb interactions. Bonded interactions include
 bonds, angles, and dihedrals. The parameters file includes information on how
 long to run the simulation, the timestep, temperature and pressure coupling,
-etc. Below we'll obtain / create these files.</p>
-<p>At this point I would suggest creating a directory to store files for this
+etc. Below we'll obtain/create these files.</p>
+<p>At this point, I would suggest creating a directory to store files for this
 tutorial.</p>
 <h3 id="topology-file">Topology file</h3>
 <p>We'll start with the topology file. Typically a topology file uses an <code>#include</code>
 statement to include the force field to be used. This force field includes <code>[
 atomtypes ]</code>, <code>[ bondtypes ]</code>, <code>[ angletypes ]</code>, and <code>[ dihedraltypes ]</code>
-directives. Then in the topology file usually we specify different <code>[
+directives. Then in the topology file we usually specify different <code>[
 moleculetype ]</code> directives which contain <code>[ atoms ]</code>, <code>[ bonds ]</code>, and <code>[
 dihedrals ]</code> which refer back to the force field. Don't worry about this too
 much right now. Water models include all of these for us. See Chapter 5 of the
@@ -5325,19 +5339,19 @@ TIP4PEW
 
 [ Molecules ]
 </code></pre></div>
-<p>As you can see we've included the force field for OPLS-AA. Additionally we've
-included the TIP4PEW water model. After this you'll see a <code>[ System ]</code> directive,
+<p>As you can see we've included the force field for OPLS-AA. Additionally, we've
+included the TIP4PEW water model. After this, you'll see a <code>[ System ]</code> directive,
 which includes just the name of the system, which can be anything you want.
 Lastly, we list out each <code>moleculetype</code> and how many there are under <code>[
 Molecules ]</code>. Right now we don't have any (we'll get those in a minute).</p>
 <h3 id="structure-file">Structure file</h3>
 <p>The structure of TIP4PEW is already provided by GROMACS in the topology
 directory. This standard location is typically <code>/usr/share/gromacs/top</code>, but you
-my have it installed in a different directory. If you are properly sourcing
-GMXRC then it will be located at <code>$GMXDATA/top</code>. In that directory you'll see
+may have it installed in a different directory. If you are properly sourcing
+GMXRC then it will be located at <code>$GMXDATA/top</code>. In that directory, you'll see
 several <code>.gro</code> files, one of which is <code>tip4p.gro</code>. You'll also see the folder
 <code>oplsaa.ff</code> which we've included in our topology file above. There isn't a
-structure file specific to TIP4PEW. Four-point water structure is essentially
+structure file specific to TIP4PEW. The four-point water structure is essentially
 the same for TIP4P and TIP4PEW. What makes them different is the force field
 parameters.</p>
 <p>To create a box of water using that structure file do:</p>
@@ -5351,8 +5365,8 @@ enough water molecules to fill a box 2.3 nm in each direction.</p>
 <p>Now we need a set of parameter files so that GROMACS knows what to do with our
 starting structure. Simulations almost always have three main parts:
 minimization, equilibration, and production. Minimization and equilibration can
-be broken down into multiple steps. Each of these needs it's own parameters
-file. In this case we'll be doing two minimizations, two equilibrations, and one
+be broken down into multiple steps. Each of these needs its own parameters
+file. In this case, we'll be doing two minimizations, two equilibrations, and one
 production run.</p>
 <p>The files we'll be using should be downloaded <a href="mdp.tar.gz">from here</a>.</p>
 <p>There will be a few things common to all five of our files. In each description,
@@ -5401,35 +5415,35 @@ for more information on each option.</p>
 </tbody>
 </table>
 <p>Cut-off distances should be set keeping in mind how the force field was
-parameterized. In other words, its a good idea to look at the journal article
+parameterized. In other words, it's a good idea to look at the journal article
 that describes how the force field was created. We've chosen 1.0 nm for our
 cut-offs here, which is common enough for OPLS, but you may determine for your
 system to choose something else.</p>
-<p>Additionally in each part we'll also be outputting an energy file, a log file,
+<p>Additionally in each part, we'll also be outputting an energy file, a log file,
 and a compressed trajectory file. The rate of output (in simulation steps) for
 these is set using <code>nstenergy</code>, <code>nstlog</code>, and <code>nstxout-compressed</code>,
 respectively. We'll output more information in the production run.</p>
 <p>For each part, except for the second minimization, we'll also be constraining
-all bonds involving a hydrogen using the LINCS algorithm by setting
+all bonds involving hydrogen using the LINCS algorithm by setting
 <code>constraint-algorithm = lincs</code> and <code>constraints = h-bonds</code>. This allows us to use
 a larger time step than otherwise.</p>
-<p>For the first minimization we use the steepest descents algorithm by setting
+<p>For the first minimization, we use the steepest descents algorithm by setting
 <code>integrator = steep</code> to minimize the energy of the system with a maximum of
 1,000 steps (<code>nsteps = 1000</code>). The minimization will stop if the energy
-converges before then. Additionally we have <code>define =
--DFLEXIBLE</code>. This lets GROMACS know to use flexible water, since by default all
+converges before then. Additionally, we have <code>define =
+-DFLEXIBLE</code>. This lets GROMACS know to use flexible water since by default all
 water models are rigid using an algorithm called SETTLE. In the water model's
-topology file, which we have includes, there is an if statement that looks for
-the <code>FLEXIBLE</code> variable to defined. The purpose of this first minimization is to
+topology file, which we have included, there is an if statement that looks for
+the <code>FLEXIBLE</code> variable to be defined. The purpose of this first minimization is to
 get the molecules in a good starting position so we can turn on SETTLE without
 any errors.</p>
 <p>In the second minimization we are simply removing <code>define = -DFLEXIBLE</code> and
 increasing the number of maximum steps to 50,000.</p>
 <p>The last three parts -- the two equilibrations and production -- all use the
-leap-frog integrator by setting <code>integrator = md</code>. Additionally each one will
+leap-frog integrator by setting <code>integrator = md</code>. Additionally, each one will
 use a 2 fs time step by setting <code>dt = 0.002</code>.</p>
-<p>For the first equilibration step there are a few things to note. We are adding
-several parameters shown below:</p>
+<p>For the first equilibration step, there are a few things to note. We are adding
+several parameters that are shown below:</p>
 <table>
 <thead>
 <tr>
@@ -5447,7 +5461,7 @@ several parameters shown below:</p>
 <tr>
 <td>gen-temp</td>
 <td>298.15</td>
-<td>Temperature in K to use for <code>gen-vel</code>. Unless you are doing some strange / interesting stuff, this should be the same as <code>ref-t</code>.</td>
+<td>Temperature in K to use for <code>gen-vel</code>. Unless you are doing some strange/interesting stuff, this should be the same as <code>ref-t</code>.</td>
 </tr>
 <tr>
 <td>tcoupl</td>
@@ -5457,7 +5471,7 @@ several parameters shown below:</p>
 <tr>
 <td>tc-grps</td>
 <td>System</td>
-<td>Which groups to couple. You can couple different groups of atoms separately, but we'll just couple the whole system.</td>
+<td>Which groups should be temperature-coupled. You can couple different groups of atoms separately, but we'll just couple the whole system.</td>
 </tr>
 <tr>
 <td>tau-t</td>
@@ -5472,7 +5486,7 @@ several parameters shown below:</p>
 <tr>
 <td>nhchainlength</td>
 <td>1</td>
-<td>Leap-frog integrator only supports 1, but by default this is 10. This is set so GROMACS doesn't complain to us.</td>
+<td>Leap-frog integrator only supports 1, but by default, this is 10. This is set so GROMACS doesn't complain to us.</td>
 </tr>
 </tbody>
 </table>
@@ -5480,7 +5494,7 @@ several parameters shown below:</p>
 (298.15 K) before adding pressure coupling. Adding temperature and pressure
 coupling at the same time can cause your system to be unstable and crash. We
 don't want to shock our system at the beginning. Additionally, we have set
-<code>nsteps = 50000</code>, so with a 2 fs timestep, that means that this will run for 100
+<code>nsteps = 50000</code>, so with a 2 fs time step, that means that this will run for 100
 ps. This is adequate for what we are doing here, but in larger / more
 complicated systems you may need to equilibrate longer.</p>
 <p>The second equilibration adds pressure coupling. Note that we are <em>not</em>
@@ -5505,12 +5519,12 @@ this may need to be longer for other systems.</p>
 <tr>
 <td>tau-p</td>
 <td>2.0</td>
-<td>Time constant for coupling. See the manual for details.</td>
+<td>Time constant for pressure coupling. See the manual for details.</td>
 </tr>
 <tr>
 <td>ref-p</td>
 <td>1.0</td>
-<td>The pressure in bar at which to couple.</td>
+<td>The pressure in bars at which to pressure couple.</td>
 </tr>
 <tr>
 <td>compressibility</td>
@@ -5522,7 +5536,7 @@ this may need to be longer for other systems.</p>
 <p>For the production run, everything is exactly the same as the last
 equilibration, except we are outputting more data and running for 10 ns.</p>
 <h2 id="simulation">Simulation</h2>
-<p>We have all the files we need now to run each part of the simulation. Each
+<p>We have all the files we need now to run each part of the simulation. In each
 part you typically run <em>gmx grompp</em> to preprocess the three files we now have
 (.gro, .top, and .mdp) into a .tpr file (sometimes confusingly also called a
 topology file).</p>
@@ -5534,7 +5548,7 @@ $ gmx mdrun -deffnm min
 $ gmx grompp -f mdp/min2.mdp -o min2 -pp min2 -po min2 -c min -t min
 $ gmx mdrun -deffnm min2
 </code></pre></div>
-<p>At each part we are reading in the .mdp file with the <code>-f</code> flag. By default if
+<p>At each part, we are reading in the .mdp file with the <code>-f</code> flag. By default if
 <code>-c</code> and <code>-p</code> flags are not specified GROMACS uses <code>conf.gro</code> and <code>topol.top</code>
 for the structure and topology files. Additionally we are outputting a processed
 topology file <code>-pp</code> and mdp file <code>-po</code>. These are optional, but probably worth
@@ -5612,7 +5626,7 @@ Density                     995.381       0.15      12.92  0.0705576  (kg/m^3)
 </code></pre></div>
 <p>If you look at the <a href="https://aip.scitation.org/doi/10.1063/1.1683075">TIP4PEW
 paper</a> in figure 4, you can see
-we have achieved the correct density. Additionally note that <a href="https://www.wolframalpha.com/input/?i=density+of+water+298.15+K">Wolfram Alpha
+we have achieved the correct density. Additionally, note that <a href="https://www.wolframalpha.com/input/?i=density+of+water+298.15+K">Wolfram Alpha
 says</a>
 the density of water at standard conditions is 997 kg/m^3.</p>
 <p>You can also visualize your simulation using a program like
@@ -5622,7 +5636,7 @@ vmd do:</p>
 </code></pre></div>
 <p>Here's a snapshot:</p>
 <p><img alt="Water" src="water1.png" /></p>
-<p>Note that do to the period boundary condition this can look kind of strange
+<p>Note that due to the periodic boundary condition this can look kind of strange
 with bonds stretching across the box. You can make molecules whole by using <em>gmx
 trjconv</em>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx trjconv -f prd.xtc -s prd.tpr -pbc mol -o prd-mol.xtc
@@ -5630,11 +5644,11 @@ trjconv</em>:</p>
 <p>Viewing that file should look much nicer:</p>
 <p><img alt="Water" src="water2.png" /></p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial we generate a box of TIP4PEW water using <em>gmx solvate</em>. We
+<p>In this tutorial, we generate a box of TIP4PEW water using <em>gmx solvate</em>. We
 simulated it in five distinct parts: minimization 1, minimization 2,
 equilbiration 1, equilibration 2, and production. Each part used its own .mdp
-files which were explained. At each part we used <em>gmx energy</em> to extract useful
-information about the simulation. After the production run we were able to find
+files which were explained. At each part, we used <em>gmx energy</em> to extract useful
+information about the simulation. After the production run, we were able to find
 the density of TIP4PEW water.</p>
 
               

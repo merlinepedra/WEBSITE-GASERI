@@ -2381,6 +2381,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5169,15 +5183,15 @@
 
 
 <h1 id="gromacs-tutorial-3-several-methanes-in-water">GROMACS Tutorial 3 -- Several Methanes in Water</h1>
-<p>In this tutorial I'll show you how to create a system containing several OPLS
+<p>In this tutorial, I'll show you how to create a system containing several OPLS
 methane in a box of TIP4PEW water and get the methane-methane potential of mean
 force from this information.</p>
 <h2 id="setup">Setup</h2>
 <p>Reuse <code>methane.pdb</code> and <code>topol.top</code> from the last tutorial (make copies). Remove
 all of the waters in <code>topol.top</code> by deleting the line containing <code>SOL</code> under <code>[
 molecules ]</code>. We're going to perform our simulation on 10 methanes in 1000
-waters. As a starting point we'll set the box to be 3.2 nm in each direction.
-Obviously when we add pressure coupling this will go to the correct size, but we
+waters. As a starting point, we'll set the box to be 3.2 nm in each direction.
+Obviously, when we add pressure coupling this will go to the correct size, but we
 want to start somewhere close. The density of water is close to 33.5 molecules /
 nm^3, so the cube root of 1010/33.5 is around 3.11, so rounding up gives me 3.2
 nm.</p>
@@ -5191,7 +5205,7 @@ nm.</p>
 <p><em>gmx solvate</em> automatically updates <code>topol.top</code> for us.</p>
 <p>Reuse the .mdp files from last time, except change <code>nsteps</code> in <code>prd.mdp</code> to be
 longer. I myself ran this for 100 ns, so I simply added a 0 to the end of the
-number from last time. You may also wan to output more frequently for our
+number from last time. You may also want to output more frequently for our
 analysis below.</p>
 <h2 id="simulation">Simulation</h2>
 <p>Run the simulation just like last time.</p>
@@ -5226,10 +5240,10 @@ methane-methane RDF we do w = -kTln(g).</p>
 <p>You notice there is a small gap in our sampling. The methanes never interacted
 at that distance. We'll use umbrella sampling in a later tutorial to solve this.</p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial we created a box of 10 methanes and 1000 waters using <em>gmx
+<p>In this tutorial, we created a box of 10 methanes and 1000 waters using <em>gmx
 insert-molecules</em> and <em>gmx solvate</em>. We simulated this just like last time,
 except we did it a little longer. We again used <em>gmx rdf</em> to get the radial
-distribution function, but this time for methane-methane. We had a to add a
+distribution function, but this time for methane-methane. We had to add a
 correction due to this, and from there we were able to get the potential of mean
 force.</p>
 

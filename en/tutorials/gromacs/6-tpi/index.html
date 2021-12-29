@@ -2381,6 +2381,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
         Konfiguracija sustava za upravljanje bazom podataka MariaDB
       </a>
@@ -5237,14 +5251,14 @@
 
 
 <h1 id="gromacs-tutorial-6-excess-chemical-potential-of-methane-using-test-particle-insertion">GROMACS Tutorial 6 -- Excess Chemical Potential of Methane using Test Particle Insertion</h1>
-<p>In this tutorial we'll be using test particle insertion (TPI) to calculate the excess
+<p>In this tutorial, we'll be using test particle insertion (TPI) to calculate the excess
 chemical potential of methane solvation in water. Most users are unaware that
 GROMACS has a built-in method for running TPI. This tutorial will not be a
 comprehensive discussion on the statistical mechanics of TPI, but will address
 issues when needed. The user is encouraged to seek out scientific resources
 regarding this method.</p>
-<p>TPI involves perturbing some state to some other, very similar state. We will be
-taking bulk water and insertng a methane particle and measuring the
+<p>TPI involves perturbing some states to some other, very similar states. We will be
+taking bulk water and inserting a methane particle and measuring the
 potential energy change from this. There is a statistical mechanical
 relationship between this change in potential energy and the excess chemical
 potential. For us, state A is the bulk water system, and state B is the water
@@ -5256,7 +5270,7 @@ files for inserting the methane.</p>
 <h3 id="create-water-system">Create water system</h3>
 <p>Follow Tutorial 1 to run a system containing TIP4PEW water.</p>
 <h3 id="add-test-particle-to-topology-file">Add test particle to topology file</h3>
-<p>Our original topology file just had water. In the new topology file we simply
+<p>Our original topology file just had water. In the new topology file, we simply
 need to add 1 test particle, and it needs to be the last molecule in the system.
 We'll use <code>opls_066</code> for the particle's atom type which is OPLS's united atom
 methane. Here's what my final topology file looks like (the number of waters
@@ -5287,17 +5301,17 @@ looks like this:</p>
 <div class="highlight"><pre><span></span><code>396CH4      C 1581   0.000   0.000   0.000
 </code></pre></div>
 <p>The actual position doesn't matter; GROMACSS just wants a placeholder for the
-test particle. Additionally you need to add 1 to the total number of particles
+test particle. Additionally, you need to add 1 to the total number of particles
 in the system on the second line of the <code>.gro</code> file.</p>
 <h3 id="parameter-files">Parameter files</h3>
 <p>We only need one parameter file for TPI. Simply copy <code>prd.mdp</code> from your bulk
 water simulation and change <code>integrator</code> to <code>tpi</code>. You should change <code>nsteps</code> to
 the number of insertions per frame that you want to attempt. I chose <code>100000</code>
 steps for my simulation. You will also need
-to change <code>cutoff-scheme</code> to <code>group</code>, since <code>Verlet</code> has not be implemented for
+to change <code>cutoff-scheme</code> to <code>group</code>, since <code>Verlet</code> has not been implemented for
 TPI.</p>
 <h2 id="simulation">Simulation</h2>
-<p>For the simulation we are just rerunning the bulk water simulation using the
+<p>For the simulation, we are just rerunning the bulk water simulation using the
 saved trajectory file (which was named <code>prd.xtc</code> in the first tutorial). To do
 this first run <code>grompp</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/tpi.mdp -o tpi -po tpi -pp tpi -c conf.gro
@@ -5306,7 +5320,7 @@ this first run <code>grompp</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx mdrun -deffnm tpi -rerun prd.xtc
 </code></pre></div>
 <h2 id="analysis">Analysis</h2>
-<p>The log file file, in this case named <code>tpi.log</code>, contains a line with the
+<p>The log file, named <code>tpi.log</code> in this case, contains a line with the
 average volume and the average excess chemical potential. My two lines looked
 like this:</p>
 <div class="highlight"><pre><span></span><code>&lt;V&gt;  =  1.18704e+01 nm^3
@@ -5319,7 +5333,7 @@ using the lambda-coupling method where I got 2.289 kcal/mol. The difference can
 be attributed to the usage of an all-atom model with the free energy of
 solvation simulations and a united-atom model in this case.</p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial we looked at how to use GROMACS to perform test particle
+<p>In this tutorial, we looked at how to use GROMACS to perform test particle
 insertion in order to get the excess chemical potential of a united-atom OPLS
 methane.</p>
 
