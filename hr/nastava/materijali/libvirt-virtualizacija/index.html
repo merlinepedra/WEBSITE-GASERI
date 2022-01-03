@@ -5340,14 +5340,13 @@
 <ul>
 <li>
 <p>čvrsti disk koji je slika u formatu qcow2 na određenoj putanji u datotečnom sustavu</p>
-<p>``` xml
-<disk type="file" device="disk">
-    <driver name="qemu" type="qcow2"/>
-    <source file="/var/lib/libvirt/images/ubuntu20.04.qcow2"/>
-    <target dev="vda" bus="virtio"/>
-    <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
-</disk>
-````</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">device=</span><span class="s">&quot;disk&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&quot;qemu&quot;</span> <span class="na">type=</span><span class="s">&quot;qcow2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&quot;/var/lib/libvirt/images/ubuntu20.04.qcow2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&quot;vda&quot;</span> <span class="na">bus=</span><span class="s">&quot;virtio&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&quot;pci&quot;</span> <span class="na">domain=</span><span class="s">&quot;0x0000&quot;</span> <span class="na">bus=</span><span class="s">&quot;0x04&quot;</span> <span class="na">slot=</span><span class="s">&quot;0x00&quot;</span> <span class="na">function=</span><span class="s">&quot;0x0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+</code></pre></div>
 </li>
 <li>
 <p>mrežno sučelje kod kojeg je navedena MAC (hardverska, fizička) adresa:</p>
@@ -5404,7 +5403,7 @@ Domain <span class="s1">&#39;ubuntu20.04&#39;</span> is being shutdown
 <li>ima drugačije ime od svih već stvorenih virtualnih strojeva</li>
 <li>ima novi univerzalno jedinstveni identifikator (iskoristit ćemo naredbu ljuske <code>uuidgen</code> za generiranje)</li>
 <li>stvorit ćemo novu sliku diska u formatu qcow2 (bilo kopiranjem <code>focal-server-cloudimg-amd64.img</code> i širenjem na željenu veličinu, bilo stvaranjem nove prazne slike željene veličine)</li>
-<li>promijenit ćemo posljednjih 3 okteta u MAC adresi mrežnog sučelja 52:54:00:67:31:2e na proizvoljnju vrijednost; podsjetimo se da su prvih tri okteta oznaka proizvođača (u našem slučaju 52:54:00), a posljednjih tri okteta oznaka konkretnog mrežnog adaptera (u našem slučaju 67:31:2e), npr. možemo iskoristiti <a href="https://youtu.be/vy1w3j_mUfs">bb<img alt="🇧🇧" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1e7-1f1e7.svg" title=":bb:" />bb</a></li>
+<li>promijenit ćemo posljednjih 3 okteta u MAC adresi mrežnog sučelja <code>52:54:00:67:31:2e</code> na proizvoljnju vrijednost; podsjetimo se da su prvih tri okteta oznaka proizvođača (u našem slučaju <code>52:54:00</code>), a posljednjih tri okteta oznaka konkretnog mrežnog adaptera (u našem slučaju <code>67:31:2e</code>), npr. možemo iskoristiti <code>bb:bb:bb</code> (<a href="https://youtu.be/vy1w3j_mUfs">prigodna tema</a>)</li>
 </ul>
 <p>Nakon uređivanja XML dokumenta virtualni stroj stvaramo naredbom:</p>
 <div class="highlight"><pre><span></span><code>$ virsh create moja-domena.xml

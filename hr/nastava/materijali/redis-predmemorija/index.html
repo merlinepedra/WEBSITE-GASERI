@@ -5330,33 +5330,35 @@ php-nrk-predis/focal <span class="m">1</span>.0.0-1 amd64
 <div class="highlight"><pre><span></span><code>$ sudo apt install php-nrk-predis
 </code></pre></div>
 <p>Uredimo <code>index.php</code> tako da bude oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="x">// Prepend a base path if Predis is not available in your &quot;include_path&quot;.</span>
-<span class="x">// require &#39;Predis/Autoloader.php&#39;;</span>
-<span class="x">// Ubuntu ima Predis u direktoriju php-nrk-predis pa prilagodimo</span>
-<span class="x">require &#39;php-nrk-predis/Autoloader.php&#39;;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
-<span class="x">Predis\Autoloader::register();</span>
+<span class="c1">// Prepend a base path if Predis is not available in your &quot;include_path&quot;.</span>
+<span class="c1">// require &#39;Predis/Autoloader.php&#39;;</span>
+<span class="c1">// Ubuntu ima Predis u direktoriju php-nrk-predis pa prilagodimo</span>
+<span class="k">require</span> <span class="s1">&#39;php-nrk-predis/Autoloader.php&#39;</span><span class="p">;</span>
 
-<span class="x">// navodi se protokol (tcp://), IP adresa i vrata poslužitelja</span>
-<span class="x">$client = new Predis\Client(&#39;tcp://192.168.122.34:6379&#39;);</span>
+<span class="nx">Predis\Autoloader</span><span class="o">::</span><span class="na">register</span><span class="p">();</span>
 
-<span class="x">$value = $client-&gt;get(&#39;name:2&#39;);</span>
-<span class="x">if (isset($value)) {</span>
-<span class="x">    // uspješno smo iz predmemorije dohvatili vrijednost</span>
-<span class="x">    echo $value . &#39; (dohvaćen iz cachea)&#39;;</span>
-<span class="x">} else {</span>
-<span class="x">    // u predmemoriji nema te vrijednosti pa ćemo je dohvatiti iz baze pdoataka</span>
-<span class="x">    $mysqli = new mysqli(&#39;localhost&#39;, &#39;my_user&#39;, &#39;my_password&#39;, &#39;my_database&#39;);</span>
+<span class="c1">// navodi se protokol (tcp://), IP adresa i vrata poslužitelja</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Predis\Client</span><span class="p">(</span><span class="s1">&#39;tcp://192.168.122.34:6379&#39;</span><span class="p">);</span>
 
-<span class="x">    $result = $mysqli-&gt;query(&#39;SELECT name FROM people WHERE id = 2&#39;);</span>
-<span class="x">    $row = $result-&gt;fetch_array();</span>
-<span class="x">    $value = $row[&#39;name&#39;];</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;name:2&#39;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// uspješno smo iz predmemorije dohvatili vrijednost</span>
+    <span class="k">echo</span> <span class="nv">$value</span> <span class="o">.</span> <span class="s1">&#39; (dohvaćen iz cachea)&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// u predmemoriji nema te vrijednosti pa ćemo je dohvatiti iz baze pdoataka</span>
+    <span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;my_user&#39;</span><span class="p">,</span> <span class="s1">&#39;my_password&#39;</span><span class="p">,</span> <span class="s1">&#39;my_database&#39;</span><span class="p">);</span>
 
-<span class="x">    echo $value . &#39; (dohvaćen iz baze)&#39;;</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;SELECT name FROM people WHERE id = 2&#39;</span><span class="p">);</span>
+    <span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">fetch_array</span><span class="p">();</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
 
-<span class="x">    // spremimo vrijednost u predmemoriju za buduću upotrebu</span>
-<span class="x">    $client-&gt;set(&#39;name:2&#39;, $value);</span>
-<span class="x">}</span>
+    <span class="k">echo</span> <span class="nv">$value</span> <span class="o">.</span> <span class="s1">&#39; (dohvaćen iz baze)&#39;</span><span class="p">;</span>
+
+    <span class="c1">// spremimo vrijednost u predmemoriju za buduću upotrebu</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;name:2&#39;</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
 
               
