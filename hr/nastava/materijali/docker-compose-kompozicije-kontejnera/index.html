@@ -1724,9 +1724,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Komponiranje kontejnera alatom Docker Compose
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Komponiranje kontejnera alatom Docker Compose
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struktura-konfiguracije" class="md-nav__link">
+    Struktura konfiguracije
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pokretanje-nadzor-i-zaustavljanje-kontejnera" class="md-nav__link">
+    Pokretanje, nadzor i zaustavljanje kontejnera
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#koristenje-izgradnje-kontejnera-u-kompoziciji" class="md-nav__link">
+    Korištenje izgradnje kontejnera u kompoziciji
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2175,6 +2220,20 @@
     <li class="md-nav__item">
       <a href="../virt-manager-virtualizacija/" class="md-nav__link">
         Virtualizacija korištenjem Virtual Machine Managera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libvirt-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem libvirta
       </a>
     </li>
   
@@ -3853,6 +3912,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../redis-predmemorija/" class="md-nav__link">
+        Konfiguracija sustava za predmemoriju Redis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../rocm-rocalution/" class="md-nav__link">
         rocALUTION -- ROCm SPARSE Linear Algebra PACkage
       </a>
@@ -5078,6 +5151,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struktura-konfiguracije" class="md-nav__link">
+    Struktura konfiguracije
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pokretanje-nadzor-i-zaustavljanje-kontejnera" class="md-nav__link">
+    Pokretanje, nadzor i zaustavljanje kontejnera
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#koristenje-izgradnje-kontejnera-u-kompoziciji" class="md-nav__link">
+    Korištenje izgradnje kontejnera u kompoziciji
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5095,9 +5197,231 @@
 
 
 <h1 id="komponiranje-kontejnera-alatom-docker-compose">Komponiranje kontejnera alatom Docker Compose</h1>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Ovaj dio treba napisati prema <a href="https://docs.docker.com/compose/">službenoj dokumentaciji</a>.</p>
+<p><a href="https://docs.docker.com/compose/">Docker Compose</a> (<a href="https://github.com/docker/compose">GitHub</a>) je alat za definiranje i pokretanje višekontejnerskih aplikacija korištenjem Dockera, tzv. kompozicija (engl. <em>composition</em>). Usluge koje će se pokrenuti definiraju se korištenjem konfiguracije u obliku <a href="https://yaml.org/">YAML</a>. YAML je donekle srodan <a href="https://www.json.org/">JSON</a>-u, ali je dizajniran kako bi bio čitljiv ljudima (slično kao <a href="https://toml.io/">TOML</a>).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Službeno proširenje za Docker</a> za Visual Studio Code, između ostalog, podržava i <a href="https://code.visualstudio.com/docs/containers/docker-compose">korištenje Docker Composea</a>.</p>
+</div>
+<h2 id="struktura-konfiguracije">Struktura konfiguracije</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ubuntu 20.04 LTS ima paket <a href="https://packages.ubuntu.com/focal/docker-compose">docker-compose</a> koji sadrži Docker Compose verziju 1.25.0. Ta verzija podržava sve značajke koje u nastavku koristimo, ali potrebno je pripaziti da polje <code>version</code> u YAML datoteci u nastavku bude postavljeno na 3.7 (umjesto 3.9) jer je <a href="https://github.com/docker/compose/blob/master/CHANGELOG.md">verzija konfiguracije 3.8 postala dostupna tek u Docker Composeu 1.25.5, a 3.9 u 1.27.1</a>.</p>
+</div>
+<p>Datoteka koju Docker Compose koristi ima ime <code>docker-compose.yml</code> i ona može biti oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3.9&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">mojhttpd</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
+  <span class="nt">mojredis</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redis</span>
+</code></pre></div>
+<p>U ovom slučaju pokrenut ćemo dva kontejnera, prvi naziva <code>mojhttpd</code> temeljen na službenoj slici <a href="https://hub.docker.com/_/httpd">httpd</a>, a drugi <code>mojredis</code> temeljen na službenoj slici <a href="https://hub.docker.com/_/redis">redis</a>.</p>
+<h2 id="pokretanje-nadzor-i-zaustavljanje-kontejnera">Pokretanje, nadzor i zaustavljanje kontejnera</h2>
+<p>Povucimo slike argumentom <code>pull</code> (<a href="https://docs.docker.com/engine/reference/commandline/compose_pull/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose pull
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">12</span>/12
+⠿ mojredis Pulled                                                         <span class="m">21</span>.1s
+  ⠿ a2abf6c4d29d Pull <span class="nb">complete</span>                                            <span class="m">17</span>.3s
+  ⠿ c7a4e4382001 Pull <span class="nb">complete</span>                                            <span class="m">17</span>.5s
+  ⠿ 4044b9ba67c9 Pull <span class="nb">complete</span>                                            <span class="m">17</span>.6s
+  ⠿ c8388a79482f Pull <span class="nb">complete</span>                                            <span class="m">17</span>.9s
+  ⠿ 413c8bb60be2 Pull <span class="nb">complete</span>                                            <span class="m">18</span>.1s
+  ⠿ 1abfd3011519 Pull <span class="nb">complete</span>                                            <span class="m">18</span>.1s
+⠿ mojhttpd Pulled                                                         <span class="m">21</span>.6s
+  ⠿ dcc4698797c8 Pull <span class="nb">complete</span>                                            <span class="m">17</span>.6s
+  ⠿ 41c22baa66ec Pull <span class="nb">complete</span>                                            <span class="m">17</span>.6s
+  ⠿ 67283bbdd4a0 Pull <span class="nb">complete</span>                                            <span class="m">18</span>.5s
+  ⠿ d982c879c57e Pull <span class="nb">complete</span>                                            <span class="m">18</span>.7s
+</code></pre></div>
+<p>Stvaranje kontejnera na temelju preuzetih slika i njihovo pokretanje ćemo izvesti argumentom <code>up</code> (<a href="https://docs.docker.com/engine/reference/commandline/compose_up/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose up 
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">2</span>/0
+⠿ Container korisnik-mojhttpd-1  Created                                   <span class="m">0</span>.0s
+⠿ Container korisnik-mojredis-1  Created                                   <span class="m">0</span>.0s
+Attaching to korisnik-mojhttpd-1, korisnik-mojredis-1
+korisnik-mojhttpd-1  <span class="p">|</span> AH00558: httpd: Could not reliably determine the server<span class="s1">&#39;s fully qualified domain name, using 172.18.0.2. Set the &#39;</span>ServerName<span class="s1">&#39; directive globally to suppress this message</span>
+<span class="s1">korisnik-mojhttpd-1  | AH00558: httpd: Could not reliably determine the server&#39;</span>s fully qualified domain name, using <span class="m">172</span>.18.0.2. Set the <span class="s1">&#39;ServerName&#39;</span> directive globally to suppress this message
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.086 <span class="c1"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.086 <span class="c1"># Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.086 <span class="c1"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.087 * monotonic clock: POSIX clock_gettime
+korisnik-mojhttpd-1  <span class="p">|</span> <span class="o">[</span>Mon Jan <span class="m">03</span> <span class="m">22</span>:26:37.087474 <span class="m">2022</span><span class="o">]</span> <span class="o">[</span>mpm_event:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140323163139392</span><span class="o">]</span> AH00489: Apache/2.4.51 <span class="o">(</span>Unix<span class="o">)</span> configured -- resuming normal operations
+korisnik-mojhttpd-1  <span class="p">|</span> <span class="o">[</span>Mon Jan <span class="m">03</span> <span class="m">22</span>:26:37.087533 <span class="m">2022</span><span class="o">]</span> <span class="o">[</span>core:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140323163139392</span><span class="o">]</span> AH00094: Command line: <span class="s1">&#39;httpd -D FOREGROUND&#39;</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.087 * Running <span class="nv">mode</span><span class="o">=</span>standalone, <span class="nv">port</span><span class="o">=</span><span class="m">6379</span>.
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.087 <span class="c1"># Server initialized</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.087 <span class="c1"># WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 * Loading RDB produced by version <span class="m">6</span>.2.6
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 * RDB age <span class="m">55</span> seconds
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 * RDB memory usage when created <span class="m">0</span>.77 Mb
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 <span class="c1"># Done loading RDB, keys loaded: 0, keys expired: 0.</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 * DB loaded from disk: <span class="m">0</span>.000 seconds
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:26:37.088 * Ready to accept connections
+</code></pre></div>
+<p>Izvođenje, kao i inače, prekidamo kombinacijom tipki <code>Ctrl + C</code>:</p>
+<div class="highlight"><pre><span></span><code>^CGracefully stopping... <span class="o">(</span>press Ctrl+C again to force<span class="o">)</span>
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">2</span>/2
+⠿ Container korisnik-mojhttpd-1  Stopped                                   <span class="m">1</span>.1s
+⠿ Container korisnik-mojredis-1  Stopped                                   <span class="m">0</span>.2s
+canceled
+</code></pre></div>
+<p>Želimo li pokrenuti kompoziciju kontejnera u pozadini, dodat ćemo parametar <code>--detach</code>, odnosno <code>-d</code>:</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose up -d
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">2</span>/2
+⠿ Container korisnik-mojredis-1  Started                                   <span class="m">0</span>.3s
+⠿ Container korisnik-mojhttpd-1  Started                                   <span class="m">0</span>.3s
+</code></pre></div>
+<p>Argumentom <code>ps</code> dobit ćemo popis pokrenutih procesa u pojedinim kontejnerima (<a href="https://docs.docker.com/engine/reference/commandline/compose_ps/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose ps
+NAME                 COMMAND                  SERVICE             STATUS              PORTS
+korisnik-mojhttpd-1   <span class="s2">&quot;httpd-foreground&quot;</span>       mojhttpd            running             <span class="m">80</span>/tcp
+korisnik-mojredis-1   <span class="s2">&quot;docker-entrypoint.s…&quot;</span>   mojredis            running             <span class="m">6379</span>/tcp
+</code></pre></div>
+<p>Želimo li više informacija, primjerice koliko je točno procesa pokrenuo web poslužitelj, koliko se dugo izvode i koji su im identifikatori, ispisat ćemo ih argumentom <code>top</code>, ponovno razdvojene po pojedinim kontejnerima (<a href="https://docs.docker.com/engine/reference/commandline/compose_top/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose top
+korisnik-mojhttpd-1
+UID    PID      PPID     C    STIME   TTY   TIME       CMD
+root   <span class="m">870026</span>   <span class="m">869946</span>   <span class="m">0</span>    <span class="m">23</span>:34   ?     <span class="m">00</span>:00:00   httpd -DFOREGROUND
+bin    <span class="m">870323</span>   <span class="m">870026</span>   <span class="m">0</span>    <span class="m">23</span>:34   ?     <span class="m">00</span>:00:00   httpd -DFOREGROUND
+bin    <span class="m">870324</span>   <span class="m">870026</span>   <span class="m">0</span>    <span class="m">23</span>:34   ?     <span class="m">00</span>:00:00   httpd -DFOREGROUND
+bin    <span class="m">870325</span>   <span class="m">870026</span>   <span class="m">0</span>    <span class="m">23</span>:34   ?     <span class="m">00</span>:00:00   httpd -DFOREGROUND
+
+korisnik-mojredis-1
+UID   PID      PPID     C    STIME   TTY   TIME       CMD
+<span class="m">999</span>   <span class="m">870038</span>   <span class="m">869998</span>   <span class="m">0</span>    <span class="m">23</span>:34   ?     <span class="m">00</span>:00:00   redis-server *:6379
+</code></pre></div>
+<p>Argumentom <code>logs</code> dobit ćemo uvid u zapisnike pojedinih kontejnera (<a href="https://docs.docker.com/engine/reference/commandline/compose_logs/">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose logs
+korisnik-mojhttpd-1  <span class="p">|</span> AH00558: httpd: Could not reliably determine the server<span class="s1">&#39;s fully qualified domain name, using 172.19.0.2. Set the &#39;</span>ServerName<span class="s1">&#39; directive globally to suppress this message</span>
+<span class="s1">korisnik-mojhttpd-1  | AH00558: httpd: Could not reliably determine the server&#39;</span>s fully qualified domain name, using <span class="m">172</span>.19.0.2. Set the <span class="s1">&#39;ServerName&#39;</span> directive globally to suppress this message
+korisnik-mojhttpd-1  <span class="p">|</span> <span class="o">[</span>Mon Jan <span class="m">03</span> <span class="m">22</span>:34:07.376872 <span class="m">2022</span><span class="o">]</span> <span class="o">[</span>mpm_event:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140419205336384</span><span class="o">]</span> AH00489: Apache/2.4.51 <span class="o">(</span>Unix<span class="o">)</span> configured -- resuming normal operations
+korisnik-mojhttpd-1  <span class="p">|</span> <span class="o">[</span>Mon Jan <span class="m">03</span> <span class="m">22</span>:34:07.377246 <span class="m">2022</span><span class="o">]</span> <span class="o">[</span>core:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140419205336384</span><span class="o">]</span> AH00094: Command line: <span class="s1">&#39;httpd -D FOREGROUND&#39;</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.376 <span class="c1"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.376 <span class="c1"># Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:C <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.376 <span class="c1"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.376 * monotonic clock: POSIX clock_gettime
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.377 * Running <span class="nv">mode</span><span class="o">=</span>standalone, <span class="nv">port</span><span class="o">=</span><span class="m">6379</span>.
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.377 <span class="c1"># Server initialized</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.377 <span class="c1"># WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.</span>
+korisnik-mojredis-1  <span class="p">|</span> <span class="m">1</span>:M <span class="m">03</span> Jan <span class="m">2022</span> <span class="m">22</span>:34:07.377 * Ready to accept connections
+</code></pre></div>
+<p>Zaustavljanje izvođenja izvodimo argumentom <code>down</code> (<a href="https://docs.docker.com/engine/reference/commandline/compose_down/">dokumentacija</a>)</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose down
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">3</span>/3
+⠿ Container korisnik-mojhttpd-1  Removed                                   <span class="m">1</span>.3s
+⠿ Container korisnik-mojredis-1  Removed                                   <span class="m">0</span>.3s
+⠿ Network korisnik_default       Removed                                   <span class="m">0</span>.1s
+</code></pre></div>
+<p>Naredba podržava još argumenata, o kojima možemo saznati više proučavanjem <a href="https://docs.docker.com/engine/reference/commandline/compose/">službene dokumentacije</a> ili korištenjem parametra <code>--help</code>:</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose --help
+
+Usage:  docker compose <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND
+
+Docker Compose
+
+Options:
+      --ansi string                Control when to print ANSI control characters
+                                   <span class="o">(</span><span class="s2">&quot;never&quot;</span><span class="p">|</span><span class="s2">&quot;always&quot;</span><span class="p">|</span><span class="s2">&quot;auto&quot;</span><span class="o">)</span> <span class="o">(</span>default <span class="s2">&quot;auto&quot;</span><span class="o">)</span>
+      --compatibility              Run compose <span class="k">in</span> backward compatibility mode
+      --env-file string            Specify an alternate environment file.
+  -f, --file stringArray           Compose configuration files
+      --profile stringArray        Specify a profile to <span class="nb">enable</span>
+      --project-directory string   Specify an alternate working directory
+                                   <span class="o">(</span>default: the path of the Compose file<span class="o">)</span>
+  -p, --project-name string        Project name
+
+Commands:
+  build       Build or rebuild services
+  convert     Converts the compose file to platform<span class="s1">&#39;s canonical format</span>
+<span class="s1">  cp          Copy files/folders between a service container and the local filesystem</span>
+<span class="s1">  create      Creates containers for a service.</span>
+<span class="s1">  down        Stop and remove containers, networks</span>
+<span class="s1">  events      Receive real time events from containers.</span>
+<span class="s1">  exec        Execute a command in a running container.</span>
+<span class="s1">  images      List images used by the created containers</span>
+<span class="s1">  kill        Force stop service containers.</span>
+<span class="s1">  logs        View output from containers</span>
+<span class="s1">  ls          List running compose projects</span>
+<span class="s1">  pause       Pause services</span>
+<span class="s1">  port        Print the public port for a port binding.</span>
+<span class="s1">  ps          List containers</span>
+<span class="s1">  pull        Pull service images</span>
+<span class="s1">  push        Push service images</span>
+<span class="s1">  restart     Restart containers</span>
+<span class="s1">  rm          Removes stopped service containers</span>
+<span class="s1">  run         Run a one-off command on a service.</span>
+<span class="s1">  start       Start services</span>
+<span class="s1">  stop        Stop services</span>
+<span class="s1">  top         Display the running processes</span>
+<span class="s1">  unpause     Unpause services</span>
+<span class="s1">  up          Create and start containers</span>
+<span class="s1">  version     Show the Docker Compose version information</span>
+
+<span class="s1">Run &#39;</span>docker compose COMMAND --help<span class="err">&#39;</span> <span class="k">for</span> more information on a command.
+</code></pre></div>
+<h2 id="koristenje-izgradnje-kontejnera-u-kompoziciji">Korištenje izgradnje kontejnera u kompoziciji</h2>
+<p>U kompoziciji je moguće izgraditi neke od kontejnera na temelju datoteka <code>Dockerfile</code>. Za ilustraciju možemo iskoristiti primjer dan u <a href="https://docs.docker.com/compose/gettingstarted/">Get started with Docker Compose</a>, web aplikaciju napisanu u Pythonu korištenjem <a href="https://flask.palletsprojects.com/">Flaska</a> koja dohvaća podatke iz <a href="https://redis.io/">Redisa</a>. Datoteka <code>app.py</code> je sadržaja:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">redis</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">cache</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;mojredis&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_hit_count</span><span class="p">():</span>
+    <span class="n">retries</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cache</span><span class="o">.</span><span class="n">incr</span><span class="p">(</span><span class="s1">&#39;hits&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">redis</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">retries</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">exc</span>
+            <span class="n">retries</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">get_hit_count</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello World! I have been seen </span><span class="si">{}</span><span class="s1"> times.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</code></pre></div>
+<p>Uočimo kako se povezivanje na Redis događa korištenjem imena domaćina <code>mojredis</code>. To ćemo ime iskoristiti niže kao ime kontejnera.</p>
+<p>Jasno je vidljivo iz naredbi <code>import</code> da ova aplikacija za svoj rad zahtijeva Python module <code>flask</code> i <code>redis</code> (podsjetimo se da je modul <code>time</code> <a href="https://docs.python.org/3/library/time.html">dio</a> <a href="https://docs.python.org/3/library/index.html">standardne biblioteke</a>). Stvorimo datoteku <code>requirements.txt</code> koju će <a href="https://pip.pypa.io/">pip</a> koristiti za preuzimanje potrebnih modula:</p>
+<div class="highlight"><pre><span></span><code>flask
+redis
+</code></pre></div>
+<p>Stvorimo <code>Dockerfile</code> koji će povući sliku kontejnera za Python, dodati u nju datoteku <code>requirements.txt</code>, instalirati potrebne module (<code>pip install -r requirements.txt</code>), pokrenuti aplikaciju (<code>flask run</code>) i otvoriti potrebna vrata (u zadanim postavkama Flask koristi vrata 5000):</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">python:3.7-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /code</span>
+<span class="k">ENV</span> <span class="nv">FLASK_APP</span><span class="o">=</span>app.py
+<span class="k">ENV</span> <span class="nv">FLASK_RUN_HOST</span><span class="o">=</span><span class="m">0</span>.0.0.0
+<span class="k">RUN</span> apk add --no-cache gcc musl-dev linux-headers
+<span class="k">COPY</span> requirements.txt requirements.txt
+<span class="k">RUN</span> pip install -r requirements.txt
+<span class="k">EXPOSE</span><span class="s"> 5000</span>
+<span class="k">COPY</span> . .
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;flask&quot;</span><span class="p">,</span> <span class="s2">&quot;run&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>Ovaj kontejner bismo mogli izgraditi naredbom <code>docker build</code> (<a href="https://docs.docker.com/engine/reference/commandline/build/">dokumentacija</a>), ali tada bismo se morali pobrinuti za Redis. Stoga ćemo napraviti <code>docker-compose.yml</code> koji će izgraditi kontejner na temelju <code>Dockerfile</code>-a i pokrenuti ga, izraditi i pokrenuti kontejner s Redisom pod nazivom <code>mojredis</code> te povezati ta dva kontejnera mrežom:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3.9&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">web</span><span class="p">:</span>
+    <span class="nt">build</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;5000:5000&quot;</span>
+  <span class="nt">mojredis</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;redis:alpine&quot;</span>
+</code></pre></div>
+<div class="admonition adomonition">
+<p class="admonition-title">Zadatak</p>
+<p>Promijenite kontejner tako da koristi Python 3.10 kao osnovnu sliku.</p>
+</div>
+<div class="admonition adomonition">
+<p class="admonition-title">Zadatak</p>
+<p>Promijenite korištena vrata na 8080. (<em>Uputa:</em> proučite <a href="https://flask.palletsprojects.com/en/2.0.x/cli/">dokumentaciju sučelja naredbenog retka Flaska</a>.</p>
+</div>
+<div class="admonition adomonition">
+<p class="admonition-title">Zadatak</p>
+<p>Po uzoru na ovu kompoziciju, složite kompoziciju koja koristi službenu sliku za <a href="https://hub.docker.com/_/php">php</a> i povezuje se na Redis.</p>
 </div>
 
               

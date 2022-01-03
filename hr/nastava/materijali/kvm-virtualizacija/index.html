@@ -2346,6 +2346,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../libvirt-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem libvirta
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../linux-arhiviranje-komprimiranje/" class="md-nav__link">
         Arhiviranje i komprimiranje
       </a>
@@ -4012,6 +4026,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../redis-predmemorija/" class="md-nav__link">
+        Konfiguracija sustava za predmemoriju Redis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../rocm-rocalution/" class="md-nav__link">
         rocALUTION -- ROCm SPARSE Linear Algebra PACkage
       </a>
@@ -5481,13 +5509,27 @@
 </ul>
 <p>Obje tehnologije proširenje su postojećih tehnologija za hardverski potpomognutu virtualizaciju.</p>
 <h4 id="qemu-i-kvm">QEMU i KVM</h4>
-<p>Kako bismo pokrenuli QEMU</p>
-<div class="highlight"><pre><span></span><code>$ qemu-img create -f qcow2 vm_harddisk.qcow2 100G
+<p>Kako bismo pokrenuli QEMU kao običan korisnik, moramo biti član grupe <code>kvm</code>. U slučaju da to nismo, možemo svojeg korisnika (npr. u primjeru <code>korisnik</code>) dodati u tu grupu naredbom:</p>
+<div class="highlight"><pre><span></span><code>$ sudo usermod -a -G kvm korisnik
 </code></pre></div>
-<p>Recimo da smo odlučili instalirati Ubuntu 20.04.3 LTS ...</p>
-<p>QEMU možemo pokrenuti naredbom </p>
-<div class="highlight"><pre><span></span><code>$ qemu-system-x86_64 -accel kvm -cpu host -smp <span class="m">2</span> -m <span class="m">4096</span> -cdrom ubuntu TODO.iso -boot c -drive <span class="nv">file</span><span class="o">=</span>nesto TODO.qcow2
+<p>Nakon pokretanja naredbe potrebna je odjava i ponovna prijava da bi postavka imala utjecaja.</p>
+<p>Za stvaranje slika diskova za QEMU-ove virtualne strojeve iskoristit ćemo <a href="https://www.qemu.org/docs/master/tools/index.html">QEMU-e pomoćne alate</a>, specifično naredbu <code>qemu-img</code> (<a href="https://www.qemu.org/docs/master/tools/qemu-img.html">dokumentacija</a>). Parametrom <code>-f</code> naznačit ćemo da želimo sliku tipa qcow2, što je druga verzija <a href="https://www.linux-kvm.org/page/Qcow2">formata QEMU Copy On Write</a> (<a href="https://en.wikipedia.org/wiki/Qcow">više detalja na Wikipediji</a>). Za stvaranje slike diska veličine 50 gigabajta, naredba je oblika:</p>
+<div class="highlight"><pre><span></span><code>$ qemu-img create -f qcow2 moj-disk.qcow2 50G
 </code></pre></div>
+<p>Recimo da smo odlučili instalirati <a href="https://ubuntu.com/download/server">Ubuntu Server 20.04.3 LTS</a> na taj disk. Nakon preuzimanja instalacijskog medija <code>ubuntu-20.04.3-live-server-amd64.iso</code>, instalaciju Ubuntua unutar QEMU-a možemo pokrenuti naredbom:</p>
+<div class="highlight"><pre><span></span><code>$ qemu-system-x86_64 -accel kvm -cpu host -smp <span class="m">2</span> -m <span class="m">4096</span> -drive <span class="nv">file</span><span class="o">=</span>moj-disk.qcow2 -cdrom ubuntu-20.04.3-live-server-amd64.iso -boot <span class="nv">once</span><span class="o">=</span>d
+</code></pre></div>
+<p>Ovom naredbom smo pokrenuli QEMU koji stvara virtualni stroj arhitekture x86_64 (dakle, iste kao domaćin pa ne vrši emulaciju) i:</p>
+<ul>
+<li>koristi KVM za ubrzanje izvođenja (<code>-accel kvm</code>)</li>
+<li>ima iste značajke procesora kao domaćin (<code>-cpu host</code>)</li>
+<li>dvije procesorske jezgre (<code>-smp 2</code>)</li>
+<li>4 gigabajta radne memorije (<code>-m 4096</code>, navodi se u megabajtima)</li>
+<li>koristi ranije stvorenu sliku diska kao čvrsti disk (<code>-drive file=moj-disk.qcow2</code>)</li>
+<li>koristi ranije preuzeti instalacijski medij kao CD-ROM (<code>-cdrom ubuntu-20.04.3-live-server-amd64.iso</code>)</li>
+<li>pokreće jednom s CD-ROM-a, svaki sljedeći put s čvrstog diska (<code>-boot once=d</code>)</li>
+</ul>
+<p>Više detalja možemo pronaći u man stranici <code>qemu(1)</code> (naredba <code>man 1 qemu</code>) ili u <a href="https://www.qemu.org/docs/master/system/invocation.html">dijelu Invocation službene dokumentacije</a>.</p>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
 <ul>
