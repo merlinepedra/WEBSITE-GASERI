@@ -5286,7 +5286,7 @@
 <li>
 <p><code>comm.Send(array, dest, tag)</code></p>
 <ul>
-<li><code>array</code> je numpy polje koje šaljemo; mpi4py automatski prepoznaje tip podataka ([np.float32), [np.float64), [np.int32), [np.int64), ...), ali moguće ga je i ručno specificirati</li>
+<li><code>array</code> je numpy polje koje šaljemo; mpi4py automatski prepoznaje tip podataka (<code>np.float32</code>, <code>np.float64</code>, <code>np.int32</code>, <code>np.int64</code>, ...), ali moguće ga je i ručno specificirati</li>
 <li><code>dest</code> je rang procesa koji prima poruku</li>
 <li><code>tag</code> je <strong>opcionalan</strong> broj u rasponu 0--32767 koji je oznaka poruke; služi za razdvajanje poruka različitog tipa, što je korisno kod složenijih aplikacija</li>
 </ul>
@@ -5342,7 +5342,7 @@
 <p>Napišite program koji se izvodi u tri procesa i koristi blokirajuću komunikaciju:</p>
 <ul>
 <li>proces ranga 1 računa zbroj i produkt parnih prirodnih brojeva manjih ili jednakih 10 i rezultat šalje procesu ranga 0 kao listu koja sadrži dva elementa tipa <code>int</code> ili numpy polje od dva elementa tipa <code>numpy.int32</code>,</li>
-<li>proces ranga 2 računa zbroj i produkt prirodnih brojeva manjih ili jednakih 20 i rezultat šalje procesu ranga 0 kao listu koja sadrži dva elementa tipa <code>int</code> ili kao numpy polje od dva elementa tipa [numpy.int64),</li>
+<li>proces ranga 2 računa zbroj i produkt prirodnih brojeva manjih ili jednakih 20 i rezultat šalje procesu ranga 0 kao listu koja sadrži dva elementa tipa <code>int</code> ili kao numpy polje od dva elementa tipa <code>numpy.int64</code>,</li>
 <li>proces ranga 0 prima rezultate i ispisuje ih na ekran.</li>
 </ul>
 </div>
