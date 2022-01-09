@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openvpn-virtualna-privatna-mreza/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Konfiguracija virtualne privatne mreže alatom OpenVPN - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Konfiguracija virtualne privatne mreže alatom OpenVPN - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2529,6 +2529,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5184,9 +5198,9 @@
 
 <h1 id="konfiguracija-virtualne-privatne-mreze-alatom-openvpn">Konfiguracija virtualne privatne mreže alatom OpenVPN</h1>
 <p><a href="https://en.wikipedia.org/wiki/Virtual_private_network">Virtualna privatna mreža</a> (engl. <em>virtual private netvork</em>, kraće VPN) pruža usluge privatne mreže korištenjem neke javne mreže kao što je internet. Pomoću VPN-a možemo slati i primati podatke preko javne mreže, a istovremeno koristiti konfiguraciju privatne lokalne mreže. VPN koristi različite sigurnosne mehanizme koji osiguravaju tajnost i autentičnost podaka koje šaljemo. Virtualnu privatnu mrežu moguće je stvoriti brojnim protokolima, npr. <a href="https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol">L2TP</a> na veznom sloju (koji implementira <a href="https://github.com/xelerance/xl2tpd">xl2tpd</a>), <a href="https://en.wikipedia.org/wiki/IPsec">IPsec</a> na mrežnom sloju (koji implementira <a href="https://www.strongswan.org/">strongSwan</a>) i <a href="https://en.wikipedia.org/wiki/Secure_Socket_Tunneling_Protocol">SSTP</a> na transportnom sloju (koji implementira <a href="https://www.softether.org/">SoftEther VPN</a>).</p>
-<p><a href="https://openvpn.net/community/">OpenVPN</a> je vrlo popularan VPN poslužitelj i klijent otvorenog koda korištenjem kojeg je moguće izgraditi virtualnu privatnu mrežu. Koristi <a href="https://openvpn.net/community-resources/openvpn-protocol/">vlastiti protokol</a> koji nije standardiziran od strane IETF-a (specijalno, informativni <a href="https://tools.ietf.org/html/rfc2764">RFC 2764: A Framework for IP Based Virtual Private Networks</a> samo općenito opisuje način rada virtualnih privatnih mreža), ali je otvoren i može ga bilo tko implementirati (npr. postoji <a href="https://robur.io/Our%20Work/Projects">roburova</a> <a href="https://github.com/roburio/openvpn">implementacija u programskom jeziku OCaml</a>).</p>
+<p><a href="https://openvpn.net/community/">OpenVPN</a> je vrlo popularan VPN poslužitelj i klijent otvorenog koda korištenjem kojeg je moguće izgraditi virtualnu privatnu mrežu. Koristi <a href="https://openvpn.net/community-resources/openvpn-protocol/">vlastiti protokol</a> koji nije standardiziran od strane IETF-a (specijalno, informativni <a href="https://datatracker.ietf.org/doc/html/rfc2764">RFC 2764: A Framework for IP Based Virtual Private Networks</a> samo općenito opisuje način rada virtualnih privatnih mreža), ali je otvoren i može ga bilo tko implementirati (npr. postoji <a href="https://robur.io/Our%20Work/Projects">roburova</a> <a href="https://github.com/roburio/openvpn">implementacija u programskom jeziku OCaml</a>).</p>
 <p>OpenVPN podržava Linux, FreeBSD, macOS, Windows i <a href="https://openvpn.net/faq/openvpn-compatibility/">druge operacijske sustave</a>; u praksi to znači da se, primjerice, na OpenVPN poslužitelj koji se pokreće na Linuxu mogu povezati OpenVPN klijenti koji se pokreću na macOS-u i Windowsima. Osim sučelja naredbenog retka koje je dostupno svugdje i koje koristimo u nastavku, na Windowsima ima <a href="https://community.openvpn.net/openvpn/wiki/OpenVPN-GUI">vlastito grafičko korisničko sučelje</a>, na Linuxu je <a href="https://wiki.gnome.org/Projects/NetworkManager/VPN">podržan u okviru NetworkManagera</a>, a na macOS-u postoji <a href="https://tunnelblick.net/">Tunnelblick</a> (<a href="https://en.wikipedia.org/wiki/Tunneling_protocol">tunel</a> (engl. <em>tunnel</em>) je naziv za put koji VPN uspostavlja između računala kroz internet).</p>
-<p>OpenVPN je podržan od strane brojnih komercijalnih pružatelja usluge VPN-a poput <a href="https://www.privateinternetaccess.com/pages/client-support/">Private Internet Accessa</a> i <a href="https://nordvpn.com/ovpn/">NordVPN-a</a> koji korisnicima omogućuju skrivanje vlastite IP adrese i time anonimnost na internetu. Također ga koriste brojni proizvođači hardvera kao što su <a href="https://wiki.teltonika-networks.com/view/OpenVPN_configuration_examples">Teltonika Networks</a>, <a href="https://www.linksys.com/us/support-article?articleNum=156241">Linksys</a>, <a href="https://www.tp-link.com/en/support/faq/1544/">TP-Link</a>, <a href="https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5879-openvpn-on-rv160-rv260.html">Cisco</a> i <a href="https://doc.turris.cz/doc/en/howto/theoretical_article_on_openvpn">Turris</a> OpenVPN koriste brojne korporacije, sveučilišta, instituti i druge organizacije za organizaciju udaljenog rada na resursima unutar organizacije i, ako postoji potreba, za međusobno povezivanje više različitih fizičkih lokacija na kojima organizacija ima svoje podružnice.</p>
+<p>OpenVPN je podržan od strane brojnih komercijalnih pružatelja usluge VPN-a poput <a href="https://www.privateinternetaccess.com/vpn-features/open-source-vpn">Private Internet Accessa</a> i <a href="https://nordvpn.com/ovpn/">NordVPN-a</a> koji korisnicima omogućuju skrivanje vlastite IP adrese i time anonimnost na internetu. Također ga koriste brojni proizvođači hardvera kao što su <a href="https://wiki.teltonika-networks.com/view/OpenVPN_configuration_examples">Teltonika Networks</a>, <a href="https://www.linksys.com/us/support-article?articleNum=156241">Linksys</a>, <a href="https://www.tp-link.com/en/support/faq/1544/">TP-Link</a>, <a href="https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5879-openvpn-on-rv160-rv260.html">Cisco</a> i <a href="https://doc.turris.cz/doc/en/howto/theoretical_article_on_openvpn">Turris</a> OpenVPN koriste brojne korporacije, sveučilišta, instituti i druge organizacije za organizaciju udaljenog rada na resursima unutar organizacije i, ako postoji potreba, za međusobno povezivanje više različitih fizičkih lokacija na kojima organizacija ima svoje podružnice.</p>
 <p>Osim OpenVPN-a, nešto novije rješenje koje vrijedi spomenuti je <a href="https://www.wireguard.com/">WireGuard</a>, koji razvija kompanija <a href="https://www.edgesecurity.com/">Edge Security</a> od 2015. godine. WireGuard je <a href="https://lore.kernel.org/netdev/20200319003047.113501-1-Jason@zx2c4.com/">2020. godine prošao sigurnosni audit</a> i postao <a href="https://arstechnica.com/gadgets/2020/03/wireguard-vpn-makes-it-to-1-0-0-and-into-the-next-linux-kernel/">dio jezgre Linuxa od verzije 5.6</a> pa se očekuje da će u budućnosti biti ozbiljna konkurencija OpenVPN-u.</p>
 <p>Nakon povezivanja OpenVPN klijenta s OpenVPN poslužiteljem (koje opisujemo u nastavku), stvara se tunel kroz internet kroz koji se onda šalju podaci. Podaci koji prolaze tunelom su šifirirani kako ih treće strane na internetu ne bi mogle čitati, a dodatno se mogu koristiti i razne vrste kompresije kako bi podataka bilo manje. Zbog toga korištenje OpenVPN-a na brzim komunikacijskim mrežama zahtijeva značajnu količinu procesorskog vremena i s time treba računati kod planiranja hardverske konfiguracije OpenVPN poslužitelja.</p>
 <h2 id="staticki-kljuc">Statički ključ</h2>
@@ -5248,7 +5262,7 @@ ed89fa055a72dc20e9df748844030008
 ifconfig 172.20.0.1 172.20.0.2
 secret static.key
 </code></pre></div>
-<p><a href="https://en.wikipedia.org/wiki/TUN/TAP">TUN i TAP</a> su virtualna mrežna sučelja koja postoje na različitim operacijskim sustavima sličnim Unixu. Kako su u cijelosti implementirana softverski, njihov upravljački program nije vezan niti za jedan hardverski mrežni adapter, a danas se održava <a href="https://github.com/torvalds/linux/blob/master/Documentation/networking/tuntap.txt">u sklopu Linuxa</a> i FreeBSD-a (<a href="https://www.freebsd.org/cgi/man.cgi?query=tun&amp;sektion=4">tun</a>, <a href="https://www.freebsd.org/cgi/man.cgi?query=tap&amp;sektion=4">tap</a>). TUN (skraćeno od <em>network TUNnel</em>) emulira uređaj mrežnog sloja i prenosi IP pakete. TAP (skraćeno od <em>Terminal Access Point</em>) emulira uređaj veznog sloja i prenosi Ethernet okvire. U našem slučaju će OpenVPN raditi na mrežnom sloju (<code>dev tun</code>).</p>
+<p><a href="https://en.wikipedia.org/wiki/TUN/TAP">TUN i TAP</a> su virtualna mrežna sučelja koja postoje na različitim operacijskim sustavima sličnim Unixu. Kako su u cijelosti implementirana softverski, njihov upravljački program nije vezan niti za jedan hardverski mrežni adapter, a danas se održava <a href="https://www.kernel.org/doc/html/latest/networking/tuntap.html">u sklopu Linuxa</a> i FreeBSD-a (<a href="https://www.freebsd.org/cgi/man.cgi?query=tun&amp;sektion=4">tun</a>, <a href="https://www.freebsd.org/cgi/man.cgi?query=tap&amp;sektion=4">tap</a>). TUN (skraćeno od <em>network TUNnel</em>) emulira uređaj mrežnog sloja i prenosi IP pakete. TAP (skraćeno od <em>Terminal Access Point</em>) emulira uređaj veznog sloja i prenosi Ethernet okvire. U našem slučaju će OpenVPN raditi na mrežnom sloju (<code>dev tun</code>).</p>
 <p>Zatim konfiguriramo IP adresu (<code>ifconfig</code>) poslužitelja (<code>172.20.0.1</code>) i klijenta koji će se tek povezati (<code>172.20.0.2</code>).</p>
 <p>Naposlijetku navodimo ime datoteke u kojoj se nalazi tajni ključ koji će se koristiti (<code>secret static.key</code>). Pokrenimo poslužitelj:</p>
 <div class="highlight"><pre><span></span><code>$ sudo openvpn --config server.ovpn
@@ -5427,7 +5441,7 @@ secret static-direction1.key 1
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5446,10 +5460,10 @@ secret static-direction1.key 1
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

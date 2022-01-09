@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/simulator-ns3-pojmovi/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Teorijske osnove simulacije računalnih mreža - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Teorijske osnove simulacije računalnih mreža - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2529,6 +2529,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5302,7 +5316,7 @@
 <p><a href="https://en.wikipedia.org/wiki/Network_simulation">Simulacija mreža</a> imitira događaje u stvarnoj računalnoj mreži na pojednostavljen način. Većina aktualnih mrežnih simulatora zasnovana je na diskretnim događajima, što znači da objekti koji sudjeluju u simulaciji zakazuju događaje na vremenskoj osi koji se zatim izvode redom kojim su zakazani. Svaki od tih događaja može prilikom izvođenja zakazati jedan ili više događaja s određenim vremenskim odmakom.</p>
 <p>Obzirom da vrijeme u kojem se simulacija izvodi ne mora biti sinkronizirano s vremenom stvarnog svijeta, razlikovati ćemo <strong>simulirano vrijeme</strong>, odnosno vrijeme koje poznaju objekti unutar simulacije koja se izvodi, i <strong>vrijeme zidnog sata</strong>, odnosno vrijeme stvarnog svijeta. Najčešće će izvođenje simulacije trajati mnogo kraće nego što iznosi njezino simulirano vrijeme, no to će općenito ovisiti o broju i svojstvima događaja u simulaciji.</p>
 <p>Pored simuliranog vremena, osnova simulatora je programski model dijelova mreže. Pod tim pojmom podrazumijevamo klase i funkcije koje opisuju ponašanje objekata stvarne mreže: paketa, mrežnih kartica, čvorova, aplikacija, kabela itd. Većina mrežnih simulatora implementira i prostorne koordinate, generiranje slučajnih brojeva, alate za statističku analizu rezultata simulacije, sučelja prema alatima za crtanje grafova i sl.</p>
-<p>Simulator koji koristimo za laboratorijske vježbe je mrežni simulator <a href="https://en.wikipedia.org/wiki/ns_(simulator)">ns-3</a>.</p>
+<p>Simulator koji koristimo za laboratorijske vježbe je mrežni simulator <a href="https://en.wikipedia.org/wiki/Ns_(simulator)">ns-3</a>.</p>
 <h2 id="mrezni-simulator-ns-3">Mrežni simulator ns-3</h2>
 <p>Mrežni simulator ns-3 nasljednik mrežnog simulatora ns-2 koji je u zadnjih dvadesetak godina izrazito popularan u akademskoj zajednici. Iako zamišljen kao poboljšana varijanta ns-2, na samom početku razvoja simulatora ns-3 odlučeno da će biti dizajniran i napisan ispočetka te biti nekompatibilan sa svojim prethodnikom. Tijekom razvoja simulatora ns-3 ideje i dijelovi koda preuzeti su iz simulatora GTNetS, yans i ns-2. Razvoj su novčano podupirali francuski Nacionalni institut za istraživanje računarske znanosti i upravljanja (Institut national de recherche en informatique et en automatique, INRIA) i američka Nacionalna zaklada za znanost (National Science Foundation, NSF).</p>
 <p>Cilj projekta bio je stvoriti alat koji će se nastaviti razvijati od strane akademske zajednice i zainteresiranih tvrtki i nakon što prestane početno financiranje. Mnogo je uloženo u stvaranje zajednice održavatelja (engl. <em>maintainers</em>), tj. ljudi od kojih svatko održava određeni dio koda simulatora. Postavljena je infrastruktura u kojoj se svaka zainteresirana osoba može pridružiti razvoju, bilo doradom postojećih modela, bilo stvaranjem novih. Čitav kod simulatora ns-3 dostupan je pod licencom GPLv2.</p>
@@ -5405,7 +5419,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5424,10 +5438,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

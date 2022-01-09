@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/anaconda-instalacija-operacijskog-sustava/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2591,6 +2591,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5226,14 +5240,10 @@
 <p><a href="https://fedoraproject.org/">Fedora</a> je operacijski sustav koji kompanija <a href="https://www.redhat.com/">Red Hat</a> razvija u suradnji sa zajednicom. Fedora cilja na entuzijaste i nudi podršku od strane zajednice.</p>
 <p>Periodički, približno svakih 3 do 5 godina, Red Hat uzima tehnologiju razvijenu u suradnji sa zajednicom i od nje gradi operacijski sustav <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux (RHEL)</a> koji će moći <a href="https://access.redhat.com/support/policy/updates/errata">biti podržan zakrpama softvera približno 10 godina nakon izlaska</a>. Red Hat naplaćuje podršku za Enterprise Linux i zbog toga polaže pravo na svoj zaštitni znak, no sam softver je besplatan (i slobodan i otvorenog koda).</p>
 <p><a href="https://centos.org/">CentOS</a> je RHEL koji ima drugačiju robnu marku (engl. <em>branding</em>), što omogućuje neograničenu distribuciju bez kršenja Red Hatovog autorskog prava (engl. <em>copyright</em>) i zaštitnog znaka (engl. <em>trademark</em>). CentOS cilja na poslovne i akademske korisnike koji nemaju potrebu ili želju za plaćanjem Red Hatove podrške, a sam nudi podršku bez naknade (i bez garancija) od strane zajednice okupljene oko projekta.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>CentOS spada među projekte koji proizvedeni softver distribuiraju putem zrcalnih poslužitelja (engl. <em>mirror servers</em>) diljem svijeta (<a href="https://www.centos.org/download/mirrors/">popis</a>), a među njima je i <a href="https://mirrors.uniri.hr/">zrcalni poslužitelj slobodnog softvera otvorenog koda na Sveučilištu u Rijeci</a>. Za više informacija pročitajte članke na temu na stranicama <a href="https://www.ri.linux.hr/2017/09/23/centos-mirroran-na-sveucilistu-u-rijeci/">Riječke podružnice Hrvatske udruge Linux korisnika</a> i <a href="https://nudgedelastic.band/2017/09/mirroring-free-and-open-source-software-matters/">Nudged Elastic Band is my band name</a>.</p>
-</div>
 <p>Dokumentacija koju vrijedi konzultirati je:</p>
 <ul>
 <li>
-<p><a href="https://access.redhat.com/knowledge/docs/Red_Hat_Enterprise_Linux/">Red Hat Enterprise Linux dokumentacija</a></p>
+<p><a href="https://access.redhat.com/products/red-hat-enterprise-linux/">Red Hat Enterprise Linux dokumentacija</a></p>
 <ul>
 <li>CentOS je 100% kompatibilan s istom verzijom RHEL-a pa sva dokumentacija RHEL-a vrijedi, a nadopunjuje je <a href="https://wiki.centos.org/">CentOS Wiki</a></li>
 </ul>
@@ -5269,7 +5279,7 @@
 </ol>
 <p>Kod uobičajene instalacije moguće je napraviti odabir paketa (dijelova sustava) koji će se instalirati, ali zato instalacija sustava najčešće traje duže jer se vrši instalacija svakog paketa pojedinačno. To je jedna od osnovnih prednosti žive instalacije; naime, instalacija u većini slučajeva traje svega nekoliko minuta. Međutim, kako se na disk kopira slika pokrenutog sustava, nije moguće odabrati koji će se dijelovi sustava instalirati, a koji ne.</p>
 <h2 id="ziva-instalacija-fedora-workstation">Živa instalacija (Fedora Workstation)</h2>
-<p>Kod <a href="https://fedoraproject.org/wiki/LiveOS_image">žive instalacije</a> se prvo pokreće boot učitavač <a href="https://www.syslinux.org/wiki/index.php?title=ISOLINUX">ISOLINUX</a>. U slučaju da korisnik ne pritisne nijednu tipku, on provjerava medij i pokreće Fedoru nakon 60 sekundi. U slučaju da korisnik želi nešto drugo, ima izbor:</p>
+<p>Kod <a href="https://fedoraproject.org/wiki/LiveOS_image">žive instalacije</a> se prvo pokreće boot učitavač <a href="https://wiki.syslinux.org/wiki/index.php?title=ISOLINUX">ISOLINUX</a>. U slučaju da korisnik ne pritisne nijednu tipku, on provjerava medij i pokreće Fedoru nakon 60 sekundi. U slučaju da korisnik želi nešto drugo, ima izbor:</p>
 <ul>
 <li>pokretanje sustava (<code>Start Fedora-Workstation-Live</code>),</li>
 <li>provjera medij i pokretanje sustava (<code>Test this media &amp; start Fedora-Workstation-Live</code>),</li>
@@ -5279,7 +5289,7 @@
 <p>U slučaju da je odabran provjera medija, ona će biti izvršena prije nastavka pokeranja sustava. Iznimno, ako provjera pronađe grešku na instalacijskom mediju, pokretanje sustava, a time i instalacija, će biti prekinuti.</p>
 <p>U pozadini Plymouthovih efekata pojavljuju se sistemske poruke, a u slučaju da se dogodi nekakva greška, ona će se pokazati na ekranu (Plymouth zbog toga stalno "sluša" jezgru i očekuje vijesti o greškama).</p>
 <p>Zatim se pokreće poslužitelj zaslona Wayland ili X, a na njemu aplikacija <a href="https://wiki.gnome.org/Projects/GDM">GNOME Display Manager (GDM)</a>, koja služi za prijavu korisnika u grafičkom sučelju. Mi GDM ne vidimo, jer je postavljena automatska prijava zadanog korisnika bez čekanja na korisničku intervenciju.</p>
-<p>GDM pokreće standardni <a href="https://www.gnome.org/gnome-3/">GNOME Desktop Environment</a> i moguće je pokrenuti sve njegove programe (<a href="https://wiki.gnome.org/Apps/Gedit">tekst editor</a>, <a href="https://wiki.gnome.org/Apps/Terminal">terminal</a>, <a href="https://wiki.gnome.org/Apps/Videos">video player</a> itd.), kao da je sustav instaliran. Ovo služi da korisnici mogu isprobati radi li sustav na njihovom računalu kako treba prije nego se odluče na instalaciju. Naravno, zbog manje brzine čitanja sa CD-a, DVD-a i USB flash diskova realno je za očekivati da sustav radi nešto sporije nego kad je instaliran.</p>
+<p>GDM pokreće standardni <a href="https://www.gnome.org/">GNOME Desktop Environment</a> i moguće je pokrenuti sve njegove programe (<a href="https://wiki.gnome.org/Apps/Gedit">tekst editor</a>, <a href="https://wiki.gnome.org/Apps/Terminal">terminal</a>, <a href="https://wiki.gnome.org/Apps/Videos">video player</a> itd.), kao da je sustav instaliran. Ovo služi da korisnici mogu isprobati radi li sustav na njihovom računalu kako treba prije nego se odluče na instalaciju. Naravno, zbog manje brzine čitanja sa CD-a, DVD-a i USB flash diskova realno je za očekivati da sustav radi nešto sporije nego kad je instaliran.</p>
 <p>Sustav koji se pokrene bit će na engleskom jeziku. Korisniku se nudi isprobavanje Fedore i instalacija na čvrsti disk. U slučaju da korisnik odabere isprobavanje, instalaciju je uvijek moguće pokrenuti iz Dasha (niza ikona koje se pojave na lijevoj strani radne površine nakon klika na <code>Activities</code>).</p>
 <p>U slučaju da korisnik odabere instalaciju Fedore, pokrenuti će se instalacijski program Anaconda. Sama instalacija ima nekoliko koraka, koje redom opisujemo u nastavku.</p>
 <ul>
@@ -5381,7 +5391,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5400,10 +5410,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

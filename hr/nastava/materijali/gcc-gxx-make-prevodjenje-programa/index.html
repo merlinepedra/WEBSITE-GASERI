@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/gcc-gxx-make-prevodjenje-programa/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Prevođenje C, C++ i Fortran programa u izvršni kod - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Prevođenje C, C++ i Fortran programa u izvršni kod - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2577,6 +2577,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5190,7 +5204,7 @@
 </ul>
 <p><a href="https://en.wikipedia.org/wiki/Clang">Clang</a> i <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> čine alternativu GCC-u.</p>
 <ul>
-<li>razvoj je započeo na <a href="http://illinois.edu/">University of Illinois at Urbana-Champaign</a>, danas ga dobrim dijelom sponzorira Apple</li>
+<li>razvoj je započeo na <a href="https://illinois.edu/">University of Illinois at Urbana-Champaign</a>, danas ga dobrim dijelom sponzorira Apple</li>
 <li>Clang podržava C, Objective-C (<code>clang</code>), C++ i Objective-C++ (<code>clang++</code>), a LLVM ima dodatke koji podržavaju i druge programske jezike</li>
 </ul>
 <div class="admonition admonition">
@@ -5248,11 +5262,11 @@
 <p>Statičko povezivanje u gornjem primjeru izveli bismo na način:</p>
 <div class="highlight"><pre><span></span><code>$ g++ -c bibl1.cpp bibl2.cpp
 $ ar rcs libbibl.a bibl1.o bibl2.o
-$ g++ -static mainprog.cpp -L. -lbibl -o mainprog
+$ g++ -static -o mainprog mainprog.cpp -L. -lbibl
 $ ./mainprog
 </code></pre></div>
 <p>Program <code>ar</code> je arhiver, donekle sličan <code>tar</code>-u koji već poznajemo. On ovdje služi za stvaranje statičke biblioteke, datoteke s ekstenzijom <code>.a</code>.</p>
-<p>Parametar <code>-L</code> kod <code>g++</code>-a navodi dodatnu putanju u kojoj treba tražiti biblioteke (pored predefiniranih na sustavu), a parametar <code>-l</code> navodi se jednom ili više puta zajedno s imenom biblioteke na koju je potrebno povezati program.</p>
+<p>Parametar <code>-L</code> kod <code>g++</code>-a navodi dodatnu putanju u kojoj treba tražiti biblioteke (pored predefiniranih na sustavu), a parametar <code>-l</code> navodi se jednom ili više puta zajedno s imenom biblioteke na koju je potrebno povezati program. Poredak parametara je značajan; više detalja ima <a href="https://groups.google.com/g/gnu.gcc.help/c/muvgXVAU6l0/m/fVpqbXYp7cEJ">u komentaru Paula Pluzhnikova</a> na temu <a href="https://groups.google.com/g/gnu.gcc.help/c/muvgXVAU6l0/m/soh5AV77U3gJ">linking problems and order</a> (<a href="https://groups.google.com/g/gnu.gcc.help/">Google grupa gnu.gcc.help</a>).</p>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
 <p>Modificirajte gornji primjer tako da biblioteka uključuje i datoteku <code>bibl3.cpp</code> sa dvjema funkcijama po vašem izboru čije se deklaracije navode u datoteci zaglavlja i koje se pozivaju u <code>mainprog.cpp</code>. Izvedite prevođenje programa sa statičkim povezivanjem.</p>
@@ -5262,7 +5276,7 @@ $ ./mainprog
 $ g++ -shared -Wl,-soname,libbibl.so.1 -o libbibl.so.1.0 bibl1.o bibl2.o
 $ ln -sf libbibl.so.1.0 libbibl.so
 $ ln -sf libbibl.so.1.0 libbibl.so.1
-$ gcc -L. mainprog.cpp -lbibl -o mainprog
+$ g++ -o mainprog -L. mainprog.cpp -lbibl
 $ <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.
 $ ./mainprog
 </code></pre></div>
@@ -5391,7 +5405,7 @@ $ ./mainprog
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5410,10 +5424,10 @@ $ ./mainprog
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

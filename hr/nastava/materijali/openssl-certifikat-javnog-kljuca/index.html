@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openssl-certifikat-javnog-kljuca/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2529,6 +2529,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5459,7 +5473,7 @@
 </div>
 <h2 id="certifikat-javnog-kljuca">Certifikat javnog ključa</h2>
 <p>Certifikat javnog ključa je elektronički dokument kojim se dokazuje posjedovanje javnog ključa. Certifikat sadrži informacije o ključu, subjektu koji je vlasnik ključa i digitalni potpis tijela koje je provjerilo sadržaj certifikata (tzv. izdavatelj certifikata, engl. <em>certificate issuer</em>). Ako je potpis valjan i ako softver koji radi s certifikatima vjeruje izdavatelju, tada je moguće ostvariti sigurnu komunikaciju sa subjektom koji je vlasnik ključa. Popisi izdavatelja kojima se vjeruje variraju među softverima; primjerice, u službenim razvojnim dokumentima web preglednika moguće je pronaći popise izdavatelja certifikata kojima vjeruju <a href="https://wiki.mozilla.org/CA/Included_Certificates">Mozilla Firefox</a> i <a href="https://www.chromium.org/Home/chromium-security/root-ca-policy">Google Chrome</a>. Također, popis izdavatelja kojima se vjeruje varira i kroz vrijeme pa, primjerice, izdavatelj besplatnih TLS/SSL certifikata <a href="https://letsencrypt.org/">Let's Encrypt</a> od kraja srpnja 2018. godine ima <a href="https://letsencrypt.org/2018/08/06/trusted-by-all-major-root-programs.html">povjerenje svih važnijih programa, uključujući Microsoft, Google, Apple, Mozillu, Oracle i Blackberry</a>.</p>
-<p>Certifikati javnog ključa standardizirani su od strane <a href="https://www.itu.int/en/ITU-T/">Sektora za standardizaciju</a> <a href="https://www.itu.int/">Međunarodne telekomunikacijske unije</a> (ITU-T) 1988. godine pod nazivom <a href="https://www.itu.int/rec/T-REC-X.509">X.509</a>. Standard X.509 je također opisan <a href="https://tools.ietf.org/html/rfc5280">u RFC-u 5280 pod naslovom Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>. Više informacija o standardu može se pronaći <a href="https://en.wikipedia.org/wiki/X.509">na Wikipedijinoj stranici X.509</a>.</p>
+<p>Certifikati javnog ključa standardizirani su od strane <a href="https://www.itu.int/en/ITU-T/">Sektora za standardizaciju</a> <a href="https://www.itu.int/">Međunarodne telekomunikacijske unije</a> (ITU-T) 1988. godine pod nazivom <a href="https://www.itu.int/rec/T-REC-X.509">X.509</a>. Standard X.509 je također opisan <a href="https://datatracker.ietf.org/doc/html/rfc5280">u RFC-u 5280 pod naslovom Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>. Više informacija o standardu može se pronaći <a href="https://en.wikipedia.org/wiki/X.509">na Wikipedijinoj stranici X.509</a>.</p>
 <h3 id="stvaranje-samopotpisanih-certifikata">Stvaranje samopotpisanih certifikata</h3>
 <p>Generiranje samopotpisanog certifikata (engl. <em>self-signed certificate</em>) zbog složenosti zahtjeva uporabu više opcija i parametara.</p>
 <p>Idući primjer pokazuje generiranje datoteke privatnog ključa <code>mojkljuc.pem</code> i datoteke <code>mojcertifikat.pem</code> u kojoj su sadržani javni ključ i certifikat javnog ključa. Generiranje zahtjeva za potpisivanjem i potpisivanje zahtjeva vršimo opcijom <code>req</code>, a parametar <code>-x509</code> znači da se radi o certifikatima koji slijede ITU-T standard X.509. Moguće je odrediti broj dana valjanosti certifikata (u ovom slučaju jedna godina, znači 365), te hoće li ključ biti šifriran (opcija <code>-nodes</code> isključuje šifriranje). Pri stvaranju certifikata potrebno je odgovoriti na nekoliko pitanja kojima se u certifikat unose informacije o vlasniku.</p>
@@ -5538,7 +5552,7 @@ error <span class="m">10</span> at <span class="m">0</span> depth lookup:certifi
 <p>Dio poruke <code>at 0 depth</code> znači da je pogreška pronađena na samom certifikatu koji se provjerava, a ne negdje dalje u lancu potpisa. Primjerice, može se dogoditi i da istekne certifikat nekog od autoriteta certifikata koji je potpisao certifikat koji se provjerava, certifikat autoriteta certifikata koji je potpisao certifikat autoriteta certifikata koji je potpisao certifikat koji se provjerava itd.</p>
 <h3 id="pretvorba-formata-certifikata">Pretvorba formata certifikata</h3>
 <h4 id="standard-pkcs-8">Standard PKCS #8</h4>
-<p><a href="https://en.wikipedia.org/wiki/PKCS_8">PKCS #8: Private-Key Information Syntax Standard</a> je standardna sintaksa za pohranu privatnih ključeva. Posljednja verzija 1.2 standardizirana je u <a href="https://tools.ietf.org/html/rfc5208">RFC-u 5208 pod naslovom Public-Key Cryptography Standards (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</a>. Proširenje standarda predloženo je u <a href="https://tools.ietf.org/html/rfc5958">RFC-u 5958</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/PKCS_8">PKCS #8: Private-Key Information Syntax Standard</a> je standardna sintaksa za pohranu privatnih ključeva. Posljednja verzija 1.2 standardizirana je u <a href="https://datatracker.ietf.org/doc/html/rfc5208">RFC-u 5208 pod naslovom Public-Key Cryptography Standards (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</a>. Proširenje standarda predloženo je u <a href="https://datatracker.ietf.org/doc/html/rfc5958">RFC-u 5958</a>.</p>
 <p>OpenSSL u zadanim postavkama već zapisuje privatne ključeve u formatu PKCS #8, a dodatno je moguće kod zapisivanja ključeve šifrirati.</p>
 <p>Ako nismo odabrali šifrirati privatni ključ kod stvaranja, pretvorbu u šifrirani oblik vršimo naredbom:</p>
 <div class="highlight"><pre><span></span><code>$ openssl pkcs8 -topk8 -in mojkljuc.pem -out mojkljuc.pem.enc
@@ -5601,7 +5615,7 @@ mt/nvTb1VrLTqMuoJPKuK/WXlMVW9nZVKOlj0tOiJ8Zy
 -----END ENCRYPTED PRIVATE KEY-----
 </code></pre></div>
 <h4 id="formati-pem-i-der">Formati PEM i DER</h4>
-<p>Ključevi koje smo stvorili zapisani su u zadanom formatu <a href="https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail">Privacy-Enhanced Mail</a> (PEM), standardiziranom u <a href="https://tools.ietf.org/html/rfc7468">RFC-u 7468 pod naslovom Textual Encodings of PKIX, PKCS, and CMS Structures</a>. Ključeve je moguće zapisati i u formatu <a href="https://en.wikipedia.org/wiki/Distinguished_Encoding_Rules">Distinguished Encoding Rules</a> (DER), koji koristi <a href="https://en.wikipedia.org/wiki/ASN.1">ASN.1</a> za zapis struktura podataka kompatibilan s formatom <a href="https://en.wikipedia.org/wiki/PKCS_1">PKCS #1</a> RSAPrivateKey za tajni ključ i SubjectPublicKeyInfo za certifikat. (<a href="https://en.wikipedia.org/wiki/PKCS">Public Key Cryptography Standards</a> (PKCS) je skup standarada za kriptografiju javnog ključa koje je objavila kompanija <a href="https://en.wikipedia.org/wiki/RSA_Security">RSA Security</a>.)</p>
+<p>Ključevi koje smo stvorili zapisani su u zadanom formatu <a href="https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail">Privacy-Enhanced Mail</a> (PEM), standardiziranom u <a href="https://datatracker.ietf.org/doc/html/rfc7468">RFC-u 7468 pod naslovom Textual Encodings of PKIX, PKCS, and CMS Structures</a>. Ključeve je moguće zapisati i u formatu <a href="https://en.wikipedia.org/wiki/Distinguished_Encoding_Rules">Distinguished Encoding Rules</a> (DER), koji koristi <a href="https://en.wikipedia.org/wiki/ASN.1">ASN.1</a> za zapis struktura podataka kompatibilan s formatom <a href="https://en.wikipedia.org/wiki/PKCS_1">PKCS #1</a> RSAPrivateKey za tajni ključ i SubjectPublicKeyInfo za certifikat. (<a href="https://en.wikipedia.org/wiki/PKCS">Public Key Cryptography Standards</a> (PKCS) je skup standarada za kriptografiju javnog ključa koje je objavila kompanija <a href="https://en.wikipedia.org/wiki/RSA_Security">RSA Security</a>.)</p>
 <p>Pretvorbu ključeva iz formata PEM u format DER vršimo opcijom <code>rsa</code> na način:</p>
 <div class="highlight"><pre><span></span><code>$ openssl rsa -inform PEM -outform DER -in mojkljuc.pem -out mojkljuc.der
 writing RSA key
@@ -5611,7 +5625,7 @@ writing RSA key
 </code></pre></div>
 <p>Za razliku od PEM-a koji je kodiran u formatu Base64, DER je binarni format pa dobivene zapise ključa i certifikata ne ispisujemo na ekran.</p>
 <h4 id="standard-pkcs-7">Standard PKCS #7</h4>
-<p><a href="https://en.wikipedia.org/wiki/PKCS_7">PKCS #7: Cryptographic Message Syntax</a> je standardna sintaksa za pohranu potpisanih i/ili šifriranih podataka. Posljednja verzija 1.5 standardizirana je u <a href="https://tools.ietf.org/html/rfc2315">RFC-u 2315 pod naslovom PKCS #7: Cryptographic Message Syntax Version 1.5</a>, a proširenja standarda su dostupna u RFC-ima <a href="https://tools.ietf.org/html/rfc2630">2630</a>, <a href="https://tools.ietf.org/html/rfc3369">3369</a>, <a href="https://tools.ietf.org/html/rfc3852">3852</a> i <a href="https://tools.ietf.org/html/rfc5652">5652</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/PKCS_7">PKCS #7: Cryptographic Message Syntax</a> je standardna sintaksa za pohranu potpisanih i/ili šifriranih podataka. Posljednja verzija 1.5 standardizirana je u <a href="https://datatracker.ietf.org/doc/html/rfc2315">RFC-u 2315 pod naslovom PKCS #7: Cryptographic Message Syntax Version 1.5</a>, a proširenja standarda su dostupna u RFC-ima <a href="https://datatracker.ietf.org/doc/html/rfc2630">2630</a>, <a href="https://datatracker.ietf.org/doc/html/rfc3369">3369</a>, <a href="https://datatracker.ietf.org/doc/html/rfc3852">3852</a> i <a href="https://datatracker.ietf.org/doc/html/rfc5652">5652</a>.</p>
 <p>Pretvorbu certifikata iz formata PEM u format PKCS #7 vršimo opcijom <code>crl2pkcs7</code> na način:</p>
 <div class="highlight"><pre><span></span><code>$ openssl crl2pkcs7 -nocrl -certfile mojcertifikat.pem -out mojcertifikat.pem.p7b
 </code></pre></div>
@@ -5699,7 +5713,10 @@ Verifying - Enter Export Password:
 </code></pre></div>
 <h2 id="sigurni-posluzitelj">Sigurni poslužitelj</h2>
 <p>Komunikaciju na internetu danas nemoguće je zamisliti bez HTTPS-a i TLS/SSL certifikata koji ga omogućuju. Danas se HTTPS uključuje rutinski (u <a href="https://caddyserver.com/docs/automatic-https">pojedinim poslužiteljima, kao što je Caddy, čak i automatski</a>), a <a href="https://istlsfastyet.com/">TLS/SSL šifriranje radi brzo</a> i pouzdano. Međutim, nije uvijek bilo tako.</p>
-<p>U travnju 2014. godine otkriven je ozbiljan propust u OpenSSL-u popularno nazvan <a href="http://heartbleed.com/">Heartbleed</a>, a službeno <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160">CVE-2014-0160</a>. Zahvaljujući Hearbleedu bilo je moguće ukrasti privatne ključeve pridružene certifikatima. Iste je godine otkriven još jedan ozbiljan propust, ovaj put na razini protokola. Propust popularno nazvan <a href="https://access.redhat.com/articles/1232123">POODLE</a>, a službeno <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>, pogađa SSL verziju 3.0 i omogućuje dešifriranje šifriranog sadržaja od treće strane. Zanimljiv osvrt specifično na ta dva sigurnosna propusta i općenito na stanje koda OpenSSL-a dao je Marco Peereboom, direktor u tvrtci <a href="https://www.companyzero.com/">Company Zero</a>, u svom eseju pod naslovom <a href="https://www.peereboom.us/assl/assl/html/openssl.html">OpenSSL is written by monkeys</a>.</p>
+<p>U travnju 2014. godine otkriven je ozbiljan propust u OpenSSL-u popularno nazvan <a href="https://heartbleed.com/">Heartbleed</a>, a službeno <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160">CVE-2014-0160</a>. Zahvaljujući Hearbleedu bilo je moguće ukrasti privatne ključeve pridružene certifikatima. Iste je godine otkriven još jedan ozbiljan propust, ovaj put na razini protokola. Propust popularno nazvan <a href="https://access.redhat.com/articles/1232123">POODLE</a>, a službeno <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>, pogađa SSL verziju 3.0 i omogućuje dešifriranje šifriranog sadržaja od treće strane. Četiri godine prije tih propusta, Marco Peereboom, direktor u tvrtci <a href="https://www.companyzero.com/">Company Zero</a>, dao je zanimljiv osvrt na stanje koda OpenSSL-a. U svom eseju pod naslovom <a href="https://web.archive.org/web/20100906031647/https://www.peereboom.us/assl/assl/html/openssl.html">OpenSSL is written by monkeys</a> piše:</p>
+<blockquote>
+<p>After messing around with this code for about a month I decided to write this up for the tubes in the hope that I can save some souls. I have come to the conclusion that OpenSSL is equivalent to monkeys throwing feces at the wall. It is, bar none, the worst library I have ever worked with. I can not believe that the internet is running on such a ridiculous complex and gratuitously stupid piece of code. Since circa 1998 the whole world has been trusting their secure communications to this impenetrable morass that calls itself the "OpenSSL" project.</p>
+</blockquote>
 <p>U narednim mjesecima OpenSSL je donio <a href="https://www.openssl.org/policies/secpolicy.html">novu sigurnosnu politiku</a>, a zatim je tijekom 2015. godine <a href="https://www.openssl.org/blog/blog/2015/02/11/code-reformat-finished/">doživio čišćenje koda</a>, <a href="https://www.openssl.org/blog/blog/2015/03/19/security-updates/">otkriveni su i popravljeni i drugi sigurnosni propusti</a>, <a href="https://www.openssl.org/blog/blog/2015/05/20/logjam-freak-upcoming-changes/">i još sigurnosnih propusta</a>, <a href="https://www.openssl.org/blog/blog/2015/07/28/code-cleanup/">i još čišćenja koda</a>. Krajem 2015. godine <a href="https://www.openssl.org/blog/blog/2015/09/01/openssl-security-a-year-in-review/">stanje projekta i koda bilo je bitno bolje nego pred godinu dana</a>.</p>
 <p>S rastom optimizma oko najkorištenije implementacije TLS-a/SSL-a porasla je i njena primjena. Od početka 2016. godine do polovine 2019. godine <a href="https://letsencrypt.org/stats/#percent-pageloads">postotak web stranica koje se učitavaju korištenjem HTTPS-a se udvostručio</a>, a paralelno s time <a href="https://letsencrypt.org/stats/#daily-issuance">nastavlja rasti i broj (besplatnih) TLS/SSL certifikata koje izdaje Let's Encrypt</a>.</p>
 <h3 id="klijentska-strana">Klijentska strana</h3>
@@ -5796,7 +5813,7 @@ SSL-Session:
 </code></pre></div>
 <p>Ovdje možemo primijetiti brojne informacije. Odmah na početku vidimo podatke o certifikatu (<code>CN = miletic.net</code>) i pripadnom lancu izdavatelja certifikata (<code>CN = Let's Encrypt Authority X3</code> i <code>CN = DST Root CA X3</code>). Navedeni su algoritmi koji se koriste za potpis hashiranog sadržaja (<code>SHA256</code>, <code>RSA</code>), broj bajtova koje poslanih i primljenih kod ostvarivanja veze (<code>3475</code> i <code>433</code>) i certifikat je označen kao valjan (<code>Verification: OK</code>). Slijede podaci o korištenoj verziji TLS-a/SSL-a (<code>TLSv1.2</code>), kombinaciji algoritama za šifriranje koja se koristi (<code>ECDHE-RSA-AES256-GCM-SHA384</code>), duljini ključa poslužitelja (<code>2048 bit</code>), kompresiji, <a href="https://www.keycdn.com/support/alpn">TLS ekstenziji Application-Layer Protocol Negotiation (ALPN)</a> i drugim značajkama ostvarene veze. Na ovaj način opciju <code>s_client</code> možemo koristiti pri dijagnosticiranju problema sigurnih poslužitelja jer pokazuje brojne podatke koje ne vidimo kod normalnog korištenja web preglednika ili klijenata za elektroničku poštu.</p>
 <h4 id="server-name-indication">Server Name Indication</h4>
-<p><a href="https://en.wikipedia.org/wiki/Server_Name_Indication">Server Name Indication</a> (SNI) je proširenje TLS-a kojim klijent navodi u procesu rukovanja ime poslužitelja na koji se povezuje, što dozvoljava da na jednoj IP adresi postoji više od jednog HTTPS poslužitelja. Kako gotovo sve novije implementacije TLS-a podržavaju SNI, njegova <a href="https://blogs.akamai.com/2017/03/reaching-toward-universal-tls-sni.html">uporaba je u porastu posljednjih godina</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Server_Name_Indication">Server Name Indication</a> (SNI) je proširenje TLS-a kojim klijent navodi u procesu rukovanja ime poslužitelja na koji se povezuje, što dozvoljava da na jednoj IP adresi postoji više od jednog HTTPS poslužitelja. Kako gotovo sve novije implementacije TLS-a podržavaju SNI, njegova <a href="https://developer.akamai.com/blog/2017/10/20/encrypting-web-all-need-support-tls-sni-remaining-clients">uporaba je u porastu posljednjih godina</a>.</p>
 <p>Na istom poslužitelju na kojem je <code>lab.miletic.net</code> je i <a href="https://www.rxdock.org/">web sjedište projekta RxDock</a> <code>www.rxdock.org</code>. Iskoristimo parametar <code>-servername</code> da navedemo ime poslužitelja na koji se povezujemo:</p>
 <div class="highlight"><pre><span></span><code>$ openssl s_client -connect lab.miletic.net:443 -servername www.rxdock.org
 CONNECTED<span class="o">(</span><span class="m">00000003</span><span class="o">)</span>
@@ -5861,7 +5878,7 @@ curl: <span class="o">(</span><span class="m">52</span><span class="o">)</span> 
 
 $ curl https://localhost:49152/
 curl: <span class="o">(</span><span class="m">60</span><span class="o">)</span> SSL certificate problem: Invalid certificate chain
-More details here: https://curl.haxx.se/docs/sslcerts.html
+More details here: https://curl.se/docs/sslcerts.html
 
 curl performs SSL certificate verification by default, using a <span class="s2">&quot;bundle&quot;</span>
  of Certificate Authority <span class="o">(</span>CA<span class="o">)</span> public keys <span class="o">(</span>CA certs<span class="o">)</span>. If the default
@@ -6011,7 +6028,7 @@ GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDAeFw0xOTA2MDgxNzEzNTdaFw0yMDA2
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -6030,10 +6047,10 @@ GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDAeFw0xOTA2MDgxNzEzNTdaFw0yMDA2
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

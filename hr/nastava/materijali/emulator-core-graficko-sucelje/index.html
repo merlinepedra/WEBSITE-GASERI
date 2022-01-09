@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/emulator-core-graficko-sucelje/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Osnove rada s emulatorom računalnih mreža - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Osnove rada s emulatorom računalnih mreža - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2605,6 +2605,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5244,8 +5258,8 @@
 <p>U ovoj vježbi i naredne dvije koristit ćemo emulator CORE.</p>
 <h2 id="osnovne-informacije-o-alatu-core">Osnovne informacije o alatu CORE</h2>
 <p>Alat <strong>Common Open Research Emulator</strong> (CORE) je <a href="https://en.wikipedia.org/wiki/Network_emulation">emulator računalnih mreža</a>. CORE izrađuje prikaz stvarne računalne mreže i omogućuje korisniku rad s njom u stvarnom vremenu. Takva emulacija, obzirom da radi u stvarnom vremenu, može se povezati i sa stvarnim mrežama, a u njoj se mogu koristiti i stvarne mrežne aplikacije. CORE podržava Linux i FreeBSD, a na Linuxu radi na osnovi kontejnerske virtualizacije <a href="https://en.wikipedia.org/wiki/LXC">LinuX Containers (LXC)</a>.</p>
-<p>Alat CORE je razvijen od strane istraživačkog odjela <a href="http://www.boeing.com/">Boeinga</a> uz podršku <a href="https://www.nrl.navy.mil/">istraživačkog laboratorija Američke mornarice</a>, a zasnovan je na alatu <a href="http://www.imunes.tel.fer.hr/">Integrated Multiprotocol Network Emulator/Simulator (IMUNES)</a> razvijenom na <a href="https://www.fer.unizg.hr/ztel">Zavodu za telekomunikacije</a> <a href="https://www.fer.unizg.hr/">Fakulteta elektrotehnike i računarstva Sveučilišta u Zagrebu</a>.</p>
-<p>CORE ima <a href="https://coreemu.github.io/core/">vrlo bogatu dokumentaciju</a> koja je dostupna na <a href="https://www.nrl.navy.mil/itd/ncs/products/core">službenim stranicama alata</a>.</p>
+<p>Alat CORE je razvijen od strane istraživačkog odjela <a href="https://www.boeing.com/">Boeinga</a> uz podršku <a href="https://www.nrl.navy.mil/">istraživačkog laboratorija Američke mornarice</a>, a zasnovan je na alatu <a href="http://imunes.net/">Integrated Multiprotocol Network Emulator/Simulator (IMUNES)</a> razvijenom na <a href="https://www.fer.unizg.hr/ztel">Zavodu za telekomunikacije</a> <a href="https://www.fer.unizg.hr/">Fakulteta elektrotehnike i računarstva Sveučilišta u Zagrebu</a>.</p>
+<p>CORE ima <a href="https://coreemu.github.io/core/">vrlo bogatu dokumentaciju</a> koja je dostupna na <a href="https://www.nrl.navy.mil/Our-Work/Areas-of-Research/Information-Technology/NCS/CORE/">službenim stranicama alata</a>.</p>
 <h2 id="graficko-korisnicko-sucelje-alata-core">Grafičko korisničko sučelje alata CORE</h2>
 <p>CORE pokrećemo naredbom <code>core-gui</code> u terminalu ili stavkom <code>CORE Network Emulator</code> u meniju.</p>
 <div class="highlight"><pre><span></span><code>$ core-gui
@@ -5309,7 +5323,7 @@
 <p>CORE omogućuje istovremeno pokretanje više sesija emulacije. U slučaju da vam to počne stvarati probleme (imate zaostale sesije emulacije koje ne možete uništiti korištnjem gumba <code>Shutdown</code> ili sl.), uvijek možete izvršiti ponovno pokretanje virtualne mašine, što će osigurati čišćenje svih pokrenutih sesija i riješiti problem.</p>
 </div>
 <h2 id="emulacija-mreznog-prometa-koristenjem-alata-mgen">Emulacija mrežnog prometa korištenjem alata MGEN</h2>
-<p>CORE omogućuje korištenje alata Multi-Generator (MGEN) za generiranje prometa. MGEN također razvijen od strane istraživačkog laboratorija Američke mornarice, a moguće ga je koristiti i neovisno o alatu CORE. Mi se tim načinom korištenja ovdje nećemo baviti; za više informacija proučite <a href="https://github.com/USNavalResearchLaboratory/mgen/blob/master/doc/mgen.pdf">službenu dokumentaciju</a> dostupnu na <a href="https://www.nrl.navy.mil/itd/ncs/products/mgen">službenim stranicama alata MGEN</a>.</p>
+<p>CORE omogućuje korištenje alata Multi-Generator (MGEN) za generiranje prometa. MGEN također razvijen od strane istraživačkog laboratorija Američke mornarice, a moguće ga je koristiti i neovisno o alatu CORE. Mi se tim načinom korištenja ovdje nećemo baviti; za više informacija proučite <a href="https://github.com/USNavalResearchLaboratory/mgen/blob/master/doc/mgen.pdf">službenu dokumentaciju</a> dostupnu na <a href="https://www.nrl.navy.mil/Our-Work/Areas-of-Research/Information-Technology/NCS/MGEN/">službenim stranicama alata MGEN</a>.</p>
 <p>Odabirom opcije <code>Tools/Traffic</code> otvara se dijalog <code>CORE traffic flows</code> u kojem je moguće klikom na gumb <code>new</code> definirati novi tok paketa. Odabir izvornog i odredišnog čvora vrši se klikom na pravokutnik pored <code>source node</code>, odnosno <code>destination node</code> i zatim na odgovarajući čvor. Pored toga moguće je konfigurirati:</p>
 <ul>
 <li><code>port</code> za izvor i odredište,</li>
@@ -5391,7 +5405,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5410,10 +5424,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

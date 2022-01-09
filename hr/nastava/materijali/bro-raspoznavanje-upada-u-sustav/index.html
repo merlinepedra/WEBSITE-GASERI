@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/bro-raspoznavanje-upada-u-sustav/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Raspoznavanje upada u sustav alatom Bro - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Raspoznavanje upada u sustav alatom Bro - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2611,6 +2611,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5265,7 +5279,7 @@
 <li>detekcija i analiza tunela (logički put kroz koji enkapsulirani podaci prolaze kroz javnu mrežu, npr. Ayiya, Teredo, GTPv1)</li>
 </ul>
 <h2 id="arhitektura">Arhitektura</h2>
-<p>Bro ima <a href="https://www.bro.org/sphinx/intro/index.html">tri glavne komponente</a> pomoću kojih nadzire mrežu: libpcap biblioteku za hvatanje mrežnog prometa, generator događaja (engl. <em>event engine</em>) koji analizira mrežni promet u stvarnom vremenu ili snimljeni promet i pretvara u događaje (engl. <em>events</em>) kao što su <code>connection_attempt</code>, <code>http_reply</code>, <code>user_logged_in</code> i interpreter sigurnosnih pravila. Događaji odražavaju stanje mreže, a uspoređuju se s pravilima odnosno skriptama u kojima su pravila definirana. Skripte zapravo opisuju sigurnosnu politiku sustava koji će se nadzirati odnosno aktivnosti koje se poduzimaju ukoliko se uoči neka nepravilnost. Primjerice, svaki HTTP zahtjev ima odgovarajući http_request događaj koji sadrži IP adrese ishodišta i odredišta paketa, portove, traženi URI. No, taj događaj ne nosi informaciju o možebitnom malicioznom sadržaju tražene stranice ili informaciju da li se radi o zloćudnoj stranici. Interpreter sigurnosnih pravila izvodi upravljače događajima (engl. <em>event handlers</em>) pisane u Bro skriptnom jeziku, analizira događaje i sadržaj stranice te poduzima određenu aktivnost kao što je automatski zapis u log datoteku, slanje alarmnih poruka u realnom vremenu, slanje maila ili pozivanje druge Bro skripte. Interpreter sigurnosnih pravila je zapravo najvažniji dio alata Bro jer otkriva maliciozne događaje odnosno pakete korištenjem unaprijed definiranih pravila. Ukoliko se neki događaj poklapa s određenim pravilom, obavljaju se određene radnje nad paketom ili se on odbacuje.</p>
+<p>Bro ima <a href="https://docs.zeek.org/en/current/about.html#architecture">tri glavne komponente</a> pomoću kojih nadzire mrežu: libpcap biblioteku za hvatanje mrežnog prometa, generator događaja (engl. <em>event engine</em>) koji analizira mrežni promet u stvarnom vremenu ili snimljeni promet i pretvara u događaje (engl. <em>events</em>) kao što su <code>connection_attempt</code>, <code>http_reply</code>, <code>user_logged_in</code> i interpreter sigurnosnih pravila. Događaji odražavaju stanje mreže, a uspoređuju se s pravilima odnosno skriptama u kojima su pravila definirana. Skripte zapravo opisuju sigurnosnu politiku sustava koji će se nadzirati odnosno aktivnosti koje se poduzimaju ukoliko se uoči neka nepravilnost. Primjerice, svaki HTTP zahtjev ima odgovarajući http_request događaj koji sadrži IP adrese ishodišta i odredišta paketa, portove, traženi URI. No, taj događaj ne nosi informaciju o možebitnom malicioznom sadržaju tražene stranice ili informaciju da li se radi o zloćudnoj stranici. Interpreter sigurnosnih pravila izvodi upravljače događajima (engl. <em>event handlers</em>) pisane u Bro skriptnom jeziku, analizira događaje i sadržaj stranice te poduzima određenu aktivnost kao što je automatski zapis u log datoteku, slanje alarmnih poruka u realnom vremenu, slanje maila ili pozivanje druge Bro skripte. Interpreter sigurnosnih pravila je zapravo najvažniji dio alata Bro jer otkriva maliciozne događaje odnosno pakete korištenjem unaprijed definiranih pravila. Ukoliko se neki događaj poklapa s određenim pravilom, obavljaju se određene radnje nad paketom ili se on odbacuje.</p>
 <div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">box</span><span class="p">];</span><span class="w"></span>
 <span class="w">   </span><span class="nt">mreža</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">libpcap</span><span class="w"> </span><span class="p">[</span><span class="na">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">paketi</span><span class="p">];</span><span class="w"></span>
@@ -5306,8 +5320,8 @@
 <div class="highlight"><pre><span></span><code>$ sudo apt-get install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libmagic-dev
 </code></pre></div>
 <p>za DEB/Debian-bazirani Linux.</p>
-<p>Bro je moguće preuzeti u obliku unaprijed kompajliranog paketa ili u obliku <a href="http://bro.org/download/index.html">izvornog koda</a>. Naredbe za instalaciju paketa iz izvornog koda ili sa git repozitorija su sljedeće:</p>
-<div class="highlight"><pre><span></span><code>$ git clone --recursive git://git.bro.org/bro
+<p>Bro je moguće preuzeti u obliku unaprijed kompajliranog paketa ili u obliku <a href="https://zeek.org/get-zeek/">izvornog koda</a>. Naredbe za instalaciju paketa iz izvornog koda ili sa git repozitorija su sljedeće:</p>
+<div class="highlight"><pre><span></span><code>$ git clone --recursive https://github.com/zeek/zeek.git
 $ ./configure
 $ make
 $ make install
@@ -5360,7 +5374,7 @@ stopping bro ...
 </code></pre></div>
 <p>Pokretanjem Bro instance započinje snimanje prometa odnosno zapis u log datoteke koje se nalaze u direktoriju <code>/usr/local/bro/logs</code>. Direktorij logs sadrži poddirektorije čiji je naziv datum snimanja prometa, a sadrži log datoteke -- <code>conn.log</code>, <code>dhcp.log</code>, <code>dns.log</code>, <code>http.log</code>, <code>smtp.log</code>, <code>ftp.log</code>... -- koje se stvaraju po zaustavljanju praćenja prometa. Drugim riječima, sve što je Bro uhvatio za vrijeme rada (status: running), po zaustavljanju sortira s obzirom na protokol ili pojedinu aktivnost i kopira u odgovarajuće datoteke.</p>
 <h2 id="demonstracija-sposobnosti-alata">Demonstracija sposobnosti alata</h2>
-<p>Bro sažima svaku TCP i UDP konekciju u jednu liniju u datoteku <code>conn.log</code>. Obzirom da su ti sažeci prilično detaljni, moguće je doći do <a href="https://www.bro.org/bro-workshop-2011/exercises/logs/index.html">mnoštva korisnih informacija i statistika</a>. Valja spomenuti i datoteke <code>http.log</code>, <code>conn-summary.log</code>, <code>known_services.log</code>, <code>ssh.log</code> i <code>weird.log</code>. Analiza spomenutih datoteka slijedi u nastavku.</p>
+<p>Bro sažima svaku TCP i UDP konekciju u jednu liniju u datoteku <code>conn.log</code>. Obzirom da su ti sažeci prilično detaljni, moguće je doći do <a href="https://docs.zeek.org/en/current/logs/index.html">mnoštva korisnih informacija i statistika</a>. Valja spomenuti i datoteke <code>http.log</code>, <code>conn-summary.log</code>, <code>known_services.log</code>, <code>ssh.log</code> i <code>weird.log</code>. Analiza spomenutih datoteka slijedi u nastavku.</p>
 <h3 id="analiza-snimljenog-prometa">Analiza snimljenog prometa</h3>
 <p>Sve konekcije koje traju dulje od jedne minute:</p>
 <div class="highlight"><pre><span></span><code>$ awk <span class="s1">&#39;NR &gt; 4 &amp;&amp; $9 &gt; 60&#39;</span> conn.log
@@ -5441,7 +5455,7 @@ HTTP protokol sadrži vlastite mehanizme za autentifikaciju korisnika:</p>
 <li>Basic je jednostavan autentifikacijski mehanizam koji sa svakom porukom šalje korisničke podatke kao Base64 kriptiran niz unutar zaglavlja zahtjeva (podaci se prenose preko mreže kao običan tekst).</li>
 <li>Digest je "challenge-response" mehanizam koji koristi MD5.</li>
 </ul>
-<p><a href="https://www.bro.org/bro-workshop-2011/solutions/incident-response/index.html">Unaprijed definirana HTTP skripta Bro-a</a> provjerava postojanje Authorization zaglavlja u HTTP zahtjevima, dekodira zaglavlje Basic autentifikacije i kopira vjerodajnice u datoteci <code>http.log</code> na mjesto polja username i password. Slijedi analiza prometa uhvaćenog alatom Wireshark s ciljem otkrivanja web servera koji koristi slabu autentifikaciju.</p>
+<p><a href="https://old.zeek.org/current/solutions/incident-response/index.html">Unaprijed definirana HTTP skripta Bro-a</a> provjerava postojanje Authorization zaglavlja u HTTP zahtjevima, dekodira zaglavlje Basic autentifikacije i kopira vjerodajnice u datoteci <code>http.log</code> na mjesto polja username i password. Slijedi analiza prometa uhvaćenog alatom Wireshark s ciljem otkrivanja web servera koji koristi slabu autentifikaciju.</p>
 <div class="highlight"><pre><span></span><code>$ bro-cut id.orig_h id.resp_h username password &lt; http.log <span class="p">|</span> awk <span class="s1">&#39;$3 != &quot;-&quot;&#39;</span>
 <span class="m">192</span>.168.121.175 <span class="m">192</span>.168.121.176 hbdairye4 -
 <span class="m">192</span>.168.121.175 <span class="m">192</span>.168.121.176 hbdairye4 -
@@ -5509,7 +5523,7 @@ HTTP protokol sadrži vlastite mehanizme za autentifikaciju korisnika:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5528,10 +5542,10 @@ HTTP protokol sadrži vlastite mehanizme za autentifikaciju korisnika:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

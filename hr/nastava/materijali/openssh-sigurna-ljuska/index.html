@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openssh-sigurna-ljuska/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Sigurna ljuska i udaljeni rad alatom OpenSSH - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Sigurna ljuska i udaljeni rad alatom OpenSSH - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2529,6 +2529,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5291,11 +5305,11 @@
 <h1 id="sigurna-ljuska-i-udaljeni-rad-alatom-openssh">Sigurna ljuska i udaljeni rad alatom OpenSSH</h1>
 <p><a href="https://en.wikipedia.org/wiki/Secure_Shell">Secure Shell (SSH)</a> je kriptografski mrežni protokol za sigurno udaljeno pristupanje uslugama operacijskog sustava putem mreže koja se smatra nesigurnom. Može se reći da je takav oblik prijave na operacijski sustav na udaljenom računalu <a href="https://twitter.com/nixcraft/status/1232380850378948608">sličan astralnoj projekciji</a>. Protokol SSH je izvorno dokumentiran u pet glavnih RFC-a:</p>
 <ul>
-<li><a href="https://tools.ietf.org/html/rfc4250">RFC 4250: SSH Assigned Numbers</a></li>
-<li><a href="https://tools.ietf.org/html/rfc4251">RFC 4251: SSH Protocol Architecture</a></li>
-<li><a href="https://tools.ietf.org/html/rfc4252">RFC 4252: SSH Authentication Protocol</a></li>
-<li><a href="https://tools.ietf.org/html/rfc4253">RFC 4253: SSH Transport Layer Protocol</a></li>
-<li><a href="https://tools.ietf.org/html/rfc4254">RFC 4254: SSH Connection Protocol (RFC 4254)</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4250">RFC 4250: SSH Assigned Numbers</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4251">RFC 4251: SSH Protocol Architecture</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4252">RFC 4252: SSH Authentication Protocol</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4253">RFC 4253: SSH Transport Layer Protocol</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4254">RFC 4254: SSH Connection Protocol (RFC 4254)</a></li>
 </ul>
 <p>Postoji i <a href="https://www.openssh.com/specs.html">nekolicina drugih RFC-a koji opisuju ekstenzije protokola</a>.</p>
 <p>Najpoznatija implementacija protokola SSH je <a href="https://www.openssh.com/">OpenSSH</a> i ona je otvorenog koda, koristi vrlo snažne kriptografske algoritme i ima <a href="https://www.openssh.com/features.html">brojne druge dobre značajke</a>. U praksi se OpenSSH najčešće koristi na operacijskim sustavima sličnim Unixu za pristupanje ljusci na udaljenom računalu iz ljuske na lokalnom računalu, a od 2018. godine <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview">može se koristiti i na operacijskom sustavu Windows</a>. OpenSSH se sastoji od klijenta i poslužitelja, a vrijedi naglasiti da operacijski sustav na kojem se izvodi klijent i operacijski sustav na kojem se izvodi poslužitelj ne moraju biti isti. Primjerice, klijent koji se izvodi na macOS-u ili Linuxu može se povezati na poslužitelj koji se izvodi na FreeBSD-u ili Illumosu.</p>
@@ -5778,7 +5792,7 @@ Accepted key ECDSA SHA256:RxwLKEToEpbyclxu7kQQQ29RhfKCTOQkbJ13VR/G0uU found at /
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5797,10 +5811,10 @@ Accepted key ECDSA SHA256:RxwLKEToEpbyclxu7kQQQ29RhfKCTOQkbJ13VR/G0uU found at /
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

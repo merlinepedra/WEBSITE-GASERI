@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/curl-protokoli-aplikacijske-razine/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Rad s protokolima aplikacijske razine - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Rad s protokolima aplikacijske razine - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2748,6 +2748,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5539,7 +5553,7 @@
 <p><strong>FTPS</strong> proširuje FTP tako da uz autentifikaciju omogućuje i enkripciju (SSL/TLS usluge). FTPS treba razlikovati od SFTP protokola koji je vezan uz SSH (Secure Shell).</p>
 <h2 id="osnovne-znacajke-i-nacin-koristenja-alata-curl">Osnovne značajke i način korištenja alata cURL</h2>
 <p><strong>cURL</strong> (naredba <code>curl</code>) je komandno linijski alat za prijenos podataka korištenjem URL sintakse. Podržava brojne protokole (DICT, FILE, FTP, FTPS, Gopher, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, Telnet i TFTP), od kojih ćemo u nastavku koristiti manji dio. cURL je slobodan softver dostupan pod <a href="https://en.wikipedia.org/wiki/MIT_License">MIT licencom</a>.</p>
-<p>cURL podržava SSL certifikate, HTTP naredbe POST i PUT, FTP upload, HTTP upload zasnovan na obrascima, proxy poslužitelje, keksiće, autentifikaciju korištenjem korisničkog imena i zaproke (Basic, Digest, NTLM, Negotiate, kerberos i druge), nastavljanje prijenosa datoteke, tuneliranje putem proxy poslužitelja i još mnogo toga. Mi ćemo se ograničiti na osnovnu funkcionalnost, ali <a href="https://curl.haxx.se/docs/manual.html">službena dokumentacija</a> dostupna na <a href="https://curl.haxx.se/">cURL-ovim stranicama</a> ima više detalja.</p>
+<p>cURL podržava SSL certifikate, HTTP naredbe POST i PUT, FTP upload, HTTP upload zasnovan na obrascima, proxy poslužitelje, keksiće, autentifikaciju korištenjem korisničkog imena i zaproke (Basic, Digest, NTLM, Negotiate, kerberos i druge), nastavljanje prijenosa datoteke, tuneliranje putem proxy poslužitelja i još mnogo toga. Mi ćemo se ograničiti na osnovnu funkcionalnost, ali <a href="https://curl.se/docs/manual.html">službena dokumentacija</a> dostupna na <a href="https://curl.se/">cURL-ovim stranicama</a> ima više detalja.</p>
 <h3 id="preuzimanje-stranice-ili-datoteke">Preuzimanje stranice ili datoteke</h3>
 <p>Preuzimanje se vrši navođenjem URL-a.</p>
 <div class="highlight"><pre><span></span><code>$ curl http://inf2.uniri.hr/
@@ -5582,10 +5596,10 @@ index.html
 </code></pre></div>
 <h3 id="mjerenje-napretka">Mjerenje napretka</h3>
 <p>Kod većih datoteka može se uočiti da je mjerenje napretka interaktivno:</p>
-<div class="highlight"><pre><span></span><code>$ curl -O http://inf2.uniri.hr/VM/OS2-RM2-RM-RiTeh-Debian-VM.ova
+<div class="highlight"><pre><span></span><code>$ curl -O https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  <span class="m">0</span> 2222M    <span class="m">0</span> 2985k    <span class="m">0</span>     <span class="m">0</span>  9896k      <span class="m">0</span>  <span class="m">0</span>:03:49 --:--:--  <span class="m">0</span>:03:49 9886k
+  <span class="m">0</span> 554M    <span class="m">0</span> 2985k    <span class="m">0</span>     <span class="m">0</span>  9896k      <span class="m">0</span>  <span class="m">0</span>:03:49 --:--:--  <span class="m">0</span>:03:49 9886k
 </code></pre></div>
 <p>Sa lijeva na desno stupci redom imaju sljedeće značenje.</p>
 <table>
@@ -5647,7 +5661,7 @@ index.html
 </tbody>
 </table>
 <p>Jednostavniji prikaz napretka parametrom <code>-#</code> prikazuje samo postotak obavljenog prijenosa numerički i znakom <code>#</code>:</p>
-<div class="highlight"><pre><span></span><code>$ curl -O -# http://inf2.uniri.hr/VM/OS2-RM2-RM-RiTeh-Debian-VM.ova
+<div class="highlight"><pre><span></span><code>$ curl -O -# https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
 <span class="c1">#                                                                          1.6%</span>
 </code></pre></div>
 <h3 id="ogranicenje-brzine">Ograničenje brzine</h3>
@@ -5843,7 +5857,7 @@ Content-Type: text/html
 ...
 $ cat cookies.txt
 <span class="c1"># Netscape HTTP Cookie File</span>
-<span class="c1"># https://curl.haxx.se/docs/http-cookies.html</span>
+<span class="c1"># https://curl.se/docs/http-cookies.html</span>
 <span class="c1"># This file was generated by libcurl! Edit at your own risk.</span>
 
 .google.hr      TRUE    /       FALSE   <span class="m">1458395398</span>      PREF    <span class="nv">ID</span><span class="o">=</span>66d2d46d264532f6:FF<span class="o">=</span><span class="m">0</span>:TM<span class="o">=</span><span class="m">1395323398</span>:LM<span class="o">=</span><span class="m">1395323398</span>:S<span class="o">=</span>AZv39tEXo7wyBIxv
@@ -6080,7 +6094,7 @@ Doom II protip: To defeat the Cyberdemon, shoot at it <span class="k">until</spa
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -6099,10 +6113,10 @@ Doom II protip: To defeat the Cyberdemon, shoot at it <span class="k">until</spa
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>

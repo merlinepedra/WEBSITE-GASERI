@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/apache-web-posluzitelj/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
     
     
       
-        <title>Osnovna konfiguracija web poslužitelja Apache HTTP Server - Group for apps and services on exascale research infrastructure (GASERI)</title>
+        <title>Osnovna konfiguracija web poslužitelja Apache HTTP Server - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -70,7 +70,7 @@
   
     
     
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-header__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Group for apps and services on exascale research infrastructure (GASERI)
+            GASERI – Group for apps and services on exascale research infrastructure
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -294,12 +294,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Group for apps and services on exascale research infrastructure (GASERI)" class="md-nav__button md-logo" aria-label="Group for apps and services on exascale research infrastructure (GASERI)" data-md-component="logo">
+    <a href="../../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
       
   <img src="../../../../images/gaseri-logo.svg" alt="logo">
 
     </a>
-    Group for apps and services on exascale research infrastructure (GASERI)
+    GASERI – Group for apps and services on exascale research infrastructure
   </label>
   
     <div class="md-nav__source">
@@ -2598,6 +2598,20 @@
     <li class="md-nav__item">
       <a href="../oblak-resursi-usluge/" class="md-nav__link">
         Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
       </a>
     </li>
   
@@ -5227,7 +5241,7 @@
 <h1 id="osnovna-konfiguracija-web-posluzitelja-apache-http-server">Osnovna konfiguracija web poslužitelja Apache HTTP Server</h1>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>Uputa za Apache HTTP Server na internetu <a href="https://www.linode.com/docs/web-servers/apache-tips-and-tricks/">ima</a> <a href="https://opensource.com/article/18/2/how-configure-apache-web-server">na</a> <a href="https://www.scaleway.com/en/docs/secure-apache-web-server-with-lets-encrypt-ssl/">pretek</a>. Za temeljit uvod povrh ovih vježbi preporučam službenu dokumentaciju posljednje dvije verzije <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linuxa</a>, i to:</p>
+<p>Uputa za Apache HTTP Server na internetu <a href="https://www.linode.com/docs/guides/web-servers/apache-tips-and-tricks/">ima</a> <a href="https://opensource.com/article/18/2/how-configure-apache-web-server">na</a> <a href="https://blog.apnic.net/2020/04/07/the-wrong-certificate-apache-lets-encrypt-and-openssl/">pretek</a>. Za temeljit uvod povrh ovih vježbi preporučam službenu dokumentaciju posljednje dvije verzije <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linuxa</a>, i to:</p>
 <ul>
 <li>za verziju 8: <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/setting-apache-http-server_deploying-different-types-of-servers">Chapter 1. Setting up the Apache HTTP web server</a> u <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/index">Deploying different types of servers</a> ili</li>
 <li>za verziju 7: <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-web_servers">Chapter 14. Web Servers</a> u <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/index">Red Hat Enterprise Linux 7 System Administrator's Guide</a>.</li>
@@ -5236,20 +5250,20 @@
 </div>
 <p><a href="https://httpd.apache.org/">Apache HTTP Server</a>, kolokvijalno samo Apache, je HTTP poslužitelj namijenjen za moderne operacijske sustave slične Unixu i Windowse. Cilj projekta koji ga razvija je ponuditi siguran, efikasan i proširiv poslužitelj koji poštuje aktualne standarde HTTP-a:</p>
 <ul>
-<li><a href="https://tools.ietf.org/html/rfc1945">RFC 1945: Hypertext Transfer Protocol -- HTTP/1.0</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1945">RFC 1945: Hypertext Transfer Protocol -- HTTP/1.0</a></li>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc2616">RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616: Hypertext Transfer Protocol -- HTTP/1.1</a></p>
 <ul>
-<li><a href="https://tools.ietf.org/html/rfc7230">RFC 7230: Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a></li>
-<li><a href="https://tools.ietf.org/html/rfc7231">RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a></li>
-<li><a href="https://tools.ietf.org/html/rfc7232">RFC 7232: Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</a></li>
-<li><a href="https://tools.ietf.org/html/rfc7233">RFC 7233: Hypertext Transfer Protocol (HTTP/1.1): Range Requests</a></li>
-<li><a href="https://tools.ietf.org/html/rfc7234">RFC 7234: Hypertext Transfer Protocol (HTTP/1.1): Caching</a></li>
-<li><a href="https://tools.ietf.org/html/rfc7235">RFC 7235: Hypertext Transfer Protocol (HTTP/1.1): Authentication</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7230">RFC 7230: Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7231">RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7232">RFC 7232: Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7233">RFC 7233: Hypertext Transfer Protocol (HTTP/1.1): Range Requests</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7234">RFC 7234: Hypertext Transfer Protocol (HTTP/1.1): Caching</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7235">RFC 7235: Hypertext Transfer Protocol (HTTP/1.1): Authentication</a></li>
 </ul>
 </li>
 <li>
-<p><a href="https://tools.ietf.org/html/rfc7540">RFC 7540: Hypertext Transfer Protocol Version 2 (HTTP/2)</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7540">RFC 7540: Hypertext Transfer Protocol Version 2 (HTTP/2)</a></p>
 </li>
 </ul>
 <p>Razvoj projekta podržava <a href="https://www.apache.org/">zaklada Apache Software Foundation</a>, najveća zaklada za razvoj slobodnog softvera otvorenog koda na svijetu. Projekt započinje 1995. godine i inicijalno je zasnovan na izvornom kodu poslužitelju <a href="https://en.wikipedia.org/wiki/NCSA_HTTPd">NCSA HTTPd</a>, ali vrlo brzo taj poslužitelj zastaje s razvojem i korisnici prelaze na Apache. Ime <code>httpd</code> (HTTP daemon) se održalo i do današnjih dana kao ime naredbe kojom se poslužitelj pokreće. Od travnja 1996. je <a href="https://news.netcraft.com/archives/2019/04/22/april-2019-web-server-survey.html">najpopularniji web poslužitelj na internetu</a>, a u odgovoru na pitanje je li to još uvijek ili ga je prestigao <a href="https://www.nginx.com/">nginx</a> ne slažu se statistike od <a href="https://w3techs.com/technologies/overview/web_server">W3Techs koji tvrdi da je još uvijek najpopularniji Apache</a> i <a href="https://news.netcraft.com/archives/2020/04/08/april-2020-web-server-survey.html">Netcrafta koji tvrdi da je najpopularniji nginx</a>; treći po popularnosti je <a href="https://en.wikipedia.org/wiki/Internet_Information_Services">Microsoft Internet Information Services</a>.</p>
@@ -5348,7 +5362,7 @@ Content-Type: text/html
 </code></pre></div>
 <p>Ako su navedena samo vrata (kao što su u našem slučaju vrata 80), onda poslužitelj sluša na svim adresama putem kojih ga je moguće doseći.</p>
 <p>Pod konfiguracijskom naredbom <code>ServerAdmin</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#serveradmin">dokumentacija</a>) navest ćemo vlastitu e-mail adresu umjesto <code>you@example.com</code>. Apache nam neće slati nikakve e-mailove jer nema konfiguriran SMTP poslužitelj koji može koristiti.</p>
-<p>Konfiguracijsku naredbu <code>ServerName</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#servername">dokumentacija</a>) ćemo odkomentirati i postaviti na domenu koju želimo da poslužitelj poslužuje. Teoretski možemo koristiti bilo koju domenu koja ne postoji na internetu (npr. <code>mreze.rijeka</code> ili <code>internet.mars</code>), ali to je loša praksa jer redovito dolaze <a href="https://ntldstats.com/tld">nove vršne domene</a> i moguće je da nekom padne na pamet registrirati vršne domene <code>.rijeka</code> i <code>.mars</code> pa nastane problem kolizije naše lokalne razvojne okoline i interneta kao što je već bio <a href="https://anti-pattern.com/dev-domains-not-resolving">slučaj s domenom .dev</a>. Zbog toga ćemo ovdje koristiti poddomene na <code>.rm.miletic.net</code> nad kojima imamo kontrolu, npr. <code>apache-primjer.rm.miletic.net</code>:</p>
+<p>Konfiguracijsku naredbu <code>ServerName</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#servername">dokumentacija</a>) ćemo odkomentirati i postaviti na domenu koju želimo da poslužitelj poslužuje. Teoretski možemo koristiti bilo koju domenu koja ne postoji na internetu (npr. <code>mreze.rijeka</code> ili <code>internet.mars</code>), ali to je loša praksa jer redovito dolaze <a href="https://ntldstats.com/tld">nove vršne domene</a> i moguće je da nekom padne na pamet registrirati vršne domene <code>.rijeka</code> i <code>.mars</code> pa nastane problem kolizije naše lokalne razvojne okoline i interneta kao što je već bio <a href="https://anti-pattern.com/dev-domains-not-resolving/">slučaj s domenom .dev</a>. Zbog toga ćemo ovdje koristiti poddomene na <code>.rm.miletic.net</code> nad kojima imamo kontrolu, npr. <code>apache-primjer.rm.miletic.net</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">ServerName</span> apache-primjer.rm.miletic.net:80
 </code></pre></div>
 <p>Vrata 80 ne moramo navoditi, ali se to smatra dobrom praksom.</p>
@@ -5611,7 +5625,7 @@ content-type: text/html
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2011 – 2021, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
     </div>
   
   
@@ -5630,10 +5644,10 @@ content-type: text/html
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
       
     
   </body>
