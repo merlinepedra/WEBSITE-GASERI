@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/emulator-core-graficko-sucelje/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.6">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.cd566b2a.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -1919,6 +1919,13 @@
         <li class="md-nav__item">
   <a href="#graficko-korisnicko-sucelje-alata-core" class="md-nav__link">
     Grafičko korisničko sučelje alata CORE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pokretanje-emulacije" class="md-nav__link">
+    Pokretanje emulacije
   </a>
   
 </li>
@@ -5214,6 +5221,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pokretanje-emulacije" class="md-nav__link">
+    Pokretanje emulacije
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#spremanje-i-ucitavanje-emulacijskih-scenarija" class="md-nav__link">
     Spremanje i učitavanje emulacijskih scenarija
   </a>
@@ -5264,13 +5278,13 @@
 <p>CORE pokrećemo naredbom <code>core-gui</code> u terminalu ili stavkom <code>CORE Network Emulator</code> u meniju.</p>
 <div class="highlight"><pre><span></span><code>$ core-gui
 </code></pre></div>
-<p>Time dobivamo prazno platno na koje možemo dodavati čvorove i veze. U izborniku s lijeve strane imamo redom</p>
+<p>Time dobivamo prazno platno na koje možemo dodavati čvorove i veze. U traci s alatima (<a href="https://coreemu.github.io/core/gui.html#toolbar">dokumentacija</a>) koja se nalazi vertikalno na lijevoj strani grafičkog sučelja imamo redom</p>
 <ul>
 <li><code>selection tool</code>, za odabir objekata emulacije,</li>
 <li><code>start the session</code>, koji pokreće emulaciju,</li>
 <li><code>link tool</code>, alat za stvaranje veza,</li>
 <li>
-<p><code>network-layer virtual nodes</code>, alat za stvaranje čvorova koji poznaju mrežni i više slojeve</p>
+<p><code>network-layer virtual nodes</code>, alat za stvaranje čvorova koji poznaju mrežni i više slojeve (<a href="https://coreemu.github.io/core/gui.html#core-nodes">dokumentacija</a>)</p>
 <ul>
 <li><code>router</code>, usmjerivač koji koristi alat Quagga za izradu tablica usmjeravanja</li>
 <li><code>host</code>, emulirano poslužiteljsko računalo koje u zadanim postavkama ima pokrenut SSH poslužitelj,</li>
@@ -5278,7 +5292,7 @@
 </ul>
 </li>
 <li>
-<p><code>link-layer nodes</code>, alat za stvaranje čvorova koji rade na sloju veze podataka</p>
+<p><code>link-layer nodes</code>, alat za stvaranje čvorova koji rade na sloju veze podataka (<a href="https://coreemu.github.io/core/gui.html#network-nodes">dokumentacija</a>)</p>
 <ul>
 <li><code>ethernet hub</code>, Ethernet koncentrator koji primljene pakete prosljeđuje svima koji su na njega povezani,</li>
 <li><code>ethernet switch</code>, Ethernet preklopnik koji primljene pakete prosljeđuje pametnije korištenjem tablice prosljeđivanja,</li>
@@ -5288,7 +5302,8 @@
 <p><code>background annotation tools</code>, koji služe za estetski dojam.</p>
 </li>
 </ul>
-<p>Čvorove postavljamo odabirom željenog čvora iz grupe <code>network-layer virtual nodes</code> ili <code>link-layer nodes</code> i klikom na odgovarajuće mjesto. Čvorove konfiguriramo odabirom opcije <code>Configure</code> u izborniku dostupnom na desni klik. Veze postavljamo odabirom alata <code>link tool</code>, klikom na jedan od dva željena čvor i povlačenjem do drugog. Veze konfiguriramo analogno čvorovima, desnim klikom i odabirom opcije <code>Configure</code>.</p>
+<p>Čvorove postavljamo odabirom željenog čvora iz grupe <code>network-layer virtual nodes</code> ili <code>link-layer nodes</code> i klikom na odgovarajuće mjesto. Čvorove konfiguriramo odabirom opcije <code>Configure</code> u izborniku dostupnom na desni klik.</p>
+<p>Veze postavljamo odabirom alata <code>link tool</code>, klikom na jedan od dva željena čvor i povlačenjem do drugog. Veze konfiguriramo analogno čvorovima, desnim klikom i odabirom opcije <code>Configure</code> ili dvostrukim klikom na vezu (<a href="https://coreemu.github.io/core/gui.html#wired-networks">dokumentacija</a>).</p>
 <p>U dijalogu <code>link configuration</code> možemo postaviti:</p>
 <ul>
 <li><code>Bandwidth</code>, u bitovima po sekundi,</li>
@@ -5298,8 +5313,9 @@
 <li><code>Color</code>, odnosno boju crte kojom je veza nacrtana na platnu (što je osobito značajno za estetski dojam),</li>
 <li><code>Width</code>, odnosno širinu crte kojom je veza nacrtana na platnu (što je također vrlo značajno za estetski dojam).</li>
 </ul>
-<p>Nakon slaganja željene mreže emulaciju pokrećemo klikom na gumb <code>start the session</code>, koji zatim postaje <code>stop the session</code>.</p>
-<p>Dok je emulacija pokrenuta, ostali alati u izborniku su:</p>
+<h2 id="pokretanje-emulacije">Pokretanje emulacije</h2>
+<p>Nakon slaganja željene mreže emulaciju pokrećemo klikom na gumb <code>start the session</code> (<a href="https://coreemu.github.io/core/gui.html#editing-toolbar">dokumentacija</a>), koji zatim postaje <code>stop the session</code> (<a href="https://coreemu.github.io/core/gui.html#execution-toolbar">dokumentacija</a>).</p>
+<p>Dok je emulacija pokrenuta, ostali alati u traci s alatima (<a href="https://coreemu.github.io/core/gui.html#execution-toolbar">dokumentacija</a>) su:</p>
 <ul>
 <li><code>observer widgets tool</code>, koji omogućuje odabir značajki koje će se prikazivati kod prijelaza preko čvora pokazivačem miša,</li>
 <li><code>plot tool</code>, koji omogućuje da lijevim klikom na vezu nacrtamo graf propusnosti; graf se miče desnim klikom,</li>
@@ -5307,10 +5323,10 @@
 <li><code>two-node tool</code>, koji omogućuje pokretanje naredbi <code>ping</code> i <code>traceroute</code> na dva čvora; čvorovi se biraju klikom na pravokutnik pored <code>source node</code>, odnosno <code>destination node</code> i zatim na odgovarajući čvor.</li>
 <li><code>run tool</code>, koji omogućuje pokretanje proizvoljnih naredbi na jednom ili više čvorova.</li>
 </ul>
-<p>Za vrijeme dok je emulacija pokrenuta moguće je pristupiti ljusci svakog pojedinog čvora desnim klikom na čvor i odabirom opcije <code>Shell window/bash</code>.</p>
+<p>Za vrijeme dok je emulacija pokrenuta moguće je pristupiti ljusci svakog pojedinog čvora desnim klikom na čvor i odabirom opcije <code>Shell window/bash</code> ili dvostrukim klikom na čvor.</p>
 <p><a href="https://coreemu.github.io/core/gui.html">Službena dokumentacija grafičkog korisničkog sučelja alata CORE</a> ima više detalja o opisanoj funkcionalnosti i ostalim mogućnostima grafičkog sučelja.</p>
 <h2 id="spremanje-i-ucitavanje-emulacijskih-scenarija">Spremanje i učitavanje emulacijskih scenarija</h2>
-<p>Scenarije za emulaciju koji smo složili moguće je spremiti kao <code>.imn</code> datoteku korištenjem <code>File/Save as...</code> i kasnije učitati korištenjem <code>File/Open...</code>. Gotovi scenariji dostupni su u direktoriju <code>.core/configs</code> unutar kućnog direktorija korisnika.</p>
+<p>Scenarije za emulaciju koji smo složili moguće je spremiti kao <code>.imn</code> datoteku korištenjem <code>File/Save as...</code> i kasnije učitati korištenjem <code>File/Open...</code> (<a href="https://coreemu.github.io/core/gui.html#file-menu">dokumentacija</a>). Gotovi scenariji dostupni su u direktoriju <code>.core/configs</code> unutar kućnog direktorija korisnika.</p>
 <p>Da bi ilustrirali dostupne gotove scenarije, naredbom</p>
 <div class="highlight"><pre><span></span><code>$ core-gui .core/configs/sample2-ssh.imn
 </code></pre></div>
@@ -5324,7 +5340,7 @@
 </div>
 <h2 id="emulacija-mreznog-prometa-koristenjem-alata-mgen">Emulacija mrežnog prometa korištenjem alata MGEN</h2>
 <p>CORE omogućuje korištenje alata Multi-Generator (MGEN) za generiranje prometa. MGEN također razvijen od strane istraživačkog laboratorija Američke mornarice, a moguće ga je koristiti i neovisno o alatu CORE. Mi se tim načinom korištenja ovdje nećemo baviti; za više informacija proučite <a href="https://github.com/USNavalResearchLaboratory/mgen/blob/master/doc/mgen.pdf">službenu dokumentaciju</a> dostupnu na <a href="https://www.nrl.navy.mil/Our-Work/Areas-of-Research/Information-Technology/NCS/MGEN/">službenim stranicama alata MGEN</a>.</p>
-<p>Odabirom opcije <code>Tools/Traffic</code> otvara se dijalog <code>CORE traffic flows</code> u kojem je moguće klikom na gumb <code>new</code> definirati novi tok paketa. Odabir izvornog i odredišnog čvora vrši se klikom na pravokutnik pored <code>source node</code>, odnosno <code>destination node</code> i zatim na odgovarajući čvor. Pored toga moguće je konfigurirati:</p>
+<p>Odabirom opcije <code>Tools/Traffic...</code> (<a href="https://coreemu.github.io/core/gui.html#tools-menu">dokumentacija</a>) otvara se dijalog <code>CORE traffic flows</code> u kojem je moguće klikom na gumb <code>new</code> definirati novi tok paketa. Odabir izvornog i odredišnog čvora vrši se klikom na pravokutnik pored <code>source node</code>, odnosno <code>destination node</code> i zatim na odgovarajući čvor. Pored toga moguće je konfigurirati:</p>
 <ul>
 <li><code>port</code> za izvor i odredište,</li>
 <li><code>protocol</code>, TCP ili UDP,</li>
@@ -5424,10 +5440,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.1514a9a0.min.js"></script>
       
     
   </body>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/emulator-core-mobilnost/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.5">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.6">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ee0f47ba.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.cd566b2a.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5137,13 +5137,19 @@
 
 
 <h1 id="mobilnost">Mobilnost</h1>
-<p>Emulator CORE nam omogućuje da za (bežične) čvorove koristimo <a href="https://www.isi.edu/nsnam/ns/doc/node172.html">skripte mobilnosti mrežnog simulatora ns-2</a> (desni klik na mrežu, opcija <code>Configure</code>, gumb <code>ns-2 mobility script</code> pa se na kartici <code>ns-2 Mobility Script Parameters</code> može navesti datoteka pod <code>mobility script file</code>). Skripte mobilnosti pisane su u <a href="https://www.tcl-lang.org/">jeziku Tcl</a> i sadrže naredbe pozicija i kretanja oblika</p>
+<p>Emulator CORE nam omogućuje da za (bežične) čvorove koristimo <a href="https://www.isi.edu/nsnam/ns/doc/node172.html">skripte mobilnosti mrežnog simulatora ns-2</a>, <a href="https://coreemu.github.io/core/python.html">CORE API</a> (specijalno se poruke mogu slati i alatom <code>coresendmsg</code>) ili <a href="https://coreemu.github.io/core/emane.html">EMANE događaje</a> (<a href="https://coreemu.github.io/core/gui.html#mobility-scripting">dokumentacija</a>). Koristit ćemo ns-2-ove skripte mobilnosti.</p>
+<p>Za postavljanje tih skripti potrebno je u izborniku koji dobijemo desnim klik na bežičnu mrežu odabrati opciju <code>Configure</code>. Gumb <code>ns-2 mobility script</code> pa se na kartici <code>ns-2 Mobility Script Parameters</code> može navesti datoteka pod <code>mobility script file</code>).</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Pripazimo da se skripta koju učitavamo nalazi u putanji bez razmaka i posebnih znakova te da ima ime bez razmaka i posebnih znakova. Specijalno, putanja i ime datoteke <code>/home/korisnik/Radna površina/kretanje čvorova.tcl</code> ne zadovoljavaju te uvjete.</p>
+</div>
+<p>Skripte mobilnosti pisane su u <a href="https://www.tcl-lang.org/">jeziku Tcl</a> i sadrže naredbe pozicija i kretanja oblika</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
 <span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
 <span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 300.0 150.0 20.0&quot;</span>
 <span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 500.0 240.0 35.0&quot;</span>
 </code></pre></div>
-<p>U ovom slučaju čvor <code>n2</code> postavljen je inicijalno na poziciju (200, 100), a sekundu kasnije pomiče se na poziciju (300, 150) brzinom 20 piksela po sekundi. Osam sekundi nakon toga, odnosu u trenutku t = 9 sekundi, čvor se pomiče na poziciju (500, 240) brzinom 35 piksela po sekundi.</p>
+<p>U ovom slučaju čvor n2 postavljen je inicijalno na poziciju (200, 100), a sekundu kasnije pomiče se na poziciju (300, 150) brzinom 20 piksela po sekundi. Osam sekundi nakon toga, odnosu u trenutku t = 9 sekundi, čvor se pomiče na poziciju (500, 240) brzinom 35 piksela po sekundi.</p>
 <p>Obzirom da CORE skripte ponavlja za vrijeme izvođenja emulacije, dobra je praksa postaviti da se čvorovi vrate na početnu poziciju kako kod ponavljanja kretanja ne bi "skakali" po platnu. Primjerice, ovdje ćemo postaviti da se iz posljednje pozicije čvor vrati na početnu u trenutku t = 20 sekundi na način</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>X_<span class="w"> </span><span class="mf">200.0</span>
 <span class="nv">$node_</span><span class="k">(</span><span class="nv">2</span><span class="k">)</span><span class="w"> </span><span class="k">set</span><span class="w"> </span>Y_<span class="w"> </span><span class="mf">100.0</span>
@@ -5175,6 +5181,7 @@
 <span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">12.0</span><span class="w"> </span><span class="s2">&quot;$node_(3) setdest 550.0 575.0 25.0&quot;</span>
 <span class="nv">$ns_</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="s2">&quot;$node_(2) setdest 200.0 100.0 30.0&quot;</span>
 </code></pre></div>
+<p>Ukoliko nam platno nije dovoljno veliko za naše potrebe, možemo ga povećati putem opcije izbornika <code>Canvas/Size/scale...</code> (<a href="https://coreemu.github.io/core/gui.html#canvas-menu">dokumentacija</a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Postoje i drugi načini skriptiranja mobilnosti koje nećemo koristiti, a više detalja o njima moguće je pronaći <a href="https://coreemu.github.io/core/gui.html#mobility-scripting">u dijelu o skriptiranju mobilnosti u službenoj dokumentacijiemulatora CORE</a>.</p>
@@ -5252,10 +5259,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b6ff8c07.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5e13d264.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.1514a9a0.min.js"></script>
       
     
   </body>
