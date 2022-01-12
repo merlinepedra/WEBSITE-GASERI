@@ -4343,6 +4343,26 @@
     Tehnološka rješenja
   </a>
   
+    <nav class="md-nav" aria-label="Tehnološka rješenja">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblikovanje-teksta" class="md-nav__link">
+    Oblikovanje teksta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crtanje-dijagrama" class="md-nav__link">
+    Crtanje dijagrama
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5176,6 +5196,26 @@
     Tehnološka rješenja
   </a>
   
+    <nav class="md-nav" aria-label="Tehnološka rješenja">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oblikovanje-teksta" class="md-nav__link">
+    Oblikovanje teksta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crtanje-dijagrama" class="md-nav__link">
+    Crtanje dijagrama
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5213,13 +5253,47 @@
 <h1 id="upravljanje-dokumentacijom-racunalnih-sustava-i-mreza">Upravljanje dokumentacijom računalnih sustava i mreža</h1>
 <p>Kako sistemaš radi s mnogo različitih skupova usluga na stvarnim i virtualnim strojevima, često u više različitih konfiguracija, potrebno je održavati dokumentaciju koja opisuje specifičnosti instalacije i konfiguracije postojećih sustava.</p>
 <h2 id="tehnoloska-rjesenja">Tehnološka rješenja</h2>
-<p>Za održavanje dokumentacije mogu se koristiti programi za obradu teksta kao što su <a href="https://www.libreoffice.org/discover/writer/">LibreOffice Writer</a> i <a href="https://products.office.com/word">Microsoft Word</a>. Kako takvi alati imaju vrlo složene i upitno prenosive formate za pohranu podataka, bolja je praksa koristiti <a href="https://en.wikipedia.org/wiki/List_of_wiki_software">neki od wikija</a> ili <a href="https://jamstack.org/generators/">generatora statičkih web sjedišta</a> zasnovanih na jednostavnim i svima čitljivim formatima označavanja običnog teksta. Bez obzira na wiki ili generator, tri se formata vrlo često koriste:</p>
+<p>Za održavanje dokumentacije mogu se koristiti programi za obradu teksta kao što su <a href="https://www.libreoffice.org/discover/writer/">LibreOffice Writer</a> i <a href="https://products.office.com/word">Microsoft Word</a>. Kako takvi alati imaju vrlo složene i upitno prenosive formate za pohranu podataka, bolja je praksa koristiti <a href="https://en.wikipedia.org/wiki/List_of_wiki_software">neki od wikija</a> ili <a href="https://jamstack.org/generators/">generatora statičkih web sjedišta</a> zasnovanih na jednostavnim i svima čitljivim formatima označavanja običnog teksta. Primjerice, među wikijima je osobito popularan <a href="https://www.dokuwiki.org/">DokuWiki</a> zato što ne zahtijeva korištenje sustava za upravljanje bazom podataka.</p>
+<h3 id="oblikovanje-teksta">Oblikovanje teksta</h3>
+<p>Bez obzira na wiki ili generator, tri se načina oblikovanja teksta vrlo često koriste:</p>
 <ul>
-<li><a href="https://daringfireball.net/projects/markdown/">Markdown</a>, najčešće <a href="https://github.github.com/gfm/">varijanta koje je razvio GitHub</a> za <a href="https://docs.github.com/en/github/writing-on-github">pisanje prijava grešaka, komentara i drugog teksta</a>, iako <a href="https://github.com/commonmark/commonmark-spec/wiki/Markdown-Flavors">postoje i druge</a>,</li>
-<li><a href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>, najčešće <a href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">proširenje koje nudi Sphinx</a>, popularni generator dokumentacije inicijalno namijenjen za <a href="https://docs.python.org/">dokumentaciju programskog jezika Python</a>, a kasnije uopćen,</li>
-<li><a href="https://asciidoc.org/">AsciiDoc</a>, danas najčešće korišten u putem generatora dokumentacije <a href="https://asciidoctor.org/">Asciidoctor</a> i <a href="https://antora.org/">Antora</a>.</li>
+<li>
+<p><a href="https://daringfireball.net/projects/markdown/">Markdown</a>, najčešće <a href="https://github.github.com/gfm/">varijanta koje je razvio GitHub</a> za <a href="https://docs.github.com/en/github/writing-on-github">pisanje prijava grešaka, komentara i drugog teksta</a>, iako <a href="https://github.com/commonmark/commonmark-spec/wiki/Markdown-Flavors">postoje i druge</a>, među kojima je jedna od popularnijih <a href="https://python-markdown.github.io/">Python-Markdown</a> korištena unutar sustava za izradu dokumentacije <a href="https://www.mkdocs.org/">MkDocs</a>,</p>
+<ul>
+<li>Primjerice, MkDocs i <a href="https://squidfunk.github.io/mkdocs-material/">tema Material for MkDocs</a> se koriste za proizvodnju <a href="https://facelessuser.github.io/pymdown-extensions/">dokumentacije skupa proširenja PyMdown Extensions za Python-Markdown</a>.</li>
 </ul>
-<p>Za rad s dokumentacijom koristit ćemo <a href="https://commonmark.org/help/">Markdown</a>, online uređivač <a href="https://hackmd.io/">HackMD</a>, desktop uređivač <a href="https://code.visualstudio.com/">Visual Studio Code</a> i sustav za izradu dokumentacije <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</li>
+<li>
+<p><a href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>, najčešće <a href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">proširenje koje nudi Sphinx</a>, popularni generator dokumentacije inicijalno namijenjen za <a href="https://docs.python.org/">dokumentaciju programskog jezika Python</a>, a kasnije uopćen,</p>
+<ul>
+<li>Primjerice, Sphinx i <a href="https://sphinx-rtd-theme.readthedocs.io/">tema Read the Docs</a> se koriste za proizvodnju <a href="https://www.kernel.org/doc/html/latest/">dokumentacije jezgre operacijskog sustava Linux</a>.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://asciidoc.org/">AsciiDoc</a>, danas najčešće korišten u putem generatora dokumentacije <a href="https://asciidoctor.org/">Asciidoctor</a> i <a href="https://antora.org/">Antora</a>.</p>
+<ul>
+<li>Primjerice, Asciidoctor se koristi za proizvodnju <a href="https://docs.freebsd.org/">dokumentacije operacijskog sustava FreeBSD</a>, a Antora za proizvodnju <a href="https://docs.fedoraproject.org/">dokumentacije operacijskog sustava Fedora Linux</a>.</li>
+</ul>
+</li>
+</ul>
+<p>Za rad s dokumentacijom koristit ćemo <a href="https://commonmark.org/help/">Markdown</a> te online uređivač <a href="https://hackmd.io/">HackMD</a> ili desktop uređivač <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
+<h3 id="crtanje-dijagrama">Crtanje dijagrama</h3>
+<p><a href="https://graphviz.org/">Graphviz</a> je softverski alat otvorenog koda za vizualizaciju grafova i može se koristiti za izradu <a href="https://graphviz.org/gallery/">različitih vrsta dijagrama</a> koji prikazuju strukturu i način rada računalnih sustava i mreža. Grafovi se navode u obliku čistog teksta u <a href="https://graphviz.org/doc/info/lang.html">jeziku DOT</a>. Primjerice, graf koji opisuje infrastrukturu namijenjenu za izvođenje web aplikacije može biti oblika:</p>
+<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">struktura_sustava</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;balanser opterećenja&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;web poslužitelj 1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;balanser opterećenja&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;web poslužitelj 2&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;web poslužitelj 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;sustav za upravljanje bazom podataka&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;web poslužitelj 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;sustav za upravljanje bazom podataka&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;web poslužitelj 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;sustav za predmemoriju&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;web poslužitelj 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;sustav za predmemoriju&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Više detalja o mogućnostima jezika nalazi se u <a href="https://graphviz.org/doc/info/attrs.html">dijelu Attributes u službenoj dokumentaciji</a>, a o načinu prikaza grafa u <a href="https://graphviz.org/docs/layouts/">dijelu Layout Engines</a>.</p>
+<p>Spremimo li zapis grafa u datoteku <code>struktura-sustava.dot</code>, pretvorbu u SVG i PNG izvodimo naredbama:</p>
+<div class="highlight"><pre><span></span><code>$ dot -Tsvg -o struktura-sustava.svg struktura-sustava.dot
+$ dot -Tpng -o struktura-sustava.png struktura-sustava.dot
+</code></pre></div>
+<p>Više detalja o korištenju naredbenog retka moguće je pronaći u <a href="https://graphviz.org/doc/info/command.html">dijelu Command Line u službenoj dokumentaciji</a>, a o podržanim izlaznim formatima u <a href="https://graphviz.org/docs/outputs/">dijelu Output Formats</a>.</p>
 <h2 id="stilska-pravila">Stilska pravila</h2>
 <p>Kod pisanja interne dokumentacije vrijedi slijediti nekoliko pravila.</p>
 <ul>
