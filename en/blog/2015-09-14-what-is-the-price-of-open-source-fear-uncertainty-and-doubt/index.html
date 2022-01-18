@@ -1,0 +1,5982 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Informatics and Digital Technologies">
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+        <link rel="canonical" href="https://group.miletic.net/en/blog/2015-09-14-what-is-the-price-of-open-source-fear-uncertainty-and-doubt/">
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
+    
+    
+      
+        <title>What is the price of open-source fear, uncertainty, and doubt? - GASERI – Group for apps and services on exascale research infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.cd566b2a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-3CSW7LLM5F"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-3CSW7LLM5F",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CSW7LLM5F"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-is-the-price-of-open-source-fear-uncertainty-and-doubt" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  <img src="../../../images/gaseri-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GASERI – Group for apps and services on exascale research infrastructure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              What is the price of open-source fear, uncertainty, and doubt?
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      GASERI
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../hr/" class="md-tabs__link">
+        🇭🇷 Sadržaj na hrvatskom
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        🇺🇸 Contents in English
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  <img src="../../../images/gaseri-logo.svg" alt="logo">
+
+    </a>
+    GASERI – Group for apps and services on exascale research infrastructure
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        GASERI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          🇭🇷 Sadržaj na hrvatskom
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🇭🇷 Sadržaj na hrvatskom" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          🇭🇷 Sadržaj na hrvatskom
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/" class="md-nav__link">
+        O grupi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/ljudi/" class="md-nav__link">
+        Ljudi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/istrazivanje-i-razvoj/" class="md-nav__link">
+        Istraživanje i razvoj
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/partnerstva-i-suradnje/" class="md-nav__link">
+        Partnerstva i suradnje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Nastava
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Nastava" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Nastava
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/" class="md-nav__link">
+        O nastavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2" type="checkbox" id="__nav_2_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2">
+          Izvedbeni planovi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Izvedbeni planovi" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Izvedbeni planovi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_1" type="checkbox" id="__nav_2_5_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_1">
+          2021/2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2021/2022" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          2021/2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_2" type="checkbox" id="__nav_2_5_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_2">
+          2020/2021
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2020/2021" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          2020/2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_3" type="checkbox" id="__nav_2_5_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_3">
+          2019/2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2019/2020" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_4" type="checkbox" id="__nav_2_5_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_4">
+          2018/2019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2018/2019" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          2018/2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2018-2019/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_3" type="checkbox" id="__nav_2_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_3">
+          Kolegiji
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Kolegiji" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Kolegiji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/KM/" class="md-nav__link">
+        Komunikacijske mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OI1/" class="md-nav__link">
+        Osnove informatike 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OPK/" class="md-nav__link">
+        Optimizacija programskog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OS1/" class="md-nav__link">
+        Operacijski sustavi 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM-RiTeh/" class="md-nav__link">
+        Računalne mreže (RiTeh)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/SRS/" class="md-nav__link">
+        Superračunalni sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/URS/" class="md-nav__link">
+        Upravljanje računalnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_4" type="checkbox" id="__nav_2_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_4">
+          Nastavni materijali
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Nastavni materijali" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Nastavni materijali
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/389-directory-server-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj 389 Directory Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/anaconda-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ansible-automatizacija-konfiguracije-odrzavanja-sustava/" class="md-nav__link">
+        Automatizacija konfiguracije i održavanja sustava alatom Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-ab-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom ab (Apache HTTP server benchmarking tool)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-mod-ssl/" class="md-nav__link">
+        Konfiguracija HTTPS-a u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-pokretanje-php-aplikacija/" class="md-nav__link">
+        Pokretanje PHP web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-pokretanje-python-aplikacija/" class="md-nav__link">
+        Pokretanje Python web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-virtual-host/" class="md-nav__link">
+        Konfiguracija virtualnih domaćina u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-web-posluzitelj/" class="md-nav__link">
+        Osnovna konfiguracija web poslužitelja Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/api-abi-kompatibilnost/" class="md-nav__link">
+        Binarna kompatibilnost i kompatibilnost na razini izvornog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/avahi-zeroconf/" class="md-nav__link">
+        Zerconf NSS/mDNS sustav Avahi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/avogadro-vizualizacija-uredjivanje-molekula/" class="md-nav__link">
+        Vizualizacija i uređivanje molekula alatom Avogadro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bind9-dns-sustav/" class="md-nav__link">
+        DNS sustav BIND9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bioinformatika-povijest-osnove/" class="md-nav__link">
+        Bioinformatika
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/brctl-izrada-mostova/" class="md-nav__link">
+        Premošćenje mrežnih adaptera i izrada mostova
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bro-raspoznavanje-upada-u-sustav/" class="md-nav__link">
+        Raspoznavanje upada u sustav alatom Bro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ceph-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Ceph
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/chembl-baza-bioaktivnih-molekula/" class="md-nav__link">
+        Baza bioaktivnih molekula ChEMBL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-modularni-usmjerivac/" class="md-nav__link">
+        Modularni usmjerivač Click
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-programska-osnova-usmjerivaca/" class="md-nav__link">
+        Programska osnova usmjerivača
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-protokoli/" class="md-nav__link">
+        Korištenje mrežnih protokola u modularnom usmjerivaču Click
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/c-mrezne-aplikacije/" class="md-nav__link">
+        Programiranje mrežnih aplikacija u programskim jezicima C i C++
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-eigen/" class="md-nav__link">
+        C++ biblioteka predložaka za linearnu algebru Eigen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-std-random/" class="md-nav__link">
+        Generiranje pseudoslučajnih brojeva u C++ aplikacijama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja C++ aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/curl-protokoli-aplikacijske-razine/" class="md-nav__link">
+        Rad s protokolima aplikacijske razine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/debian-installer-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskog sustava Debian korištenjem instalacijskog alata Debian-Installer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/deb-pakiranje-paketa/" class="md-nav__link">
+        Pakiranje deb paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dhcp-posluzitelj-klijent/" class="md-nav__link">
+        Dinamičko dodjeljivanje adresa domaćinima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dnsmasq-dhcp-dns-posluzitelj/" class="md-nav__link">
+        DHCP i DNS poslužitelj dnsmasq
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/docker-compose-kompozicije-kontejnera/" class="md-nav__link">
+        Komponiranje kontejnera alatom Docker Compose
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/docker-kontejneri/" class="md-nav__link">
+        Kontejnerizacija alatom Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dokuwiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava DokuWiki
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dovecot-pop3-imap-posluzitelj/" class="md-nav__link">
+        POP3 i IMAP -- Dovecot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/doxygen-dokumentiranje-programskog-koda/" class="md-nav__link">
+        Dokumentiranje programskog koda alatom Doxygen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ebtables-vatrozid/" class="md-nav__link">
+        Filtriranje okvira vatrozidom na veznom sloju
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/elasticsearch-distribuirano-pretrazivanje/" class="md-nav__link">
+        Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emacs-text-datoteke/" class="md-nav__link">
+        Rad s tekstualnim datotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-bezicne-mreze/" class="md-nav__link">
+        Emulacija bežičnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-fragmentacija-paketa/" class="md-nav__link">
+        Fragmentacija IPv4 paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-generiranje-topologija/" class="md-nav__link">
+        Generiranje topologija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-graficko-sucelje/" class="md-nav__link">
+        Osnove rada s emulatorom računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-konfiguracija-cvora/" class="md-nav__link">
+        Konfiguracija čvorova u alatu CORE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-mobilnost/" class="md-nav__link">
+        Mobilnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-stvaranje-konfiguracija-podmreza/" class="md-nav__link">
+        Stvaranje i konfiguracija podmreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gcc-gxx-make-prevodjenje-programa/" class="md-nav__link">
+        Prevođenje C, C++ i Fortran programa u izvršni kod
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gettext-lokalizacija-softvera/" class="md-nav__link">
+        Lokalizacija softvera korištenjem GNU gettexta
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gitlab-ci-cd/" class="md-nav__link">
+        Kontinuirana integracija korištenjem GitLaba
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/git-upravljanje-verzijama/" class="md-nav__link">
+        Distribuirani sustav za upravljanje verzijama Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gluster-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Gluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gnu-linux-slobodni-softver-povijest-osnove/" class="md-nav__link">
+        Razvoj slobodnog operacijskog sustava sličnog Unixu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gnupg-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa alatom GnuPG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/grep-sed-awk-tr/" class="md-nav__link">
+        Pretraživanje i obrada tekstualnih datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/grub-pokretanje-sustava/" class="md-nav__link">
+        Boot proces računala i učitavač GRUB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/hsa-pregled/" class="md-nav__link">
+        Pregled heterogene sustavske arhitekture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/httpie-http-klijent/" class="md-nav__link">
+        HTTP klijent HTTPie
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ifconfig-konfiguracija-mreznih-sucelja/" class="md-nav__link">
+        Osnovni alati za konfiguraciju računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/intelektualno-vlasnistvo-softver-podaci-znanstveni-radovi/" class="md-nav__link">
+        Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/iptables-prevodjenje-adresa/" class="md-nav__link">
+        Prevođenje mrežnih adresa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/iptables-vatrozid/" class="md-nav__link">
+        Filtriranje paketa vatrozidom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/kemoinformatika-povijest-osnove/" class="md-nav__link">
+        Kemoinformatika i računalna kemija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/kvm-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/virt-manager-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem Virtual Machine Managera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/libvirt-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem libvirta
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-arhiviranje-komprimiranje/" class="md-nav__link">
+        Arhiviranje i komprimiranje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-cijevi-preusmjeravanje-ulaza-izlaza/" class="md-nav__link">
+        Cijevi, preusmjeravanje ulaza i izlaza
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-cli-uvod/" class="md-nav__link">
+        Uvod u komandnolinijsko sučelje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-datoteke-touch-rm-cp-mv/" class="md-nav__link">
+        Baratanje datotekama u datotečnom sustavu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-direktoriji-mkdir-pwd-cd/" class="md-nav__link">
+        Stablo direktorija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-disk-particija-filesystem/" class="md-nav__link">
+        Diskovi, particije, datotečni sustavi i mjesta montiranja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-dozvole-datoteka/" class="md-nav__link">
+        Dozvole i kontrola pristupa datotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-inode-poveznice/" class="md-nav__link">
+        Informacijski čvorovi, vremena i poveznice datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-kernel-osnove/" class="md-nav__link">
+        Rad s jezgrom operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-korisnici-grupe/" class="md-nav__link">
+        Korisnici i grupe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-procesi/" class="md-nav__link">
+        Upravljanje procesima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-shell-varijable-povijest/" class="md-nav__link">
+        Varijable ljuske i okoline, povijest ljuske
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-tipovi-datoteka/" class="md-nav__link">
+        Tipovi datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/llvm-backend-amdgpu/" class="md-nav__link">
+        Prevođenje OpenCL C koda u asemblerski kod arhitektura AMD GCN i RDNA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/llvm-frontend-clang-opencl-c/" class="md-nav__link">
+        Prevođenje OpenCL C koda program prevoditeljem Clang
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mediawiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava MediaWiki
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mkdocs-dokumentiranje-programa/" class="md-nav__link">
+        Dokumentiranje programa alatom MkDocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nabavka-prevodjenje-instalacija-softvera-otvorenog-koda/" class="md-nav__link">
+        Nabavka, kompajliranje i instalacija softvera otvorenog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/netlib-blas-lapack/" class="md-nav__link">
+        BLAS i LAPACK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nfs-mrezni-datotecni-sustav/" class="md-nav__link">
+        Mrežni datotečni sustav NFS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nginx-web-posluzitelj/" class="md-nav__link">
+        Web poslužitelj nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nmap-analiza-ranjivosti/" class="md-nav__link">
+        Analiza ranjivosti računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oblak-resursi-usluge/" class="md-nav__link">
+        Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-linux-upravljanje-datotecnim-sustavom-2/" class="md-nav__link">
+        Pretraživanje, prava pristupa, rad sa tekstom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-linux-upravljanje-datotecnim-sustavom/" class="md-nav__link">
+        Osnove rada sa komandnom linijom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-perl/" class="md-nav__link">
+        Skriptiranje u Perl-u
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-regularni-izrazi-konacni-automati/" class="md-nav__link">
+        Regularni izrazi i konačni automati
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/open-babel-pretvorba-analiza-spremanje-podataka-molekula/" class="md-nav__link">
+        Pretvorba formata alatom Open Babel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openldap-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj OpenLDAP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssh-sigurna-ljuska/" class="md-nav__link">
+        Sigurna ljuska i udaljeni rad alatom OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-certifikat-javnog-kljuca/" class="md-nav__link">
+        Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-kriptografski-algoritmi/" class="md-nav__link">
+        Korištenje osnovnih kriptografskih algoritama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openvpn-infrastruktura-javnog-kljuca/" class="md-nav__link">
+        Korištenje infrastrukture javnog ključa u postavljanju virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openvpn-virtualna-privatna-mreza/" class="md-nav__link">
+        Konfiguracija virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openwrt-ugradbeni-softver-za-bezicne-mrezne-usmjerivace/" class="md-nav__link">
+        OpenWrt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/otvoreni-kod-povijest-osnove/" class="md-nav__link">
+        Softver otvorenog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/paralelno-distribuirano-heterogeno-racunarstvo-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi paralelnog, distribuiranog i heterogenog računarstva
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/paralelno-distribuirano-heterogeno-racunarstvo-superracunala/" class="md-nav__link">
+        Superračunala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pdb-baza-proteina/" class="md-nav__link">
+        Baza struktura proteina RCSB PDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-composer/" class="md-nav__link">
+        Upravljanje zavisnostima paketa u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-cookies/" class="md-nav__link">
+        Baratanje HTTP kolačićima u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-curl/" class="md-nav__link">
+        Izvođenje HTTP zahtjeva korištenjem biblioteke cURL u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-file-upload/" class="md-nav__link">
+        Postavljanje datoteka na poslužitelj u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-http-auth/" class="md-nav__link">
+        HTTP autentifikacija u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-http-encoding/" class="md-nav__link">
+        Kodiranje HTTP sadržaja i kompresija u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-json/" class="md-nav__link">
+        Obrada podataka zapisanih u obliku JavaScript Object Notation (JSON) u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-openssl/" class="md-nav__link">
+        Korištenje biblioteke OpenSSL u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-rest/" class="md-nav__link">
+        Implementacija REpresentational State Transfer (REST) aplikacijskog programskog sučelja u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-sockets/" class="md-nav__link">
+        Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-sodium/" class="md-nav__link">
+        Korištenje biblioteke Sodium u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-ugradjeni-web-posluzitelj/" class="md-nav__link">
+        Ugrađeni web poslužitelj u interpreteru jezika PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-visejezicnost/" class="md-nav__link">
+        Višejezičnost u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-zahtjev-odgovor/" class="md-nav__link">
+        Obrada HTTP zahtjeva i stvaranje odgovora u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ping-traceroute-nestat-analiza-mreze/" class="md-nav__link">
+        Osnovni alati za analizu računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/postfix-procmail-smtp-posluzitelj/" class="md-nav__link">
+        Message transfer agent -- Postfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/postgresql-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka PostgreSQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/procfs-sysfs-informacije-konfiguracija/" class="md-nav__link">
+        Datotečni sustavi Procfs i Sysfs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pxe-pokretanje-racunala-putem-mreznog-sucelja/" class="md-nav__link">
+        Pokretanje računala putem mrežnog sučelja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pymol-vizualizacija-molekula/" class="md-nav__link">
+        Vizualizacija molekula u alatu PyMOL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-dokumentiranje/" class="md-nav__link">
+        Dokumentiranje Python koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-funkcije-klase/" class="md-nav__link">
+        Python -- funkcije i klase
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-input-output/" class="md-nav__link">
+        Python -- ulaz i izlaz
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modularizacija/" class="md-nav__link">
+        Python -- moduli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-calendar/" class="md-nav__link">
+        Python -- stvaranje i ispis kalendara
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-cryptography/" class="md-nav__link">
+        Rad s Python modulom pyca/cryptography
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-django/" class="md-nav__link">
+        Python -- Django
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-django-rest-framework/" class="md-nav__link">
+        Python -- Django REST framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-datetime/" class="md-nav__link">
+        Python -- osnovni tipovi podataka datuma i vremena
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-fcntl/" class="md-nav__link">
+        Python -- usluge specifične za operacijske sustave slične Unixu -- pozivi fcntl() i ioctl()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-gettext/" class="md-nav__link">
+        Python -- usluge za višejezičnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-glob/" class="md-nav__link">
+        Python -- ekspanzija uzoraka imena putanje u stilu operacijskih sustava sličnih Unixu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-locale/" class="md-nav__link">
+        Python -- internacionalizacija i lokalizacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-matplotlib/" class="md-nav__link">
+        Rad s Python modulom matplotlib i sučeljem pyplot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-dinamicko-upravljanje-procesima/" class="md-nav__link">
+        Python modul mpi4py -- dinamičko upravljanje procesima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-jednostrana-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- jednostrana komunikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-kolektivna-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- kolektivna komunikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-komunikacija-tocka-do-tocke/" class="md-nav__link">
+        Python modul mpi4py -- komunikacija točka-do-točke
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-komunikatori-grupe/" class="md-nav__link">
+        Python modul mpi4py -- komunikatori i grupe procesa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-osnove/" class="md-nav__link">
+        Python modul mpi4py -- osnove
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-paralelni-ulaz-izlaz/" class="md-nav__link">
+        Python modul mpi4py -- paralelni ulaz/izlaz
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-upravljanje-okolinom/" class="md-nav__link">
+        Python modul mpi4py -- upravljanje okolinom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-multiprocessing/" class="md-nav__link">
+        Python -- višeprocesnost na jednom računalu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-numpy/" class="md-nav__link">
+        Rad s Python modulom numpy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-os/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- osnovna sučelja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-os-path/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- baratanje imenom putanje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-biblioteke-funkcija/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije i tipovi podatka dostupni u CUDA bibliotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-funkcije-uredjaja-domacina/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije uređaja i domaćina
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-hijerarhija-memorije/" class="md-nav__link">
+        Python modul PyCUDA -- hijerarhija GPU memorije
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-matrice/" class="md-nav__link">
+        Python modul PyCUDA -- paralelni algoritmi na matricama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-multi-gpu/" class="md-nav__link">
+        Python modul PyCUDA -- rad s više GPU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-osnove/" class="md-nav__link">
+        Python modul PyCUDA -- osnove rada s GPU-om
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-otklanjanje-gresaka/" class="md-nav__link">
+        Python modul PyCUDA -- otklanjanje grešaka i curenja memorije
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-profiliranje-optimizacija/" class="md-nav__link">
+        Python modul PyCUDA -- mjerenje performansi, profiliranje i optimizacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-redukcija/" class="md-nav__link">
+        Python modul PyCUDA -- paralelna redukcija, norma i skalarno množenje vektora
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-tokovi-asinkrone-operacije/" class="md-nav__link">
+        Python modul PyCUDA -- korištenje tokova i asinkronih kopiranja memorije za poboljšanje performansi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-vektorski-tipovi/" class="md-nav__link">
+        Python modul PyCUDA -- rad s vektorskim tipovima podataka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-zbrajanje-vektora/" class="md-nav__link">
+        Python modul PyCUDA -- zbrajanje vektora
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pyopencl/" class="md-nav__link">
+        Programiranje aplikacija za heterogene sustave korištenjem tehnologije OpenCL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-scipy/" class="md-nav__link">
+        Rad s Python modulom scipy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-select/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- čekanje na završetak ulazno/izlaznih operacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-signal/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- baratanje signalima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-socket/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- utičnice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-subprocess/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- podprocesi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-sys/" class="md-nav__link">
+        Python -- parametri i funkcije ovisni o sustavu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-threading/" class="md-nav__link">
+        Python -- dodatne usluge operacijskog sustava -- višenitnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-time/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- vrijeme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-xmlrpc/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- pozivanje udaljenih procedoura i modul XML-RPC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-okvir-waf/" class="md-nav__link">
+        Rad s Python okvirom waf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-osnove-sintakse/" class="md-nav__link">
+        Osnovna sintaksa programskog jezika Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-programiranje/" class="md-nav__link">
+        Programiranje i programski jezik Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-standardna-biblioteka/" class="md-nav__link">
+        Python -- često korišteni moduli standardne biblioteke
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-testiranje/" class="md-nav__link">
+        Testiranje Python aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja Python aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/quagga-usmjeravanje/" class="md-nav__link">
+        Rad s alatima za usmjeravanje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/racunarstvo-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja računala i temelji računarske znanosti
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/racunarstvo-sveprisutna-prozimajuca-racunala/" class="md-nav__link">
+        Sveprisutna i prožimajuća računala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/redis-predmemorija/" class="md-nav__link">
+        Konfiguracija sustava za predmemoriju Redis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocalution/" class="md-nav__link">
+        rocALUTION -- ROCm SPARSE Linear Algebra PACkage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocblas/" class="md-nav__link">
+        rocBLAS -- ROCm Basic Linear Algebra Subprograms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocfft/" class="md-nav__link">
+        rocFFT -- ROCm Fast Fourier Transforms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocprim/" class="md-nav__link">
+        rocPRIM -- ROCm parallel PRIMitives
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocrand/" class="md-nav__link">
+        rocRAND -- ROCm RANDom number generator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocsolver/" class="md-nav__link">
+        rocSOLVER -- ROCm-ov linear algebra SOLVER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocsparse/" class="md-nav__link">
+        rocSPARSE -- ROCm SPARSE basic linear algebra subroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/samba-interoperabilnost-windows-linux/" class="md-nav__link">
+        Interoperabilnost operacijskih sustava Windows i GNU/Linux korištenjem Sambe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/screen-tmux-multipleksiranje-terminala/" class="md-nav__link">
+        Multipleksiranje terminala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/selinux-mandantna-kontrola-pristupa/" class="md-nav__link">
+        Mandantna kontrola pristupa korištenjem sustava SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/siege-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom Siege
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
+        Integracija simuliranih i stvarnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-modeli-gresaka/" class="md-nav__link">
+        Simulacijski modeli grešaka paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-mrezne-aplikacije-promet/" class="md-nav__link">
+        Simulacijski modeli mrežnih aplikacija kao generatora prometa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-pojmovi/" class="md-nav__link">
+        Teorijske osnove simulacije računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-povezivanje-cvorova/" class="md-nav__link">
+        Povezivanje čvorova u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-redovi-cekanja/" class="md-nav__link">
+        Simulacijski modeli redova čekanja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-tcp-upravljanje-zagusenjem/" class="md-nav__link">
+        Simulacijski modeli TCP-ovih algoritama za upravljanje zagušenjem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-topologije/" class="md-nav__link">
+        Slaganje složenijih topologija u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/spamassasin-spam-filter/" class="md-nav__link">
+        Spam filter -- SpamAssassin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/strace-ltrace-sucelja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje korištenja programskih sučelja sustava korištenjem alata strace i ltrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/strongswan-ipsec/" class="md-nav__link">
+        IPsec alat strongSwan
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-cron-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
+        Automatizacija zadaća operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-journalctl-pracenje-dogadjaja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje događaja operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-systemctl-upravljanje-uslugama-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje uslugama operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/tinc-virtualna-privatna-mreza/" class="md-nav__link">
+        Tuneliranje alatom tinc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/tor-anonimna-komunikacija/" class="md-nav__link">
+        Anonimna komunikacija alatom Tor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/unix-att-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa u AT&T-u i drugim tvrtkama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/unix-bsd-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa na Kalifornijskom sveučilištu u Berkeleyu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljacki-programi-hardvera/" class="md-nav__link">
+        Upravljački programi hardvera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljanje-dokumentacijom-racunalnih-sustava-i-mreza/" class="md-nav__link">
+        Upravljanje dokumentacijom računalnih sustava i mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljanje-racunalnim-sustavima-i-mrezama-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi upravljanja računalnim sustavima i mrežama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/vlasnicki-softveri-posebne-namjene-i-racunalne-igre/" class="md-nav__link">
+        Vlasnički softveri posebne namjene i računalne igre
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/vlc-strujanje-multimedijskog-sadrzaja/" class="md-nav__link">
+        Strujanje multimedijskog sadržaja alatom VLC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wireshark-filtriranje-paketa/" class="md-nav__link">
+        Filtriranje paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wireshark-snimanje-prometa/" class="md-nav__link">
+        Snimanje prometa aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wordpress-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija sustava za upravljanje sadržajem Wordpress
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/yum-rpm-upravljanje-paketima-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje paketima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/znanstveni-softver/" class="md-nav__link">
+        Znanstveni softver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/zotero-citiranje-bibliografija/" class="md-nav__link">
+        Upute za upravljanje bibliografijom korištenjem alata Zotero
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/teme-zavrsnih-i-diplomskih-radova/" class="md-nav__link">
+        Teme završnih i diplomskih radova
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/aktivizam/" class="md-nav__link">
+        Aktivizam
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/povijest/" class="md-nav__link">
+        Povijest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9">
+          Arhiva
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Arhiva" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Arhiva
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9_1" type="checkbox" id="__nav_2_9_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9_1">
+          Eseji
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Eseji" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          Eseji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/arhiva/eseji/peter-norvig-naucite-programirati-u-deset-godina/" class="md-nav__link">
+        Peter Norvig -- Naučite programirati u deset godina
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/arhiva/eseji/vedran-miletic-zaboravite-na-pcchipovo-misljenje-o-linuxu/" class="md-nav__link">
+        Vedran Miletić -- Zaboravite na PCChipovo mišljenje o Linuxu
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/vrlo-vazne-informacije/" class="md-nav__link">
+        Vrlo važne informacije
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          🇺🇸 Contents in English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🇺🇸 Contents in English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          🇺🇸 Contents in English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        About the group
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../people/" class="md-nav__link">
+        People
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        Publications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Teaching
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Teaching" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Teaching
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/" class="md-nav__link">
+        About the teaching
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_2" type="checkbox" id="__nav_3_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_2">
+          Courses
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Courses" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Courses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/courses/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3" type="checkbox" id="__nav_3_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3">
+          Programmes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Programmes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Programmes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3_1" type="checkbox" id="__nav_3_5_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3_1">
+          Revision 2021/2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Revision 2021/2022" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_5_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Revision 2021/2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/programmes/revision-2021-2022/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3_2" type="checkbox" id="__nav_3_5_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3_2">
+          Revision 2019/2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Revision 2019/2020" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_5_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Revision 2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/programmes/revision-2019-2020/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_1" type="checkbox" id="__nav_3_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6_1">
+          GROMACS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GROMACS" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          GROMACS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/1-tip4pew-water/" class="md-nav__link">
+        Water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/2-methane-in-water/" class="md-nav__link">
+        One methane in water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/3-methanes-in-water/" class="md-nav__link">
+        Several methanes in water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/4-methane-fe/" class="md-nav__link">
+        Free energy of solvation of methane
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/5-umbrella/" class="md-nav__link">
+        Window sampling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/6-tpi/" class="md-nav__link">
+        Test particle insertion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_7">
+          Blog
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blog" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          Blog
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
+        Markdown vs reStructuredText for teaching materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-09-24-mirroring-free-and-open-source-software-matters/" class="md-nav__link">
+        Mirroring free and open-source software matters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-31-fly-away-little-bird/" class="md-nav__link">
+        Fly away, little bird
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-29-why-we-use-restructuredtext-and-sphinx-static-site-generator-for-maintaining-teaching-materials/" class="md-nav__link">
+        Why we use reStructuredText and Sphinx static site generator for maintaining teaching materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-22-enabling-http2-https-and-going-https-only-on-inf2/" class="md-nav__link">
+        Enabling HTTP/2, HTTPS, and going HTTPS-only on inf2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-12-14-celebrating-graphics-and-compute-freedom-day/" class="md-nav__link">
+        Celebrating Graphics and Compute Freedom Day
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-03-25-the-academic-and-the-free-software-community-ideals/" class="md-nav__link">
+        The academic and the free software community ideals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-01-30-i-am-still-not-buying-the-new-open-source-friendly-microsoft-narrative/" class="md-nav__link">
+        I am still not buying the new-open-source-friendly-Microsoft narrative
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-01-17-amd-and-the-open-source-community-are-writing-history/" class="md-nav__link">
+        AMD and the open-source community are writing history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-12-13-on-having-leverage-and-using-it-for-pushing-open-source-software-adoption/" class="md-nav__link">
+        On having leverage and using it for pushing open-source software adoption
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          What is the price of open-source fear, uncertainty, and doubt?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        What is the price of open-source fear, uncertainty, and doubt?
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reactions-and-replies-by-others" class="md-nav__link">
+    Reactions and replies by others
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dissecting-the-viewpoint-arguments" class="md-nav__link">
+    Dissecting the Viewpoint arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Dissecting the Viewpoint arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-open-source-mostly-mandated" class="md-nav__link">
+    Is open source mostly mandated?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-it-really-matter-who-has-the-software-development-skills" class="md-nav__link">
+    Does it really matter who has the software development skills?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-selling-licenses-a-sustainable-model-of-software-development-let-alone-the-only-sustainable-model" class="md-nav__link">
+    Is selling licenses a sustainable model of software development, let alone the only sustainable model?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-scientific-software-equivalent-to-a-sophisticated-machine-in-the-physical-world" class="md-nav__link">
+    Is scientific software equivalent to a sophisticated machine in the physical world?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-free-as-in-free-beer-the-same-as-free-as-in-free-speech-when-it-comes-to-software" class="md-nav__link">
+    Is free as in free beer the same as free as in free speech when it comes to software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#are-free-and-open-source-software-companies-and-customers-naive" class="md-nav__link">
+    Are free and open-source software companies and customers naïve?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-a-researcher-decide-which-free-software-to-support-without-paying-the-license" class="md-nav__link">
+    Can a researcher decide which free software to support without paying the license?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-saving-time-worth-losing-freedom" class="md-nav__link">
+    Is saving time worth losing freedom?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-open-source" class="md-nav__link">
+    What Is “Open Source”?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-being-open-source-imply-anyone-can-modify-and-break-the-main-source-code-repository" class="md-nav__link">
+    Does being open source imply anyone can modify (and break) the main source code repository?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-a-good-description-of-the-algorithm-make-the-implementation-code-unnecessary" class="md-nav__link">
+    Does a good description of the algorithm make the implementation code unnecessary?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-freely-available-to-academics-free-enough" class="md-nav__link">
+    Is freely available to academics free enough?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-viral-license-the-problem-for-adoption" class="md-nav__link">
+    Is viral license the problem for adoption?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-it-open-enough-if-the-software-project-is-open-by-invite" class="md-nav__link">
+    Is it open enough if the software project is open by invite?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-open-source-destroy-proprietary-software" class="md-nav__link">
+    Will open source destroy proprietary software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-proprietary-software-more-optimized" class="md-nav__link">
+    Is proprietary software more optimized?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-open-source-force-a-scientist-to-open-everything-straight-away" class="md-nav__link">
+    Does open source force a scientist to open everything straight away?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-orphaned-code-more-common-in-open-source-than-in-proprietary-software" class="md-nav__link">
+    Is orphaned code more common in open source than in proprietary software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#are-software-freedom-and-software-quality-competing-features" class="md-nav__link">
+    Are software freedom and software quality competing features?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-software-freedom-a-political-rhetoric" class="md-nav__link">
+    Is software freedom a political rhetoric?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflict-of-interest-statement" class="md-nav__link">
+    Conflict of interest statement
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-07-28-joys-and-pains-of-interdisciplinary-research/" class="md-nav__link">
+        Joys and pains of interdisciplinary research
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-07-03-open-source-magic-all-around-the-world/" class="md-nav__link">
+        Open-source magic all around the world
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-06-18-the-follow-up/" class="md-nav__link">
+        The follow-up
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-05-01-browser-wars/" class="md-nav__link">
+        Browser wars
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../very-important-information/" class="md-nav__link">
+        Very important information
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reactions-and-replies-by-others" class="md-nav__link">
+    Reactions and replies by others
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dissecting-the-viewpoint-arguments" class="md-nav__link">
+    Dissecting the Viewpoint arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Dissecting the Viewpoint arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-open-source-mostly-mandated" class="md-nav__link">
+    Is open source mostly mandated?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-it-really-matter-who-has-the-software-development-skills" class="md-nav__link">
+    Does it really matter who has the software development skills?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-selling-licenses-a-sustainable-model-of-software-development-let-alone-the-only-sustainable-model" class="md-nav__link">
+    Is selling licenses a sustainable model of software development, let alone the only sustainable model?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-scientific-software-equivalent-to-a-sophisticated-machine-in-the-physical-world" class="md-nav__link">
+    Is scientific software equivalent to a sophisticated machine in the physical world?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-free-as-in-free-beer-the-same-as-free-as-in-free-speech-when-it-comes-to-software" class="md-nav__link">
+    Is free as in free beer the same as free as in free speech when it comes to software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#are-free-and-open-source-software-companies-and-customers-naive" class="md-nav__link">
+    Are free and open-source software companies and customers naïve?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-a-researcher-decide-which-free-software-to-support-without-paying-the-license" class="md-nav__link">
+    Can a researcher decide which free software to support without paying the license?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-saving-time-worth-losing-freedom" class="md-nav__link">
+    Is saving time worth losing freedom?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-open-source" class="md-nav__link">
+    What Is “Open Source”?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-being-open-source-imply-anyone-can-modify-and-break-the-main-source-code-repository" class="md-nav__link">
+    Does being open source imply anyone can modify (and break) the main source code repository?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-a-good-description-of-the-algorithm-make-the-implementation-code-unnecessary" class="md-nav__link">
+    Does a good description of the algorithm make the implementation code unnecessary?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-freely-available-to-academics-free-enough" class="md-nav__link">
+    Is freely available to academics free enough?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-viral-license-the-problem-for-adoption" class="md-nav__link">
+    Is viral license the problem for adoption?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-it-open-enough-if-the-software-project-is-open-by-invite" class="md-nav__link">
+    Is it open enough if the software project is open by invite?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-open-source-destroy-proprietary-software" class="md-nav__link">
+    Will open source destroy proprietary software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-proprietary-software-more-optimized" class="md-nav__link">
+    Is proprietary software more optimized?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-open-source-force-a-scientist-to-open-everything-straight-away" class="md-nav__link">
+    Does open source force a scientist to open everything straight away?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-orphaned-code-more-common-in-open-source-than-in-proprietary-software" class="md-nav__link">
+    Is orphaned code more common in open source than in proprietary software?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#are-software-freedom-and-software-quality-competing-features" class="md-nav__link">
+    Are software freedom and software quality competing features?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-software-freedom-a-political-rhetoric" class="md-nav__link">
+    Is software freedom a political rhetoric?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflict-of-interest-statement" class="md-nav__link">
+    Conflict of interest statement
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+<a href="https://github.com/gaseri/website/blob/main/docs/en/blog/2015-09-14-what-is-the-price-of-open-source-fear-uncertainty-and-doubt.md" title="Uredi stranicu" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="what-is-the-price-of-open-source-fear-uncertainty-and-doubt">What is the price of open-source fear, uncertainty, and doubt?</h1>
+<p><a href="https://pubs.acs.org/journal/jpclcd">The Journal of Physical Chemistry Letters</a>, published by <a href="https://www.acs.org/">American Chemical Society</a>, recently put out two Viewpoints discussing open-source software:</p>
+<ol>
+<li><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.5b00285">Open Source and Open Data Should Be Standard Practices</a> by <a href="https://chemistry.nd.edu/people/j-daniel-gezelter/">J. Daniel Gezelter</a>, and</li>
+<li><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.5b01258">What Is the Price of Open-Source Software?</a> by <a href="http://iopenshell.usc.edu/">Anna I. Krylov</a>, <a href="https://chemistry.osu.edu/people/herbert.44">John M. Herbert</a>, Filipp Furche, Martin Head-Gordon, Peter J. Knowles, Roland Lindh, Frederick R. Manby, Peter Pulay, Chris-Kriton Skylaris, and Hans-Joachim Werner.</li>
+</ol>
+<p>Viewpoints are not detailed reviews of the topic, but instead, present the author's view on the state-of-the-art of a particular field.</p>
+<p>The first of two articles stands for open source and open data. The article describes Quantum Chemical Program Exchange (QCPE), which was used in the 1980s and 1990s for the exchange of quantum chemistry codes between researchers and is roughly equivalent to the modern-day <a href="https://github.com/">GitHub</a>. The second of two articles questions the open-source software development practice, advocating the usage and development of proprietary software. I will dissect and counter some of the key points from the second article below.</p>
+<p>Just to be clear: I will not discuss the issues of Open Data and Open Access; they are very important and they deserve a separate post. I will focus solely on the use of <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software">free and open-source software (FOSS)</a> and proprietary software in computational chemistry research.</p>
+<h2 id="reactions-and-replies-by-others">Reactions and replies by others</h2>
+<p>There are reactions to both articles already posted on the Internet. <a href="https://www.tu-braunschweig.de/pci/agjacob/mitarbeitende/jacob">Christoph Jacob</a> replied with a blog post titled <a href="https://christophjacob.wordpress.com/2015/07/18/how-open-are-commercial-scientific-software-packages/">How Open are Commercial Scientific Software Packages?</a> Among the rest, he says:</p>
+<blockquote>
+<p>To develop, test, and finally use a new idea, it needs to be implemented in software. Usually, this requires using a lot of well-established tools, such as integral codes, basic methods developed many decades ago, and advanced numerical algorithms. All of these are a prerequisite for new developments, but not “interesting” by itself anymore today. Even though all these tools are well-documented in the scientific literature, recreating them would be a major effort that cannot be repeated every time and by every research group – because both time and funding are limited resources, especially for young researchers with rather small groups such as myself.</p>
+<p>Therefore, method developers in quantum chemistry need some existing program package as a “development platform”. Both open-source and commercial codes can offer such a platform. Open-source codes have the advantage that there is no barrier to access. Anyone can download the source code and start working on a new method.</p>
+</blockquote>
+<p>I fully agree with this idea and the rest of his post, so I will not repeat it here. What is interesting to note, however, is that Christoph is a contributor to <a href="https://www.scm.com/">ADF</a>, a proprietary quantum chemistry software.</p>
+<p><a href="https://plus.google.com/u/0/+MaximilianKubillus/posts/M8HS3VCMgjT">Another well-put reply</a> is posted by <a href="https://www.ipc.kit.edu/tcb/english/Staff_427.php">Maximilian Kubillus</a>. This part is particularly well put:</p>
+<blockquote>
+<p>A letter about scientific open-source software, written by TEN authors that own, work for or are founding members of closed-source software companies, saying that [open-source software] could never reach the quality of good closed-source software. It also states that good code review won't happen in [open-source] environments and efficient algorithms can only be developed by professional scientific programmers, using words like cyberinfrastructure without any reference to what they mean here and calling promoters of [open-source software] naive without giving a real foundation on why their presented open software models don't work (in their eyes).</p>
+</blockquote>
+<p>I agree with this post as well and I will not repeat it here.</p>
+<h2 id="dissecting-the-viewpoint-arguments">Dissecting the Viewpoint arguments</h2>
+<p>All quotations in the following text are copied from the <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.5b01258">Full-Text HTML version of the "What Is the Price of Open-Source Software?" Viewpoint</a>.</p>
+<h3 id="is-open-source-mostly-mandated">Is open source mostly mandated?</h3>
+<blockquote>
+<p>The notion that all scientific software should be open-source and free has been actively promoted in recent years, mostly from the top down via mandates from funding agencies but occasionally from the bottom up, as exemplified by a recent Viewpoint in this journal.</p>
+</blockquote>
+<p>It is true that both funding agencies and individuals promote FOSS. However, the authors did not cite any data from which they could conclude that promotion happened <strong>mostly</strong> in a top-down way, and only <strong>occasionally</strong> in a bottom-up way. In fact, I would argue that the opposite is true.</p>
+<p>As someone who is involved in the open-source community since the early 2000s, I am well aware of the efforts that were put by open-source supporters to get governments and funding agencies to understand the importance of open-source software and mandate it in regulations. As one example of a monumental effort, it took to move the public sector to open-source software and <a href="https://opendocumentformat.org/">OpenDocument</a>, see <a href="https://youtu.be/WgHIunOA9Us">Open source lobbying</a>, a story about writing a national policy of open source in the Netherlands, presented at 24th CCC in Berlin, 2007.</p>
+<p>To summarize: for any top-down mandate of open source to happen, a lot of bottom-up efforts are required. These efforts are not trivial and usually take a long time and a lot of (mostly volunteer) effort.</p>
+<h3 id="does-it-really-matter-who-has-the-software-development-skills">Does it really matter who has the software development skills?</h3>
+<blockquote>
+<p>To bring new ideas to the production level, with software that is accessible to (and useful for) the broader scientific community, contributions from expert programmers are required. These technical tasks usually cannot—and generally should not—be conducted by graduate students or postdocs, who should instead be focused on science and innovation. To this end, Q-Chem employs four scientific programmers.</p>
+</blockquote>
+<p>The notion that a certain percentage of scientists (graduate students, postdocs) do not possess technical skills (i.e. software engineering) required for the development of complex codes makes sense; whether this still applies to most of the scientists studying quantum chemistry today can be discussed. Still, the argument does not imply anywhere that the software these "four scientific programmers" are developing should be proprietary or closed source.</p>
+<h3 id="is-selling-licenses-a-sustainable-model-of-software-development-let-alone-the-only-sustainable-model">Is selling licenses a sustainable model of software development, let alone the only sustainable model?</h3>
+<blockquote>
+<p>Sales revenue cannot support the entire development cost of an academic code, but it contributes critically to its sustainability. The cost that the customer pays for a code like Q-Chem reflects this funding model: it is vastly lower than the development cost, particularly for academic customers but also for industry. It primarily reflects the sustainability cost.</p>
+</blockquote>
+<p>A software like Q-Chem earns money by selling licenses and uses this money to fund programmers who develop it, which is the traditional proprietary software business model. This model is very simple but has many flaws.</p>
+<p>Imagine an academic lab using Q-Chem in its protocols. Suddenly, Q-Chem changes a feature the lab cares about, or the lab's university buys a particular HPC based on the architecture that is not very common on the market and happens to be unsupported by Q-Chem. Or even worse, imagine the company behind Q-Chem disappearing.</p>
+<p>If any of these scenarios do occur, the lab in our story is left with a binary that runs on their current computer system. Since the lab has no access to the source code, they are unable to port the code to the new systems. There is only one provider of the service they need (i.e. the improvement of the software they use): the company behind Q-Chem, which <strong>owns the intellectual property rights</strong> to Q-Chem code. If the lab then decides to switch to another software, they are met with the unexpected additional license costs from buying another proprietary software. That is not all, however, as the update of lab protocols and retraining of lab scientists takes time and effort.</p>
+<p>The lab from our story is in a <a href="https://en.wikipedia.org/wiki/Vendor_lock-in">vendor lock-in situation</a>: they can not easily change the vendor providing support for software they use, because <strong>the software is closed source and the property of one and only one vendor</strong>. Imagine instead the software used by the lab was FOSS. Suddenly, the vendor providing support and maintenance changed conditions so they no longer suit the requirements of the lab, or the vendor goes bankrupt altogether. Another vendor can easily start working on the source code (since it is available to everyone), and this vendor can start providing support to the lab under any mutually agreed contract.</p>
+<h3 id="is-scientific-software-equivalent-to-a-sophisticated-machine-in-the-physical-world">Is scientific software equivalent to a sophisticated machine in the physical world?</h3>
+<blockquote>
+<p>Nevertheless, the software itself is a product, not a scientific finding, more akin to, say, an NMR spectrometer—a sophisticated instrument—than to the spectra produced by that instrument.</p>
+</blockquote>
+<p>This is true. This is why projects such as <a href="https://www.opensourceecology.org/">Open Source Ecology</a> provide blueprints (source-code equivalent) for industrial machines. The reason why the open-source movement succeed first in the domain of software is the low cost of making copies of the software (both the source code and the binaries). The cost of the data transmission and storage became so low with the technology advancements that today the only significant cost in producing new software is the development itself. Basically, once developed, the software can be distributed to any number of users at a very low cost.</p>
+<h3 id="is-free-as-in-free-beer-the-same-as-free-as-in-free-speech-when-it-comes-to-software">Is free as in <em>free beer</em> the same as free as in <em>free speech</em> when it comes to software?</h3>
+<blockquote>
+<p>There Is No Free Software.</p>
+</blockquote>
+<p>Nice try. There is <a href="https://www.gnu.org/philosophy/free-sw.html">free software</a>, there is even the <a href="https://www.fsf.org/">Free Software Foundation</a>. The authors should <strong>clearly separate the issues of software cost and software freedom</strong>, which they did not. The following text demonstrates this clearly.</p>
+<h3 id="are-free-and-open-source-software-companies-and-customers-naive">Are free and open-source software companies and customers naïve?</h3>
+<blockquote>
+<p>Gezelter acknowledges the cost of maintaining scientific software and suggests alternative models to defray these costs including selling support, consulting, or an interface, all the while making the source code available for free. These suggestions strike us as naïve, something akin to giving away automobiles but charging for the mechanic who services them. Such a model creates a financial incentive to release a less-than-stellar product into the public domain, then charge to make it useful and usable. It is better to release a top-of-the-line product for a nominal fee.</p>
+</blockquote>
+<p>A free and open-source quantum chemistry tool can have a graphical user interface (GUI) which would specifically target common lab protocols in, say, material science. If the vendor makes the GUI proprietary, no functionality of the original software is lost. The <strong>GUI just makes the same functionality available in a different way</strong>, potentially simpler to use. If you want to use the GUI and save time, you have to pay the license fee. If you want to use the quantum chemistry software without the GUI, you are free to do so, and you can even write your own GUI, and even give it out under a free software license. Your <strong>freedom to use the original FOSS tool is preserved</strong>.</p>
+<p>It is in the interest of the software vendor to make both the software and its GUI as high quality and as easy to maintain as possible, to attract code contributions from the outside. In terms of proprietary software, <strong>these contributions are equivalent to getting the development work done for free</strong> (i.e. without paying the programmer doing it).</p>
+<p>As for this business model being naïve, consider the open-source leader, <a href="https://www.redhat.com/">Red Hat</a>, which has 1.5 billion dollars in revenues per year. As for <a href="https://fortune.com/global500/">Fortune Global 500</a> companies, <a href="https://engage.redhat.com/trusted-2?sc_cid=70160000000wxlyAAA">100% of airlines, telcos, healthcare companies, commercial banks, and U.S. Executive Departments rely on Red Hat</a>. If you look up the names of the companies, you will find out they are anything but naïve.</p>
+<p>Finally, the car analogy the authors use is completely flawed. Red Hat did not score the business from <a href="https://www.nasa.gov/">NASA</a>, <a href="https://www.nyse.com/">NYSE</a>, or any other organization by giving bad software for free and then charging for service fees; had they, they would have been easily overtaken by a competitor and out of business by now. Since <strong>all of the Red Hat supported software is free and open-source</strong>, the potential competitor would just take the source code, improve it, and build support around it. Red Hat would find itself in a situation where they have to understand the changes their competitor is making, and the competitor would find that supporting better code would be easier and much cheaper.</p>
+<p>To summarize: Red Hat has to be high-quality as it <strong>does not have the luxury of owning the source code</strong>, which would automatically exclude the competitors from the market.</p>
+<h3 id="can-a-researcher-decide-which-free-software-to-support-without-paying-the-license">Can a researcher decide which free software to support without paying the license?</h3>
+<blockquote>
+<p>Is “free” software genuinely free of charge to individual researchers? Consider software developed in the U.S. national laboratories. These ventures are supported by full-time scientific programmers employed specifically for the task, and the cost to support and develop these products is subtracted from the pool of research funding available to the rest of the community. The individual researcher pays for these codes, in a sense, with his rejected grant proposals in times of lean funding. In contrast to using one’s own performance metrics to guide software purchases, within this system, one has no choice in what one pays for. In other words, “free software” is not free for you; the only sense in which it is “free” is that you are freed from making a choice about how to spend your research money.</p>
+</blockquote>
+<p>Research funding comes from public money, and the <strong>public should be granted full access to the research results</strong> it, in a sense, bought. In particular, this access includes access to the source code of the software developed using public funding. By transferring the ownership of the source code to any company we are basically funding private ventures with public money. Furthermore, we are letting the company that gets the ownership of the source code <strong>dictate the terms under which the public will access the results it has already paid for</strong>.</p>
+<p>The interested companies are free to sell support for the software, additional functionality (such as a GUI) designed for the software, or even their development services (say, implementation or integration of a particular feature in an open-source way), but the part of the <strong>software developed using the public money must remain available to everyone under a FOSS license</strong>.</p>
+<p>Claiming that the individual researcher who did not receive funding for research paid anything is a flawed argument in any sense. However, <strong>an individual researcher has a choice what FOSS he will support</strong>: as a group leader, he can assign the implementation of his research requirements in a particular software of his choosing to his students and postdocs, he can do the implementation himself, or he can pay an external contractor to do it for him. Furthermore, he can choose an external contractor among many, which is impossible in the case of proprietary software since – again – the <strong>company behind the software has exclusive access to the code</strong>.</p>
+<h3 id="is-saving-time-worth-losing-freedom">Is saving time worth losing freedom?</h3>
+<blockquote>
+<p>Computational chemistry software must balance the needs of two audiences: users, who gauge their productivity based on the speed, functionality, and user-friendliness of a given program; and developers, who may be more concerned with whether the structure “under the hood” provides an environment that fosters innovation and ease of implementation. As a quantitative example, consider that the cost of supporting a postdoctoral associate (salary plus benefits) is perhaps $4,800/month. If the use of well-supported commercial software can save 2 weeks of a postdoc’s time, then this would justify an expense of ≳$2,000 to purchase a software license. This amount exceeds the cost of an academic license for many computational chemistry programs. Given the choice between a free product and a commercial one, a scientist should make a decision based on her own needs and her own criteria for doing innovative research.</p>
+</blockquote>
+<p>This is a sensible argument. However, it does not address the freedom issue already discussed above. <strong>The lab that buys the license to use the software depends on a single vendor to maintain the software for them.</strong> Furthermore, the lab is not granted the right to modify the code to fit their needs and to redistribute their modifications to their colleagues. The issue here is not the price of the license but <strong>the freedom that is taken away from the paying user</strong>.</p>
+<h3 id="what-is-open-source">What Is “Open Source”?</h3>
+<blockquote>
+<p>The term “open source” is ubiquitous but its meaning is ambiguous. Some codes are “free” but are not open, whereas others make the source code available, albeit without binary executables so that responsibility for compilation and installation is left to the user. Insofar as the use of commercial quantum chemistry software is a mainstay of modern chemical research and teaching, there exists a broad consensus that the commercial model offers the stability and user support that the community desires.</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Open_source">Wikipedia provides a definition for open source</a> that says: "open source as a development model promotes a universal access via a free license to a product's design or blueprint, and universal redistribution of that design or blueprint, including subsequent improvements to it by anyone". A simple, clear-cut definition.</p>
+<p>The <strong>authors again confuse freeware with FOSS</strong> and then talk about the requirement to compile and install FOSS from source as an issue, which it simply is not. GNU/Linux distributions such as <a href="https://wiki.debian.org/DebianScience">Debian Science</a> (including <a href="https://wiki.debian.org/DebianScience/Chemistry">Chemistry</a>) and <a href="https://labs.fedoraproject.org/en/scientific/">Fedora Scientific</a> provide ready to use binaries for end users that prefer to avoid compiling software.</p>
+<p>Finally, the data supporting "broad consensus that the commercial model offers the stability and user support that the community desires" is lacking (and the term itself is ambiguous); I would honestly like to see relevant market share data of quantum chemistry tools presented and discussed. For illustrative purposes, let's assume a number of citations as a rough metric for the number of users and therefore a consensus on the usage of proprietary vs the usage of FOSS codes. Searching for citations in Web of Science gives <a href="hhttps://www.webofscience.com/wos/woscc/full-record/WOS:000165132900011">542 articles</a> for <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/1096-987X%28200012%2921%3A16%3C1532%3A%3AAID-JCC10%3E3.0.CO%3B2-W">Q-Chem 2.0 paper</a> and <a href="https://www.webofscience.com/wos/woscc/full-record/WOS:000239251500002">1581 articles</a> for <a href="https://pubs.rsc.org/en/content/articlelanding/2006/cp/b517914a">Advances in methods paper</a>; on the other hand, <a href="https://www.sciencedirect.com/science/article/pii/S0010465505000615">CP2K QUICKSTEP paper</a> has <a href="https://www.webofscience.com/wos/woscc/full-record/WOS:000228421500005">938 citations</a>. Despite CP2K having a lower total number of articles citing the relevant paper then Q-Chem, <strong>the number of citations is comparable in the order of magnitude</strong>. Since there are other FOSS codes (for example, <a href="https://www.nwchem-sw.org/">NWChem</a> and <a href="https://www.quantum-espresso.org/">Quantum ESPRESSO</a>) as well as other proprietary codes, this result does not prove much. However, this result questions the "broad consensus" claimed by the authors.</p>
+<h3 id="does-being-open-source-imply-anyone-can-modify-and-break-the-main-source-code-repository">Does being open source imply anyone can modify (and break) the main source code repository?</h3>
+<blockquote>
+<p>Strict coding guidelines can be enforced within a model where source code access is limited to qualified developers, and this kind of stability offers one counterbalance to the “reproducibility crisis”. To the extent that such a crisis exists, it has occurred in spite of the existence of open-source electronic structure codes such as GAMESS, NWChem, and CP2K.</p>
+</blockquote>
+<p><strong>Strict coding guidelines can be enforced in any project</strong>, be it FOSS or proprietary software. The <a href="https://www.nsnam.org/">ns-3 network simulator</a> and <a href="https://www.kernel.org/">Linux kernel</a> are both good examples of FOSS projects with strict rules on coding style, API usage, and on not breaking the existing functionality.</p>
+<p>The "reproducibility crisis" is two separate issues: <strong>being able to run the code someone else had run previously</strong> and having the code produce the same result within tolerance despite changes over time. The first issue is actually <strong>better solved by open-source software since anyone can access the code</strong>, and the second one is unrelated to code being open or proprietary, as described above.</p>
+<h3 id="does-a-good-description-of-the-algorithm-make-the-implementation-code-unnecessary">Does a good description of the algorithm make the implementation code unnecessary?</h3>
+<blockquote>
+<p>Occasionally the open-source model is touted on the grounds that one can use the source code to learn about the underlying algorithms, but this hardly seems relevant if the methods and algorithms are published in the scientific literature. Source code itself rarely constitutes enjoyable reading, and using source code to learn about an algorithm is a last resort forced by poorly written scientific papers. Better peer review is a more desirable solution.</p>
+</blockquote>
+<p>This is true, and we should also note that having both the source code and its detailed description is an ideal situation: you can study both, you can learn implementation tricks that could easily have been omitted from the description, and you can modify the algorithm without having to reimplement it first.</p>
+<h3 id="is-freely-available-to-academics-free-enough">Is freely available to academics free enough?</h3>
+<blockquote>
+<p>A more practical use of openly available source code is to reuse parts of it in other programs, provided that the terms of the software license allow this. Often, they do not. Some ostensibly “open” chemistry codes forbid reuse, or even redistribution.</p>
+</blockquote>
+<p>Here the authors cite <a href="https://www.kofo.mpg.de/en/research/services/orca">ORCA</a> and <a href="https://www.msg.chem.iastate.edu/gamess/index.html">GAMESS</a>. <strong>ORCA and GAMESS are not free and open-source software.</strong> (They are available to academics free of charge – it might be that this fact was the source of confusion.)</p>
+<h3 id="is-viral-license-the-problem-for-adoption">Is viral license the problem for adoption?</h3>
+<blockquote>
+<p>Others, such as CP2K, use the restrictive General Public License that requires any derivative built on the original code to be open-source itself. Variation in design structure from one program to the next also severely hampers transferability, even if the license terms are amenable.</p>
+</blockquote>
+<p>GNU General Public License (GPL) is a viral license, meaning that any code which reuses GPL code must also be licensed under GPL. This way, <strong>more and more code becomes FOSS over time</strong>. The authors are trying to imply that FOSS quantum chemistry tools are the problem for the quantum chemistry software ecosystem due to the GPL. Such implication is a <strong>misunderstanding of how FOSS works</strong>. The analogous misunderstanding was presented by <a href="https://en.wikiquote.org/wiki/Steve_Ballmer">Steve Ballmer, back in 2001, who said Linux was "cancer that attaches itself in an intellectual property sense to everything it touches" due to it being licensed under the GPL</a>. <a href="https://www.vanityfair.com/news/business/2012/08/microsoft-lost-mojo-steve-ballmer">Microsoft's lost decade</a> followed, and one can argue there is a causation since the companies like Apple, Google, and Facebook gladly reused FOSS when they could, and subsequently contributed their improvements back to the FOSS community.</p>
+<h3 id="is-it-open-enough-if-the-software-project-is-open-by-invite">Is it open enough if the software project is open by invite?</h3>
+<blockquote>
+<p>To facilitate innovation by developers, source code needs only to be available to people who intend to build upon it. This is commonly accomplished in the framework of “closed-source” software projects by granting academic groups access to the source code for development purposes.</p>
+</blockquote>
+<p>This is too easy to counter. <strong>Contributions to a FOSS project can come from anywhere.</strong> A student studying a particular variant of an algorithm wants to implement it and contribute it back. A professor trying different algorithms and contributing the best one. With so much FOSS out there, the potential contributor is not going to bother with software source code that is behind an NDA, an email form, or an invitation of some kind. <strong>Such a potential contributor is unlikely to give his freedom away and sign his code away for the benefits of a particular private venture.</strong></p>
+<h3 id="will-open-source-destroy-proprietary-software">Will open source destroy proprietary software?</h3>
+<blockquote>
+<p>What would the impact be on computational chemistry of destroying other teamware projects such as Molpro, Turbomole, Jaguar, Molcas, PQS, or ONETEP, in the interest of satisfying some “open-source” mandate?</p>
+</blockquote>
+<p>I fail to see how the open-source mandate per se destroys any proprietary software. Namely, all these proprietary software projects have the option to open source their code and <strong>change their business model to compete based on quality, not code ownership</strong>. Alternatively, if they desire to continue to maintain the present development practices, they are still free to find other sources of income.</p>
+<h3 id="is-proprietary-software-more-optimized">Is proprietary software more optimized?</h3>
+<blockquote>
+<p>[Open-source mandate] would, in our view, detract from the merit-based review process. When evaluating grant proposals that involve software development, the questions to be asked should be: 1. What will be the quality of the software in terms of the new science that it enables, either on the applications side or on the development side? 2. How will the software foster productivity? For example, how computationally efficient is it for a given task? How usable will the software be, and how quickly will other scientists be able to learn to use it for their own research? A rigid, mindless focus on an open-source mantra is a distraction from these more important criteria. It can even be an excuse to ignore them, and creates an uneven playing field in which developers who prefer to work with a commercial platform are put at a disadvantage and potentially forced to adopt less efficient practices.</p>
+</blockquote>
+<p>The quality argument presented in the first point has already been addressed above. The second point does not say much without the accompanying benchmarks that would support the idea that, when both are implementing the same method, the proprietary software is computationally more efficient than FOSS. However, there is a <a href="https://www.research.ed.ac.uk/en/publications/cp2k-performance-from-cray-xt3-to-xc30">report on CP2K performance from Bethune, Reid, and Lazzaro</a> showing the improvement of computational performance over time. These <strong>measurements only prove that there is a FOSS project that specifically cares about computational efficiency</strong>, but it does not say anything in absolute terms.</p>
+<h3 id="does-open-source-force-a-scientist-to-open-everything-straight-away">Does open source force a scientist to open everything straight away?</h3>
+<blockquote>
+<p>Open-source requirements potentially force a scientist to choose between pursuing a funding opportunity versus implementing an idea in the quickest, most efficient, and highest-impact way. A strictly open-source environment may furthermore disincentivize young researchers to make new code available right away, lest their ability to publish papers be short-circuited by a more senior researcher with an army of postdocs poised to take advantage of any new code.</p>
+</blockquote>
+<p>Using open-source software under GPL version 2 or later allows a researcher to make private changes and never release them to the public. Namely, <strong>GPL version 2 only mandates that a release of the software in binary form be accompanied by the release of the matching source code</strong>. Therefore, if anything, <strong>the scientist has more options how (and if) to release the code</strong>, not less.</p>
+<p>As for the "army of postdocs jumping on any new code", I see many more advantages than disadvantages of this particular situation. Namely, since <strong>nobody can claim the authorship of anyone else's code</strong>, one can use this heightened interest in the new code to explain to other scientists the research he is doing, and open opportunities for collaboration.</p>
+<h3 id="is-orphaned-code-more-common-in-open-source-than-in-proprietary-software">Is orphaned code more common in open source than in proprietary software?</h3>
+<blockquote>
+<p>This would contribute directly to the scenario that Gezelter wishes to avoid, namely, one where students leave behind “orphaned” code that will never be incorporated into mainstream, production-level software. Viewed in these terms, an open-source mandate degrades, rather than enhances, cyberinfrastructure.</p>
+</blockquote>
+<p>If the students were developing proprietary instead of open-source software, their "orphaned" code would automatically not be available to other researchers for further development. Whether or not any code will be incorporated in production-level software depends on the code quality, its usefulness, and community interest.</p>
+<h3 id="are-software-freedom-and-software-quality-competing-features">Are software freedom and software quality competing features?</h3>
+<blockquote>
+<p>How should the impact of software be measured? Scientific publications are a more sound metric than either the price of a product or whether its source code is available in the public domain. Software is meant to serve scientific research, in the same way that any other scientific instrument is intended. As such, the question should not be whether software is free or open-source, but rather, what new science can be accomplished with it?</p>
+</blockquote>
+<p>True, scientific publications are one possible way to measure the impact of software. However, <strong>open-source software is certainly not released in the public domain</strong>. As for the question, why not <strong>require both the quality and the freedom from software</strong>? Are really these two requirements competing against each other?</p>
+<h3 id="is-software-freedom-a-political-rhetoric">Is software freedom a political rhetoric?</h3>
+<blockquote>
+<p>Let us not allow political rhetoric to dictate how we are to do science. Let different ideas and different models (including open source!) compete freely and flourish, and let the community focus instead on the most important metric of all: what is good for scientific discovery.</p>
+</blockquote>
+<p>The <strong>issue of software freedom is both an ethical issue and a practical one</strong>, as described above, so it is hardly a "political rhetoric". I would propose instead that we let the community choose the software to use, based on both freedom and quality. While at it, <strong>we should stand firm on the requirement that the publicly-funded scientific software development results in free and open-source software</strong>. Whether the proprietary vendors will be willing to adapt their business models is ultimately their choice.</p>
+<h2 id="conflict-of-interest-statement">Conflict of interest statement</h2>
+<p>I am a contributor to <a href="https://www.cp2k.org/">CP2K</a> and <a href="https://www.gromacs.org/">GROMACS</a> open-source molecular dynamics software packages. So far, I have attended two CP2K developer meetings, one remotely and one being physically present in Zürich. For my contributions in general and for these attendances in particular, I have not received any monetary compensation from <a href="https://www.ethz.ch/">ETH Zürich</a>, <a href="https://www.uzh.ch/">University of Zürich</a>, or any other party involved in CP2K development.</p>
+
+              
+  
+    <p><small>Author: Vedran Miletić</small></p>
+  
+
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../2015-12-13-on-having-leverage-and-using-it-for-pushing-open-source-software-adoption/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: On having leverage and using it for pushing open-source software adoption" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              On having leverage and using it for pushing open-source software adoption
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../2015-07-28-joys-and-pains-of-interdisciplinary-research/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Joys and pains of interdisciplinary research" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              Joys and pains of interdisciplinary research
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.01de222e.min.js"></script>
+      
+    
+  </body>
+</html>

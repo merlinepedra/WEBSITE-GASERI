@@ -1,0 +1,5593 @@
+
+<!doctype html>
+<html lang="hr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research and teaching group at University of Rijeka Faculty of Informatics and Digital Technologies">
+      
+      
+        <meta name="author" content="Vedran Miletić">
+      
+      
+        <link rel="canonical" href="https://group.miletic.net/en/blog/2016-01-17-amd-and-the-open-source-community-are-writing-history/">
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
+    
+    
+      
+        <title>AMD and the open-source community are writing history - GASERI – Group for apps and services on exascale research infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.cd566b2a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-3CSW7LLM5F"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-3CSW7LLM5F",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CSW7LLM5F"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#amd-and-the-open-source-community-are-writing-history" class="md-skip">
+          Preskočite na sadržaj
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-header__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  <img src="../../../images/gaseri-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GASERI – Group for apps and services on exascale research infrastructure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AMD and the open-source community are writing history
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/hr/" hreflang="hr" class="md-select__link">
+                    Croatian
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Pretraživanje" placeholder="Pretraživanje" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      GASERI
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../hr/" class="md-tabs__link">
+        🇭🇷 Sadržaj na hrvatskom
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        🇺🇸 Contents in English
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="GASERI – Group for apps and services on exascale research infrastructure" class="md-nav__button md-logo" aria-label="GASERI – Group for apps and services on exascale research infrastructure" data-md-component="logo">
+      
+  <img src="../../../images/gaseri-logo.svg" alt="logo">
+
+    </a>
+    GASERI – Group for apps and services on exascale research infrastructure
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        GASERI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          🇭🇷 Sadržaj na hrvatskom
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🇭🇷 Sadržaj na hrvatskom" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          🇭🇷 Sadržaj na hrvatskom
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/" class="md-nav__link">
+        O grupi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/ljudi/" class="md-nav__link">
+        Ljudi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/istrazivanje-i-razvoj/" class="md-nav__link">
+        Istraživanje i razvoj
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/partnerstva-i-suradnje/" class="md-nav__link">
+        Partnerstva i suradnje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Nastava
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Nastava" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Nastava
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/" class="md-nav__link">
+        O nastavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2" type="checkbox" id="__nav_2_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2">
+          Izvedbeni planovi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Izvedbeni planovi" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Izvedbeni planovi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_1" type="checkbox" id="__nav_2_5_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_1">
+          2021/2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2021/2022" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          2021/2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2021-2022/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_2" type="checkbox" id="__nav_2_5_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_2">
+          2020/2021
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2020/2021" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          2020/2021
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2020-2021/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_3" type="checkbox" id="__nav_2_5_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_3">
+          2019/2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2019/2020" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2019-2020/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2_4" type="checkbox" id="__nav_2_5_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2_4">
+          2018/2019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2018/2019" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_5_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          2018/2019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/izvedbeni/2018-2019/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_3" type="checkbox" id="__nav_2_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_3">
+          Kolegiji
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Kolegiji" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Kolegiji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/DS/" class="md-nav__link">
+        Distribuirani sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/INF-BioTech/" class="md-nav__link">
+        Informatika (BioTech)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/KM/" class="md-nav__link">
+        Komunikacijske mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/MMOS/" class="md-nav__link">
+        Mrežni i mobilni operacijski sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OI1/" class="md-nav__link">
+        Osnove informatike 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OPK/" class="md-nav__link">
+        Optimizacija programskog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OS1/" class="md-nav__link">
+        Operacijski sustavi 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/OS2/" class="md-nav__link">
+        Operacijski sustavi 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/PPHS/" class="md-nav__link">
+        Paralelno programiranje na heterogenim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/PW/" class="md-nav__link">
+        Programiranje za web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM/" class="md-nav__link">
+        Računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM1/" class="md-nav__link">
+        Računalne mreže 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM2/" class="md-nav__link">
+        Računalne mreže 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/RM-RiTeh/" class="md-nav__link">
+        Računalne mreže (RiTeh)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/SRS/" class="md-nav__link">
+        Superračunalni sustavi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/UMS/" class="md-nav__link">
+        Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/kolegiji/URS/" class="md-nav__link">
+        Upravljanje računalnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_4" type="checkbox" id="__nav_2_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_4">
+          Nastavni materijali
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Nastavni materijali" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Nastavni materijali
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/389-directory-server-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj 389 Directory Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/anaconda-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskih sustava Fedora i CentOS korištenjem instalacijskog alata Anaconda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ansible-automatizacija-konfiguracije-odrzavanja-sustava/" class="md-nav__link">
+        Automatizacija konfiguracije i održavanja sustava alatom Ansible
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-ab-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom ab (Apache HTTP server benchmarking tool)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-mod-ssl/" class="md-nav__link">
+        Konfiguracija HTTPS-a u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-pokretanje-php-aplikacija/" class="md-nav__link">
+        Pokretanje PHP web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-pokretanje-python-aplikacija/" class="md-nav__link">
+        Pokretanje Python web aplikacija u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-virtual-host/" class="md-nav__link">
+        Konfiguracija virtualnih domaćina u web poslužitelju Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/apache-web-posluzitelj/" class="md-nav__link">
+        Osnovna konfiguracija web poslužitelja Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/api-abi-kompatibilnost/" class="md-nav__link">
+        Binarna kompatibilnost i kompatibilnost na razini izvornog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/avahi-zeroconf/" class="md-nav__link">
+        Zerconf NSS/mDNS sustav Avahi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/avogadro-vizualizacija-uredjivanje-molekula/" class="md-nav__link">
+        Vizualizacija i uređivanje molekula alatom Avogadro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bind9-dns-sustav/" class="md-nav__link">
+        DNS sustav BIND9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bioinformatika-povijest-osnove/" class="md-nav__link">
+        Bioinformatika
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/brctl-izrada-mostova/" class="md-nav__link">
+        Premošćenje mrežnih adaptera i izrada mostova
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/bro-raspoznavanje-upada-u-sustav/" class="md-nav__link">
+        Raspoznavanje upada u sustav alatom Bro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ceph-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Ceph
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/chembl-baza-bioaktivnih-molekula/" class="md-nav__link">
+        Baza bioaktivnih molekula ChEMBL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-modularni-usmjerivac/" class="md-nav__link">
+        Modularni usmjerivač Click
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-programska-osnova-usmjerivaca/" class="md-nav__link">
+        Programska osnova usmjerivača
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/click-protokoli/" class="md-nav__link">
+        Korištenje mrežnih protokola u modularnom usmjerivaču Click
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/c-mrezne-aplikacije/" class="md-nav__link">
+        Programiranje mrežnih aplikacija u programskim jezicima C i C++
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-eigen/" class="md-nav__link">
+        C++ biblioteka predložaka za linearnu algebru Eigen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-std-random/" class="md-nav__link">
+        Generiranje pseudoslučajnih brojeva u C++ aplikacijama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/cpp-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja C++ aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/curl-protokoli-aplikacijske-razine/" class="md-nav__link">
+        Rad s protokolima aplikacijske razine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/debian-installer-instalacija-operacijskog-sustava/" class="md-nav__link">
+        Instalacija operacijskog sustava Debian korištenjem instalacijskog alata Debian-Installer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/deb-pakiranje-paketa/" class="md-nav__link">
+        Pakiranje deb paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dhcp-posluzitelj-klijent/" class="md-nav__link">
+        Dinamičko dodjeljivanje adresa domaćinima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dnsmasq-dhcp-dns-posluzitelj/" class="md-nav__link">
+        DHCP i DNS poslužitelj dnsmasq
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/docker-compose-kompozicije-kontejnera/" class="md-nav__link">
+        Komponiranje kontejnera alatom Docker Compose
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/docker-kontejneri/" class="md-nav__link">
+        Kontejnerizacija alatom Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dokuwiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava DokuWiki
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/dovecot-pop3-imap-posluzitelj/" class="md-nav__link">
+        POP3 i IMAP -- Dovecot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/doxygen-dokumentiranje-programskog-koda/" class="md-nav__link">
+        Dokumentiranje programskog koda alatom Doxygen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ebtables-vatrozid/" class="md-nav__link">
+        Filtriranje okvira vatrozidom na veznom sloju
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/elasticsearch-distribuirano-pretrazivanje/" class="md-nav__link">
+        Distribuirano pretraživanje u realnom vremenu alatom ElasticSearch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emacs-text-datoteke/" class="md-nav__link">
+        Rad s tekstualnim datotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-bezicne-mreze/" class="md-nav__link">
+        Emulacija bežičnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-fragmentacija-paketa/" class="md-nav__link">
+        Fragmentacija IPv4 paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-generiranje-topologija/" class="md-nav__link">
+        Generiranje topologija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-graficko-sucelje/" class="md-nav__link">
+        Osnove rada s emulatorom računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-konfiguracija-cvora/" class="md-nav__link">
+        Konfiguracija čvorova u alatu CORE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-mobilnost/" class="md-nav__link">
+        Mobilnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/emulator-core-stvaranje-konfiguracija-podmreza/" class="md-nav__link">
+        Stvaranje i konfiguracija podmreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gcc-gxx-make-prevodjenje-programa/" class="md-nav__link">
+        Prevođenje C, C++ i Fortran programa u izvršni kod
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gettext-lokalizacija-softvera/" class="md-nav__link">
+        Lokalizacija softvera korištenjem GNU gettexta
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gitlab-ci-cd/" class="md-nav__link">
+        Kontinuirana integracija korištenjem GitLaba
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/git-upravljanje-verzijama/" class="md-nav__link">
+        Distribuirani sustav za upravljanje verzijama Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gluster-distribuirani-datotecni-sustav/" class="md-nav__link">
+        Distribuirani datotečni sustav Gluster
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gnu-linux-slobodni-softver-povijest-osnove/" class="md-nav__link">
+        Razvoj slobodnog operacijskog sustava sličnog Unixu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/gnupg-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa alatom GnuPG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/grep-sed-awk-tr/" class="md-nav__link">
+        Pretraživanje i obrada tekstualnih datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/grub-pokretanje-sustava/" class="md-nav__link">
+        Boot proces računala i učitavač GRUB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/hsa-pregled/" class="md-nav__link">
+        Pregled heterogene sustavske arhitekture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/httpie-http-klijent/" class="md-nav__link">
+        HTTP klijent HTTPie
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ifconfig-konfiguracija-mreznih-sucelja/" class="md-nav__link">
+        Osnovni alati za konfiguraciju računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/intelektualno-vlasnistvo-softver-podaci-znanstveni-radovi/" class="md-nav__link">
+        Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/iptables-prevodjenje-adresa/" class="md-nav__link">
+        Prevođenje mrežnih adresa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/iptables-vatrozid/" class="md-nav__link">
+        Filtriranje paketa vatrozidom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/kemoinformatika-povijest-osnove/" class="md-nav__link">
+        Kemoinformatika i računalna kemija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/kvm-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem KVM-a i QEMU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/virt-manager-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem Virtual Machine Managera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/libvirt-virtualizacija/" class="md-nav__link">
+        Virtualizacija korištenjem libvirta
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-arhiviranje-komprimiranje/" class="md-nav__link">
+        Arhiviranje i komprimiranje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-cijevi-preusmjeravanje-ulaza-izlaza/" class="md-nav__link">
+        Cijevi, preusmjeravanje ulaza i izlaza
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-cli-uvod/" class="md-nav__link">
+        Uvod u komandnolinijsko sučelje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-datoteke-touch-rm-cp-mv/" class="md-nav__link">
+        Baratanje datotekama u datotečnom sustavu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-direktoriji-mkdir-pwd-cd/" class="md-nav__link">
+        Stablo direktorija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-disk-particija-filesystem/" class="md-nav__link">
+        Diskovi, particije, datotečni sustavi i mjesta montiranja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-dozvole-datoteka/" class="md-nav__link">
+        Dozvole i kontrola pristupa datotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-inode-poveznice/" class="md-nav__link">
+        Informacijski čvorovi, vremena i poveznice datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-kernel-osnove/" class="md-nav__link">
+        Rad s jezgrom operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-korisnici-grupe/" class="md-nav__link">
+        Korisnici i grupe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-procesi/" class="md-nav__link">
+        Upravljanje procesima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-shell-varijable-povijest/" class="md-nav__link">
+        Varijable ljuske i okoline, povijest ljuske
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/linux-tipovi-datoteka/" class="md-nav__link">
+        Tipovi datoteka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/llvm-backend-amdgpu/" class="md-nav__link">
+        Prevođenje OpenCL C koda u asemblerski kod arhitektura AMD GCN i RDNA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/llvm-frontend-clang-opencl-c/" class="md-nav__link">
+        Prevođenje OpenCL C koda program prevoditeljem Clang
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mariadb-replikacija/" class="md-nav__link">
+        Replikacija sadržaja poslužitelja sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mariadb-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka MariaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mediawiki-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija wiki sustava MediaWiki
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/mkdocs-dokumentiranje-programa/" class="md-nav__link">
+        Dokumentiranje programa alatom MkDocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nabavka-prevodjenje-instalacija-softvera-otvorenog-koda/" class="md-nav__link">
+        Nabavka, kompajliranje i instalacija softvera otvorenog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/netlib-blas-lapack/" class="md-nav__link">
+        BLAS i LAPACK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nfs-mrezni-datotecni-sustav/" class="md-nav__link">
+        Mrežni datotečni sustav NFS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nginx-web-posluzitelj/" class="md-nav__link">
+        Web poslužitelj nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/nmap-analiza-ranjivosti/" class="md-nav__link">
+        Analiza ranjivosti računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oblak-resursi-usluge/" class="md-nav__link">
+        Računarstvo u oblaku
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/obs-studio-snimanje/" class="md-nav__link">
+        Snimanje zvuka, videa i dijelova zaslona programom OBS Studio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-linux-upravljanje-datotecnim-sustavom-2/" class="md-nav__link">
+        Pretraživanje, prava pristupa, rad sa tekstom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-linux-upravljanje-datotecnim-sustavom/" class="md-nav__link">
+        Osnove rada sa komandnom linijom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-perl/" class="md-nav__link">
+        Skriptiranje u Perl-u
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/oi1-regularni-izrazi-konacni-automati/" class="md-nav__link">
+        Regularni izrazi i konačni automati
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/open-babel-pretvorba-analiza-spremanje-podataka-molekula/" class="md-nav__link">
+        Pretvorba formata alatom Open Babel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openldap-ldap-posluzitelj/" class="md-nav__link">
+        LDAP poslužitelj OpenLDAP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssh-sigurna-ljuska/" class="md-nav__link">
+        Sigurna ljuska i udaljeni rad alatom OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-certifikat-javnog-kljuca/" class="md-nav__link">
+        Certifikat javnog ključa, certifikacijska tijela i sigurni poslužitelj
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-kriptografija-javnog-kljuca/" class="md-nav__link">
+        Kriptografija javnog ključa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openssl-kriptografski-algoritmi/" class="md-nav__link">
+        Korištenje osnovnih kriptografskih algoritama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openvpn-infrastruktura-javnog-kljuca/" class="md-nav__link">
+        Korištenje infrastrukture javnog ključa u postavljanju virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openvpn-virtualna-privatna-mreza/" class="md-nav__link">
+        Konfiguracija virtualne privatne mreže alatom OpenVPN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/openwrt-ugradbeni-softver-za-bezicne-mrezne-usmjerivace/" class="md-nav__link">
+        OpenWrt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/otvoreni-kod-povijest-osnove/" class="md-nav__link">
+        Softver otvorenog koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/paralelno-distribuirano-heterogeno-racunarstvo-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi paralelnog, distribuiranog i heterogenog računarstva
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/paralelno-distribuirano-heterogeno-racunarstvo-superracunala/" class="md-nav__link">
+        Superračunala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pdb-baza-proteina/" class="md-nav__link">
+        Baza struktura proteina RCSB PDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-composer/" class="md-nav__link">
+        Upravljanje zavisnostima paketa u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-cookies/" class="md-nav__link">
+        Baratanje HTTP kolačićima u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-curl/" class="md-nav__link">
+        Izvođenje HTTP zahtjeva korištenjem biblioteke cURL u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-file-upload/" class="md-nav__link">
+        Postavljanje datoteka na poslužitelj u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-http-auth/" class="md-nav__link">
+        HTTP autentifikacija u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-http-encoding/" class="md-nav__link">
+        Kodiranje HTTP sadržaja i kompresija u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-json/" class="md-nav__link">
+        Obrada podataka zapisanih u obliku JavaScript Object Notation (JSON) u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-openssl/" class="md-nav__link">
+        Korištenje biblioteke OpenSSL u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-rest/" class="md-nav__link">
+        Implementacija REpresentational State Transfer (REST) aplikacijskog programskog sučelja u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-sockets/" class="md-nav__link">
+        Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-sodium/" class="md-nav__link">
+        Korištenje biblioteke Sodium u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-ugradjeni-web-posluzitelj/" class="md-nav__link">
+        Ugrađeni web poslužitelj u interpreteru jezika PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-visejezicnost/" class="md-nav__link">
+        Višejezičnost u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/php-zahtjev-odgovor/" class="md-nav__link">
+        Obrada HTTP zahtjeva i stvaranje odgovora u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/ping-traceroute-nestat-analiza-mreze/" class="md-nav__link">
+        Osnovni alati za analizu računalne mreže
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/postfix-procmail-smtp-posluzitelj/" class="md-nav__link">
+        Message transfer agent -- Postfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/postgresql-sustav-za-upravljanje-bazom-podataka/" class="md-nav__link">
+        Konfiguracija sustava za upravljanje bazom podataka PostgreSQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/procfs-sysfs-informacije-konfiguracija/" class="md-nav__link">
+        Datotečni sustavi Procfs i Sysfs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pxe-pokretanje-racunala-putem-mreznog-sucelja/" class="md-nav__link">
+        Pokretanje računala putem mrežnog sučelja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/pymol-vizualizacija-molekula/" class="md-nav__link">
+        Vizualizacija molekula u alatu PyMOL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-dokumentiranje/" class="md-nav__link">
+        Dokumentiranje Python koda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-funkcije-klase/" class="md-nav__link">
+        Python -- funkcije i klase
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-input-output/" class="md-nav__link">
+        Python -- ulaz i izlaz
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modularizacija/" class="md-nav__link">
+        Python -- moduli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-calendar/" class="md-nav__link">
+        Python -- stvaranje i ispis kalendara
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-cryptography/" class="md-nav__link">
+        Rad s Python modulom pyca/cryptography
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-django/" class="md-nav__link">
+        Python -- Django
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-django-rest-framework/" class="md-nav__link">
+        Python -- Django REST framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-datetime/" class="md-nav__link">
+        Python -- osnovni tipovi podataka datuma i vremena
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-fcntl/" class="md-nav__link">
+        Python -- usluge specifične za operacijske sustave slične Unixu -- pozivi fcntl() i ioctl()
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-gettext/" class="md-nav__link">
+        Python -- usluge za višejezičnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-glob/" class="md-nav__link">
+        Python -- ekspanzija uzoraka imena putanje u stilu operacijskih sustava sličnih Unixu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-locale/" class="md-nav__link">
+        Python -- internacionalizacija i lokalizacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-matplotlib/" class="md-nav__link">
+        Rad s Python modulom matplotlib i sučeljem pyplot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-dinamicko-upravljanje-procesima/" class="md-nav__link">
+        Python modul mpi4py -- dinamičko upravljanje procesima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-jednostrana-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- jednostrana komunikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-kolektivna-komunikacija/" class="md-nav__link">
+        Python modul mpi4py -- kolektivna komunikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-komunikacija-tocka-do-tocke/" class="md-nav__link">
+        Python modul mpi4py -- komunikacija točka-do-točke
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-komunikatori-grupe/" class="md-nav__link">
+        Python modul mpi4py -- komunikatori i grupe procesa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-osnove/" class="md-nav__link">
+        Python modul mpi4py -- osnove
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-paralelni-ulaz-izlaz/" class="md-nav__link">
+        Python modul mpi4py -- paralelni ulaz/izlaz
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-mpi4py-upravljanje-okolinom/" class="md-nav__link">
+        Python modul mpi4py -- upravljanje okolinom
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-multiprocessing/" class="md-nav__link">
+        Python -- višeprocesnost na jednom računalu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-numpy/" class="md-nav__link">
+        Rad s Python modulom numpy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-os/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- osnovna sučelja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-os-path/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- baratanje imenom putanje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-biblioteke-funkcija/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije i tipovi podatka dostupni u CUDA bibliotekama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-funkcije-uredjaja-domacina/" class="md-nav__link">
+        Python modul PyCUDA -- funkcije uređaja i domaćina
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-hijerarhija-memorije/" class="md-nav__link">
+        Python modul PyCUDA -- hijerarhija GPU memorije
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-matrice/" class="md-nav__link">
+        Python modul PyCUDA -- paralelni algoritmi na matricama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-multi-gpu/" class="md-nav__link">
+        Python modul PyCUDA -- rad s više GPU-a
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-osnove/" class="md-nav__link">
+        Python modul PyCUDA -- osnove rada s GPU-om
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-otklanjanje-gresaka/" class="md-nav__link">
+        Python modul PyCUDA -- otklanjanje grešaka i curenja memorije
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-profiliranje-optimizacija/" class="md-nav__link">
+        Python modul PyCUDA -- mjerenje performansi, profiliranje i optimizacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-redukcija/" class="md-nav__link">
+        Python modul PyCUDA -- paralelna redukcija, norma i skalarno množenje vektora
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-tokovi-asinkrone-operacije/" class="md-nav__link">
+        Python modul PyCUDA -- korištenje tokova i asinkronih kopiranja memorije za poboljšanje performansi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-vektorski-tipovi/" class="md-nav__link">
+        Python modul PyCUDA -- rad s vektorskim tipovima podataka
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pycuda-zbrajanje-vektora/" class="md-nav__link">
+        Python modul PyCUDA -- zbrajanje vektora
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-pyopencl/" class="md-nav__link">
+        Programiranje aplikacija za heterogene sustave korištenjem tehnologije OpenCL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-scipy/" class="md-nav__link">
+        Rad s Python modulom scipy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-select/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- čekanje na završetak ulazno/izlaznih operacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-signal/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- baratanje signalima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-socket/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- utičnice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-subprocess/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- podprocesi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-sys/" class="md-nav__link">
+        Python -- parametri i funkcije ovisni o sustavu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-threading/" class="md-nav__link">
+        Python -- dodatne usluge operacijskog sustava -- višenitnost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-time/" class="md-nav__link">
+        Python -- općenite usluge operacijskog sustava -- vrijeme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-modul-xmlrpc/" class="md-nav__link">
+        Python -- međuprocesna komunikacija -- pozivanje udaljenih procedoura i modul XML-RPC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-okvir-waf/" class="md-nav__link">
+        Rad s Python okvirom waf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-osnove-sintakse/" class="md-nav__link">
+        Osnovna sintaksa programskog jezika Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-programiranje/" class="md-nav__link">
+        Programiranje i programski jezik Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-standardna-biblioteka/" class="md-nav__link">
+        Python -- često korišteni moduli standardne biblioteke
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-testiranje/" class="md-nav__link">
+        Testiranje Python aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/python-timing-benchmarking/" class="md-nav__link">
+        Mjerenje brzine izvođenja Python aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/quagga-usmjeravanje/" class="md-nav__link">
+        Rad s alatima za usmjeravanje
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/racunarstvo-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja računala i temelji računarske znanosti
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/racunarstvo-sveprisutna-prozimajuca-racunala/" class="md-nav__link">
+        Sveprisutna i prožimajuća računala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/redis-predmemorija/" class="md-nav__link">
+        Konfiguracija sustava za predmemoriju Redis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocalution/" class="md-nav__link">
+        rocALUTION -- ROCm SPARSE Linear Algebra PACkage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocblas/" class="md-nav__link">
+        rocBLAS -- ROCm Basic Linear Algebra Subprograms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocfft/" class="md-nav__link">
+        rocFFT -- ROCm Fast Fourier Transforms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocprim/" class="md-nav__link">
+        rocPRIM -- ROCm parallel PRIMitives
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocrand/" class="md-nav__link">
+        rocRAND -- ROCm RANDom number generator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocsolver/" class="md-nav__link">
+        rocSOLVER -- ROCm-ov linear algebra SOLVER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/rocm-rocsparse/" class="md-nav__link">
+        rocSPARSE -- ROCm SPARSE basic linear algebra subroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/samba-interoperabilnost-windows-linux/" class="md-nav__link">
+        Interoperabilnost operacijskih sustava Windows i GNU/Linux korištenjem Sambe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/screen-tmux-multipleksiranje-terminala/" class="md-nav__link">
+        Multipleksiranje terminala
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/selinux-mandantna-kontrola-pristupa/" class="md-nav__link">
+        Mandantna kontrola pristupa korištenjem sustava SELinux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/siege-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
+        Mjerenje performansi web poslužitelja alatom Siege
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
+        Integracija simuliranih i stvarnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-modeli-gresaka/" class="md-nav__link">
+        Simulacijski modeli grešaka paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-mrezne-aplikacije-promet/" class="md-nav__link">
+        Simulacijski modeli mrežnih aplikacija kao generatora prometa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-pojmovi/" class="md-nav__link">
+        Teorijske osnove simulacije računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-povezivanje-cvorova/" class="md-nav__link">
+        Povezivanje čvorova u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-redovi-cekanja/" class="md-nav__link">
+        Simulacijski modeli redova čekanja
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-tcp-upravljanje-zagusenjem/" class="md-nav__link">
+        Simulacijski modeli TCP-ovih algoritama za upravljanje zagušenjem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/simulator-ns3-topologije/" class="md-nav__link">
+        Slaganje složenijih topologija u simulaciji računalnih mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/spamassasin-spam-filter/" class="md-nav__link">
+        Spam filter -- SpamAssassin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/strace-ltrace-sucelja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje korištenja programskih sučelja sustava korištenjem alata strace i ltrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/strongswan-ipsec/" class="md-nav__link">
+        IPsec alat strongSwan
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-cron-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
+        Automatizacija zadaća operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-journalctl-pracenje-dogadjaja-operacijskog-sustava/" class="md-nav__link">
+        Praćenje događaja operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/systemd-systemctl-upravljanje-uslugama-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje uslugama operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/tinc-virtualna-privatna-mreza/" class="md-nav__link">
+        Tuneliranje alatom tinc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/tor-anonimna-komunikacija/" class="md-nav__link">
+        Anonimna komunikacija alatom Tor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/unix-att-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa u AT&T-u i drugim tvrtkama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/unix-bsd-povijest-osnove/" class="md-nav__link">
+        Povijesni pregled razvoja Unixa na Kalifornijskom sveučilištu u Berkeleyu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljacki-programi-hardvera/" class="md-nav__link">
+        Upravljački programi hardvera
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljanje-dokumentacijom-racunalnih-sustava-i-mreza/" class="md-nav__link">
+        Upravljanje dokumentacijom računalnih sustava i mreža
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/upravljanje-racunalnim-sustavima-i-mrezama-pojmovi/" class="md-nav__link">
+        Osnovni pojmovi upravljanja računalnim sustavima i mrežama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/vlasnicki-softveri-posebne-namjene-i-racunalne-igre/" class="md-nav__link">
+        Vlasnički softveri posebne namjene i računalne igre
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/vlc-strujanje-multimedijskog-sadrzaja/" class="md-nav__link">
+        Strujanje multimedijskog sadržaja alatom VLC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wireshark-filtriranje-paketa/" class="md-nav__link">
+        Filtriranje paketa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wireshark-snimanje-prometa/" class="md-nav__link">
+        Snimanje prometa aplikacija
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/wordpress-instalacija-web-aplikacije/" class="md-nav__link">
+        Instalacija i konfiguracija sustava za upravljanje sadržajem Wordpress
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/yum-rpm-upravljanje-paketima-operacijskog-sustava/" class="md-nav__link">
+        Upravljanje paketima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/znanstveni-softver/" class="md-nav__link">
+        Znanstveni softver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/nastava/materijali/zotero-citiranje-bibliografija/" class="md-nav__link">
+        Upute za upravljanje bibliografijom korištenjem alata Zotero
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/teme-zavrsnih-i-diplomskih-radova/" class="md-nav__link">
+        Teme završnih i diplomskih radova
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/aktivizam/" class="md-nav__link">
+        Aktivizam
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/povijest/" class="md-nav__link">
+        Povijest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9">
+          Arhiva
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Arhiva" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Arhiva
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9_1" type="checkbox" id="__nav_2_9_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9_1">
+          Eseji
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Eseji" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          Eseji
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/arhiva/eseji/peter-norvig-naucite-programirati-u-deset-godina/" class="md-nav__link">
+        Peter Norvig -- Naučite programirati u deset godina
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/arhiva/eseji/vedran-miletic-zaboravite-na-pcchipovo-misljenje-o-linuxu/" class="md-nav__link">
+        Vedran Miletić -- Zaboravite na PCChipovo mišljenje o Linuxu
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hr/vrlo-vazne-informacije/" class="md-nav__link">
+        Vrlo važne informacije
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          🇺🇸 Contents in English
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🇺🇸 Contents in English" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          🇺🇸 Contents in English
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        About the group
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../people/" class="md-nav__link">
+        People
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        Publications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Teaching
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Teaching" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Teaching
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/" class="md-nav__link">
+        About the teaching
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_2" type="checkbox" id="__nav_3_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_2">
+          Courses
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Courses" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Courses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/courses/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3" type="checkbox" id="__nav_3_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3">
+          Programmes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Programmes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Programmes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3_1" type="checkbox" id="__nav_3_5_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3_1">
+          Revision 2021/2022
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Revision 2021/2022" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_5_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Revision 2021/2022
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/programmes/revision-2021-2022/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5_3_2" type="checkbox" id="__nav_3_5_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5_3_2">
+          Revision 2019/2020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Revision 2019/2020" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_5_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Revision 2019/2020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teaching/programmes/revision-2019-2020/CO/" class="md-nav__link">
+        Code optimization
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_1" type="checkbox" id="__nav_3_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6_1">
+          GROMACS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GROMACS" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          GROMACS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/1-tip4pew-water/" class="md-nav__link">
+        Water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/2-methane-in-water/" class="md-nav__link">
+        One methane in water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/3-methanes-in-water/" class="md-nav__link">
+        Several methanes in water
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/4-methane-fe/" class="md-nav__link">
+        Free energy of solvation of methane
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/5-umbrella/" class="md-nav__link">
+        Window sampling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/gromacs/6-tpi/" class="md-nav__link">
+        Test particle insertion
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_7">
+          Blog
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blog" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          Blog
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
+        Markdown vs reStructuredText for teaching materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-09-24-mirroring-free-and-open-source-software-matters/" class="md-nav__link">
+        Mirroring free and open-source software matters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-31-fly-away-little-bird/" class="md-nav__link">
+        Fly away, little bird
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-29-why-we-use-restructuredtext-and-sphinx-static-site-generator-for-maintaining-teaching-materials/" class="md-nav__link">
+        Why we use reStructuredText and Sphinx static site generator for maintaining teaching materials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2017-07-22-enabling-http2-https-and-going-https-only-on-inf2/" class="md-nav__link">
+        Enabling HTTP/2, HTTPS, and going HTTPS-only on inf2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-12-14-celebrating-graphics-and-compute-freedom-day/" class="md-nav__link">
+        Celebrating Graphics and Compute Freedom Day
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-03-25-the-academic-and-the-free-software-community-ideals/" class="md-nav__link">
+        The academic and the free software community ideals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2016-01-30-i-am-still-not-buying-the-new-open-source-friendly-microsoft-narrative/" class="md-nav__link">
+        I am still not buying the new-open-source-friendly-Microsoft narrative
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          AMD and the open-source community are writing history
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        AMD and the open-source community are writing history
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intel-and-nvidia" class="md-nav__link">
+    Intel and NVIDIA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpuopen-changing-the-game" class="md-nav__link">
+    GPUOpen changing the game
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-free-radeon-firmware" class="md-nav__link">
+    Non-free Radeon firmware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amd-and-the-open-source-community" class="md-nav__link">
+    AMD and the open-source community
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-12-13-on-having-leverage-and-using-it-for-pushing-open-source-software-adoption/" class="md-nav__link">
+        On having leverage and using it for pushing open-source software adoption
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-09-14-what-is-the-price-of-open-source-fear-uncertainty-and-doubt/" class="md-nav__link">
+        What is the price of open-source fear, uncertainty, and doubt?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-07-28-joys-and-pains-of-interdisciplinary-research/" class="md-nav__link">
+        Joys and pains of interdisciplinary research
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-07-03-open-source-magic-all-around-the-world/" class="md-nav__link">
+        Open-source magic all around the world
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-06-18-the-follow-up/" class="md-nav__link">
+        The follow-up
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2015-05-01-browser-wars/" class="md-nav__link">
+        Browser wars
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../very-important-information/" class="md-nav__link">
+        Very important information
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intel-and-nvidia" class="md-nav__link">
+    Intel and NVIDIA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpuopen-changing-the-game" class="md-nav__link">
+    GPUOpen changing the game
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-free-radeon-firmware" class="md-nav__link">
+    Non-free Radeon firmware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amd-and-the-open-source-community" class="md-nav__link">
+    AMD and the open-source community
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+<a href="https://github.com/gaseri/website/blob/main/docs/en/blog/2016-01-17-amd-and-the-open-source-community-are-writing-history.md" title="Uredi stranicu" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="amd-and-the-open-source-community-are-writing-history">AMD and the open-source community are writing history</h1>
+<p>Over the last few years, <a href="https://www.amd.com/">AMD</a> has slowly been walking the path towards having fully <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=ODg5Nw">open</a> <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=OTQzNQ">source</a> <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=AMD-Two-More-Open-Linux-Devs">drivers</a> on Linux. AMD did not walk alone, they got help from <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=MTc2NTY">Red</a> <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=Red-Hat-Hiring-Fedora-Work">Hat</a>, <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=SUSE-Hiring-Another-Gfx-Dev">SUSE</a>, and probably others. Phoronix also mentions <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=MTcwNDI">PathScale</a>, but I have been told on Freenode channel #radeon this is not the case and found no trace of their involvement.</p>
+<p>AMD finally <a href="https://youtu.be/eXCXJoRsgJc">publically unveiled</a> the GPUOpen initiative on the 15th of December 2015. The story was covered on <a href="https://www.anandtech.com/show/9853/amd-gpuopen-linux-open-source">AnandTech</a>, <a href="https://www.maximumpc.com/amd-rtg-summit-gpuopen-and-software/">Maximum PC</a>, <a href="https://arstechnica.com/information-technology/2015/12/amd-embraces-open-source-to-take-on-nvidias-gameworks/">Ars Technica</a>, <a href="https://news.softpedia.com/news/amd-going-open-source-with-amdgpu-linux-driver-and-gpuopen-tools-497663.shtml">Softpedia</a>, and others. For the open-source community that follows the development of Linux graphics and computing stack, this announcement comes as hardly surprising: Alex Deucher and Jammy Zhou <a href="https://youtu.be/lXi0ByVTFyY">presented plans regarding amdgpu on XDC2015</a> in September 2015. Regardless, public announcement in mainstream media proves that AMD is serious about GPUOpen.</p>
+<p>I believe GPUOpen is <strong>the best chance we will get in this decade</strong> to open up the driver and software stacks in the graphics and computing industry. I will outline the reasons for my optimism below. As for the history behind open-source drivers for ATi/AMD GPUs, I suggest <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=Reminiscing-OSS-AMD-2016">the well-written reminiscence on Phoronix</a>.</p>
+<h2 id="intel-and-nvidia">Intel and NVIDIA</h2>
+<p>AMD's only competitors are Intel and NVIDIA. More than a decade ago, these three had other companies competing with them. However, all the companies that used to produce graphics processors either ceased to exist due to bankruptcy/acquisition or changed their focus to other markets.</p>
+<p>Intel has <strong>very good open-source drivers</strong> and this has been the case for almost a decade now. However, they only produce integrated GPU which are not very interesting for gaming and heterogeneous computing. Sadly, their open-source support <em>does not</em> include <a href="https://www.intel.com/content/www/us/en/processors/xeon/xeon-phi-detail.html">Xeon Phi</a>, which is a sort of interesting device for heterogeneous computing.</p>
+<p>NVIDIA, on the other hand, has <strong>very good proprietary drivers</strong>, and this has been true for more than a decade. Aside from Linux, these drivers also support FreeBSD and Solaris (however, CUDA, the compute stack, is Linux-only).</p>
+<p>To put it simply, <strong>if using a proprietary driver for graphics and computing is acceptable, NVIDIA simply does a better job with proprietary drivers than AMD</strong>. You buy the hardware, you install the proprietary driver on Linux, and you play your games or run the computations. From a consumer's perspective, this is how hardware should work: stable and on the release day. From the perspective of an activist fighting for software freedom, this is unacceptable.</p>
+<p>Yes, if AMD tries to compete with proprietary drivers against NVIDIA's proprietary drivers, NVIDA wins. When both companies do not care about free and open-source software, I (and probably others) will just pick the one that works better at this moment, and not think much about it.</p>
+<p>To give a real-world example, back in 2012 we started a new course on GPU computing at <a href="https://uniri.hr/">University of Rijeka</a> <a href="https://www.inf.uniri.hr/">Department of Informatics</a>. If AMD had the <strong>open-source heterogeneous computing stack</strong> ready, we would gladly pick their technology, even if hardware had slightly lower performance (you do not care for teaching anyway). However, since it came down to proprietary vs. proprietary, NVIDIA offered a more stable and mature solution and we went with them.</p>
+<p>Even with the arguments that <a href="https://youtu.be/OnbMjhB8xQk">NVIDIA is anti-competitive because G-Sync works only on their hardware</a>, that AMD's hardware is not so bad and you can still play games on it, and that if AMD crashes NVIDIA will have a monopoly, I could not care less. It is completely useless to buy AMD's hardware just so that they don't crash as a company; <strong>AMD is not a charity</strong> and I require value in return when I give money to them.</p>
+<p>To summarize, AMD with (usually more buggy and less stable) proprietary drivers just did not have an attractive value proposition.</p>
+<h2 id="gpuopen-changing-the-game">GPUOpen changing the game</h2>
+<p>However, AMD having the open-source driver as their main one gives a reason to ignore their slight disadvantage in terms of the performance per watt and the performance per dollar. Now that AMD is developing a part of the open-source graphics ecosystem and improving it for them as well as the rest of the community, they are a very valuable graphics hardware vendor.</p>
+<p>This change empowers the community to disagree with AMD about what should be developed first and take the lead. As a user, you can <strong>fix the bug</strong> that annoys you <strong>when you decide</strong> and do not need to wait for AMD to fix it when they care to do it. Even if you don't have sufficient knowledge to do it yourself, you can pay someone to fix it for you. And this freedom is what is very valuable with open-source drivers.</p>
+<p>Critics might say, this is easy to promise, AMD has said many things many times. And this is true; however, the <strong>commits by AMD developers</strong> in the <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/">Kernel</a>, <a href="https://github.com/llvm-mirror/llvm">LLVM</a>, and <a href="https://cgit.freedesktop.org/mesa/mesa">Mesa</a> repositories shows that AMD is walking the walk. Doing a quick grep for e-mail addresses that contain amd.com shows a nice and steady increase in both the number of developers and the number of commits since 2011.</p>
+<p>Critics might also say that AMD is just getting free work from the community and giving 'nothing' in return. Well, I wish more companies sourced free work from the community in this way and gave their code as free and open-source software (the 'nothing'). Specifically, I wish NVIDIA would follow AMD's lead. Anyhow, this is precisely the way <a href="https://en.wikipedia.org/wiki/Netscape">Netscape</a> started what we know today as <a href="https://www.mozilla.org/firefox/">Firefox</a>, and <a href="https://en.wikipedia.org/wiki/Sun_Microsystems">Sun Microsystems</a> started what we know today as <a href="https://www.libreoffice.org/">LibreOffice</a>.</p>
+<p>To summarize, AMD with open-source drivers as the main lineup is very attractive. Free and open-source software enthusiasts do not (nor they should) care if AMD is 'slightly less evil', 'more pro-free market', 'cares more about the teddy bear from your childhood' than NVIDIA (other types of activists might or might not care about some of these issues). For the open-source community, including Linux users, <strong>AMD either has the open-source drivers and works to improve the open-source graphics ecosystem as a whole or they do are not doing anything that matters</strong>. If AMD wants Linux users on their side, they <strong>have to remain committed to developing open-source drivers</strong>. It's that simple, it's the choice between open and irrelevant.</p>
+<h2 id="non-free-radeon-firmware">Non-free Radeon firmware</h2>
+<p>Free Software Foundation calls for <a href="https://www.fsf.org/campaigns/priority-projects/reverse-engineering">reverse engineering of the Radeon firmware</a>. While I do believe we should aim for the free firmware <strong>and hardware</strong>, I have two problems with this. First, I disagree with a part of <a href="https://stallman.org/to-4chan.html">Stallman's position</a> (which is mirrored by FSF):</p>
+<blockquote>
+<p>I wish ATI would free this microcode, or put it in ROM, so that we could endorse its products and stop preferring the products of a company that is no friend of ours.</p>
+</blockquote>
+<p>I can not agree with the idea that the non-free firmware, when included in a ROM on the card, is somehow better than the <strong>same</strong> non-free firmware uploaded by the driver. The reasoning behind this argument makes exactly zero sense to me. Finally, the same reasoning has been applied elsewhere: in 2011 <a href="https://lwn.net/Articles/460654/">LWN covered the story of GTA04</a>, which used the 'include firmware in hardware' trick to be compliant with FSF's goals.</p>
+<p>Second, AMD, for whatever reason, does not want to release firmware as free and open-source, but their firmware is freely redistributable. (They have the freedom not to open it and even disagree with us that they should, of course.) While obviously not ideal, for me this is a reasonable compromise that works in practice. I can install the latest <a href="https://getfedora.org/">Fedora</a> or <a href="https://www.debian.org/">Debian</a> and a small firmware blob is packaged with the distro, despite being non-free. It doesn't depend on the kernel version, it doesn't even depend on whether I run Linux or FreeBSD kernel.</p>
+<p>To summarize, I would like to see AMD release free firmware as much as anyone supporting FSF's ideas. And I do not hide that from AMD nor do I think anyone else should. However, I do not consider this issue of non-free firmware to be anywhere as important as having a supported free and open-source driver, which they finally have. Since <strong>NVIDIA is no better regarding free firmware</strong>, I do not believe that right now we have the leverage required to convince AMD to change their position.</p>
+<h2 id="amd-and-the-open-source-community">AMD and the open-source community</h2>
+<p>Just like Netscape and Sun Microsystems before them, AMD right now needs the community as much as the community needs them. I sincerely hope AMD is aware of this, and I know that the community is. Together, <strong>we have the chance of the decade</strong> to free another part of the <strong>industry that has been locked down with proprietary software</strong> dominating it for so long. Together, we have the chance to start a new chapter in graphics and computing history.</p>
+
+              
+  
+    <p><small>Author: Vedran Miletić</small></p>
+  
+
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../2016-01-30-i-am-still-not-buying-the-new-open-source-friendly-microsoft-narrative/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: I am still not buying the new-open-source-friendly-Microsoft narrative" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Prethodno
+              </span>
+              I am still not buying the new-open-source-friendly-Microsoft narrative
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../2015-12-13-on-having-leverage-and-using-it-for-pushing-open-source-software-adoption/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: On having leverage and using it for pushing open-source software adoption" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sljedeće
+              </span>
+              On having leverage and using it for pushing open-source software adoption
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright 2011 – 2022, <a href="https://vedran.miletic.net/">Vedran Miletić</a> <i>et <a href="/en/people/">alii</a></i>; contents licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0</a>, except teaching materials under <a href="/hr/nastava/">/hr/nastava/</a> and tutorials under <a href="/en/tutorials/gromacs/">/en/tutorials/</a> which are both licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.01de222e.min.js"></script>
+      
+    
+  </body>
+</html>
