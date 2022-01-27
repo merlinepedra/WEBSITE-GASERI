@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/curl-protokoli-aplikacijske-razine/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.cd566b2a.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6e60f8b8.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rad-s-protokolima-aplikacijske-razine" class="md-skip">
+        <a href="#rad-s-protokolima-aplikacijske-razine-koristenjem-curl-a" class="md-skip">
           Preskočite na sadržaj
         </a>
       
@@ -6101,21 +6101,25 @@
 </a>
 
 
-<h1 id="rad-s-protokolima-aplikacijske-razine">Rad s protokolima aplikacijske razine</h1>
+<h1 id="rad-s-protokolima-aplikacijske-razine-koristenjem-curl-a">Rad s protokolima aplikacijske razine korištenjem cURL-a</h1>
 <h2 id="pregled-protokola-aplikacijske-razine">Pregled protokola aplikacijske razine</h2>
 <h3 id="pojam-url-a">Pojam URL-a</h3>
-<p><strong>URL (uniform resource locator)</strong> je znakovni niz koji predstavlja vezu na neki resurs. URL se često koristi za web stranice (HTTP protokol) no, između ostalih, podržava FTP i e-mail (mailto) protokole.</p>
-<p>Sintaksu URL-a čine: protokol, domena ili IP adresa, broj porta (opcionalno) i putanja do resursa. Primjerice:</p>
-<div class="highlight"><pre><span></span><code>http://www.example.org/page/subpage
-</code></pre></div>
+<p><a href="https://en.wikipedia.org/wiki/URL">Uniform Resource Locator (URL)</a> je znakovni niz koji predstavlja vezu na neki resurs. URL se često koristi za pristupanje web stranicama korištenjem protokola HTTP (<code>http://</code>) i HTTPS (<code>https://</code>), ali podržava i druge protokole, npr. FTP (<code>ftp://</code>) i e-mail (<code>mailto:</code>).</p>
+<p>Primjerice, URL može biti <code>http://example.group.miletic.net:80/page/subpage</code>. Njegovi su dijelovi:</p>
+<ul>
+<li>protokol (<code>http://</code>),</li>
+<li>domena (<code>example.group.miletic.net</code>), umjesto domene se može koristiti i IP adresa,</li>
+<li>broj vrata (<code>80</code>, opcionalan) i</li>
+<li>putanja do resursa (<code>/page/subpage</code>).</li>
+</ul>
 <h3 id="protokoli-http-i-https">Protokoli HTTP i HTTPS</h3>
-<p><strong>HTTP (Hypertext Transfer Protocol)</strong> je aplikacijski protokol i temelj podatkovne komunikacije za WWW. Internet Engineering Task Force (IETF) i the World Wide Web Consortium (W3C) stoje iza njegovog razvijanja. HTTP radi na request-response paradigmi po kljent-poslužitelj modelu. Jedna HTTP sesija sastoji se od niza zahtjeva (klijent) i odgovora (poslužitelj).</p>
-<p><strong>HTTPS</strong> je proširenje HTTP protokola SSL/TLS slojem. HTTPS se koristi za sigurnu komunikaciju preko računalne mreže. U srži TLS-a je korištenje privatnih i javnih ključeva te enkripcija podataka. HTTPS još podrazumijeva autentifikaciju i korištenje certifikata za dokazivanje identiteta.</p>
+<p><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol (HTTP)</a> je aplikacijski protokol i temelj podatkovne komunikacije za WWW. Internet Engineering Task Force (IETF) i the World Wide Web Consortium (W3C) stoje iza njegovog razvijanja. HTTP radi na request-response paradigmi po kljent-poslužitelj modelu. Jedna HTTP sesija sastoji se od niza zahtjeva (klijent) i odgovora (poslužitelj).</p>
+<p><a href="https://en.wikipedia.org/wiki/HTTPS">Hypertext Transfer Protocol Secure (HTTPS)</a> je proširenje HTTP protokola SSL/TLS slojem. HTTPS se koristi za sigurnu komunikaciju preko računalne mreže. U srži TLS-a je korištenje privatnih i javnih ključeva te enkripcija podataka. HTTPS još podrazumijeva autentifikaciju i korištenje certifikata za dokazivanje identiteta.</p>
 <h3 id="protokol-ftp">Protokol FTP</h3>
-<p><strong>FTP (File Transfer Protocol)</strong> je mrežni protokol koji omogućuje transfer datoteka sa jednog domaćina na drugi preko TCP veze. Radi na klijent-poslužitelj principu. FTP može, ali ne mora koristiti autentifikaciju.</p>
-<p><strong>FTPS</strong> proširuje FTP tako da uz autentifikaciju omogućuje i enkripciju (SSL/TLS usluge). FTPS treba razlikovati od SFTP protokola koji je vezan uz SSH (Secure Shell).</p>
+<p><a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">File Transfer Protocol (FTP)</a> je mrežni protokol koji omogućuje transfer datoteka sa jednog domaćina na drugi preko TCP veze. Radi na klijent-poslužitelj principu. FTP može, ali ne mora koristiti autentifikaciju.</p>
+<p><a href="https://en.wikipedia.org/wiki/FTPS">FTP-SSL (FTPS, poznat kao i FTP Secure)</a> proširuje FTP tako da uz autentifikaciju omogućuje i enkripciju (SSL/TLS usluge). FTPS treba razlikovati od SFTP protokola koji je vezan uz SSH (Secure Shell).</p>
 <h2 id="osnovne-znacajke-i-nacin-koristenja-alata-curl">Osnovne značajke i način korištenja alata cURL</h2>
-<p><strong>cURL</strong> (naredba <code>curl</code>) je komandno linijski alat za prijenos podataka korištenjem URL sintakse. Podržava brojne protokole (DICT, FILE, FTP, FTPS, Gopher, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, Telnet i TFTP), od kojih ćemo u nastavku koristiti manji dio. cURL je slobodan softver dostupan pod <a href="https://en.wikipedia.org/wiki/MIT_License">MIT licencom</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/CURL">cURL</a> (naredba <code>curl</code>) je komandno linijski alat za prijenos podataka korištenjem URL sintakse. Podržava brojne protokole (DICT, FILE, FTP, FTPS, Gopher, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, Telnet i TFTP), od kojih ćemo u nastavku koristiti manji dio. cURL je slobodan softver dostupan pod <a href="https://en.wikipedia.org/wiki/MIT_License">MIT licencom</a>.</p>
 <p>cURL podržava SSL certifikate, HTTP naredbe POST i PUT, FTP upload, HTTP upload zasnovan na obrascima, proxy poslužitelje, keksiće, autentifikaciju korištenjem korisničkog imena i zaproke (Basic, Digest, NTLM, Negotiate, kerberos i druge), nastavljanje prijenosa datoteke, tuneliranje putem proxy poslužitelja i još mnogo toga. Mi ćemo se ograničiti na osnovnu funkcionalnost, ali <a href="https://curl.se/docs/manual.html">službena dokumentacija</a> dostupna na <a href="https://curl.se/">cURL-ovim stranicama</a> ima više detalja.</p>
 <h3 id="preuzimanje-stranice-ili-datoteke">Preuzimanje stranice ili datoteke</h3>
 <p>Preuzimanje se vrši navođenjem URL-a. Pristupimo HTTP poslužitelju na domeni <code>example.group.miletic.net</code> za primjer:</p>
@@ -7033,7 +7037,7 @@ Doom II protip: To defeat the Cyberdemon, shoot at it <span class="k">until</spa
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.01de222e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.960e086b.min.js"></script>
       
     
   </body>

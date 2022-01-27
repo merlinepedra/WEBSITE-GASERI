@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/strongswan-ipsec/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.7">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.cd566b2a.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6e60f8b8.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5982,7 +5982,7 @@ mehanizam za taj proces online načinom.</p>
 <p>Važno je napomenuti da IPSec/AH ne definiraju koja se autentifikacijska funkcija mora koristiti, već osiguravaju okvir ("framework") koji omogućuje korištenje bilo koje prihvatljive implementacije, na koju su pristale obje strane. Moguće je koristiti druge autentifikacijske funkcije, poput digitalnog potpisa ili enkripcijske funkcije, sve dok obje strane omogućuju takvu implementaciju.</p>
 <h2 id="encapsulating-security-payload-esp">Encapsulating Security Payload (ESP)</h2>
 <p>Dodavanje enkripcije čini ESP malo kompliciranijim budući da enkapsulacija obuhvaća "payload", umjesto da mu prethodi, kao u slučaju s AH: ESP uključuje zaglavlje i dodatna polja radi podržavanja enkripcije i opcionalne autentifikacije. Također omogućuje tunelirajuće i transportne režime rada koji se koriste na već opisani način. IPSec RFC dokumenti ne sadržavaju eksplicitni naputak za korištenje bilo kojeg specifičnog protokola, no nalazimo DES, 3DES,AES i Blowfish u svakodnevnoj praktičnoj upotrebi za potrebe zaštite od presretanja od strane napadača.</p>
-<p>Algoritam korišten za pojedinu vezu određuje SA ("Security Association"), koja uključuje i algoritam i korišteni kripto-ključ. Za razlikuod AH-a, koji uvodi malo zaglavlje ispred "payload"-a, ESP okružuje korisni podatkovni dio, odn. "payload" kojeg štiti. SPI ("Security Parameters Index") i SN ("Sequence Number") imaju istu ulogu kao i u AH, no nalazimo "padding", iduće zaglavlje, te opcionalni "Authentication Data" na kraju, u ESP dodatnim poljima. Moguće je koristiti ESP bez ikakve enkripcije (koristeći NULL algoritam), no struktura paketa se time ne mijenja. Time se ne osigurava povjerljivost komunikacije, te jedino ima smisla u slučaju da se kombinira s ESP autentifikacijom. Besmisleno je koristiti ESP bez enkripcije ili autentifikacije (osim za potrebe testiranja protokola eventualno). "Padding" se omogućuje radi blok-orjentiranih enkripcijskih algoritama koji trebaju višekratnu veličinu bloka podataka za rad, a njegova veličina je zabilježenau pad len polju. Next hdr polje sadrži tip (IP, TCP, UDP, itd.) "payload"-a.</p>
+<p>Algoritam korišten za pojedinu vezu određuje SA ("Security Association"), koja uključuje i algoritam i korišteni kripto-ključ. Za razlikuod AH-a, koji uvodi malo zaglavlje ispred "payload"-a, ESP okružuje korisni podatkovni dio, odn. "payload" kojeg štiti. SPI ("Security Parameters Index") i SN ("Sequence Number") imaju istu ulogu kao i u AH, no nalazimo "padding", iduće zaglavlje, te opcionalni "Authentication Data" na kraju, u ESP dodatnim poljima. Moguće je koristiti ESP bez ikakve enkripcije (koristeći NULL algoritam), no struktura paketa se time ne mijenja. Time se ne osigurava povjerljivost komunikacije, te jedino ima smisla u slučaju da se kombinira s ESP autentifikacijom. Besmisleno je koristiti ESP bez enkripcije ili autentifikacije (osim za potrebe testiranja protokola eventualno). "Padding" se omogućuje radi blokovno orijentiranih enkripcijskih algoritama koji trebaju višekratnu veličinu bloka podataka za rad, a njegova veličina je zabilježenau pad len polju. Next hdr polje sadrži tip (IP, TCP, UDP, itd.) "payload"-a.</p>
 <p>Osim enkripcije, ESP može opcionalno omogućiti autentifikaciju, s istim HMAC algoritmom kojeg nalazimo u AH. Za razliku od AH, međutim, ova autentifikacija je samo za ESP zaglavlje i enkriptirani "payload": ne "pokriva" čitavi IP paket. Iznenađujuće, ovime se ne slabi značajno sigurnost autentifikacije, no ima nekih praktičnih benefita. Kada 3. strana pregledava IP paket koji sadrži ESP podatke, praktički joj je nemoguće odgonetnuti njegov sadržaj, osim uobičajenih podataka u IP zaglavlju (posebice izvorna i odredišna IP adresa). Napadač će svakako znati da su posrijedi ESP podaci -- ta informacija se također nalazi u zaglavlju -- no tip "payload"-a je enkriptiran skupa s "payload"-om. Čak i prisutnost "Authentication Data" nije moguće ustvrditi samo inspekcijom sadržaja paketa.</p>
 <h3 id="esp-u-transportnom-rezimu-rada">ESP u transportnom režimu rada</h3>
 <p>Kao i s AH, transportni režim enkapsulira samo korisni dio paketa ("payload"), te je dizajniran striktno za komunikacije tipa točka-točka. Izvorno IP zaglavlje se ne mijenja (osim zamjenjenog "Protocol" polja), što znači, među ostalim, da izvorna i odredišna IP adresa ostaju iste.</p>
@@ -6072,7 +6072,7 @@ mehanizam za taj proces online načinom.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.01de222e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.960e086b.min.js"></script>
       
     
   </body>
