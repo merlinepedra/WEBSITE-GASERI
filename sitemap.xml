@@ -1436,6 +1436,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://group.miletic.net/hr/nastava/materijali/rm-instalacija-softvera-garuda-linux/</loc>
+         <lastmod>2022-01-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://group.miletic.net/hr/nastava/materijali/rocm-rocalution/</loc>
          <lastmod>2022-01-28</lastmod>
          <changefreq>daily</changefreq>
