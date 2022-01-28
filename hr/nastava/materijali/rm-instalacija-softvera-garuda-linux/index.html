@@ -4016,6 +4016,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#razvojno-okruzenje-visual-studio-code" class="md-nav__link">
+    Razvojno okruženje Visual Studio Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#http-klijent-curl" class="md-nav__link">
     HTTP klijent cURL
   </a>
@@ -4045,13 +4052,6 @@
         <li class="md-nav__item">
   <a href="#http-tester-i-benchmark-alat-siege" class="md-nav__link">
     HTTP tester i benchmark alat Siege
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#razvojno-okruzenje-visual-studio-code" class="md-nav__link">
-    Razvojno okruženje Visual Studio Code
   </a>
   
 </li>
@@ -5963,6 +5963,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#razvojno-okruzenje-visual-studio-code" class="md-nav__link">
+    Razvojno okruženje Visual Studio Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#http-klijent-curl" class="md-nav__link">
     HTTP klijent cURL
   </a>
@@ -5992,13 +5999,6 @@
         <li class="md-nav__item">
   <a href="#http-tester-i-benchmark-alat-siege" class="md-nav__link">
     HTTP tester i benchmark alat Siege
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#razvojno-okruzenje-visual-studio-code" class="md-nav__link">
-    Razvojno okruženje Visual Studio Code
   </a>
   
 </li>
@@ -6104,6 +6104,11 @@ $ paru -S tkimg
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S gnuplot
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
+<h2 id="razvojno-okruzenje-visual-studio-code">Razvojno okruženje Visual Studio Code</h2>
+<div class="highlight"><pre><span></span><code>$ sudo pacman -S visual-studio-code-bin
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<p>Visual Studio Code uključuje podršku za <a href="https://code.visualstudio.com/docs/languages/markdown">Markdown</a> i <a href="https://code.visualstudio.com/docs/languages/php">PHP</a> pa ne moramo ništa dodatno instalirati.</p>
 <h2 id="http-klijent-curl">HTTP klijent cURL</h2>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S curl
 <span class="o">(</span>...<span class="o">)</span>
@@ -6113,22 +6118,19 @@ $ paru -S tkimg
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 <h3 id="provjera-instalacije-php-a">Provjera instalacije PHP-a</h3>
-<p>U upravitelju datoteka Dolphin stvorite direktorij (mapu) <code>php-prvi-projekt</code> i otvorite ga u Visual Studio Codeu. U direktoriju koji ste otvorili stvorite iz VS Codea direktorij <code>public</code> pa u njemu datoteku <code>index.php</code> sa sadržajem:</p>
+<p>U upravitelju datoteka Dolphin stvorite direktorij (mapu) <code>php-prvi-projekt</code> i otvorite ga u Visual Studio Codeu korištenjem izbornika <code>File\Open Folder...</code> ili kombinacijom tipki <code>Ctrl + K</code> pa <code>Ctrl + O</code>. Nakon otvaranja direktorija, iskoristite gumb <code>New Folder</code> dostupan u pogledu Explorer (<a href="https://code.visualstudio.com/docs/getstarted/userinterface">pregled sučelja</a>) za stvaranje poddirektorija (podmape) naziva <code>public</code>.</p>
+<p>Unutar poddirektorija <code>public</code> stvorite iskoristite gumb <code>New File</code> za stvaranje datoteke imena <code>index.php</code> sa sadržajem:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nb">phpinfo</span><span class="p">();</span>
 </code></pre></div>
-<p>U <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">ugrađenom terminalu</a> u VS Code-u pokrenite ugrađeni poslužitelj PHP-ovog interpretera na IPv4 adresi lokalnog domaćina <code>127.0.0.1</code>:</p>
+<p>Pokrenite <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">ugrađeni terminal</a> putem izbornika <code>Terminal\New Terminal</code> ili kombinacije tipki <code>Ctrl + Shift + `</code>. U njemu pokrenite ugrađeni poslužitelj PHP-ovog interpretera na adresi lokalnog domaćina <code>127.0.0.1</code>:</p>
 <div class="highlight"><pre><span></span><code>$ php -S <span class="m">127</span>.0.0.1:8080 -t public
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 <p>Korištenjem web preglednika otvorite adresu <code>http://127.0.0.1:8080/</code> i uvjerite se da ste dobili informacije o PHP-u. Uočite da vam se u terminalu prikazuje svaki HTTP zahtjev i statusni kod odgovora na njega; ta nam je značajka vrlo korisna za učenje rada web poslužitelja.</p>
 <h2 id="http-tester-i-benchmark-alat-siege">HTTP tester i benchmark alat Siege</h2>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S siege
-<span class="o">(</span>...<span class="o">)</span>
-</code></pre></div>
-<h2 id="razvojno-okruzenje-visual-studio-code">Razvojno okruženje Visual Studio Code</h2>
-<div class="highlight"><pre><span></span><code>$ sudo pacman -S visual-studio-code-bin
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 
