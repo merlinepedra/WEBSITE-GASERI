@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/apache-web-posluzitelj/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.10">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d6be258b.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -57,6 +57,14 @@
     
     
   
+  
+  
+    
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Osnovna konfiguracija web poslužitelja Apache HTTP Server - GASERI – Group for apps and services on exascale research infrastructure" />
+  <meta property="og:description" content="GASERI is a research and teaching group at the University of Rijeka Faculty of Informatics and Digital Technologies." />
+  <meta property="og:url" content="https://group.miletic.net/hr/nastava/materijali/apache-web-posluzitelj/" />
   
     <meta http-equiv="onion-location" content="http://vcwkbqby652dtqgbtbtr6ouvs6fu5abx5z45dmlug6dl55d6zcadsuqd.onion/hr/nastava/materijali/apache-web-posluzitelj/">
   
@@ -210,7 +218,7 @@
         <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -311,7 +319,7 @@
       <a href="https://github.com/gaseri/website/" title="Idite u repozitorij" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -524,6 +532,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../izvedbeni/2021-2022/DWA2/" class="md-nav__link">
+        Dinamičke web aplikacije 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../izvedbeni/2021-2022/DS/" class="md-nav__link">
         Distribuirani sustavi
       </a>
@@ -594,8 +616,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../izvedbeni/2021-2022/SIKS/" class="md-nav__link">
+        Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../izvedbeni/2021-2022/UMS/" class="md-nav__link">
         Upravljanje mrežnim sustavima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../izvedbeni/2021-2022/URS/" class="md-nav__link">
+        Upravljanje računalnim sustavima
       </a>
     </li>
   
@@ -5900,58 +5950,58 @@ Content-Type: text/html
 <div class="highlight"><pre><span></span><code>$ sudo docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf &gt; my-httpd.conf
 </code></pre></div>
 <p>Uočimo da ovdje imamo novi parametar <code>--rm</code> koji Dockeru kaže da izbriše stvoreni kontejner nakon što završi izvođenje. Također, uočimo da uz ime kontejnera navodimo i naredbu koju želimo pokrenuti unutar kontejnera (umjesto zadane naredbe <code>httpd</code>), a to je ovdje <code>cat /usr/local/apache2/conf/httpd.conf</code>. Izlaz te naredbe spremamo u <code>my-httpd.conf</code>. Proučimo tu datoteku (možemo je ispisati korištenjem naredbe <code>cat</code> ili otvoriti u uređivaču teksta po želji):</p>
-<div class="highlight"><pre><span></span><code><span class="c">#</span>
-<span class="c"># This is the main Apache HTTP server configuration file.  It contains the</span>
-<span class="c"># configuration directives that give the server its instructions.</span>
-<span class="c"># See &lt;URL:http://httpd.apache.org/docs/2.4/&gt; for detailed information.</span>
-<span class="c"># In particular, see</span>
-<span class="c"># &lt;URL:http://httpd.apache.org/docs/2.4/mod/directives.html&gt;</span>
-<span class="c"># for a discussion of each configuration directive.</span>
-<span class="c">#</span>
-<span class="c">#...</span>
-<span class="c">#</span>
-<span class="c"># Listen: Allows you to bind Apache to specific IP addresses and/or</span>
-<span class="c"># ports, instead of the default. See also the &lt;VirtualHost&gt;</span>
-<span class="c"># directive.</span>
-<span class="c">#</span>
-<span class="c"># Change this to Listen on specific IP addresses as shown below to</span>
-<span class="c"># prevent Apache from glomming onto all bound IP addresses.</span>
-<span class="c">#</span>
-<span class="c">#Listen 12.34.56.78:80</span>
-<span class="nb">Listen</span> <span class="m">80</span>
+<div class="highlight"><pre><span></span><code><span class="c">#</span><span class="w"></span>
+<span class="c"># This is the main Apache HTTP server configuration file.  It contains the</span><span class="w"></span>
+<span class="c"># configuration directives that give the server its instructions.</span><span class="w"></span>
+<span class="c"># See &lt;URL:http://httpd.apache.org/docs/2.4/&gt; for detailed information.</span><span class="w"></span>
+<span class="c"># In particular, see</span><span class="w"></span>
+<span class="c"># &lt;URL:http://httpd.apache.org/docs/2.4/mod/directives.html&gt;</span><span class="w"></span>
+<span class="c"># for a discussion of each configuration directive.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c">#...</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># Listen: Allows you to bind Apache to specific IP addresses and/or</span><span class="w"></span>
+<span class="c"># ports, instead of the default. See also the &lt;VirtualHost&gt;</span><span class="w"></span>
+<span class="c"># directive.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># Change this to Listen on specific IP addresses as shown below to</span><span class="w"></span>
+<span class="c"># prevent Apache from glomming onto all bound IP addresses.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c">#Listen 12.34.56.78:80</span><span class="w"></span>
+<span class="nb">Listen</span><span class="w"> </span><span class="m">80</span><span class="w"></span>
 
-<span class="c">#...</span>
-<span class="c">#</span>
-<span class="c"># ServerAdmin: Your address, where problems with the server should be</span>
-<span class="c"># e-mailed.  This address appears on some server-generated pages, such</span>
-<span class="c"># as error documents.  e.g. admin@your-domain.com</span>
-<span class="c">#</span>
-<span class="nb">ServerAdmin</span> you@example.com
+<span class="c">#...</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># ServerAdmin: Your address, where problems with the server should be</span><span class="w"></span>
+<span class="c"># e-mailed.  This address appears on some server-generated pages, such</span><span class="w"></span>
+<span class="c"># as error documents.  e.g. admin@your-domain.com</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="nb">ServerAdmin</span><span class="w"> </span>you@example.com<span class="w"></span>
 
-<span class="c">#</span>
-<span class="c"># ServerName gives the name and port that the server uses to identify itself.</span>
-<span class="c"># This can often be determined automatically, but we recommend you specify</span>
-<span class="c"># it explicitly to prevent problems during startup.</span>
-<span class="c">#</span>
-<span class="c"># If your host doesn&#39;t have a registered DNS name, enter its IP address here.</span>
-<span class="c">#</span>
-<span class="c">#ServerName www.example.com:80</span>
-<span class="c">#...</span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># ServerName gives the name and port that the server uses to identify itself.</span><span class="w"></span>
+<span class="c"># This can often be determined automatically, but we recommend you specify</span><span class="w"></span>
+<span class="c"># it explicitly to prevent problems during startup.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># If your host doesn&#39;t have a registered DNS name, enter its IP address here.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c">#ServerName www.example.com:80</span><span class="w"></span>
+<span class="c">#...</span><span class="w"></span>
 </code></pre></div>
 <p>Iako većinu naredbi nećemo koristiti, vrijedi preletiti <a href="https://httpd.apache.org/docs/2.4/mod/directives.html">popis svih konfiguracijskih naredbi</a> čisto da steknemo dojam koliko je moderan web poslužitelj kompleksan softver. Osnovna konfiguracijska naredba s kojom ćemo početi proučavanje konfiguracijske datoteke je <code>Listen</code> (<a href="https://httpd.apache.org/docs/2.4/mod/mpm_common.html#listen">dokumentacija</a>). Ta naredba kaže poslužitelju na kojim adresama i vratima će primati zahtjeve:</p>
-<div class="highlight"><pre><span></span><code><span class="c">#Listen 12.34.56.78:80</span>
-<span class="nb">Listen</span> <span class="m">80</span>
+<div class="highlight"><pre><span></span><code><span class="c">#Listen 12.34.56.78:80</span><span class="w"></span>
+<span class="nb">Listen</span><span class="w"> </span><span class="m">80</span><span class="w"></span>
 </code></pre></div>
 <p>Ako su navedena samo vrata (kao što su u našem slučaju vrata 80), onda poslužitelj sluša na svim adresama putem kojih ga je moguće doseći.</p>
 <p>Pod konfiguracijskom naredbom <code>ServerAdmin</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#serveradmin">dokumentacija</a>) navest ćemo vlastitu e-mail adresu umjesto <code>you@example.com</code>. Apache nam neće slati nikakve e-mailove jer nema konfiguriran SMTP poslužitelj koji može koristiti.</p>
 <p>Konfiguracijsku naredbu <code>ServerName</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#servername">dokumentacija</a>) ćemo odkomentirati i postaviti na domenu koju želimo da poslužitelj poslužuje. Teoretski možemo koristiti bilo koju domenu koja ne postoji na internetu (npr. <code>mreze.rijeka</code> ili <code>internet.mars</code>), ali to je loša praksa jer redovito dolaze <a href="https://ntldstats.com/tld">nove vršne domene</a> i moguće je da nekom padne na pamet registrirati vršne domene <code>.rijeka</code> i <code>.mars</code> pa nastane problem kolizije naše lokalne razvojne okoline i interneta kao što je već bio <a href="https://anti-pattern.com/dev-domains-not-resolving/">slučaj s domenom .dev</a>. Zbog toga ćemo ovdje koristiti poddomene na <code>.rm.miletic.net</code> nad kojima imamo kontrolu, npr. <code>apache-primjer.rm.miletic.net</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">ServerName</span> apache-primjer.rm.miletic.net:80
+<div class="highlight"><pre><span></span><code><span class="nb">ServerName</span><span class="w"> </span>apache-primjer.rm.miletic.net:80<span class="w"></span>
 </code></pre></div>
 <p>Vrata 80 ne moramo navoditi, ali se to smatra dobrom praksom.</p>
 <h2 id="izrada-slika">Izrada slika</h2>
 <p>Izgradimo sada Docker kontejner koji sadrži našu konfiguracijsku datoteku umjesto zadane. Uređivačem teksta po želji stvorimo datoteku imena <code>Dockerfile</code> i sadržaja:</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">httpd:2.4</span>
-<span class="k">COPY</span> ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">httpd:2.4</span>
+<span class="k">COPY</span><span class="w"> </span>./my-httpd.conf /usr/local/apache2/conf/httpd.conf
 </code></pre></div>
 <p>Ova datoteka kaže da će novi Docker kontejneri nastajati iz slike <code>httpd:2.4</code> u koju je dodatno kopirana datoteka <code>./my-httpd.conf</code> na mjesto <code>/usr/local/apache2/conf/httpd.conf</code>. Izgradimo novu sliku naredbom <code>docker build</code> na način:</p>
 <div class="highlight"><pre><span></span><code>$ sudo docker build -t <span class="s2">&quot;my-httpd:2.4-1&quot;</span> .
@@ -5976,51 +6026,51 @@ Successfully tagged my-httpd:2.4-1
 </div>
 <h2 id="dodavanje-datoteka-za-posluzivanje">Dodavanje datoteka za posluživanje</h2>
 <p>Konfiguracijska naredba <code>DocumentRoot</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#documentroot">dokumentacija</a>) ima zadanu vrijednost <code>/usr/local/apache2/htdocs</code>. U tom direktoriju unutar Docker kontejnera nalazi se datoteka <code>index.html</code> sadržaja <code>It works!</code>. Mi želimo da poslužitelj poslužuje naše datoteke pa ćemo postaviti tu vrijednost na direktorij <code>/var/www/html</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">DocumentRoot</span> <span class="s2">&quot;/var/www/html&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">DocumentRoot</span><span class="w"> </span><span class="s2">&quot;/var/www/html&quot;</span><span class="w"></span>
 </code></pre></div>
 <p>Apache ima mogućnost konfiguracije dozvola pristupa pojedinim direktorija korištenjem konfiguracijskog odjeljka <code>&lt;Directory&gt;</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#directory">dokumentacija</a>). Svaki otvoreni konfiguracijski odjeljak <code>&lt;Directory&gt;</code> zatvoren je s <code>&lt;/Directory&gt;</code>. Vidimo u konfiguracijskoj datoteci odmah ispod naredbe <code>DocumentRoot</code> konfiguraciju pravila pristupa direktoriju <code>/usr/local/apache2/htdocs</code> od strane Apacheja; obratimo posebnu pozornost na naredbu <code>Require</code> (<a href="https://httpd.apache.org/docs/2.4/mod/mod_authz_core.html#require">dokumentacija</a>) koja ovdje ima vrijednost <code>all granted</code>, odnosno dozvoljava bezuvjetan pristup direktoriju:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span> <span class="s">&quot;/usr/local/apache2/htdocs&quot;</span><span class="nt">&gt;</span>
-    <span class="c">#</span>
-    <span class="c"># Possible values for the Options directive are &quot;None&quot;, &quot;All&quot;,</span>
-    <span class="c"># or any combination of:</span>
-    <span class="c">#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews</span>
-    <span class="c">#</span>
-    <span class="c"># Note that &quot;MultiViews&quot; must be named *explicitly* --- &quot;Options All&quot;</span>
-    <span class="c"># doesn&#39;t give it to you.</span>
-    <span class="c">#</span>
-    <span class="c"># The Options directive is both complicated and important.  Please see</span>
-    <span class="c"># http://httpd.apache.org/docs/2.4/mod/core.html#options</span>
-    <span class="c"># for more information.</span>
-    <span class="c">#</span>
-    <span class="nb">Options</span> Indexes FollowSymLinks
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">&quot;/usr/local/apache2/htdocs&quot;</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="c"># Possible values for the Options directive are &quot;None&quot;, &quot;All&quot;,</span><span class="w"></span>
+<span class="w">    </span><span class="c"># or any combination of:</span><span class="w"></span>
+<span class="w">    </span><span class="c">#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="c"># Note that &quot;MultiViews&quot; must be named *explicitly* --- &quot;Options All&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="c"># doesn&#39;t give it to you.</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="c"># The Options directive is both complicated and important.  Please see</span><span class="w"></span>
+<span class="w">    </span><span class="c"># http://httpd.apache.org/docs/2.4/mod/core.html#options</span><span class="w"></span>
+<span class="w">    </span><span class="c"># for more information.</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Options</span><span class="w"> </span>Indexes<span class="w"> </span>FollowSymLinks<span class="w"></span>
 
-    <span class="c">#</span>
-    <span class="c"># AllowOverride controls what directives may be placed in .htaccess files.</span>
-    <span class="c"># It can be &quot;All&quot;, &quot;None&quot;, or any combination of the keywords:</span>
-    <span class="c">#   AllowOverride FileInfo AuthConfig Limit</span>
-    <span class="c">#</span>
-    <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="c"># AllowOverride controls what directives may be placed in .htaccess files.</span><span class="w"></span>
+<span class="w">    </span><span class="c"># It can be &quot;All&quot;, &quot;None&quot;, or any combination of the keywords:</span><span class="w"></span>
+<span class="w">    </span><span class="c">#   AllowOverride FileInfo AuthConfig Limit</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
 
-    <span class="c">#</span>
-    <span class="c"># Controls who can get stuff from this server.</span>
-    <span class="c">#</span>
-<span class="hll">    <span class="nb">Require</span> <span class="k">all</span> granted
-</span><span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="w">    </span><span class="c"># Controls who can get stuff from this server.</span><span class="w"></span>
+<span class="w">    </span><span class="c">#</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
+</span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>Kako nam više neće trebati pristup direktoriju <code>/usr/local/apache2/htdocs</code>, već <code>/var/www/html</code>, promijenit ćemo samo direktorij koji je naveden tako da konfiguracija da bude oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span> <span class="s">&quot;/var/www/html&quot;</span><span class="nt">&gt;</span>
-    <span class="c">#...</span>
-    <span class="nb">Require</span> <span class="k">all</span> granted
-<span class="nt">&lt;/Directory&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">&quot;/var/www/html&quot;</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="c">#...</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
+<span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
 </code></pre></div>
 <p>Direktorij <code>/var/www/html</code> trenutno ne postoji u kontejneru. Stvorimo ga prvo van kontejnera i napunimo sadržajem:</p>
 <div class="highlight"><pre><span></span><code>$ mkdir -p www/html
 $ <span class="nb">echo</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Radi!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span> &gt; www/html/index.html
 </code></pre></div>
 <p>Kopiranje direktorija u kontejner izvest ćemo isto kao kopiranje konfiguracijske datoteke, dodavanjem naredbe <code>COPY</code> u <code>Dockerfile</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">httpd:2.4</span>
-<span class="k">COPY</span> ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
-<span class="hll"><span class="k">COPY</span> ./www /var/www
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">httpd:2.4</span>
+<span class="k">COPY</span><span class="w"> </span>./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+<span class="hll"><span class="k">COPY</span><span class="w"> </span>./www /var/www
 </span></code></pre></div>
 <p>Izgradimo novu sliku naredbom <code>docker build</code> na način:</p>
 <div class="highlight"><pre><span></span><code>$ sudo docker build -t <span class="s2">&quot;my-httpd:2.4-2&quot;</span> .
@@ -6049,82 +6099,82 @@ Successfully tagged my-httpd:2.4-2
 </div>
 <h2 id="ukljucivanje-modula">Uključivanje modula</h2>
 <p>U konfiguracijskoj datoteci <code>my-httpd.conf</code> možemo uočiti veliki broj uglavnom zakomentiranih linija konfiguracijskih naredbi <code>LoadModule</code>  (<a href="https://httpd.apache.org/docs/2.4/mod/mod_so.html#loadmodule">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="c">#</span>
-<span class="c"># Dynamic Shared Object (DSO) Support</span>
-<span class="c">#</span>
-<span class="c"># To be able to use the functionality of a module which was built as a DSO you</span>
-<span class="c"># have to place corresponding `LoadModule&#39; lines at this location so the</span>
-<span class="c"># directives contained in it are actually available _before_ they are used.</span>
-<span class="c"># Statically compiled modules (those listed by `httpd -l&#39;) do not need</span>
-<span class="c"># to be loaded here.</span>
-<span class="c">#</span>
-<span class="c"># Example:</span>
-<span class="c"># LoadModule foo_module modules/mod_foo.so</span>
-<span class="c">#</span>
-<span class="nb">LoadModule</span> mpm_event_module modules/mod_mpm_event.so
-<span class="c">#LoadModule mpm_prefork_module modules/mod_mpm_prefork.so</span>
-<span class="c">#LoadModule mpm_worker_module modules/mod_mpm_worker.so</span>
-<span class="nb">LoadModule</span> authn_file_module modules/mod_authn_file.so
-<span class="c">#LoadModule authn_dbm_module modules/mod_authn_dbm.so</span>
-<span class="c">#LoadModule authn_anon_module modules/mod_authn_anon.so</span>
-<span class="c">#LoadModule authn_dbd_module modules/mod_authn_dbd.so</span>
-<span class="c">#LoadModule authn_socache_module modules/mod_authn_socache.so</span>
-<span class="nb">LoadModule</span> authn_core_module modules/mod_authn_core.so
-<span class="nb">LoadModule</span> authz_host_module modules/mod_authz_host.so
-<span class="nb">LoadModule</span> authz_groupfile_module modules/mod_authz_groupfile.so
-<span class="nb">LoadModule</span> authz_user_module modules/mod_authz_user.so
-<span class="c">#LoadModule authz_dbm_module modules/mod_authz_dbm.so</span>
-<span class="c">#LoadModule authz_owner_module modules/mod_authz_owner.so</span>
-<span class="c">#LoadModule authz_dbd_module modules/mod_authz_dbd.so</span>
-<span class="nb">LoadModule</span> authz_core_module modules/mod_authz_core.so
-<span class="c">#LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</span>
-<span class="c">#LoadModule authnz_fcgi_module modules/mod_authnz_fcgi.so</span>
-<span class="nb">LoadModule</span> access_compat_module modules/mod_access_compat.so
-<span class="nb">LoadModule</span> auth_basic_module modules/mod_auth_basic.so
-<span class="c">#LoadModule auth_form_module modules/mod_auth_form.so</span>
-<span class="c">#LoadModule auth_digest_module modules/mod_auth_digest.so</span>
-<span class="c">#LoadModule allowmethods_module modules/mod_allowmethods.so</span>
-<span class="c">#LoadModule isapi_module modules/mod_isapi.so</span>
-<span class="c">#LoadModule file_cache_module modules/mod_file_cache.so</span>
-<span class="c">#LoadModule cache_module modules/mod_cache.so</span>
-<span class="c">#LoadModule cache_disk_module modules/mod_cache_disk.so</span>
-<span class="c">#LoadModule cache_socache_module modules/mod_cache_socache.so</span>
-<span class="c">#...</span>
+<div class="highlight"><pre><span></span><code><span class="c">#</span><span class="w"></span>
+<span class="c"># Dynamic Shared Object (DSO) Support</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># To be able to use the functionality of a module which was built as a DSO you</span><span class="w"></span>
+<span class="c"># have to place corresponding `LoadModule&#39; lines at this location so the</span><span class="w"></span>
+<span class="c"># directives contained in it are actually available _before_ they are used.</span><span class="w"></span>
+<span class="c"># Statically compiled modules (those listed by `httpd -l&#39;) do not need</span><span class="w"></span>
+<span class="c"># to be loaded here.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># Example:</span><span class="w"></span>
+<span class="c"># LoadModule foo_module modules/mod_foo.so</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>mpm_event_module<span class="w"> </span>modules/mod_mpm_event.so<span class="w"></span>
+<span class="c">#LoadModule mpm_prefork_module modules/mod_mpm_prefork.so</span><span class="w"></span>
+<span class="c">#LoadModule mpm_worker_module modules/mod_mpm_worker.so</span><span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authn_file_module<span class="w"> </span>modules/mod_authn_file.so<span class="w"></span>
+<span class="c">#LoadModule authn_dbm_module modules/mod_authn_dbm.so</span><span class="w"></span>
+<span class="c">#LoadModule authn_anon_module modules/mod_authn_anon.so</span><span class="w"></span>
+<span class="c">#LoadModule authn_dbd_module modules/mod_authn_dbd.so</span><span class="w"></span>
+<span class="c">#LoadModule authn_socache_module modules/mod_authn_socache.so</span><span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authn_core_module<span class="w"> </span>modules/mod_authn_core.so<span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authz_host_module<span class="w"> </span>modules/mod_authz_host.so<span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authz_groupfile_module<span class="w"> </span>modules/mod_authz_groupfile.so<span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authz_user_module<span class="w"> </span>modules/mod_authz_user.so<span class="w"></span>
+<span class="c">#LoadModule authz_dbm_module modules/mod_authz_dbm.so</span><span class="w"></span>
+<span class="c">#LoadModule authz_owner_module modules/mod_authz_owner.so</span><span class="w"></span>
+<span class="c">#LoadModule authz_dbd_module modules/mod_authz_dbd.so</span><span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>authz_core_module<span class="w"> </span>modules/mod_authz_core.so<span class="w"></span>
+<span class="c">#LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</span><span class="w"></span>
+<span class="c">#LoadModule authnz_fcgi_module modules/mod_authnz_fcgi.so</span><span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>access_compat_module<span class="w"> </span>modules/mod_access_compat.so<span class="w"></span>
+<span class="nb">LoadModule</span><span class="w"> </span>auth_basic_module<span class="w"> </span>modules/mod_auth_basic.so<span class="w"></span>
+<span class="c">#LoadModule auth_form_module modules/mod_auth_form.so</span><span class="w"></span>
+<span class="c">#LoadModule auth_digest_module modules/mod_auth_digest.so</span><span class="w"></span>
+<span class="c">#LoadModule allowmethods_module modules/mod_allowmethods.so</span><span class="w"></span>
+<span class="c">#LoadModule isapi_module modules/mod_isapi.so</span><span class="w"></span>
+<span class="c">#LoadModule file_cache_module modules/mod_file_cache.so</span><span class="w"></span>
+<span class="c">#LoadModule cache_module modules/mod_cache.so</span><span class="w"></span>
+<span class="c">#LoadModule cache_disk_module modules/mod_cache_disk.so</span><span class="w"></span>
+<span class="c">#LoadModule cache_socache_module modules/mod_cache_socache.so</span><span class="w"></span>
+<span class="c">#...</span><span class="w"></span>
 </code></pre></div>
 <p>Očekivano, te naredbe služe za učitavanje modula čiji opis možemo naći <a href="https://httpd.apache.org/docs/2.4/mod/">u službenoj dokumentaciji</a>.</p>
 <p>Primjerice, ako želimo uključiti podršku za protokol HTTP/2 (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP">više detalja o verzijama HTTP-a na MDN-u</a>), iskoristit ćemo već ranije spomenuti modul <a href="https://httpd.apache.org/docs/2.4/mod/mod_http2.html">mod_http2</a>. Prvo ćemo odkomentirati liniju koja ga učitava:</p>
-<div class="highlight"><pre><span></span><code><span class="c">#LoadModule http2_module modules/mod_http2.so</span>
+<div class="highlight"><pre><span></span><code><span class="c">#LoadModule http2_module modules/mod_http2.so</span><span class="w"></span>
 </code></pre></div>
 <p>tako da bude oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">LoadModule</span> http2_module modules/mod_http2.so
+<div class="highlight"><pre><span></span><code><span class="nb">LoadModule</span><span class="w"> </span>http2_module<span class="w"> </span>modules/mod_http2.so<span class="w"></span>
 </code></pre></div>
 <p>i zatim na kraju datoteke dodati konfiguracijsku naredbu <code>Protocols</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#protocols">dokumentacija</a>) s odgovarajućim parametrima:</p>
-<div class="highlight"><pre><span></span><code><span class="c">#</span>
-<span class="c"># This is the main Apache HTTP server configuration file.  It contains the</span>
-<span class="c"># configuration directives that give the server its instructions.</span>
-<span class="c">#...</span>
+<div class="highlight"><pre><span></span><code><span class="c">#</span><span class="w"></span>
+<span class="c"># This is the main Apache HTTP server configuration file.  It contains the</span><span class="w"></span>
+<span class="c"># configuration directives that give the server its instructions.</span><span class="w"></span>
+<span class="c">#...</span><span class="w"></span>
 
-<span class="c"># Various default settings</span>
-<span class="c">#Include conf/extra/httpd-default.conf</span>
+<span class="c"># Various default settings</span><span class="w"></span>
+<span class="c">#Include conf/extra/httpd-default.conf</span><span class="w"></span>
 
-<span class="c"># Configure mod_proxy_html to understand HTML4/XHTML1</span>
-<span class="nt">&lt;IfModule</span> <span class="s">proxy_html_module</span><span class="nt">&gt;</span>
-<span class="nb">Include</span> conf/extra/proxy-html.conf
-<span class="nt">&lt;/IfModule&gt;</span>
+<span class="c"># Configure mod_proxy_html to understand HTML4/XHTML1</span><span class="w"></span>
+<span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">proxy_html_module</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="nb">Include</span><span class="w"> </span>conf/extra/proxy-html.conf<span class="w"></span>
+<span class="nt">&lt;/IfModule&gt;</span><span class="w"></span>
 
-<span class="c"># Secure (SSL/TLS) connections</span>
-<span class="c">#Include conf/extra/httpd-ssl.conf</span>
-<span class="c">#</span>
-<span class="c"># Note: The following must must be present to support</span>
-<span class="c">#       starting without SSL on platforms with no /dev/random equivalent</span>
-<span class="c">#       but a statically compiled-in mod_ssl.</span>
-<span class="c">#</span>
-<span class="nt">&lt;IfModule</span> <span class="s">ssl_module</span><span class="nt">&gt;</span>
-<span class="nb">SSLRandomSeed</span> startup builtin
-<span class="nb">SSLRandomSeed</span> connect builtin
-<span class="nt">&lt;/IfModule&gt;</span>
+<span class="c"># Secure (SSL/TLS) connections</span><span class="w"></span>
+<span class="c">#Include conf/extra/httpd-ssl.conf</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="c"># Note: The following must must be present to support</span><span class="w"></span>
+<span class="c">#       starting without SSL on platforms with no /dev/random equivalent</span><span class="w"></span>
+<span class="c">#       but a statically compiled-in mod_ssl.</span><span class="w"></span>
+<span class="c">#</span><span class="w"></span>
+<span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">ssl_module</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="nb">SSLRandomSeed</span><span class="w"> </span>startup<span class="w"> </span>builtin<span class="w"></span>
+<span class="nb">SSLRandomSeed</span><span class="w"> </span>connect<span class="w"> </span>builtin<span class="w"></span>
+<span class="nt">&lt;/IfModule&gt;</span><span class="w"></span>
 
-<span class="hll"><span class="nb">Protocols</span> h2 h2c http/1.1
+<span class="hll"><span class="nb">Protocols</span><span class="w"> </span>h2<span class="w"> </span>h2c<span class="w"> </span>http/1.1<span class="w"></span>
 </span></code></pre></div>
 <p>kojom ćemo omogućiti korištenje protokola HTTP/2 za sadržaj šifriran TLS-om/SSL-om koji se šalje korištenjem HTTPS-a (<code>h2</code>) i čisti tekst koji se šalje korištenjem HTTP-a (<code>h2c</code>). Protokol HTTP/1.1 (<code>http/1.1</code>) nastavljamo koristiti u situacijama kada klijent ne podržava protokol HTTP/2.</p>
 <p>Nakon što izgradimo kontejner s novom konfiguracijskom datotekom, možemo se cURL-om uvjeriti da HTTP/2 radi:</p>
@@ -6143,15 +6193,15 @@ content-length: <span class="m">45</span>
 content-type: text/html
 </code></pre></div>
 <p>Promotrimo li konfiguracijsku datoteku, vidjet ćemo da se konfiguracijske naredbe ovisne o modulu često navode unutar konfiguracijskog odjeljka <code>&lt;IfModule&gt;</code> (<a href="https://httpd.apache.org/docs/2.4/mod/core.html#ifmodule">dokumentacija</a>). U našem slučaju, obzirom da su parametri <code>h2</code> i <code>h2c</code> naredbe <code>Protocols</code> ovisni o učitanom modulu <code>http2_module</code>, ispravno navođenje konfiguracijske naredbe bilo bi oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="c">#...</span>
-<span class="nt">&lt;IfModule</span> <span class="s">ssl_module</span><span class="nt">&gt;</span>
-<span class="nb">SSLRandomSeed</span> startup builtin
-<span class="nb">SSLRandomSeed</span> connect builtin
-<span class="nt">&lt;/IfModule&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="c">#...</span><span class="w"></span>
+<span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">ssl_module</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="nb">SSLRandomSeed</span><span class="w"> </span>startup<span class="w"> </span>builtin<span class="w"></span>
+<span class="nb">SSLRandomSeed</span><span class="w"> </span>connect<span class="w"> </span>builtin<span class="w"></span>
+<span class="nt">&lt;/IfModule&gt;</span><span class="w"></span>
 
-<span class="hll"><span class="nt">&lt;IfModule</span> <span class="s">http2_module</span><span class="nt">&gt;</span>
-</span><span class="hll">    <span class="nb">Protocols</span> h2 h2c http/1.1
-</span><span class="hll"><span class="nt">&lt;/IfModule&gt;</span>
+<span class="hll"><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">http2_module</span><span class="nt">&gt;</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="nb">Protocols</span><span class="w"> </span>h2<span class="w"> </span>h2c<span class="w"> </span>http/1.1<span class="w"></span>
+</span><span class="hll"><span class="nt">&lt;/IfModule&gt;</span><span class="w"></span>
 </span></code></pre></div>
 
               
@@ -6218,6 +6268,34 @@ content-type: text/html
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/gaseri" target="_blank" rel="noopener" title="GASERI on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://www.linkedin.com/company/gaseri" target="_blank" rel="noopener" title="GASERI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://gitlab.com/gaseri" target="_blank" rel="noopener" title="GASERI on GitLab" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m510.486 284.482-27.262-83.963c.012.038.016.077.028.115-.013-.044-.021-.088-.033-.132v-.01L429.1 33.871a21.328 21.328 0 0 0-20.445-14.6A21.038 21.038 0 0 0 388.466 34l-51.372 158.154H175L123.533 33.989a21.033 21.033 0 0 0-20.183-14.715h-.113A21.467 21.467 0 0 0 82.86 34L28.888 200.475l-.008.021c-.013.042-.019.084-.033.127.012-.038.017-.077.029-.115L1.514 284.482a30.6 30.6 0 0 0 11.117 34.283l236.262 171.662c.035.026.074.041.109.067.1.072.2.146.3.214-.1-.065-.187-.136-.282-.2.015.012.033.02.05.031l.041.024h.006a11.992 11.992 0 0 0 1.137.7c.054.03.1.068.157.1.033.016.064.038.1.054s.053.02.077.032.038.015.056.023c.044.021.092.034.136.057.205.1.421.178.633.264.2.082.389.177.592.248l.025.011c.034.012.064.028.1.04s.083.032.125.046l.05.012c.053.016.11.024.163.039.019.006.042.009.063.015.284.086.579.148.872.213.115.026.225.062.341.083.017 0 .032.009.05.012.038.008.073.021.112.027.062.011.122.031.186.04.049.007.1 0 .151.012h.033a11.918 11.918 0 0 0 1.7.136h.019a11.971 11.971 0 0 0 1.7-.136h.033c.05-.008.1 0 .153-.012s.124-.029.187-.04c.038-.006.073-.019.11-.027.017 0 .032-.009.049-.012.118-.023.231-.059.349-.084.288-.064.578-.126.861-.21.019-.006.039-.008.059-.014.055-.017.113-.024.169-.041.016-.006.035-.007.051-.012.044-.013.086-.032.129-.047s.063-.028.1-.041l.026-.01c.214-.076.417-.175.627-.261s.394-.154.584-.245c.047-.023.1-.036.142-.059.018-.009.04-.015.058-.024s.053-.02.078-.033.068-.04.1-.056c.056-.028.106-.069.161-.1a12.341 12.341 0 0 0 1.132-.695c.029-.02.062-.035.092-.056.008-.006.017-.009.024-.015.035-.026.076-.043.11-.068l236.3-171.666a30.6 30.6 0 0 0 11.107-34.281zM408.8 49.48l46.342 142.674H362.46zm-305.6 0 46.428 142.675h-92.68zM26.817 299.251a6.526 6.526 0 0 1-2.361-7.308l20.34-62.42L193.835 420.6zm38.245-82.972h92.411l65.881 202.941zm183.416 273.83c-.047-.038-.092-.079-.138-.118l-.028-.026a8.366 8.366 0 0 1-.268-.231c-.172-.15-.341-.3-.5-.462.014.012.029.022.043.035l.055.046a12.191 12.191 0 0 0 1.091.929l.012.011c.018.013.033.03.051.045-.107-.075-.216-.148-.318-.229zm7.514-48.482L217.226 322.21l-34.387-105.931h146.414zm7.935 48.107c-.091.079-.178.157-.27.233l-.032.028c-.047.038-.091.079-.136.117-.1.08-.209.152-.313.229.018-.013.033-.032.053-.044l.009-.009a11.69 11.69 0 0 0 1.086-.926c.014-.013.03-.024.044-.036s.038-.03.054-.047c-.16.156-.322.307-.495.455zm90.7-273.455h92.4l-18.91 24.23-139.468 178.7zm130.567 82.967L318.2 420.563l149.084-191.025 20.258 62.393a6.528 6.528 0 0 1-2.353 7.315z"/></svg>
+    </a>
+  
+    
+    
+    <a href="https://bitbucket.org/gaseri" target="_blank" rel="noopener" title="GASERI on Bitbucket" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M22.2 32A16 16 0 0 0 6 47.8a26.35 26.35 0 0 0 .2 2.8l67.9 412.1a21.77 21.77 0 0 0 21.3 18.2h325.7a16 16 0 0 0 16-13.4L505 50.7a16 16 0 0 0-13.2-18.3 24.58 24.58 0 0 0-2.8-.2L22.2 32zm285.9 297.8h-104l-28.1-147h157.3l-25.2 147z"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -6229,7 +6307,7 @@ content-type: text/html
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.e3b2bf44.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
       
     
   </body>
