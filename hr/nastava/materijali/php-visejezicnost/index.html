@@ -2974,6 +2974,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../php-slanje-podataka/" class="md-nav__link">
+        Slanje podataka u HTTP zahtjevu metodama GET i POST u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../php-sockets/" class="md-nav__link">
         Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
       </a>
@@ -3048,6 +3062,13 @@
       Sadržaj
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rad-s-poljima-u-jeziku-php" class="md-nav__link">
+    Rad s poljima u jeziku PHP
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#jednostavan-odabir-jezika" class="md-nav__link">
@@ -5824,6 +5845,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rad-s-poljima-u-jeziku-php" class="md-nav__link">
+    Rad s poljima u jeziku PHP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#jednostavan-odabir-jezika" class="md-nav__link">
     Jednostavan odabir jezika
   </a>
@@ -5886,6 +5914,45 @@
 <p>Standard <a href="https://www.iso.org/iso-639-language-codes.html">ISO 639-1</a> definira <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">dvoslovne kodove</a> za označavanje jezika koji postoje u svijetu. Donekle povezan standard <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166-1</a> u odjeljku alpha-2 definira <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">dvoslovne kodove</a> za označavanje država. Kako bismo lakše razlikovali jezične kodove od državnih, konvencija je da se ovi prvi pišu malim slovima, a ovi drugi velikim.</p>
 <p>HTTP zaglavlje <code>Accept-Language</code> u zahtjevu oglašava koje jezike klijent može razumijeti i koja lokalna varijanta jezika je preferirana (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language">više detalja o HTTP zaglavlju Accept-Language na MDN-u</a>). Jezici se navode odvojeni zarezom, a znak zvjezdice (<code>*</code>) označava sve jezike. Opcionalno se može navesti i kvaliteta razumijevanja pojedinih jezika (vrijednost između 0 i 1) dodavanjem <code>;q=</code>, npr. <code>Accept-Language: hr, en;q=0.9, de-AT;q=0.7, *;q=0.5</code> znači da klijent razumije hrvatski, engleski s kvalitetom 0.9, njemački kakav se govori u Austriji s kvalitetom 0.7, a ostale jezike s kvalitetom 0.5. U PHP-u nam je sadržaj tog zaglavlja dostupan u polju <code>$_SERVER</code>, konkretno kao <code>$_SERVER["HTTP_ACCEPT_LANGUAGE"]</code>.</p>
 <p>HTTP zaglavlje <code>Content-Language</code> u odgovoru navodi u kojem je jeziku napisan sadržaj koji se šalje (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language">više detalja o HTTP zaglavlju Content-Language na MDN-u</a>). Primjerice, <code>Content-Language: de-AT</code> znači da je sadržaj na njemačkom jeziku kakav se govori u Austriji. Najčešće se koristi za tekstualni sadržaj (čisti tekst i HTML), ali može se koristiti za bilo koji medij.</p>
+<h2 id="rad-s-poljima-u-jeziku-php">Rad s poljima u jeziku PHP</h2>
+<p>Dosad smo već koristili vrijednosti iz polja <code>$_SERVER</code> kao što su <code>$_SERVER["REQUEST_URI"]</code> i <code>$_SERVER["REQUEST_METHOD"]</code>. Vidjeli smo da su te vrijednosti znakovni nizovi, a istog su tipa i ključevi <code>"REQUEST_URI"</code> i <code>"REQUEST_METHOD"</code> putem kojih ih dohvaćamo. Dakle, ključevi polja u jeziku PHP ne moraju biti poredani cijeli brojevi koji kreću od nule kako smo navikli kod rada s poljima u C/C++-u. Polje u PHP-u (<a href="https://www.php.net/manual/en/language.types.array.php">dokumentacija</a>) je zapravo poredano preslikavanje (engl. <em>ordered map</em>). Za ilustraciju načina rada s poljima u PHP-u od <a href="https://www.php.net/releases/5_4_0.php">verzije 5.4.0</a> nadalje, definirajmo dva polja: prvo slično poljima u C/C++-u, a drugo polju <code>$_SERVER</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$arr1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;moja vrijednost&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="k">true</span><span class="p">];</span> <span class="c1">// ekvivalentno [0 =&gt; &quot;moja vrijednost&quot;, 1 =&gt; 8, 2 =&gt; 3.5, 3 =&gt; true]</span>
+<span class="nv">$arr2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;moj kljuc&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;moja vrijednost&quot;</span><span class="p">,</span> <span class="s2">&quot;broj&quot;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;drugi broj&quot;</span> <span class="o">=&gt;</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;je li istina&quot;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">];</span>
+</code></pre></div>
+<p>Vrijednosti elemenata prvog polja možemo dohvatiti na način <code>$arr1[0]</code>,  <code>$arr1[1]</code>,  <code>$arr1[2]</code> i  <code>$arr1[3]</code>, a drugog na način <code>$arr1["moj kljuc"]</code>,  <code>$arr1["broj"]</code>,  <code>$arr1["drugi broj"]</code> i  <code>$arr1["je li istina"]</code>.</p>
+<p>Pokrenimo interaktivni način rada interpretera PHP-a korištenjem parametra <code>--interactive</code>, odnosno <code>-a</code> te definirajmo ta dva polja <code>$arr1</code> i <code>$arr2</code> kao iznad, a zatim provjerimo njihov sadržaj funkcijom ispisa <code>print_r()</code> (<a href="https://www.php.net/manual/en/function.print-r.php">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><code>$ php -a
+Interactive mode enabled
+
+php &gt; <span class="nv">$arr1</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;moja vrijednost&quot;</span>, <span class="m">1</span>, <span class="m">3</span>.5, true<span class="o">]</span><span class="p">;</span>
+php &gt; <span class="nv">$arr2</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;moj kljuc&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;moja vrijednost&quot;</span>, <span class="s2">&quot;broj&quot;</span> <span class="o">=</span>&gt; <span class="m">8</span>, <span class="s2">&quot;drugi broj&quot;</span> <span class="o">=</span>&gt; <span class="m">3</span>.5, <span class="s2">&quot;je li istina&quot;</span> <span class="o">=</span>&gt; true<span class="o">]</span><span class="p">;</span>
+php &gt; print_r<span class="o">(</span><span class="nv">$arr1</span><span class="o">)</span><span class="p">;</span>
+Array
+<span class="o">(</span>
+    <span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span>&gt; moja vrijednost
+    <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
+    <span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">3</span>.5
+    <span class="o">[</span><span class="m">3</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
+<span class="o">)</span>
+php &gt; print_r<span class="o">(</span><span class="nv">$arr2</span><span class="o">)</span><span class="p">;</span>
+Array
+<span class="o">(</span>
+    <span class="o">[</span>moj kljuc<span class="o">]</span> <span class="o">=</span>&gt; moja vrijednost
+    <span class="o">[</span>broj<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">8</span>
+    <span class="o">[</span>drugi broj<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">3</span>.5
+    <span class="o">[</span>je li istina<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
+<span class="o">)</span>
+</code></pre></div>
+<p>Možemo se uvjeriti i da uspješno dohvaćamo pojedine vrijednosti iz polja na način koji smo naveli:</p>
+<div class="highlight"><pre><span></span><code>php &gt; echo $arr1[0];
+moja vrijednost
+php &gt; echo $arr2[&quot;broj&quot;];
+8
+php &gt; echo $arr2[&quot;drugi broj&quot;];
+3.5
+</code></pre></div>
 <h2 id="jednostavan-odabir-jezika">Jednostavan odabir jezika</h2>
 <p>Implementirajmo jednostavan odabir jezika koji omogućuje primanje odabira na hrvatskom, engleskom ili poruke o pogrešci. Ako klijent navede da prihvaća hrvatski, dobit će odgovor na hrvatskom bez obzira je li naveo engleski jer je hrvatski preferirani jezik poslužitelja. Ako klijent navede da prihvaća engleski ili navede da prihvaća sve jezike bez da eksplicitno navede hrvatski ili engleski, dobit će odgovor na engleskom. Ako klijent navede popis jezika koji ne uključuje niti hrvatski, niti engleski, niti sve ostale jezike, dobit će odgovor s postavljenim HTTP statusnim kodom 406 Not Acceptable.</p>
 <p>Kako bismo po nakon izdvajanja sadržaja zaglavlja <code>Accept-Language</code> po znaku zareza razdvojili dobiveni popis jezika, trebat će nam funkcija <code>explode()</code>. Ako je popis jezika znakovni niz oblika <code>"en,hr"</code>, cijepanjem po zarezu dobivamo polje <code>["en", "hr"]</code>, što nam odgovara.</p>

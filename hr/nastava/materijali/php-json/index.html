@@ -3042,6 +3042,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../php-slanje-podataka/" class="md-nav__link">
+        Slanje podataka u HTTP zahtjevu metodama GET i POST u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../php-sockets/" class="md-nav__link">
         Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
       </a>
@@ -5869,45 +5883,6 @@
 
 
 <h1 id="obrada-podataka-zapisanih-u-obliku-javascript-object-notation-json-u-jeziku-php">Obrada podataka zapisanih u obliku JavaScript Object Notation (JSON) u jeziku PHP</h1>
-<p>Dosad smo već koristili vrijednosti iz polja <code>$_SERVER</code> kao što su <code>$_SERVER["REQUEST_URI"]</code> i <code>$_SERVER["REQUEST_METHOD"]</code>. Vidjeli smo da su te vrijednosti znakovni nizovi, a istog su tipa i ključevi <code>"REQUEST_URI"</code> i <code>"REQUEST_METHOD"</code> putem kojih ih dohvaćamo. Dakle, ključevi polja u jeziku PHP ne moraju biti poredani cijeli brojevi koji kreću od nule kako smo navikli kod rada s poljima u C/C++-u. Polje u PHP-u (<a href="https://www.php.net/manual/en/language.types.array.php">dokumentacija</a>) je zapravo poredano preslikavanje (engl. <em>ordered map</em>). Za ilustraciju načina rada s poljima u PHP-u od <a href="https://www.php.net/releases/5_4_0.php">verzije 5.4.0</a> nadalje, definirajmo dva polja: prvo slično poljima u C/C++-u, a drugo polju <code>$_SERVER</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="nv">$arr1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;moja vrijednost&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="k">true</span><span class="p">];</span> <span class="c1">// ekvivalentno [0 =&gt; &quot;moja vrijednost&quot;, 1 =&gt; 8, 2 =&gt; 3.5, 3 =&gt; true]</span>
-<span class="nv">$arr2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;moj kljuc&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;moja vrijednost&quot;</span><span class="p">,</span> <span class="s2">&quot;broj&quot;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;drugi broj&quot;</span> <span class="o">=&gt;</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;je li istina&quot;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">];</span>
-</code></pre></div>
-<p>Vrijednosti elemenata prvog polja možemo dohvatiti na način <code>$arr1[0]</code>,  <code>$arr1[1]</code>,  <code>$arr1[2]</code> i  <code>$arr1[3]</code>, a drugog na način <code>$arr1["moj kljuc"]</code>,  <code>$arr1["broj"]</code>,  <code>$arr1["drugi broj"]</code> i  <code>$arr1["je li istina"]</code>.</p>
-<p>Pokrenimo interaktivni način rada interpretera PHP-a korištenjem parametra <code>--interactive</code>, odnosno <code>-a</code> te definirajmo ta dva polja <code>$arr1</code> i <code>$arr2</code> kao iznad, a zatim provjerimo njihov sadržaj funkcijom ispisa <code>print_r()</code> (<a href="https://www.php.net/manual/en/function.print-r.php">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><code>$ php -a
-Interactive mode enabled
-
-php &gt; <span class="nv">$arr1</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;moja vrijednost&quot;</span>, <span class="m">1</span>, <span class="m">3</span>.5, true<span class="o">]</span><span class="p">;</span>
-php &gt; <span class="nv">$arr2</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;moj kljuc&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;moja vrijednost&quot;</span>, <span class="s2">&quot;broj&quot;</span> <span class="o">=</span>&gt; <span class="m">8</span>, <span class="s2">&quot;drugi broj&quot;</span> <span class="o">=</span>&gt; <span class="m">3</span>.5, <span class="s2">&quot;je li istina&quot;</span> <span class="o">=</span>&gt; true<span class="o">]</span><span class="p">;</span>
-php &gt; print_r<span class="o">(</span><span class="nv">$arr1</span><span class="o">)</span><span class="p">;</span>
-Array
-<span class="o">(</span>
-    <span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span>&gt; moja vrijednost
-    <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
-    <span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">3</span>.5
-    <span class="o">[</span><span class="m">3</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
-<span class="o">)</span>
-php &gt; print_r<span class="o">(</span><span class="nv">$arr2</span><span class="o">)</span><span class="p">;</span>
-Array
-<span class="o">(</span>
-    <span class="o">[</span>moj kljuc<span class="o">]</span> <span class="o">=</span>&gt; moja vrijednost
-    <span class="o">[</span>broj<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">8</span>
-    <span class="o">[</span>drugi broj<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">3</span>.5
-    <span class="o">[</span>je li istina<span class="o">]</span> <span class="o">=</span>&gt; <span class="m">1</span>
-<span class="o">)</span>
-</code></pre></div>
-<p>Možemo se uvjeriti i da uspješno dohvaćamo pojedine vrijednosti iz polja na način koji smo naveli:</p>
-<div class="highlight"><pre><span></span><code>php &gt; echo $arr1[0];
-moja vrijednost
-php &gt; echo $arr2[&quot;broj&quot;];
-8
-php &gt; echo $arr2[&quot;drugi broj&quot;];
-3.5
-</code></pre></div>
-<h2 id="kodiranje-i-dekodiranje-json-a">Kodiranje i dekodiranje JSON-a</h2>
 <p><a href="https://www.json.org/">JavaScript Object Notation (JSON)</a> (<a href="https://en.wikipedia.org/wiki/JSON">Wikipedia</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">MDN</a>) je jednostavan format za razmjenu podataka koji se intenzivno koristi na suvremenom webu. Standardiziran je u okviru <a href="https://datatracker.ietf.org/doc/html/rfc7159">RFC-a 7159 naslovljenog The JavaScript Object Notation (JSON) Data Interchange Format</a>. Primjer objekta zapisanog u JSON-u koji opisuje osobu (inspiriran <a href="https://en.wikipedia.org/wiki/JSON#Syntax">Wikipedijinim primjerom</a>) je oblika:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ivan&quot;</span><span class="p">,</span><span class="w"></span>
@@ -5937,6 +5912,7 @@ php &gt; echo $arr2[&quot;drugi broj&quot;];
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Iz ovako zapisanih podataka lako je izdvojiti onaj koji nam treba te ga postaviti na odgovarajuće mjesto na web stranici. Za ilustraciju, možemo zamisliti kako bi ime, prezime, titula i korisničko ime na Twitteru bili iskorišteni kod stvaranja stranice <a href="https://tailwindui.com/components/marketing/sections/team-sections">Team Sections od Tailwind CSS UI Components</a> koja bi navela Ivana Horvata kao dio tima, ali procesom izrade web stranica na taj način ćemo se detaljnije baviti nekom drugom prigodom.</p>
+<h2 id="kodiranje-i-dekodiranje-json-a">Kodiranje i dekodiranje JSON-a</h2>
 <p>Interpreter PHP-a <a href="https://www.php.net/manual/en/book.json.php">podržava kodiranje i dekodiranje JSON-a</a> od <a href="https://www.php.net/releases/5_2_0.php">verzije 5.2.0</a> nadalje.</p>
 <h3 id="kodiranje">Kodiranje</h3>
 <p>Pretvobu PHP-ovih polja u oblik JSON, odnosno kodiranje JSON-a vršimo funkcijom <code>json_encode()</code> (<a href="https://www.php.net/manual/en/function.json-encode.php">dokumentacija</a>) na način:</p>

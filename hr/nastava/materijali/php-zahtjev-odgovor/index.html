@@ -2974,6 +2974,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../php-slanje-podataka/" class="md-nav__link">
+        Slanje podataka u HTTP zahtjevu metodama GET i POST u jeziku PHP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../php-sockets/" class="md-nav__link">
         Programiranje mrežnih aplikacija korištenjem utičnica u jeziku PHP
       </a>
@@ -3092,6 +3106,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#specificnosti-metode-head" class="md-nav__link">
+    Specifičnosti metode HEAD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specificnosti-metode-connect" class="md-nav__link">
+    Specifičnosti metode CONNECT
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3104,6 +3132,20 @@
   
     <nav class="md-nav" aria-label="Dohvaćanje i obrada zaglavlja zahtjeva">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provjera-imena-domacina" class="md-nav__link">
+    Provjera imena domaćina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ispis-korisnickog-agenta" class="md-nav__link">
+    Ispis korisničkog agenta
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#provjera-prihvatljivih-oblika-odgovora" class="md-nav__link">
@@ -3121,41 +3163,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-get" class="md-nav__link">
-    Specifičnosti metode GET
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-post" class="md-nav__link">
-    Specifičnosti metode POST
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provjera-poslanih-varijabli-u-zahtjevima-metodom-get-i-post" class="md-nav__link">
-    Provjera poslanih varijabli u zahtjevima metodom GET i POST
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-head" class="md-nav__link">
-    Specifičnosti metode HEAD
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-connect" class="md-nav__link">
-    Specifičnosti metode CONNECT
-  </a>
   
 </li>
       
@@ -5907,6 +5914,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#specificnosti-metode-head" class="md-nav__link">
+    Specifičnosti metode HEAD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specificnosti-metode-connect" class="md-nav__link">
+    Specifičnosti metode CONNECT
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5919,6 +5940,20 @@
   
     <nav class="md-nav" aria-label="Dohvaćanje i obrada zaglavlja zahtjeva">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provjera-imena-domacina" class="md-nav__link">
+    Provjera imena domaćina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ispis-korisnickog-agenta" class="md-nav__link">
+    Ispis korisničkog agenta
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#provjera-prihvatljivih-oblika-odgovora" class="md-nav__link">
@@ -5936,41 +5971,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-get" class="md-nav__link">
-    Specifičnosti metode GET
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-post" class="md-nav__link">
-    Specifičnosti metode POST
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provjera-poslanih-varijabli-u-zahtjevima-metodom-get-i-post" class="md-nav__link">
-    Provjera poslanih varijabli u zahtjevima metodom GET i POST
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-head" class="md-nav__link">
-    Specifičnosti metode HEAD
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specificnosti-metode-connect" class="md-nav__link">
-    Specifičnosti metode CONNECT
-  </a>
   
 </li>
       
@@ -6214,6 +6214,67 @@
 [Tue Nov  3 08:54:07 2020] [::1]:52918 [400]: POST /grafit
 [Tue Nov  3 08:54:07 2020] [::1]:52918 Closing
 </code></pre></div>
+<p>Dosad smo izvodili zahtjeve HTTP metodama GET i POST. Pored njih postoji još nekoliko HTTP metoda, kojima se detaljnije bavimo u nastavku. Ovdje je za ilustraciju procesa slanja zahtjeva i formiranja odgovora na zahtjev zanimljivo promotriti način rada metoda HEAD i CONNECT.</p>
+<h3 id="specificnosti-metode-head">Specifičnosti metode HEAD</h3>
+<p>Zahtjev HTTP metodom HEAD učinit će da poslužitelj vrati odgovor koji ima samo zaglavlja, odnosno nema tijelo (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">više detalja o HTTP metodi HEAD na MDN-u</a>). Uzmimo da je datoteka <code>index.php</code> sadržaja:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;HEAD&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Moj-Head: ne prodajemo skije i štapove&quot;</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ovaj dio neće biti sadržan u odgovoru&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Napravimo HTTP zahtjev HEAD cURL-om da se uvjerimo da naš poslužitelj radi kako treba:</p>
+<div class="highlight"><pre><span></span><code>$ curl -v -X HEAD http://localhost:8000/
+Warning: Setting custom HTTP method to HEAD with -X/--request may not work the
+Warning: way you want. Consider using -I/--head instead.
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; HEAD / HTTP/1.1
+&gt; Host: localhost:8000
+&gt; User-Agent: curl/7.72.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: localhost:8000
+&lt; Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">18</span>:41:39 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.0.0
+&lt; Moj-Head: ne prodajemo skije i štapove
+&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+* Closing connection <span class="m">0</span>
+
+$ curl -I http://localhost:8000/
+HTTP/1.1 <span class="m">200</span> OK
+Host: localhost:8000
+Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">18</span>:41:43 GMT
+Connection: close
+X-Powered-By: PHP/8.0.0
+Moj-Head: ne prodajemo skije i štapove
+Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+</code></pre></div>
+<p>Vidimo zaglavlja među kojima je i naše prilagođeno zaglavlje <code>Moj-Head</code>, a tijelo je prazno kao što smo i očekivali.</p>
+<h3 id="specificnosti-metode-connect">Specifičnosti metode CONNECT</h3>
+<p>Zahtjev HTTP metodom CONNECT izvršit će samo spajanje na poslužitelj i pritom ne očekuje nikakav odgovor (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT">više detalja o HTTP metodi CONNECT na MDN-u</a>). Zbog toga HTTP poslužitelji uglavnom uopće ne implementiraju metodu CONNECT, što je u skladu sa standardom (<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.6">odjeljak 4.3.6. pod naslovom CONNECT u RFC-u 7231 pod naslovom Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>). Bez obzira kakav kod imali u datoteci <code>index.php</code>, odgovor na zahtjev tom metodom bit će prazan:</p>
+<div class="highlight"><pre><span></span><code>$ curl -v -X CONNECT http://localhost:8000/
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; CONNECT / HTTP/1.1
+&gt; Host: localhost:8000
+&gt; User-Agent: curl/7.72.0
+&gt; Accept: */*
+&gt;
+* Empty reply from server
+* Connection <span class="c1">#0 to host localhost left intact</span>
+curl: <span class="o">(</span><span class="m">52</span><span class="o">)</span> Empty reply from server
+</code></pre></div>
+<p>Kako metoda CONNECT nije implementirana, na strani poslužitelja imamo poruku o neispravnom HTTP zahtjevu:</p>
+<div class="highlight"><pre><span></span><code>[Wed Dec 30 19:44:37 2020] [::1]:52244 Accepted
+[Wed Dec 30 19:44:37 2020] [::1]:52244 Invalid request (Malformed HTTP request)
+[Wed Dec 30 19:44:37 2020] [::1]:52244 Closing
+</code></pre></div>
 <h2 id="dohvacanje-i-obrada-zaglavlja-zahtjeva">Dohvaćanje i obrada zaglavlja zahtjeva</h2>
 <p>Korištenjem varijabli iz polja <code>$_SERVER</code> možemo dohvatiti i druga zaglavlja HTTP zahtjeva:</p>
 <ul>
@@ -6221,6 +6282,133 @@
 <li>korištenjem varijable <code>$_SERVER["HTTP_USER_AGENT"]</code> zaglavlje <code>User-Agent</code> koje sadrži korisnički agent, odnosno ime i verziju web klijenta koji se koristi (u našem slučaju <code>curl/7.72.0</code>); <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent">više detalja o HTTP zaglavlju User-Agent na MDN-u</a></li>
 <li>korištenjem varijable <code>$_SERVER["HTTP_ACCEPT"]</code> zaglavlje <code>Accept</code> koje sadrži skup MIME tipova koje klijent prihvaća (u našem slučaju <code>*/*</code>, odnosno svi); <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept">više detalja o HTTP zaglavlju Accept na MDN-u</a></li>
 </ul>
+<h3 id="provjera-imena-domacina">Provjera imena domaćina</h3>
+<p>Jedan HTTP poslužitelj može posluživati sadržaj više različitih domaćina. Primjerice, domaćine na domenama <code>www.math.uniri.hr</code>, <code>www.phy.uniri.hr</code> i <code>www.biotech.uniri.hr</code> poslužuje poslužitelj na domeni <code>webovi.uniri.hr</code> i IPv4 adresi <code>193.198.209.33</code>. U praksi je takav način posluživanja vrlo poželjan zbog korištenja jedne IPv4 adrese za posluživanje sadržaja s mnogo različitih domena. Naime, dok domena ima za praktične potrebe sasvim dovoljno, <a href="https://en.wikipedia.org/wiki/IPv4_address_exhaustion">bazen dostupnih IPv4 adresa je iscrpljen</a> i <a href="https://circleid.com/posts/20211216-the-formation-of-ipv4-address-markets">blokovi IPv4 adresa se prodaju za cijenu od nekoliko desetaka dolara po adresi</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_HOST&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;www.inf.rm.miletic.net&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ovo je Fakultet informatike i digitalnih tehnologija.&lt;/p&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_HOST&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;www.riteh.rm.miletic.net&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ovo je Tehnički fakultet.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Hello, world!&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Kod korištenja cURL-a zaglavlja poslana u HTTP zahtjevu navodimo parametrom <code>--header</code>, odnosno <code>-H</code>. Isprobajmo različite vrijednosti zaglavlja <code>Host</code>:</p>
+<div class="highlight"><pre><span></span><code>$ curl -v -H <span class="s1">&#39;Host: www.riteh.rm.miletic.net&#39;</span> http://localhost:8000/
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET / HTTP/1.1
+&gt; Host: www.riteh.rm.miletic.net
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: www.riteh.rm.miletic.net
+&lt; Date: Tue, <span class="m">15</span> Feb <span class="m">2022</span> <span class="m">17</span>:41:36 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.1.2
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Ovo je Tehnički fakultet.&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+
+$ curl -v -H <span class="s1">&#39;Host: www.riteh.inf.miletic.net&#39;</span> http://localhost:8000/
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET / HTTP/1.1
+&gt; Host: www.riteh.inf.miletic.net
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: www.riteh.inf.miletic.net
+&lt; Date: Tue, <span class="m">15</span> Feb <span class="m">2022</span> <span class="m">17</span>:44:40 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.1.2
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Hello, world!&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+
+$ curl -v -H <span class="s1">&#39;Host: www.inf.uniri.hr&#39;</span> http://localhost:8000/
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET / HTTP/1.1
+&gt; Host: www.inf.uniri.hr
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: www.inf.uniri.hr
+&lt; Date: Tue, <span class="m">15</span> Feb <span class="m">2022</span> <span class="m">17</span>:44:57 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.1.2
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Hello, world!&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+</code></pre></div>
+<p>U slučaju da ne navedemo zaglavlje <code>Host</code>, ono će imati vrijednost imena domene i vrata koja smo naveli u URL-u (u našem slučaju <code>localhost:8000</code>) pa će poslužitelj poslati očekivani odgovor:</p>
+<div class="highlight"><pre><span></span><code>$ curl -v http://localhost:8000/
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET / HTTP/1.1
+&gt; Host: localhost:8000
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: localhost:8000
+&lt; Date: Tue, <span class="m">15</span> Feb <span class="m">2022</span> <span class="m">17</span>:45:10 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.1.2
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Hello, world!&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+</code></pre></div>
+<h3 id="ispis-korisnickog-agenta">Ispis korisničkog agenta</h3>
+<p>Moguće je razlikovati korisničke agente na sličan način kao domaćine i servirati različit sadržaj ovisno o vrijednosti korisničkog agenta navedenoj u primljenom HTTP zahtjevu. Web standardi su namijenjeni za sve korisničke agente (<a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards">više detalja o web standardima na MDN-u</a>) pa se takvo prilagođavanje uglavnom ne preporuča. Stoga ćemo se u primjeru ograničiti na ispis korisničkog agenta:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$ua</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;HTTP_USER_AGENT&quot;</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Vaš korisnički agent je: </span><span class="si">$ua</span><span class="s2">.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Isprobajmo cURL-om:</p>
+<div class="highlight"><pre><span></span><code>curl -v http://localhost:8000/
+*   Trying <span class="m">127</span>.0.0.1:8000...
+* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
+*   Trying ::1:8000...
+* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET / HTTP/1.1
+&gt; Host: localhost:8000
+&gt; User-Agent: curl/7.81.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Host: localhost:8000
+&lt; Date: Tue, <span class="m">15</span> Feb <span class="m">2022</span> <span class="m">17</span>:51:27 GMT
+&lt; Connection: close
+&lt; X-Powered-By: PHP/8.1.2
+&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+&lt;
+&lt;p&gt;Vaš korisnički agent je: curl/7.81.0.&lt;/p&gt;
+* Closing connection <span class="m">0</span>
+</code></pre></div>
 <h3 id="provjera-prihvatljivih-oblika-odgovora">Provjera prihvatljivih oblika odgovora</h3>
 <p>Poslužitelj može biti postavljen da podatke o studentu šalje u različitom obliku ovisno o navedenoj vrijednosti u zaglavlju <code>Accept</code> HTTP zahtjeva. Primjerice, uzmimo da poslužitelj koji šalje podatke o studentu (ime, prezime i studijska grupa) omogućuje klijentu da navede kao prihvatljiv oblik:</p>
 <ul>
@@ -6245,7 +6433,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Uočimo da kod JSON-a za imenovanje polja i navođenje njihovih vrijednosti koristimo dvostruke navodnike pa za omeđivanje znakovnog niza kod ispisa naredbom <code>echo</code> koristimo jednostruke.</p>
-<p>Zatražimo cURL-om prvo JSON navođenjem odgovarajuće vrijednosti zaglavlja <code>Accept</code> parametrom <code>--header</code>, odnosno <code>-H</code>:</p>
+<p>Zatražimo cURL-om prvo JSON navođenjem odgovarajuće vrijednosti zaglavlja <code>Accept</code>:</p>
 <div class="highlight"><pre><span></span><code>$ curl -v -H <span class="s2">&quot;Accept: application/json&quot;</span> http://localhost:8000/
 *   Trying ::1:8000...
 * Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
@@ -6378,188 +6566,6 @@ $ curl -v -H <span class="s2">&quot;Najjaci-Fakultet: Odjel za informatiku&quot;
 &lt;
 &lt;p&gt;Dobrodošli, kolega.&lt;/p&gt;
 * Closing connection <span class="m">0</span>
-</code></pre></div>
-<h2 id="specificnosti-metode-get">Specifičnosti metode GET</h2>
-<p>Varijable navedene kod slanja zahtjeva HTTP metodom GET možemo dohvatiti putem varijable <code>$_GET</code> (<a href="https://www.php.net/manual/en/reserved.variables.get.php">dokumentacija</a>). Primjerice, recimo da skripta index.php očekuje ime i prezime na način da dajete zatjeve na putanju <code>/profil?ime=Ivan&amp;prezime=Horvat</code>. Možemo se ponadati da bismo obradu takvih zahtjeva mogli izvesti kodom:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/profil&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$ime</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;ime&quot;</span><span class="p">];</span>
-    <span class="nv">$prezime</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;prezime&quot;</span><span class="p">];</span>
-    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Vi ste </span><span class="si">$ime</span><span class="s2"> </span><span class="si">$prezime</span><span class="s2">.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Međutim, <code>$_SERVER["REQUEST_URI"]</code> će uključivati čitavu putanju u kojoj se nalazi i upit (u našem slučaju <code>?ime=Ivan&amp;prezime=Horvat</code>) pa nam kod neće raditi kako očekujemo. Putanja bez upita je sadržana u varijabli <code>$_SERVER["PATH_INFO"]</code> pa je ispravan kod oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;PATH_INFO&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/profil&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$ime</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;ime&quot;</span><span class="p">];</span>
-    <span class="nv">$prezime</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;prezime&quot;</span><span class="p">];</span>
-    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Vi ste </span><span class="si">$ime</span><span class="s2"> </span><span class="si">$prezime</span><span class="s2">.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Kako ljuska tretira <code>?</code> i <code>&amp;</code> kao posebne znakove, URL je kod izvođenja zahtjeva potrebno staviti pod navodnike na način:</p>
-<div class="highlight"><pre><span></span><code>$ curl -v <span class="s2">&quot;http://localhost:8000/profil?ime=Ivan&amp;prezime=Horvat&quot;</span>
-*   Trying <span class="m">127</span>.0.0.1:8000...
-* TCP_NODELAY <span class="nb">set</span>
-* Connected to localhost <span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; GET /profil?ime<span class="o">=</span>Ivan<span class="p">&amp;</span><span class="nv">prezime</span><span class="o">=</span>Horvat HTTP/1.1
-&gt; Host: localhost:8000
-&gt; User-Agent: curl/7.68.0
-&gt; Accept: */*
-&gt;
-* Mark bundle as not supporting multiuse
-&lt; HTTP/1.1 <span class="m">200</span> OK
-&lt; Host: localhost:8000
-&lt; Date: Tue, <span class="m">03</span> Nov <span class="m">2020</span> <span class="m">12</span>:55:51 GMT
-&lt; Connection: close
-&lt; X-Powered-By: PHP/7.4.3
-&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
-&lt;
-&lt;p&gt;Vi ste Ivan Horvat.&lt;/p&gt;
-* Closing connection <span class="m">0</span>
-</code></pre></div>
-<p>Vrijednosti pojedinih GET varijabli mogu sadržavati znak razmaka. U tom slučaju je potrebno znak razmaka kodirati znakom plusa (<code>+</code>; <a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding">više detalja o kodiranju znakova u URL-ima na MDN-u</a>) na način:</p>
-<div class="highlight"><pre><span></span><code>$ curl -v <span class="s2">&quot;http://localhost:8000/profil?ime=Ivan+Tomislav&amp;prezime=Horvat&quot;</span>
-*   Trying <span class="m">127</span>.0.0.1:8000...
-* connect to <span class="m">127</span>.0.0.1 port <span class="m">8000</span> failed: Veza odbijena
-*   Trying ::1:8000...
-* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; GET /profil?ime<span class="o">=</span>Ivan+Tomislav<span class="p">&amp;</span><span class="nv">prezime</span><span class="o">=</span>Horvat HTTP/1.1
-&gt; Host: localhost:8000
-&gt; User-Agent: curl/7.79.1
-&gt; Accept: */*
-&gt;
-* Mark bundle as not supporting multiuse
-&lt; HTTP/1.1 <span class="m">200</span> OK
-&lt; Host: localhost:8000
-&lt; Date: Thu, <span class="m">04</span> Nov <span class="m">2021</span> <span class="m">16</span>:51:19 GMT
-&lt; Connection: close
-&lt; X-Powered-By: PHP/8.0.12
-&lt; Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
-&lt;
-&lt;p&gt;Vi ste Ivan Tomislav Horvat.&lt;/p&gt;
-* Closing connection <span class="m">0</span>
-</code></pre></div>
-<h2 id="specificnosti-metode-post">Specifičnosti metode POST</h2>
-<p>Podatke možemo primati i metodom POST i dohvatiti ih putem varijable <code>$_POST</code> (<a href="https://www.php.net/manual/en/reserved.variables.post.php">dokumentacija</a>) na način:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/profil&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$ime</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;ime&quot;</span><span class="p">];</span>
-    <span class="nv">$prezime</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;prezime&quot;</span><span class="p">];</span>
-    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Vi ste </span><span class="si">$ime</span><span class="s2"> </span><span class="si">$prezime</span><span class="s2">.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Ovdje putanja ne sadrži upit pa nam <code>$_SERVER["REQUEST_URI"]</code> ostaje <code>/profil</code> pa ne moramo koristiti <code>$_SERVER["PATH_INFO"]</code>. Zahtjev izvodimo na način:</p>
-<div class="highlight"><pre><span></span><code>$ curl -v -X POST -d <span class="s2">&quot;ime=Ivan&quot;</span> -d <span class="s2">&quot;prezime=Horvat&quot;</span> http://localhost:8000/profil
-Note: Unnecessary use of -X or --request, POST is already inferred.
-*   Trying <span class="m">127</span>.0.0.1:8000...
-* TCP_NODELAY <span class="nb">set</span>
-* Connected to localhost <span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; POST /profil HTTP/1.1
-&gt; Host: localhost:8000
-&gt; User-Agent: curl/7.68.0
-&gt; Accept: */*
-&gt; Content-Length: <span class="m">23</span>
-&gt; Content-Type: application/x-www-form-urlencoded
-&gt;
-* upload completely sent off: <span class="m">23</span> out of <span class="m">23</span> bytes
-* Mark bundle as not supporting multiuse
-&lt; HTTP/1.1 <span class="m">200</span> OK
-&lt; Host: localhost:8000
-&lt; Date: Tue, <span class="m">03</span> Nov <span class="m">2020</span> <span class="m">13</span>:02:47 GMT
-&lt; Connection: close
-&lt; X-Powered-By: PHP/7.4.3
-&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
-&lt;
-&lt;p&gt;Vi ste Ivan Horvat.&lt;/p&gt;
-* Closing connection <span class="m">0</span>
-</code></pre></div>
-<p>Uočimo također kako je sada po prvi put postavljeno HTTP zaglavlje <code>Content-Type</code> i u zahtjevu te ima vrijednost <code>application/x-www-form-urlencoded</code>, što je MIME tip podataka poslanih web formom. Drugim riječima, ovdje cURL-om šaljemo podatke isto kao što bismo na web sjedištu nekog sustava za učenje slali nakon popunjavanja podataka na svom profilu i pristiska na gumb za spremanje.</p>
-<h2 id="provjera-poslanih-varijabli-u-zahtjevima-metodom-get-i-post">Provjera poslanih varijabli u zahtjevima metodom GET i POST</h2>
-<p>Dodatno možemo provjeriti jesu li u zahtjevu poslane varijable koje želimo iskoristiti, što ćemo izvesti funkcijom <code>isset()</code> (<a href="https://www.php.net/manual/en/function.isset.php">dokumentacija</a>). Zatim ćemo formirati adekvatan odgovor u slučaju da varijable nisu postavljene; primjerice, postavit ćemo već ranije korišteni statusni kod 400 Bad Request i poslati pripadnu poruku:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/profil&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$ime</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;ime&quot;</span><span class="p">];</span>
-    <span class="nv">$prezime</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;prezime&quot;</span><span class="p">];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$ime</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$prezime</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Vi ste </span><span class="si">$ime</span><span class="s2"> </span><span class="si">$prezime</span><span class="s2">.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
-        <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Niste poslali ime ili prezime.&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Uvjerimo se da smo uhvatili sve situacije kad u zahtjevu nedostaje neka od varijabli:</p>
-<div class="highlight"><pre><span></span><code>$ curl -X POST http://localhost:8000/profil
-&lt;p&gt;Niste poslali ime ili prezime.&lt;/p&gt;
-$ curl -X POST -d <span class="s2">&quot;ime=Ivan&quot;</span> http://localhost:8000/profil
-&lt;p&gt;Niste poslali ime ili prezime.&lt;/p&gt;
-$ curl -X POST -d <span class="s2">&quot;prezime=Horvat&quot;</span> http://localhost:8000/profil
-&lt;p&gt;Niste poslali ime ili prezime.&lt;/p&gt;
-</code></pre></div>
-<p>Na analogan način provjerili bismo poslane varijable u slučaju kad se koristi metoda GET.</p>
-<h2 id="specificnosti-metode-head">Specifičnosti metode HEAD</h2>
-<p>Zahtjev HTTP metodom HEAD učinit će da poslužitelj vrati odgovor koji ima samo zaglavlja, odnosno nema tijelo (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">više detalja o HTTP metodi HEAD na MDN-u</a>). Uzmimo da je datoteka <code>index.php</code> sadržaja:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;HEAD&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Moj-Head: ne prodajemo skije i štapove&quot;</span><span class="p">);</span>
-    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ovaj dio neće biti sadržan u odgovoru&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Napravimo HTTP zahtjev HEAD cURL-om da se uvjerimo da naš poslužitelj radi kako treba:</p>
-<div class="highlight"><pre><span></span><code>$ curl -v -X HEAD http://localhost:8000/
-Warning: Setting custom HTTP method to HEAD with -X/--request may not work the
-Warning: way you want. Consider using -I/--head instead.
-*   Trying ::1:8000...
-* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; HEAD / HTTP/1.1
-&gt; Host: localhost:8000
-&gt; User-Agent: curl/7.72.0
-&gt; Accept: */*
-&gt;
-* Mark bundle as not supporting multiuse
-&lt; HTTP/1.1 <span class="m">200</span> OK
-&lt; Host: localhost:8000
-&lt; Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">18</span>:41:39 GMT
-&lt; Connection: close
-&lt; X-Powered-By: PHP/8.0.0
-&lt; Moj-Head: ne prodajemo skije i štapove
-&lt; Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
-&lt;
-* Closing connection <span class="m">0</span>
-
-$ curl -I http://localhost:8000/
-HTTP/1.1 <span class="m">200</span> OK
-Host: localhost:8000
-Date: Wed, <span class="m">30</span> Dec <span class="m">2020</span> <span class="m">18</span>:41:43 GMT
-Connection: close
-X-Powered-By: PHP/8.0.0
-Moj-Head: ne prodajemo skije i štapove
-Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
-</code></pre></div>
-<p>Vidimo zaglavlja među kojima je i naše prilagođeno zaglavlje <code>Moj-Head</code>, a tijelo je prazno kao što smo i očekivali.</p>
-<h2 id="specificnosti-metode-connect">Specifičnosti metode CONNECT</h2>
-<p>Zahtjev HTTP metodom CONNECT izvršit će samo spajanje na poslužitelj i pritom ne očekuje nikakav odgovor (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT">više detalja o HTTP metodi CONNECT na MDN-u</a>). Zbog toga HTTP poslužitelji uglavnom uopće ne implementiraju metodu CONNECT, što je u skladu sa standardom (<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.6">odjeljak 4.3.6. pod naslovom CONNECT u RFC-u 7231 pod naslovom Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>). Bez obzira kakav kod imali u datoteci <code>index.php</code>, odgovor na zahtjev tom metodom bit će prazan:</p>
-<div class="highlight"><pre><span></span><code>$ curl -v -X CONNECT http://localhost:8000/
-*   Trying ::1:8000...
-* Connected to localhost <span class="o">(</span>::1<span class="o">)</span> port <span class="m">8000</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; CONNECT / HTTP/1.1
-&gt; Host: localhost:8000
-&gt; User-Agent: curl/7.72.0
-&gt; Accept: */*
-&gt;
-* Empty reply from server
-* Connection <span class="c1">#0 to host localhost left intact</span>
-curl: <span class="o">(</span><span class="m">52</span><span class="o">)</span> Empty reply from server
-</code></pre></div>
-<p>Kako metoda CONNECT nije implementirana, na strani poslužitelja imamo poruku o neispravnom HTTP zahtjevu:</p>
-<div class="highlight"><pre><span></span><code>[Wed Dec 30 19:44:37 2020] [::1]:52244 Accepted
-[Wed Dec 30 19:44:37 2020] [::1]:52244 Invalid request (Malformed HTTP request)
-[Wed Dec 30 19:44:37 2020] [::1]:52244 Closing
 </code></pre></div>
 
               
