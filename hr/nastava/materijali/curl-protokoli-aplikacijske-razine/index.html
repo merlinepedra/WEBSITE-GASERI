@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/curl-protokoli-aplikacijske-razine/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5710,6 +5710,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../en/blog/" class="md-nav__link">
+        Blog index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../en/blog/2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
         Markdown vs reStructuredText for teaching materials
       </a>
@@ -6184,6 +6198,10 @@
 </a>
 
 
+  
+
+
+
 <h1 id="rad-s-protokolima-aplikacijske-razine-koristenjem-curl-a">Rad s protokolima aplikacijske razine korištenjem cURL-a</h1>
 <h2 id="pregled-protokola-aplikacijske-razine">Pregled protokola aplikacijske razine</h2>
 <h3 id="pojam-url-a">Pojam URL-a</h3>
@@ -6600,11 +6618,15 @@ index.html
 </code></pre></div>
 <h3 id="mjerenje-napretka">Mjerenje napretka</h3>
 <p>Kod većih datoteka može se uočiti da je mjerenje napretka interaktivno:</p>
-<div class="highlight"><pre><span></span><code>$ curl -O https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+<div class="highlight"><pre><span></span><code>$ curl -O https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-basic-20220215.47946.qcow2
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  <span class="m">0</span> 554M    <span class="m">0</span> 2985k    <span class="m">0</span>     <span class="m">0</span>  9896k      <span class="m">0</span>  <span class="m">0</span>:03:49 --:--:--  <span class="m">0</span>:03:49 9886k
+  <span class="m">5</span>  459M    <span class="m">5</span> <span class="m">23</span>.7M    <span class="m">0</span>     <span class="m">0</span>  1777k      <span class="m">0</span>  <span class="m">0</span>:04:24  <span class="m">0</span>:00:13  <span class="m">0</span>:04:11 2849k
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Poveznica u primjeru iznad je na verziju od 15. veljače 2022. i vjerojatno je zastarjela. Provjerite <a href="https://mirror.pkgbuild.com/images/latest/">mirror.pkgbuild.com/images/latest/</a> za točno ime aktualne verzije.</p>
+</div>
 <p>Sa lijeva na desno stupci redom imaju sljedeće značenje.</p>
 <table>
 <thead>
@@ -6665,8 +6687,8 @@ index.html
 </tbody>
 </table>
 <p>Jednostavniji prikaz napretka parametrom <code>-#</code> prikazuje samo postotak obavljenog prijenosa numerički i znakom <code>#</code>:</p>
-<div class="highlight"><pre><span></span><code>$ curl -O -# https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
-<span class="c1">#                                                                          1.6%</span>
+<div class="highlight"><pre><span></span><code>$ curl -O -# https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20220215.47946.qcow2
+<span class="c1">#####################                                                                          23,0%</span>
 </code></pre></div>
 <h3 id="ogranicenje-brzine">Ograničenje brzine</h3>
 <p>Ograničavanje se vrši parametrom <code>-Y</code>. Pritom se brzina prijenosa navodi u bajtovima po sekundi.</p>
@@ -7150,10 +7172,10 @@ Doom II protip: To defeat the Cyberdemon, shoot at it <span class="k">until</spa
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
     
   </body>

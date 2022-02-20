@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/avahi-zeroconf/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5546,6 +5546,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../en/blog/" class="md-nav__link">
+        Blog index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../en/blog/2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
         Markdown vs reStructuredText for teaching materials
       </a>
@@ -5856,6 +5870,10 @@
 </a>
 
 
+  
+
+
+
 <h1 id="zerconf-nssmdns-sustav-avahi">Zerconf NSS/mDNS sustav Avahi</h1>
 <p><a href="https://www.avahi.org/">Avahi</a> je slobodni softver otvorenog koda licenciran pod GNU LGPL koji implementira <a href="http://www.zeroconf.org/">Zero Configuration Networking (Zeroconf)</a>. Zeroconf uključuje sustav za otkrivanje multicast DNS i DNS-SD uslugu otkrivanja.</p>
 <p>Avahi je sustav koji omogućuje programima da objave i pretraže usluge i domaćine pokrenute unutar lokalne mreže. Avahi je nastao kao zamjena za Bonjour (Apple zeroconf sustav) jer je on koristio GPL nekompatibilnu licencu. Apple je promijenio te dijelove licence no Avahi je već postao standardna implementacija za mDNS/DNS-SD na besplatnim operativnim sustavima kao što su GNU/Linux.</p>
@@ -5884,7 +5902,7 @@
 <div class="highlight"><pre><span></span><code>$ sudo update-rc.d avahi-daemon defaults
 </code></pre></div>
 <h2 id="oglasavanje-usluge">Oglašavanje usluge</h2>
-<p>Dalje, kreiramo datoteku <code>/etc/avahi/services/afpd.service</code> koje će specificirati informacije o AppleShare serveru pokrenutom na našem Ubuntu sustavu te kopiramo sljedeći XML kod u tu datoteku:</p>
+<p>Dalje, kreiramo datoteku <code>/etc/avahi/services/afpd.service</code> koje će specificirati informacije o AppleShare serveru pokrenutom na našem sustavu te kopiramo sljedeći XML kod u tu datoteku:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; standalone=&#39;no&#39;?&gt;</span><span class="cm">&lt;!--*-nxml-*--&gt;</span>
 <span class="cp">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span>
 <span class="nt">&lt;service-group&gt;</span>
@@ -5898,14 +5916,14 @@
 <p>Nakon svega, ponovno pokrenemo Avahi:</p>
 <div class="highlight"><pre><span></span><code>$ sudo /etc/init.d/avahi-daemon restart
 </code></pre></div>
-<p>Nakon svih ovih koraka, prilikom pokretanja aplikacije Avahi Zeroconf browser (naredba <code>avahi-discover</code>) instalirane unutar sustava Ubuntu dobijemo sljedeće.</p>
-<p>Vidimo da je naš AppleShare server aktivan na našem sustavu Ubuntu. Vidimo sve nama zanimljive i potrebne podatke o tom serveru.</p>
+<p>Nakon svih ovih koraka, prilikom pokretanja aplikacije Avahi Zeroconf browser (naredba <code>avahi-discover</code>) instalirane unutar sustava, dobijemo sljedeće.</p>
+<p>Vidimo da je naš AppleShare server aktivan na našem sustavu. Vidimo sve nama zanimljive i potrebne podatke o tom serveru.</p>
 <ul>
 <li>Tip servisa: <code>_afpovertcp._tcp</code></li>
-<li>Ime servisa: <code>ubuntu</code></li>
+<li>Ime servisa: <code>mymachine</code></li>
 <li>Domena: <code>local</code></li>
 <li>Sučelje: <code>eth0</code> IPv4</li>
-<li>Adresa: <code>ubuntu.local/192.168.142.128:548</code></li>
+<li>Adresa: <code>mymachine.local/192.168.142.128:548</code></li>
 <li>TXT dana: prazno</li>
 </ul>
 <p>Također postoje i još dvije verzije avahi-browsera:</p>
@@ -6035,10 +6053,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
     
   </body>

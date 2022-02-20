@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/click-modularni-usmjerivac/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5622,6 +5622,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../en/blog/" class="md-nav__link">
+        Blog index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../en/blog/2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
         Markdown vs reStructuredText for teaching materials
       </a>
@@ -6008,13 +6022,17 @@
 </a>
 
 
+  
+
+
+
 <h1 id="modularni-usmjerivac-click">Modularni usmjerivač Click</h1>
 <p><a href="https://github.com/kohler/click">Click</a> je softver koji omogućuje izgradnju usmjerivača korištenjem gotovih modula. Omogućuje veliku slobodu u konfiguraciji i specificiranju načina usmjeravanja i prosljeđivanja paketa. Click podržava realizaciju preklopnika, "običnog" usmjerivača, usmjerivača koji vrši prevođenje mrežnih adresa (Network Address Translation, NAT), vatrozida ili bilo kojeg drugog softverskog entiteta koji obrađuje pakete. S obzirom na dobru unutrašnju strukturu sloboda pri konfiguriranju je velika čime se pruža mogućnost detaljnog specificiranja raznih protokola te je pogodan za simuliranje standardnih, kao i eksperimentalnih konfiguracija.</p>
 <p>Click je napisan u programskom jeziku C++ i dostupan je kao otvoreni kod pod modficiranom MIT licencom. Detaljni opis Clicka dan je u <a href="https://read.seas.harvard.edu/~kohler/pubs/phdthesis.pdf">doktoratu Eddieja Kohlera pod naslovom The Click Modular Router</a>. Mi se internom implementacijom Clicka nećemo detaljnije baviti, već ćemo se fokusirati na elemente koje on nudi i njihovu konfiguraciju. Programski jezik koji se koristi za definiranje same konfiguracije je vlastiti jezik Click, a datoteke koje sadrže konfiguraciju imaju ekstenziju <code>.click</code>.</p>
 <p>Click pokrećemo naredbom <code>click</code> i navođenjem konfiguracijske datoteke. Primjerice, za konfiguracijsku datoteku <code>mojrouter.click</code> naredba bi bila oblika:</p>
 <div class="highlight"><pre><span></span><code>$ click mojrouter.click
 </code></pre></div>
-<p>U nekim konfiguracijama Click će se nastaviti izvoditi sve dok ga ne prekinemo. Naime, radi se o usmjerivaču koji je osmišljen da nakon inicijalizacije konfiguracije radi usmjeravanje i prosljeđivanje paketa dokle god mu se ne kaže da radi drugačije. Prekid rada Clicka ćemo izvesti kombinacijom tipki <code>Ctrl + C</code>, što terminali često prikazuju kao <code>^C</code>.</p>
+<p>U nekim konfiguracijama Click će se nastaviti izvoditi sve dok ga ne prekinemo. Naime, radi se o usmjerivaču koji je osmišljen da nakon inicijalizacije konfiguracije radi usmjeravanje i prosljeđivanje paketa dokle god mu se ne kaže da radi drugačije. Prekid rada Clicka ćemo izvesti kombinacijom tipki <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>, što terminali često prikazuju kao <code>^C</code>.</p>
 <h2 id="vlastiti-jezik-click">Vlastiti jezik Click</h2>
 <p><a href="https://github.com/kohler/click/wiki/Language">Jezik Click</a> opisuje konfiguracije Click usmjerivača. Radi se o vlastitom jeziku koji nema veze s C++-om u kojem je Click implementiran. Dva su osnovna sintaktička elementa jezika Click: deklaracija i veza.</p>
 <p>Deklaracija je oblika:</p>
@@ -6322,10 +6340,10 @@ foo.click:1: ‘Tee@2 :: Tee’ output <span class="m">0</span> unused
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
     
   </body>

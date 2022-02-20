@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/rm-instalacija-softvera-garuda-linux/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5663,6 +5663,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../en/blog/" class="md-nav__link">
+        Blog index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../en/blog/2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
         Markdown vs reStructuredText for teaching materials
       </a>
@@ -6090,6 +6104,10 @@
 </a>
 
 
+  
+
+
+
 <h1 id="instalacija-i-konfiguracija-softvera-za-vjezbe-iz-kolegija-racunalne-mreze">Instalacija i konfiguracija softvera za vježbe iz kolegija Računalne mreže</h1>
 <p>Upute u nastavku pisane su za <a href="https://garudalinux.org/">Garuda Linux</a>, ali su vjerojatno upotrebljive i na drugim derivatima <a href="https://archlinux.org/">Arch Linuxa</a> kao što su <a href="https://manjaro.org/">Manjaro</a>, <a href="https://endeavouros.com/">EndeavourOS</a> i <a href="https://kaosx.us/">KaOS</a>.</p>
 <p>Instalacija softvera na Arch Linuxu je centralizirana, slično kao što su na drugim platformama <a href="https://www.microsoft.com/en-us/store/apps/windows">Microsoftov Windows Store</a>, <a href="https://www.apple.com/app-store/">Appleov App Store</a>, <a href="https://play.google.com/store/apps">Googleov Play</a>, <a href="https://store.playstation.com/en-hr/latest">Sonyjev PlayStation Store</a> i drugi. Trgovina aplikacija se ovdje zove repozitorij paketa i, kao i druge trgovine aplikacja, dostupan je putem interneta. Stoga je za instalaciju paketa iz repozitorija koju provodimo u nastavku nužno da ste povezani na internet. Vrijedi spomenuti da će upravitelj paketima <a href="https://wiki.archlinux.org/title/Pacman">Pacman</a> uz pakete čiju instalaciju zatražite preuzeti i dodatne pakete koji su potrebni za njihov rad.</p>
@@ -6187,13 +6205,13 @@ $ paru -S tkimg
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
 <h3 id="provjera-instalacije-php-a">Provjera instalacije PHP-a</h3>
-<p>U upravitelju datoteka Dolphin stvorite direktorij (mapu) <code>php-prvi-projekt</code> i otvorite ga u Visual Studio Codeu korištenjem izbornika <code>File\Open Folder...</code> ili kombinacijom tipki <code>Ctrl + K</code> pa <code>Ctrl + O</code>. Nakon otvaranja direktorija, iskoristite gumb <code>New Folder</code> dostupan u pogledu Explorer (<a href="https://code.visualstudio.com/docs/getstarted/userinterface">pregled sučelja</a>) za stvaranje poddirektorija (podmape) naziva <code>public</code>.</p>
+<p>U upravitelju datoteka Dolphin stvorite direktorij (mapu) <code>php-prvi-projekt</code> i otvorite ga u Visual Studio Codeu korištenjem izbornika <code>File\Open Folder...</code> ili kombinacijom tipki <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-k">K</kbd></span> pa <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-o">O</kbd></span>. Nakon otvaranja direktorija, iskoristite gumb <code>New Folder</code> dostupan u pogledu Explorer (<a href="https://code.visualstudio.com/docs/getstarted/userinterface">pregled sučelja</a>) za stvaranje poddirektorija (podmape) naziva <code>public</code>.</p>
 <p>Unutar poddirektorija <code>public</code> stvorite iskoristite gumb <code>New File</code> za stvaranje datoteke imena <code>index.php</code> sa sadržajem:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nb">phpinfo</span><span class="p">();</span>
 </code></pre></div>
-<p>Pokrenite <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">ugrađeni terminal</a> putem izbornika <code>Terminal\New Terminal</code> ili kombinacije tipki <code>Ctrl + Shift + `</code>. U njemu pokrenite ugrađeni poslužitelj PHP-ovog interpretera na adresi lokalnog domaćina <code>127.0.0.1</code>:</p>
+<p>Pokrenite <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">ugrađeni terminal</a> putem izbornika <code>Terminal\New Terminal</code> ili kombinacije tipki <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-grave">`</kbd></span>. U njemu pokrenite ugrađeni poslužitelj PHP-ovog interpretera na adresi lokalnog domaćina <code>127.0.0.1</code>:</p>
 <div class="highlight"><pre><span></span><code>$ php -S <span class="m">127</span>.0.0.1:8080 -t public
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
@@ -6301,10 +6319,10 @@ $ paru -S tkimg
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
     
   </body>

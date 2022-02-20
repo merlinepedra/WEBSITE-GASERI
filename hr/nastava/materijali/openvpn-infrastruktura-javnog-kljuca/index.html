@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/openvpn-infrastruktura-javnog-kljuca/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.50e68009.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -5574,6 +5574,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../en/blog/" class="md-nav__link">
+        Blog index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../en/blog/2021-08-16-markdown-vs-restructuredtext-for-teaching-materials/" class="md-nav__link">
         Markdown vs reStructuredText for teaching materials
       </a>
@@ -5912,6 +5926,10 @@
 </a>
 
 
+  
+
+
+
 <h1 id="koristenje-infrastrukture-javnog-kljuca-u-postavljanju-virtualne-privatne-mreze-alatom-openvpn">Korištenje infrastrukture javnog ključa u postavljanju virtualne privatne mreže alatom OpenVPN</h1>
 <p>U prethodnom smo se dijelu bavili postavljanjem OpenVPN-a u načinu rada točka-do-točke s jednim poslužiteljem i jednim klijentom koji šifriraju podatke u međusobnoj komunikaciji korištenjem jednog ili dva statička ključa. Postoji i drugi način rada koji je složeniji za postavljanje jer zahtijeva korištenje infrastrukture javnog ključa, ali podržava povezivanje više klijenata na poslužitelj i opcionalno omogućuje međusobnu komunikaciju klijenata. Kako je povezivanje više klijenata potrebno kod gotovo svake primjene virtualne privatne mreže, taj nam je način rada u praksi puno korisniji pa se njime bavimo u nastavku. Detaljno ćemo opisati proces stvaranja autoriteta certifikata za virtualnu privatnu mrežu i potpisivanje pojedinih certifikata od strane autoriteta certifikata. Poznavanje tog procesa će nam dobro doći i van virtualnih privatnih mreža jer se s certifikatima na sličan način radi i kod web poslužitelja i klijenata kad se koristi HTTPS.</p>
 <div class="admonition note">
@@ -5977,6 +5995,7 @@ DIRECTORY STATUS <span class="o">(</span>commands would take effect on these loc
 <li>na Ubuntuu naredbom <code>export PATH=/usr/share/easy-rsa:$PATH</code></li>
 <li>na Fedori naredbom <code>export PATH=/usr/share/easy-rsa/3:$PATH</code></li>
 </ul>
+<p>Na Arch Linuxu i derivatima (npr. Manjaro i Garuda Linux) se naredba <code>easyrsa</code> nakon instalacije <a href="https://archlinux.org/packages/extra/any/easy-rsa/">easy-rsa</a> nalazi u <code>/usr/bin</code> te je odmah dostupna za korištenje.</p>
 <p>Na FreeBSD-u se naredba <code>easyrsa</code> nakon instalacije <a href="https://www.freshports.org/security/easy-rsa/">security/easy-rsa</a> nalazi u <code>/usr/local/bin</code> te je odmah dostupna za korištenje.</p>
 <h2 id="osnovna-struktura-infrastrukture-javnog-kljuca-i-autoritet-certifikata">Osnovna struktura infrastrukture javnog ključa i autoritet certifikata</h2>
 <p>Izradu certifikata i ključeva počinjemo naredbom <code>init-pki</code> koja će stvoriti potrebne datoteke direktorije:</p>
@@ -6408,10 +6427,10 @@ Fri May 29 00:03:15 2020 mojklijent/127.0.0.1:36623 MULTI_sva: pool returned IPv
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
       
     
   </body>
