@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/en/tutorials/gromacs/5-umbrella/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1461,6 +1462,8 @@
       
       
       
+        
+          
         
           
         
@@ -4708,6 +4711,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
         Integracija simuliranih i stvarnih mreža
       </a>
@@ -6766,12 +6783,12 @@ coordinate is the distance between the two methanes.</p>
 <h2 id="setup">Setup</h2>
 <h3 id="create-box">Create box</h3>
 <p>Once again we'll be reusing <code>methane.pdb</code> and <code>topol.top</code> from our previous
-tutorials. Insert two methanes into a box using <em>gmx insert-molecules</em> and then
-solvate the box using <em>gmx solvate</em>. The box needs to be cubic and at least 3.1
+tutorials. Insert two methanes into a box using <code>gmx insert-molecules</code> and then
+solvate the box using <code>gmx solvate</code>. The box needs to be cubic and at least 3.1
 nm in each direction for this tutorial.</p>
 <h3 id="create-index-file">Create index file</h3>
 <p>We also need to create an index file with the two groups we are interested in
-restraining with our umbrella potential. Create an index file using <em>gmx index</em>
+restraining with our umbrella potential. Create an index file using <code>gmx index</code>
 creating a group containing just one carbon from one of the methanes and naming
 them <code>CA</code> and <code>CB</code> respectively.</p>
 <div class="highlight"><pre><span></span><code>$ gmx make_ndx -f conf.gro
@@ -6789,7 +6806,7 @@ molecules:</p>
 &gt; name <span class="m">9</span> CB
 &gt; q
 </code></pre></div>
-<p>There are other ways to get to the same place with <em>gmx make_ndx</em>. The point is,
+<p>There are other ways to get to the same place with <code>gmx make_ndx</code>. The point is,
 you need to get each methane carbon in its own index group and name them <code>CA</code>
 and <code>CB</code>.</p>
 <h3 id="parameter-files">Parameter files</h3>
@@ -6814,63 +6831,63 @@ one.</p>
 </thead>
 <tbody>
 <tr>
-<td>pull</td>
-<td>yes</td>
+<td><code>pull</code></td>
+<td><code>yes</code></td>
 <td>Use the pull code.</td>
 </tr>
 <tr>
-<td>pull-ngroups</td>
-<td>2</td>
+<td><code>pull-ngroups</code></td>
+<td><code>2</code></td>
 <td>We have two groups that we're pulling.</td>
 </tr>
 <tr>
-<td>pull-group1-name</td>
-<td>CA</td>
+<td><code>pull-group1-name</code></td>
+<td><code>CA</code></td>
 <td>We specified this in the index file. For us, this will be the carbon of one of the methanes, although we probably could have chosen the entire methane. If we did that it would have been pulled along the COM of the entire molecule.</td>
 </tr>
 <tr>
-<td>pull-group2-name</td>
-<td>CB</td>
+<td><code>pull-group2-name</code></td>
+<td><code>CB</code></td>
 <td>The carbon of the other methane.</td>
 </tr>
 <tr>
-<td>pull-ncoords</td>
-<td>1</td>
+<td><code>pull-ncoords</code></td>
+<td><code>1</code></td>
 <td>We are pulling along only one coordinate.</td>
 </tr>
 <tr>
-<td>pull-coord1-geometry</td>
-<td>distance</td>
+<td><code>pull-coord1-geometry</code></td>
+<td><code>distance</code></td>
 <td>We're going to pull along the vector connecting our two groups.</td>
 </tr>
 <tr>
-<td>pull-coord1-type</td>
-<td>umbrella</td>
+<td><code>pull-coord1-type</code></td>
+<td><code>umbrella</code></td>
 <td>Use an umbrella (harmonic) potential for this coordinate.</td>
 </tr>
 <tr>
-<td>pull-coord1-groups</td>
-<td>1 2</td>
+<td><code>pull-coord1-groups</code></td>
+<td><code>1 2</code></td>
 <td>For this pull coordinate these are the two groups (defined below) that will be pulled. You can actually have more thane one pull coordinate and so do pulling across different sets of molecules, but that's not applicable here.</td>
 </tr>
 <tr>
-<td>pull-coord1-k</td>
-<td>5000.0</td>
+<td><code>pull-coord1-k</code></td>
+<td><code>5000.0</code></td>
 <td>The force constant used in the umbrella potential in kJ/(mol nm).</td>
 </tr>
 <tr>
-<td>pull-coord1-init</td>
-<td>WINDOW</td>
+<td><code>pull-coord1-init</code></td>
+<td><code>WINDOW</code></td>
 <td>This is the distance we want our two groups to be apart. I've put this keyword here that I'll replace in our bash script for each window.</td>
 </tr>
 <tr>
-<td>pull-coord1-rate</td>
-<td>0.0</td>
+<td><code>pull-coord1-rate</code></td>
+<td><code>0.0</code></td>
 <td>We don't want the groups to move along the coordinate any, so this is 0.</td>
 </tr>
 <tr>
-<td>pull-coord1-start</td>
-<td>no</td>
+<td><code>pull-coord1-start</code></td>
+<td><code>no</code></td>
 <td>We're manually specifying the distance for each window, so we do not want to add the center of mass distance to the calculation.</td>
 </tr>
 </tbody>
@@ -6892,45 +6909,45 @@ simulation. Here is the script:</p>
     <span class="nv">x</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;0.05*</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span><span class="s2">&quot;</span> <span class="p">|</span> bc<span class="k">)</span><span class="p">;</span>
 
     sed <span class="s1">&#39;s/WINDOW/&#39;</span><span class="nv">$x</span><span class="s1">&#39;/g&#39;</span> mdp/min.mdp &gt; grompp.mdp
-    gmx grompp -o min.<span class="nv">$i</span> -pp min.<span class="nv">$i</span> -po min.<span class="nv">$i</span> -n index.ndx
-    gmx mdrun -deffnm min.<span class="nv">$i</span> -pf pullf-min.<span class="nv">$i</span> -px pullx-min.<span class="nv">$i</span> 
+    gmx grompp -o min.<span class="nv">$i</span>.tpr -pp min.<span class="nv">$i</span>.top -po min.<span class="nv">$i</span>.mdp -n index.ndx
+    gmx mdrun -s min.<span class="nv">$i</span>.tpr -o min.<span class="nv">$i</span>.trr -x min.<span class="nv">$i</span>.xtc -c min.<span class="nv">$i</span>.gro -e min.<span class="nv">$i</span>.edr -g min.<span class="nv">$i</span>.log -pf pullf-min.<span class="nv">$i</span> -px pullx-min.<span class="nv">$i</span>
 
     sed <span class="s1">&#39;s/WINDOW/&#39;</span><span class="nv">$x</span><span class="s1">&#39;/g&#39;</span> mdp/min2.mdp &gt; grompp.mdp
-    gmx grompp -o min2.<span class="nv">$i</span> -c min.<span class="nv">$i</span> -t min.<span class="nv">$i</span> -pp min2.<span class="nv">$i</span> -po min2.<span class="nv">$i</span> -maxwarn <span class="m">1</span> -n index.ndx
-    gmx mdrun -deffnm min2.<span class="nv">$i</span> -pf pullf-min2.<span class="nv">$i</span> -px pullx-min2.<span class="nv">$i</span> 
+    gmx grompp -o min2.<span class="nv">$i</span>.tpr -c min.<span class="nv">$i</span>.gro -pp min2.<span class="nv">$i</span>.top -po min2.<span class="nv">$i</span>.mdp -maxwarn <span class="m">1</span> -n index.ndx
+    gmx mdrun -s min2.<span class="nv">$i</span>.tpr -o min2.<span class="nv">$i</span>.trr -x min2.<span class="nv">$i</span>.xtc -c min2.<span class="nv">$i</span>.gro -e min2.<span class="nv">$i</span>.edr -g min2.<span class="nv">$i</span>.log -pf pullf-min2.<span class="nv">$i</span> -px pullx-min2.<span class="nv">$i</span>
 
     sed <span class="s1">&#39;s/WINDOW/&#39;</span><span class="nv">$x</span><span class="s1">&#39;/g&#39;</span> mdp/eql.mdp &gt; grompp.mdp
-    gmx grompp -o eql.<span class="nv">$i</span> -c min2.<span class="nv">$i</span> -t min2.<span class="nv">$i</span> -pp eql.<span class="nv">$i</span> -po eql.<span class="nv">$i</span> -n index.ndx
-    gmx mdrun -deffnm eql.<span class="nv">$i</span> -pf pullf-eql.<span class="nv">$i</span> -px pullx-eql.<span class="nv">$i</span> 
+    gmx grompp -o eql.<span class="nv">$i</span>.tpr -c min2.<span class="nv">$i</span>.gro -pp eql.<span class="nv">$i</span>.top -po eql.<span class="nv">$i</span>.mdp -n index.ndx
+    gmx mdrun -s eql.<span class="nv">$i</span>.tpr -o eql.<span class="nv">$i</span>.trr -x eql.<span class="nv">$i</span>.xtc -c eql.<span class="nv">$i</span>.gro -e eql.<span class="nv">$i</span>.edr -g eql.<span class="nv">$i</span>.log -pf pullf-eql.<span class="nv">$i</span> -px pullx-eql.<span class="nv">$i</span>
 
     sed <span class="s1">&#39;s/WINDOW/&#39;</span><span class="nv">$x</span><span class="s1">&#39;/g&#39;</span> mdp/eql2.mdp &gt; grompp.mdp
-    gmx grompp -o eql2.<span class="nv">$i</span> -c eql.<span class="nv">$i</span> -t eql.<span class="nv">$i</span> -pp eql2.<span class="nv">$i</span> -po eql2.<span class="nv">$i</span> -n index.ndx
-    gmx mdrun -deffnm eql2.<span class="nv">$i</span> -pf pullf-eql2.<span class="nv">$i</span> -px pullx-eql2.<span class="nv">$i</span> 
+    gmx grompp -o eql2.<span class="nv">$i</span>.tpr -c eql.<span class="nv">$i</span>.gro -pp eql2.<span class="nv">$i</span>.top -po eql2.<span class="nv">$i</span>.mdp -n index.ndx
+    gmx mdrun -s eql2.<span class="nv">$i</span>.tpr -o eql2.<span class="nv">$i</span>.trr -x eql2.<span class="nv">$i</span>.xtc -c eql2.<span class="nv">$i</span>.gro -e eql2.<span class="nv">$i</span>.edr -g eql2.<span class="nv">$i</span>.log -pf pullf-eql2.<span class="nv">$i</span> -px pullx-eql2.<span class="nv">$i</span>
 
     sed <span class="s1">&#39;s/WINDOW/&#39;</span><span class="nv">$x</span><span class="s1">&#39;/g&#39;</span> mdp/prd.mdp &gt; grompp.mdp
-    gmx grompp -o prd.<span class="nv">$i</span> -c eql2.<span class="nv">$i</span> -t eql2.<span class="nv">$i</span> -pp prd.<span class="nv">$i</span> -po prd.<span class="nv">$i</span> -n index.ndx
-    gmx mdrun -deffnm prd.<span class="nv">$i</span> -pf pullf-prd.<span class="nv">$i</span> -px pullx-prd.<span class="nv">$i</span>
+    gmx grompp -o prd.<span class="nv">$i</span>.tpr -c eql2.<span class="nv">$i</span>.gro -pp prd.<span class="nv">$i</span>.top -po prd.<span class="nv">$i</span>.mdp -n index.ndx
+    gmx mdrun -s prd.<span class="nv">$i</span>.tpr -o prd.<span class="nv">$i</span>.trr -x prd.<span class="nv">$i</span>.xtc -c prd.<span class="nv">$i</span>.gro -e prd.<span class="nv">$i</span>.edr -g prd.<span class="nv">$i</span>.log -pf pullf-prd.<span class="nv">$i</span> -px pullx-prd.<span class="nv">$i</span>
 
 <span class="k">done</span>
 </code></pre></div>
 <p>We are simulating 26 windows from 0.05 to around 1.3 nm in distance. Notice that
 I've added <code>-pf</code> and <code>-px</code> flags for the pulling force and pulling distance for each
 step. This is because with <code>-deffnm</code> GROMACS will try to write both to the same
-file. Also, I've specified the index file with <code>-n</code> since <em>gmx grompp</em> needs to
+file. Also, I've specified the index file with <code>-n</code> since <code>gmx grompp</code> needs to
 get the groups we specified with the pull parameters. Note that I am using a
 little trick with <code>bc</code> in order to do math with floating-point numbers in bash.</p>
 <h2 id="analysis">Analysis</h2>
-<p>We're going to use <em>gmx wham</em> to get the PMF. The program takes a file
+<p>We're going to use <code>gmx wham</code> to get the PMF. The program takes a file
 containing a list of the <code>.tpr</code> files and another file containing a list of the
 <code>.xvg</code> files containing the force as arguments.</p>
 <p>To create these two files do:</p>
 <div class="highlight"><pre><span></span><code>$ ls prd.*.tpr &gt; tpr.dat
 $ ls pullf-prd.*.xvg &gt; pullf.dat
 </code></pre></div>
-<p>Then you can run <em>gmx wham</em>:</p>
+<p>Then you can run <code>gmx wham</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx wham -it tpr.dat -f pullf.dat
 </code></pre></div>
-<p>After running <em>gmx wham</em> you'll get the potential of mean force in a file named
+<p>After running <code>gmx wham</code> you'll get the potential of mean force in a file named
 <code>profile.xvg</code>. If you were to plot this right away, it should look like this:</p>
 <p><img alt="PMF" src="profile1.png" /></p>
 <p>We would expect the interaction to go to zero at longer distances. Because we
@@ -6965,7 +6982,7 @@ have to choose a smaller window size or pick specific spots that were missing to
 simulate.</p>
 <h2 id="summary">Summary</h2>
 <p>In this tutorial, we used GROMACS COM pull code to do window sampling on two
-methanes in water. From there we used <em>gmx wham</em> to extract the potential of
+methanes in water. From there we used <code>gmx wham</code> to extract the potential of
 mean force.</p>
 
               
@@ -7076,7 +7093,7 @@ mean force.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

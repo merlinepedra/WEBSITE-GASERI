@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/en/tutorials/gromacs/1-tip4pew-water/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1461,6 +1462,8 @@
       
       
       
+        
+          
         
           
         
@@ -4708,6 +4711,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
         Integracija simuliranih i stvarnih mreža
       </a>
@@ -6870,7 +6887,7 @@ parameters.</p>
 </code></pre></div>
 <p>If you open back up <code>topol.top</code> you'll see that a line has been added at the
 end with the word <code>SOL</code> and number. <code>SOL</code> is the name of the <code>moleculetype</code> that
-is defined in <code>oplsaa.ff/tip4pew.itp</code>. When we ran <em>gmx solvate</em>, GROMACS added
+is defined in <code>oplsaa.ff/tip4pew.itp</code>. When we ran <code>gmx solvate</code>, GROMACS added
 enough water molecules to fill a box 2.3 nm in each direction.</p>
 <h3 id="parameter-files">Parameter files</h3>
 <p>Now we need a set of parameter files so that GROMACS knows what to do with our
@@ -6894,33 +6911,33 @@ for more information on each option.</p>
 </thead>
 <tbody>
 <tr>
-<td>cutoff-scheme</td>
-<td>Verlet</td>
+<td><code>cutoff-scheme</code></td>
+<td><code>Verlet</code></td>
 <td>Use in creating neighbor lists. This is now the default, but we provide it here in order to avoid any notes.</td>
 </tr>
 <tr>
-<td>coulombtype</td>
-<td>PME</td>
+<td><code>coulombtype</code></td>
+<td><code>PME</code></td>
 <td>Use Particle-Mesh Ewald for long-range (k-space) electrostatics.</td>
 </tr>
 <tr>
-<td>rcoulomb</td>
-<td>1.0</td>
+<td><code>rcoulomb</code></td>
+<td><code>1.0</code></td>
 <td>Cut-off for real/k-space for PME (nm).</td>
 </tr>
 <tr>
-<td>vdwtype</td>
-<td>Cut-off</td>
+<td><code>vdwtype</code></td>
+<td><code>Cut-off</code></td>
 <td>van der Walls forces cut-off at <code>rvdw</code>.</td>
 </tr>
 <tr>
-<td>rvdw</td>
-<td>1.0</td>
+<td><code>rvdw</code></td>
+<td><code>1.0</code></td>
 <td>Cut-off for VDW (nm).</td>
 </tr>
 <tr>
-<td>DispCorr</td>
-<td>EnerPress</td>
+<td><code>DispCorr</code></td>
+<td><code>EnerPress</code></td>
 <td>Long-range correction for VDW for both energy and pressure.</td>
 </tr>
 </tbody>
@@ -6965,38 +6982,38 @@ several parameters that are shown below:</p>
 </thead>
 <tbody>
 <tr>
-<td>gen-vel</td>
-<td>yes</td>
+<td><code>gen-vel</code></td>
+<td><code>yes</code></td>
 <td>Generate velocities for each atomic site according to a Maxwell-Boltzmann distribution. <strong>Only generate velocities for your first equilibration step</strong>. This gets us close to the temperature at which we will couple the system.</td>
 </tr>
 <tr>
-<td>gen-temp</td>
-<td>298.15</td>
+<td><code>gen-temp</code></td>
+<td><code>298.15</code></td>
 <td>Temperature in K to use for <code>gen-vel</code>. Unless you are doing some strange/interesting stuff, this should be the same as <code>ref-t</code>.</td>
 </tr>
 <tr>
-<td>tcoupl</td>
-<td>Nose-Hoover</td>
+<td><code>tcoupl</code></td>
+<td><code>Nose-Hoover</code></td>
 <td>The algorithm to use for temperature coupling. Nose-Hoover correctly produces the canonical ensemble.</td>
 </tr>
 <tr>
-<td>tc-grps</td>
-<td>System</td>
+<td><code>tc-grps</code></td>
+<td><code>System</code></td>
 <td>Which groups should be temperature-coupled. You can couple different groups of atoms separately, but we'll just couple the whole system.</td>
 </tr>
 <tr>
-<td>tau-t</td>
-<td>2.0</td>
+<td><code>tau-t</code></td>
+<td><code>2.0</code></td>
 <td>Time constant for coupling. See the manual for details.</td>
 </tr>
 <tr>
-<td>ref-t</td>
-<td>298.15</td>
+<td><code>ref-t</code></td>
+<td><code>298.15</code></td>
 <td>The temperature in K at which to couple.</td>
 </tr>
 <tr>
-<td>nhchainlength</td>
-<td>1</td>
+<td><code>nhchainlength</code></td>
+<td><code>1</code></td>
 <td>Leap-frog integrator only supports 1, but by default, this is 10. This is set so GROMACS doesn't complain to us.</td>
 </tr>
 </tbody>
@@ -7023,23 +7040,23 @@ this may need to be longer for other systems.</p>
 </thead>
 <tbody>
 <tr>
-<td>pcoupl</td>
-<td>Parrinello-Rahman</td>
+<td><code>pcoupl</code></td>
+<td><code>Parrinello-Rahman</code></td>
 <td>The algorithm to use for pressure coupling. Parrinello-Rahman correctly produces the isobaric-isothermal ensemble when used with Nose-Hoover.</td>
 </tr>
 <tr>
-<td>tau-p</td>
-<td>2.0</td>
+<td><code>tau-p</code></td>
+<td><code>2.0</code></td>
 <td>Time constant for pressure coupling. See the manual for details.</td>
 </tr>
 <tr>
-<td>ref-p</td>
-<td>1.0</td>
+<td><code>ref-p</code></td>
+<td><code>1.0</code></td>
 <td>The pressure in bars at which to pressure couple.</td>
 </tr>
 <tr>
-<td>compressibility</td>
-<td>4.46e-5</td>
+<td><code>compressibility</code></td>
+<td><code>4.46e-5</code></td>
 <td>The compressibility of the system in bar^-1.</td>
 </tr>
 </tbody>
@@ -7048,16 +7065,16 @@ this may need to be longer for other systems.</p>
 equilibration, except we are outputting more data and running for 10 ns.</p>
 <h2 id="simulation">Simulation</h2>
 <p>We have all the files we need now to run each part of the simulation. In each
-part you typically run <em>gmx grompp</em> to preprocess the three files we now have
+part you typically run <code>gmx grompp</code> to preprocess the three files we now have
 (.gro, .top, and .mdp) into a .tpr file (sometimes confusingly also called a
 topology file).</p>
 <h3 id="minmizations">Minmizations</h3>
 <p>First, let's run our two minimization steps by doing the following:</p>
-<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/min.mdp -o min -pp min -po min
-$ gmx mdrun -deffnm min
+<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/min.mdp -o min.tpr -pp min.top -po min.mdp
+$ gmx mdrun -s min.tpr -o min.trr -x min.xtc -c min.gro -e min.edr -g min.log
 
-$ gmx grompp -f mdp/min2.mdp -o min2 -pp min2 -po min2 -c min -t min
-$ gmx mdrun -deffnm min2
+$ gmx grompp -f mdp/min2.mdp -o min2.tpr -pp min2.top -po min2.mdp -c min.gro
+$ gmx mdrun -s min2.tpr -o min2.trr -x min2.xtc -c min2.gro -e min2.edr -g min2.log
 </code></pre></div>
 <p>At each part, we are reading in the .mdp file with the <code>-f</code> flag. By default if
 <code>-c</code> and <code>-p</code> flags are not specified GROMACS uses <code>conf.gro</code> and <code>topol.top</code>
@@ -7068,13 +7085,13 @@ looking at, especially the processed mdp file, since it is commented.</p>
 checkpoint file using the <code>-c</code> and <code>-t</code> flags. By default GROMACS outputs
 checkpoint files every 15 minutes and at the last step. If the checkpoint file
 is not present, GROMACS will use the structure file defined by <code>-c</code>, so it is a
-good practice to specify both. At each <em>gmx mdrun</em> we are telling GROMACS to use
+good practice to specify both. At each <code>gmx mdrun</code> we are telling GROMACS to use
 a default name for each input and output file, since several files are output.</p>
 <p>Note we are using <code>-maxwarn 1</code> for the second minimization. Only use this flag
 if you know what you are doing! In this case we get a warning about the
 efficiency of L-BFGS which we can safely bypass.</p>
 <p>To get a feel for what's going on, let's extract the potential energy of both of
-these parts using the GROMACS command <em>gmx energy</em>. Do the following and enter
+these parts using the GROMACS command <code>gmx energy</code>. Do the following and enter
 the number that corresponds with <code>Potential</code>, followed by enter again:</p>
 <div class="highlight"><pre><span></span><code>$ gmx energy -f min.edr -o min-energy.xvg
 </code></pre></div>
@@ -7099,11 +7116,11 @@ and then I can use gnuplot. To plot with first start gnuplot:</p>
 <h3 id="equilibration-1-nvt">Equilibration 1 (NVT)</h3>
 <p>Now that we have a good starting structure, let's do the first equilibration
 step, by adding the temperature coupling:</p>
-<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/eql.mdp -o eql -pp eql -po eql -c min2 -t min2
-$ gmx mdrun -deffnm eql
+<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/eql.mdp -o eql.tpr -pp eql.top -po eql.mdp -c min2.gro
+$ gmx mdrun -s eql.tpr -o eql.trr -x eql.xtc -c eql.gro -e eql.edr -g eql.log
 </code></pre></div>
 <p>Let's take a look at how the temperature varies throughout the simulation:</p>
-<div class="highlight"><pre><span></span><code>$ gmx energy -f eql.edr -o eql-temp.xvg 
+<div class="highlight"><pre><span></span><code>$ gmx energy -f eql.edr -o eql-temp.xvg
 </code></pre></div>
 <p>Choose the number corresponding to <code>Temperature</code> at the prompt and hit enter
 again. Plot it in gnuplot as above. You should see something like:</p>
@@ -7112,21 +7129,21 @@ again. Plot it in gnuplot as above. You should see something like:</p>
 settles.</p>
 <h3 id="equilibration-2-npt">Equilibration 2 (NPT)</h3>
 <p>For our last equilibration, as stated earlier, we're adding a pressure coupling:</p>
-<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/eql2.mdp -o eql2 -pp eql2 -po eql2 -c eql -t eql
-$ gmx mdrun -deffnm eql2
+<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/eql2.mdp -o eql2.tpr -pp eql2.top -po eql2.mdp -c eql.gro
+$ gmx mdrun -s eql2.tpr -o eql2.trr -x eql2.xtc -c eql2.gro -e eql2.edr -g eql2.log
 </code></pre></div>
-<p>You can check out the temperature and pressure using <em>gmx energy</em> as above.
+<p>You can check out the temperature and pressure using <code>gmx energy</code> as above.
 Here's a plot of the pressure:</p>
 <p><img alt="Equilibration 2 Pressure " src="eql2-press.png" /></p>
 <p>Note that pressure fluctuates quite a bit, which is normal. The average after
 full equilibration should be close to 1 bar in this case.</p>
 <h3 id="production">Production</h3>
 <p>Now for the production part do:</p>
-<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/prd.mdp -o prd -pp prd -po prd -c eql2 -t eql2
-$ gmx mdrun -deffnm prd
+<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/prd.mdp -o prd.tpr -pp prd.top -po prd.mdp -c eql2.gro
+$ gmx mdrun -s prd.tpr -o prd.trr -x prd.xtc -c prd.gro -e prd.edr -g prd.log
 </code></pre></div>
 <h2 id="analysis">Analysis</h2>
-<p>Using <em>gmx energy</em> as above on <code>prd.edr</code>, get the average temperature, pressure,
+<p>Using <code>gmx energy</code> as above on <code>prd.edr</code>, get the average temperature, pressure,
 and density. Are they what you expect?</p>
 <p>Here's my output:</p>
 <div class="highlight"><pre><span></span><code>Energy                      Average   Err.Est.       RMSD  Tot-Drift
@@ -7148,17 +7165,17 @@ vmd do:</p>
 <p>Here's a snapshot:</p>
 <p><img alt="Water" src="water1.png" /></p>
 <p>Note that due to the periodic boundary condition this can look kind of strange
-with bonds stretching across the box. You can make molecules whole by using <em>gmx
-trjconv</em>:</p>
+with bonds stretching across the box. You can make molecules whole by using <code>gmx
+trjconv</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx trjconv -f prd.xtc -s prd.tpr -pbc mol -o prd-mol.xtc
 </code></pre></div>
 <p>Viewing that file should look much nicer:</p>
 <p><img alt="Water" src="water2.png" /></p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial, we generate a box of TIP4PEW water using <em>gmx solvate</em>. We
+<p>In this tutorial, we generate a box of TIP4PEW water using <code>gmx solvate</code>. We
 simulated it in five distinct parts: minimization 1, minimization 2,
 equilbiration 1, equilibration 2, and production. Each part used its own .mdp
-files which were explained. At each part, we used <em>gmx energy</em> to extract useful
+files which were explained. At each part, we used <code>gmx energy</code> to extract useful
 information about the simulation. After the production run, we were able to find
 the density of TIP4PEW water.</p>
 
@@ -7270,7 +7287,7 @@ the density of TIP4PEW water.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

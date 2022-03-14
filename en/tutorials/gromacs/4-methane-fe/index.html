@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/en/tutorials/gromacs/4-methane-fe/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1461,6 +1462,8 @@
       
       
       
+        
+          
         
           
         
@@ -4708,6 +4711,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
         Integracija simuliranih i stvarnih mreža
       </a>
@@ -6788,73 +6805,73 @@ then do a production run for 5 ns.</p>
 </thead>
 <tbody>
 <tr>
-<td>free-energy</td>
-<td>yes</td>
+<td><code>free-energy</code></td>
+<td><code>yes</code></td>
 <td>Do a free energy simulation.</td>
 </tr>
 <tr>
-<td>init-lambda-state</td>
-<td>MYLAMBDA</td>
+<td><code>init-lambda-state</code></td>
+<td><code>MYLAMBDA</code></td>
 <td>The value I have in the files is not actually what will be present when we run the simulation. This is a placeholder for an integer number. We are simulating 15 different states, so this number will range from 0 through 14. Our script will replace it for each state.</td>
 </tr>
 <tr>
-<td>calc-lambda-neighbors</td>
-<td>-1</td>
+<td><code>calc-lambda-neighbors</code></td>
+<td><code>-1</code></td>
 <td>The delta H values will be written for each state. Necessary for MBAR.</td>
 </tr>
 <tr>
-<td>vdw-lambdas</td>
+<td><code>vdw-lambdas</code></td>
 <td>see file</td>
 <td>We're turning off VDW at 0.1-lambda increments after electrostatics are off. init-lambda-state=0 corresponds to the first value in this array, init-lambda-state=1 the second, and so on.</td>
 </tr>
 <tr>
-<td>coul-lambdas</td>
+<td><code>coul-lambdas</code></td>
 <td>see file</td>
 <td>We're turning off electrostatics at 0.25-lambda increments first. Just like vdw-lambdas, the init-lambda-state indicates which column is being used.</td>
 </tr>
 <tr>
-<td>couple-moltype</td>
-<td>Methane</td>
+<td><code>couple-moltype</code></td>
+<td><code>Methane</code></td>
 <td>Matches the name of the <code>[ moleculetype ]</code> in the topology file that we are coupling/decoupling.</td>
 </tr>
 <tr>
-<td>couple-lambda0</td>
-<td>vdw-q</td>
+<td><code>couple-lambda0</code></td>
+<td><code>vdw-q</code></td>
 <td>When lambda is 0 (state A) both VDW and electrostatics are completely on.</td>
 </tr>
 <tr>
-<td>couple-lambda1</td>
-<td>none</td>
+<td><code>couple-lambda1</code></td>
+<td><code>none</code></td>
 <td>When lambda is 1 (state B) no nonbonded interations are on.</td>
 </tr>
 <tr>
-<td>couple-intramol</td>
-<td>no</td>
+<td><code>couple-intramol</code></td>
+<td><code>no</code></td>
 <td>Intramolecular terms are not turned off. Usually what you want so you don't have to run it again in vacuum.</td>
 </tr>
 <tr>
-<td>nstdhdl</td>
-<td>100</td>
+<td><code>nstdhdl</code></td>
+<td><code>100</code></td>
 <td>How often in steps we're outputting dHdlambda.</td>
 </tr>
 <tr>
-<td>sc-alpha</td>
-<td>0.5</td>
+<td><code>sc-alpha</code></td>
+<td><code>0.5</code></td>
 <td>We're using a soft-core potential for VDW. This parameter is a term in the soft-core function. See the manual.</td>
 </tr>
 <tr>
-<td>sc-power</td>
-<td>1</td>
+<td><code>sc-power</code></td>
+<td><code>1</code></td>
 <td>See above.</td>
 </tr>
 <tr>
-<td>sc-sigma</td>
-<td>0.3</td>
+<td><code>sc-sigma</code></td>
+<td><code>0.3</code></td>
 <td>See above.</td>
 </tr>
 <tr>
-<td>sc-coul</td>
-<td>no</td>
+<td><code>sc-coul</code></td>
+<td><code>no</code></td>
 <td>Don't use soft-core for electrostatics.</td>
 </tr>
 </tbody>
@@ -6875,34 +6892,34 @@ bash script to loop through and run each state:</p>
 
     sed <span class="s1">&#39;s/MYLAMBDA/&#39;</span><span class="nv">$i</span><span class="s1">&#39;/g&#39;</span> mdp/min.mdp &gt; grompp.mdp
     <span class="k">if</span> <span class="o">[[</span> <span class="nv">$i</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-        gmx grompp -o min.<span class="nv">$i</span> -pp min.<span class="nv">$i</span> -po min.<span class="nv">$i</span>
+        gmx grompp -o min.<span class="nv">$i</span>.tpr -pp min.<span class="nv">$i</span>.top -po min.<span class="nv">$i</span>.mdp
     <span class="k">else</span>
-        gmx grompp -c prd.<span class="k">$((</span><span class="nv">$i</span><span class="o">-</span><span class="m">1</span><span class="k">))</span>.gro -o min.<span class="nv">$i</span> -pp min.<span class="nv">$i</span> -po min.<span class="nv">$i</span>
+        gmx grompp -c prd.<span class="k">$((</span><span class="nv">$i</span><span class="o">-</span><span class="m">1</span><span class="k">))</span>.gro -o min.<span class="nv">$i</span>.tpr -pp min.<span class="nv">$i</span>.top -po min.<span class="nv">$i</span>.mdp
     <span class="k">fi</span>
-    gmx mdrun -deffnm min.<span class="nv">$i</span>
+    gmx mdrun -s min.<span class="nv">$i</span>.tpr -o min.<span class="nv">$i</span>.trr -x min.<span class="nv">$i</span>.xtc -c min.<span class="nv">$i</span>.gro -e min.<span class="nv">$i</span>.edr -g min.<span class="nv">$i</span>.log
 
     sed <span class="s1">&#39;s/MYLAMBDA/&#39;</span><span class="nv">$i</span><span class="s1">&#39;/g&#39;</span> mdp/min2.mdp &gt; grompp.mdp
-    gmx grompp -o min2.<span class="nv">$i</span> -c min.<span class="nv">$i</span> -t min.<span class="nv">$i</span> -pp min2.<span class="nv">$i</span> -po min2.<span class="nv">$i</span> -maxwarn <span class="m">1</span>
-    gmx mdrun -deffnm min2.<span class="nv">$i</span>
+    gmx grompp -o min2.<span class="nv">$i</span>.tpr -c min.<span class="nv">$i</span>.gro -pp min2.<span class="nv">$i</span>.top -po min2.<span class="nv">$i</span>.mdp -maxwarn <span class="m">1</span>
+    gmx mdrun -s min2.<span class="nv">$i</span>.tpr -o min2.<span class="nv">$i</span>.trr -x min2.<span class="nv">$i</span>.xtc -c min2.<span class="nv">$i</span>.gro -e min2.<span class="nv">$i</span>.edr -g min2.<span class="nv">$i</span>.log
 
     sed <span class="s1">&#39;s/MYLAMBDA/&#39;</span><span class="nv">$i</span><span class="s1">&#39;/g&#39;</span> mdp/eql.mdp &gt; grompp.mdp
-    gmx grompp -o eql.<span class="nv">$i</span> -c min2.<span class="nv">$i</span> -t min2.<span class="nv">$i</span> -pp eql.<span class="nv">$i</span> -po eql.<span class="nv">$i</span>
-    gmx mdrun -deffnm eql.<span class="nv">$i</span> 
+    gmx grompp -o eql.<span class="nv">$i</span>.tpr -c min2.<span class="nv">$i</span>.gro -pp eql.<span class="nv">$i</span>.top -po eql.<span class="nv">$i</span>.mdp
+    gmx mdrun -s eql.<span class="nv">$i</span>.tpr -o eql.<span class="nv">$i</span>.trr -x eql.<span class="nv">$i</span>.xtc -c eql.<span class="nv">$i</span>.gro -e eql.<span class="nv">$i</span>.edr -g eql.<span class="nv">$i</span>.log
 
     sed <span class="s1">&#39;s/MYLAMBDA/&#39;</span><span class="nv">$i</span><span class="s1">&#39;/g&#39;</span> mdp/eql2.mdp &gt; grompp.mdp
-    gmx grompp -o eql2.<span class="nv">$i</span> -c eql.<span class="nv">$i</span> -t eql.<span class="nv">$i</span> -pp eql2.<span class="nv">$i</span> -po eql2.<span class="nv">$i</span>
-    gmx mdrun -deffnm eql2.<span class="nv">$i</span>
+    gmx grompp -o eql2.<span class="nv">$i</span>.tpr -c eql.<span class="nv">$i</span>.gro -pp eql2.<span class="nv">$i</span>.top -po eql2.<span class="nv">$i</span>.mdp
+    gmx mdrun -s eql2.<span class="nv">$i</span>.tpr -o eql2.<span class="nv">$i</span>.trr -x eql2.<span class="nv">$i</span>.xtc -c eql2.<span class="nv">$i</span>.gro -e eql2.<span class="nv">$i</span>.edr -g eql2.<span class="nv">$i</span>.log
 
     sed <span class="s1">&#39;s/MYLAMBDA/&#39;</span><span class="nv">$i</span><span class="s1">&#39;/g&#39;</span> mdp/prd.mdp &gt; grompp.mdp
-    gmx grompp -o prd.<span class="nv">$i</span> -c eql2.<span class="nv">$i</span> -t eql2.<span class="nv">$i</span> -pp prd.<span class="nv">$i</span> -po prd.<span class="nv">$i</span>
-    gmx mdrun -deffnm prd.<span class="nv">$i</span>
+    gmx grompp -o prd.<span class="nv">$i</span>.tpr -c eql2.<span class="nv">$i</span>.gro -pp prd.<span class="nv">$i</span>.top -po prd.<span class="nv">$i</span>.mdp
+    gmx mdrun -s prd.<span class="nv">$i</span>.tpr -o prd.<span class="nv">$i</span>.trr -x prd.<span class="nv">$i</span>.xtc -c prd.<span class="nv">$i</span>.gro -e prd.<span class="nv">$i</span>.edr -g prd.<span class="nv">$i</span>.log
 
 <span class="k">done</span>
 </code></pre></div>
 <p>The script uses a for loop going from i=0 through i=14. In each iteration it
 uses <code>sed</code> to find and replace the keyword <code>MYLAMBDA</code> I placed in our mdp file
 template with the correct lambda state. It saves this file as <code>grompp.mdp</code> which
-is the default file name that <em>gmx grompp</em> looks for. All of our output is
+is the default file name that <code>gmx grompp</code> looks for. All of our output is
 suffixed with the lambda state. Additionally all lambda states greater than 0
 use the previous state's final structure file. This isn't entirely necessary
 for methane decoupling, but it could possibly be beneficial in other systems.</p>
@@ -6922,7 +6939,7 @@ results:</p>
 </code></pre></div>
 <p>Your output should look something like this:</p>
 <div class="highlight"><pre><span></span><code>------------ --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------
-    States           TI (kcal/mol)   TI-CUBIC (kcal/mol)       DEXP (kcal/mol)       IEXP (kcal/mol)        BAR (kcal/mol)       MBAR (kcal/mol) 
+    States           TI (kcal/mol)   TI-CUBIC (kcal/mol)       DEXP (kcal/mol)       IEXP (kcal/mol)        BAR (kcal/mol)       MBAR (kcal/mol)
 ------------ --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------
    0 -- 1         0.002  +-  0.000      0.002  +-  0.000      0.002  +-  0.000      0.001  +-  0.000      0.002  +-  0.000      0.002  +-  0.000
    1 -- 2        -0.000  +-  0.000     -0.000  +-  0.000     -0.001  +-  0.000     -0.000  +-  0.000     -0.000  +-  0.000     -0.001  +-  0.000
@@ -7097,7 +7114,7 @@ published results.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

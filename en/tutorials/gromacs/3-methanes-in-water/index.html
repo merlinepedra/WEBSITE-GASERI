@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/en/tutorials/gromacs/3-methanes-in-water/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1461,6 +1462,8 @@
       
       
       
+        
+          
         
           
         
@@ -4708,6 +4711,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
         Integracija simuliranih i stvarnih mreža
       </a>
@@ -6713,7 +6730,7 @@ nm.</p>
 <p>Then add water to the box:</p>
 <div class="highlight"><pre><span></span><code>$ gmx solvate -cs tip4p -cp box.gro -o conf.gro -p topol.top -maxsol <span class="m">1000</span>
 </code></pre></div>
-<p><em>gmx solvate</em> automatically updates <code>topol.top</code> for us.</p>
+<p>The command <code>gmx solvate</code> automatically updates <code>topol.top</code> for us.</p>
 <p>Reuse the .mdp files from last time, except change <code>nsteps</code> in <code>prd.mdp</code> to be
 longer. I myself ran this for 100 ns, so I simply added a 0 to the end of the
 number from last time. You may also want to output more frequently for our
@@ -6727,7 +6744,7 @@ analysis below.</p>
 <div class="highlight"><pre><span></span><code>&gt; a C
 &gt; q
 </code></pre></div>
-<p>Now use <em>gmx rdf</em> just like last time, but instead choose the group containing
+<p>Now use <code>gmx rdf</code> just like last time, but instead choose the group containing
 <code>C</code> twice.</p>
 <p>Depending on how many frames you saved and how long you ran the simulation (I
 ran mine for 100 ns and saved 25,000 frames), you should get an RDF that looks
@@ -6751,9 +6768,9 @@ methane-methane RDF we do w = -kTln(g).</p>
 <p>You notice there is a small gap in our sampling. The methanes never interacted
 at that distance. We'll use umbrella sampling in a later tutorial to solve this.</p>
 <h2 id="summary">Summary</h2>
-<p>In this tutorial, we created a box of 10 methanes and 1000 waters using <em>gmx
-insert-molecules</em> and <em>gmx solvate</em>. We simulated this just like last time,
-except we did it a little longer. We again used <em>gmx rdf</em> to get the radial
+<p>In this tutorial, we created a box of 10 methanes and 1000 waters using <code>gmx
+insert-molecules</code> and <code>gmx solvate</code>. We simulated this just like last time,
+except we did it a little longer. We again used <code>gmx rdf</code> to get the radial
 distribution function, but this time for methane-methane. We had to add a
 correction due to this, and from there we were able to get the potential of mean
 force.</p>
@@ -6866,7 +6883,7 @@ force.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/rm-instalacija-softvera-garuda-linux/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1467,6 +1468,8 @@
       
       
       
+        
+          
         
           
         
@@ -4681,6 +4684,19 @@
     Razvojno okruženje Visual Studio Code
   </a>
   
+    <nav class="md-nav" aria-label="Razvojno okruženje Visual Studio Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alat-za-staticku-analizu-markdowna-markdownlint" class="md-nav__link">
+    Alat za statičku analizu Markdowna markdownlint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4874,6 +4890,20 @@
     <li class="md-nav__item">
       <a href="../siege-mjerenje-performansi-web-posluzitelja/" class="md-nav__link">
         Mjerenje performansi web poslužitelja alatom Siege
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
       </a>
     </li>
   
@@ -6855,6 +6885,19 @@
     Razvojno okruženje Visual Studio Code
   </a>
   
+    <nav class="md-nav" aria-label="Razvojno okruženje Visual Studio Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alat-za-staticku-analizu-markdowna-markdownlint" class="md-nav__link">
+    Alat za statičku analizu Markdowna markdownlint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6918,10 +6961,14 @@
 <p>Instalacija softvera na Arch Linuxu je centralizirana, slično kao što su na drugim platformama <a href="https://www.microsoft.com/en-us/store/apps/windows">Microsoftov Windows Store</a>, <a href="https://www.apple.com/app-store/">Appleov App Store</a>, <a href="https://play.google.com/store/apps">Googleov Play</a>, <a href="https://store.playstation.com/en-hr/latest">Sonyjev PlayStation Store</a> i drugi. Trgovina aplikacija se ovdje zove repozitorij paketa i, kao i druge trgovine aplikacja, dostupan je putem interneta. Stoga je za instalaciju paketa iz repozitorija koju provodimo u nastavku nužno da ste povezani na internet. Vrijedi spomenuti da će upravitelj paketima <a href="https://wiki.archlinux.org/title/Pacman">Pacman</a> uz pakete čiju instalaciju zatražite preuzeti i dodatne pakete koji su potrebni za njihov rad.</p>
 <h2 id="priprema-operacijskog-sustava">Priprema operacijskog sustava</h2>
 <p>Svakako prije instalacije paketa u nastavku instalirajte sve dostupne nadogradnje. U terminalu upišite prvo</p>
+<div class="highlight"><pre><span></span><code>$ sudo garuda-update
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<p>pa, kad vas sustav to pita, unesite vašu zaporku. Ova naredba je specifična za Garuda Linux; Na ostalim derivatima Arch Linuxa možete instalaciju svih dostupnih nadogradnji izvesti naredbom</p>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -Syu
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>pa, kad vas sustav to pita, unesite vašu zaporku. Ova će naredba osvježiti popis dostupnih paketa, a time i nadogradnji, pa zatim instalirati dostupne nadogradnje.</p>
+<p>Obje će naredbe osvježiti popis dostupnih paketa, a time i njihovih nadogradnji, pa zatim instalirati dostupne nadogradnje.</p>
 <p>U nastavku za instalaciju softvera uz Pacman koristimo i <a href="https://github.com/Morganamilo/paru">Paru</a>, koji omogućuje instalaciju programa koji nisu pakirani iz njhovog izvornog koda. Njegove popise dostupnih softvera osvježite naredbom</p>
 <div class="highlight"><pre><span></span><code>$ paru
 <span class="o">(</span>...<span class="o">)</span>
@@ -6991,7 +7038,11 @@ $ paru -S tkimg
 <div class="highlight"><pre><span></span><code>$ sudo usermod -aG wireshark <span class="k">$(</span>whoami<span class="k">)</span>
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>(U naredbi iznad ne morate ništa mijenjati jer naredba <code>whoami</code> vraća ime vašeg korisnika.)</p>
+<p>Ako koristite ljusku <code>fish</code>, ova će naredba javiti grešku u sintaksi. Ispravan oblik naredbe za ljusku <code>fish</code> je:</p>
+<div class="highlight"><pre><span></span><code>$ sudo usermod -aG wireshark <span class="o">(</span>whoami<span class="o">)</span>
+<span class="o">(</span>...<span class="o">)</span>
+</code></pre></div>
+<p>(U naredbama iznad ne morate ništa mijenjati jer naredba <code>whoami</code> vraća ime vašeg korisnika.)</p>
 <h2 id="alat-za-crtanje-grafova-gnuplot">Alat za crtanje grafova Gnuplot</h2>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S gnuplot
 <span class="o">(</span>...<span class="o">)</span>
@@ -7000,7 +7051,9 @@ $ paru -S tkimg
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S visual-studio-code-bin
 <span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Visual Studio Code uključuje podršku za <a href="https://code.visualstudio.com/docs/languages/markdown">Markdown</a> i <a href="https://code.visualstudio.com/docs/languages/php">PHP</a> pa ne moramo ništa dodatno instalirati.</p>
+<p>Visual Studio Code uključuje podršku za <a href="https://code.visualstudio.com/docs/languages/markdown">Markdown</a> i <a href="https://code.visualstudio.com/docs/languages/php">PHP</a>.</p>
+<h3 id="alat-za-staticku-analizu-markdowna-markdownlint">Alat za statičku analizu Markdowna markdownlint</h3>
+<p>Pokrenite Visual Studio Code. U dijelu <code>Extensions</code> koji se nalazi u <code>Side Bar</code>-u (<a href="https://code.visualstudio.com/docs/getstarted/userinterface">pregled sučelja</a>) instalirajte proširenje <a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a>.</p>
 <h2 id="http-klijent-curl">HTTP klijent cURL</h2>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S curl
 <span class="o">(</span>...<span class="o">)</span>
@@ -7127,7 +7180,7 @@ $ paru -S tkimg
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

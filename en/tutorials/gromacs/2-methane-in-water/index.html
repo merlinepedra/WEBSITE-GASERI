@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/en/tutorials/gromacs/2-methane-in-water/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -34,8 +34,9 @@
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -1461,6 +1462,8 @@
       
       
       
+        
+          
         
           
         
@@ -4708,6 +4711,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../hr/nastava/materijali/siks-instalacija-softvera-garuda-linux/" class="md-nav__link">
+        Instalacija i konfiguracija softvera za vježbe iz kolegija Sigurnost informacijskih i komunikacijskih sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../hr/nastava/materijali/simulator-ns3-integracija-simuliranih-i-stvarnih-mreza/" class="md-nav__link">
         Integracija simuliranih i stvarnih mreža
       </a>
@@ -6766,7 +6783,7 @@
 methane in a box of TIP4PEW water.</p>
 <h2 id="setup">Setup</h2>
 <p>As before, we need a structure file, a topology file, and parameter files. We're
-going to use the GROMACS tool <em>gmx pdb2gmx</em> to generate the topology from a pdb
+going to use the GROMACS tool <code>gmx pdb2gmx</code> to generate the topology from a pdb
 file.</p>
 <h3 id="setup-residues-for-pdb2gmx">Setup residues for pdb2gmx</h3>
 <p>For this molecule, we'll be using the OPLS force field. The force field is
@@ -6777,7 +6794,7 @@ or something similar).</p>
 </code></pre></div>
 <p>If you are properly sourcing the GROMACS configuration file, this will give you
 the installation location. Look for the directory <code>share/gromacs/top</code> in that directory and go
-into it (<em>e.g.,</em> if GMXPREFIX is <code>/usr</code> then go to <code>/usr/share/gromacs/top</code>). Or
+into it (<em>e.g.</em>, if GMXPREFIX is <code>/usr</code> then go to <code>/usr/share/gromacs/top</code>). Or
 you can simply go to <code>$GMXDATA/top</code>.</p>
 <p>Let's take a look at the force field directory's contents:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> oplsaa.ff
@@ -6789,7 +6806,7 @@ you'll see a <code>[ defaults ]</code> section as well as the inclusion of two o
 one for bonded interactions and one for non-bonded interactions. We're also
 interested in <code>atomtypes.atp</code> which gives the descriptions for the cryptic
 <code>opls_####</code> terms as well as the <code>aminoacids.rtp</code> which give a list of
-recognized residues used for the <em>gmx pdb2gmx</em> command.</p>
+recognized residues used for the <code>gmx pdb2gmx</code> command.</p>
 <p>Open <code>atomtypes.atp</code> with your text editor. The following opens it with <code>vim</code>:</p>
 <div class="highlight"><pre><span></span><code>$ vim atomtypes.atp
 </code></pre></div>
@@ -6826,9 +6843,9 @@ that directory instead of the one provided in the GROMACS default directory.</p>
 <p>Now go into <code>oplsaa.ff</code> and open <code>aminoacids.rtp</code>. You'll notice several
 residues already in the file.  We're going to add a new file called
 <code>methane.rtp</code> for our methane with a residue that we'll call <code>CH4</code>. Close
-<code>aminoacids.rtp</code>. We'll need to tell <em>gmx pdb2gmx</em> the atoms and bonds in the atom in
+<code>aminoacids.rtp</code>. We'll need to tell <code>gmx pdb2gmx</code> the atoms and bonds in the atom in
 our residue file. We could also tell it the angles, but we'll leave them out,
-since <em>gmx pdb2gmx</em> will figure it out for us. You should create with the
+since <code>gmx pdb2gmx</code> will figure it out for us. You should create with the
 following contents and save as <code>methane.rtp</code> in the <code>oplsaa.ff</code> directory:</p>
 <div class="highlight"><pre><span></span><code>[ bondedtypes ]
 ; bonds  angles  dihedrals  impropers all_dihedrals nrexcl HH14 RemoveDih
@@ -6857,7 +6874,7 @@ each atom is connected to the others. In this case, <code>C</code> has a connect
 hydrogen. We could optionally add <code>[ angles ]</code>, but as stated earlier, GROMACS
 will sort this out for us. Now close the file. See section 5.6 for more
 information about this.</p>
-<h3 id="create-pdb-file-and-run-gmx-pdb2gmx">Create pdb file and run <em>gmx pdb2gmx</em></h3>
+<h3 id="create-pdb-file-and-run-gmx-pdb2gmx">Create pdb file and run <code>gmx pdb2gmx</code></h3>
 <p>Now we are ready to create the pdb file. There are several programs out there
 to create molecule structure files.
 <a href="https://avogadro.cc/">Avogadro</a> is one of those. An alternative to
@@ -6880,7 +6897,7 @@ HETATM    5  H4  CH4     1      -0.727   1.845   0.351  1.00  0.00           H
 END
 </code></pre></div>
 <p>Save the file as <code>methane.pdb</code>.</p>
-<p>Now we can use <em>gmx pdb2gmx</em> to create GROMACS .conf and .top files:</p>
+<p>Now we can use <code>gmx pdb2gmx</code> to create GROMACS .conf and .top files:</p>
 <div class="highlight"><pre><span></span><code>$ gmx pdb2gmx -f methane.pdb
 </code></pre></div>
 <p>You'll be prompted to choose a force field. Choose OPLS. If you have an option
@@ -6899,12 +6916,12 @@ Chapter 5 of the GROMACS manual will help you understand the topology file more.
 <p class="admonition-title">Note</p>
 <p>Files <code>topol.top</code> and <code>methane.pdb</code> will be used again in other tutorials.</p>
 </div>
-<p>For those who use <em>gmx pdb2gmx</em> to generate topologies for large proteins,
+<p>For those who use <code>gmx pdb2gmx</code> to generate topologies for large proteins,
 things can get more complicated. This is merely a simple example, and really we
 probably could have found this topology somewhere else.</p>
 <h3 id="solvate-system">Solvate system</h3>
 <p>Our structure file and topology file only have our methane thus far. We need to
-add waters by using <em>gmx solvate</em>:</p>
+add waters by using <code>gmx solvate</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx solvate -cp conf.gro -o conf.gro -cs tip4p -p topol.top -box <span class="m">2</span>.3 <span class="m">2</span>.3 <span class="m">2</span>.3
 </code></pre></div>
 <h3 id="parameter-files">Parameter files</h3>
@@ -6912,16 +6929,20 @@ add waters by using <em>gmx solvate</em>:</p>
 <h2 id="simulation">Simulation</h2>
 <p>We'll be using the same sequence as last time. This assumes your mdp files are
 in a directory named <code>mdp</code>:</p>
-<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/min.mdp -o min -pp min -po min
-$ gmx mdrun -deffnm min
-$ gmx grompp -f mdp/min2.mdp -o min2 -pp min2 -po min2 -c min -t min
-$ gmx mdrun -deffnm min2
-$ gmx grompp -f mdp/eql.mdp -o eql -pp eql -po eql -c min2 -t min2
-$ gmx mdrun -deffnm eql
-$ gmx grompp -f mdp/eql2.mdp -o eql2 -pp eql2 -po eql2 -c eql -t eql
-$ gmx mdrun -deffnm eql2
-$ gmx grompp -f mdp/prd.mdp -o prd -pp prd -po prd -c eql2 -t eql2
-$ gmx mdrun -deffnm prd
+<div class="highlight"><pre><span></span><code>$ gmx grompp -f mdp/min.mdp -o min.tpr -pp min.top -po min.mdp
+$ gmx mdrun -s min.tpr -o min.trr -x min.xtc -c min.gro -e min.edr -g min.log
+
+$ gmx grompp -f mdp/min2.mdp -o min2.tpr -pp min2.top -po min2.mdp -c min.gro
+$ gmx mdrun -s min2.tpr -o min2.trr -x min2.xtc -c min2.gro -e min2.edr -g min2.log
+
+$ gmx grompp -f mdp/eql.mdp -o eql.tpr -pp eql.top -po eql.mdp -c min2.gro
+$ gmx mdrun -s eql.tpr -o eql.trr -x eql.xtc -c eql.gro -e eql.edr -g eql.log
+
+$ gmx grompp -f mdp/eql2.mdp -o eql2.tpr -pp eql2.top -po eql2.mdp -c eql.gro
+$ gmx mdrun -s eql2.tpr -o eql2.trr -x eql2.xtc -c eql2.gro -e eql2.edr -g eql2.log
+
+$ gmx grompp -f mdp/prd.mdp -o prd.tpr -pp prd.top -po prd.mdp -c eql2.gro
+$ gmx mdrun -s prd.tpr -o prd.trr -x prd.xtc -c prd.gro -e prd.edr -g prd.log
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -6950,7 +6971,7 @@ need to create an index file:</p>
 &gt; a OW
 &gt; q
 </code></pre></div>
-<p>Now run <em>gmx rdf</em>:</p>
+<p>Now run <code>gmx rdf</code>:</p>
 <div class="highlight"><pre><span></span><code>$ gmx rdf -f prd.xtc -n index.ndx
 </code></pre></div>
 <p>At the prompt select <code>C</code> for the reference group. Then select <code>OW</code>. Then type
@@ -6961,10 +6982,10 @@ need to create an index file:</p>
 <p><img alt="C-OW RDF" src="rdf.png" /></p>
 <h2 id="summary">Summary</h2>
 <p>In this tutorial, we learned how to create a residue template file (.rtp) for
-use with <em>gmx pdb2gmx</em>. We created a structure for OPLS methane and the
-generated a topology for it. From there we put water around it using <em>gmx
-solvated</em>. After this, we ran a simulation, just like last time. Lastly, we found
-the C-OW radial distribution function using <em>gmx rdf</em>.</p>
+use with <code>gmx pdb2gmx</code>. We created a structure for OPLS methane and the
+generated a topology for it. From there we put water around it using <code>gmx
+solvated</code>. After this, we ran a simulation, just like last time. Lastly, we found
+the C-OW radial distribution function using <code>gmx rdf</code>.</p>
 
               
   
@@ -7074,7 +7095,7 @@ the C-OW radial distribution function using <em>gmx rdf</em>.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>
