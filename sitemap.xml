@@ -1661,6 +1661,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://group.miletic.net/hr/nastava/materijali/wireguard-virtualna-privatna-mreza/</loc>
+         <lastmod>2022-03-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://group.miletic.net/hr/nastava/materijali/wireshark-filtriranje-paketa/</loc>
          <lastmod>2022-03-28</lastmod>
          <changefreq>daily</changefreq>
