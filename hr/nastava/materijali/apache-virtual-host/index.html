@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/apache-virtual-host/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.6">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.9d5733d3.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.644de097.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -6756,7 +6756,7 @@ $ <span class="nb">echo</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt
 $ <span class="nb">echo</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Prometej&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span> &gt; www/prometej/html/index.html
 </code></pre></div>
 <p>Apache koji koristimo već dolazi s konfiguracijskom datotekom za virtualne domaćine koju možemo prilagoditi i uključiti. Dohvatimo tu datoteku:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run --rm httpd:2.4 cat /usr/local/apache2/conf/extra/httpd-vhosts.conf &gt; my-httpd-vhosts.conf
+<div class="highlight"><pre><span></span><code>$ docker run --rm httpd:2.4 cat /usr/local/apache2/conf/extra/httpd-vhosts.conf &gt; my-httpd-vhosts.conf
 </code></pre></div>
 <p>Uredimo tu datoteku; uočimo da su nam konfiguracijske naredbe <code>ServerAdmin</code>, <code>ServerName</code> i <code>DocumentRoot</code> već poznate, samo se nalaze unutar bloka naredbi <code>&lt;VirtualHost&gt;</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Virtual Hosts</span><span class="w"></span>
@@ -6847,7 +6847,7 @@ $ <span class="nb">echo</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt
 <span class="hll"><span class="k">COPY</span><span class="w"> </span>./my-httpd-vhosts.conf /usr/local/apache2/conf/extra/httpd-vhosts.conf
 </span></code></pre></div>
 <p>Izgradimo sliku i pokrenimo Docker kontejner:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker build -t <span class="s2">&quot;my-httpd:2.4-3&quot;</span> .
+<div class="highlight"><pre><span></span><code>$ docker build -t <span class="s2">&quot;my-httpd:2.4-3&quot;</span> .
 Sending build context to Docker daemon  <span class="m">54</span>.78kB
 Step <span class="m">1</span>/4 : FROM httpd:2.4
 ---&gt; b2c2ab6dcf2e
@@ -6860,7 +6860,7 @@ Step <span class="m">4</span>/4 : COPY ./my-httpd-vhosts.conf /usr/local/apache2
 Successfully built 7839a9247066
 Successfully tagged my-httpd:2.4-3
 
-$ sudo docker run my-httpd:2.4-3
+$ docker run my-httpd:2.4-3
 <span class="o">[</span>Sun May <span class="m">10</span> <span class="m">22</span>:09:41.239474 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>mpm_event:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">139624574960768</span><span class="o">]</span> AH00489: Apache/2.4.43 <span class="o">(</span>Unix<span class="o">)</span> configured -- resuming normal operations
 <span class="o">[</span>Sun May <span class="m">10</span> <span class="m">22</span>:09:41.239504 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>core:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">139624574960768</span><span class="o">]</span> AH00094: Command line: <span class="s1">&#39;httpd -D FOREGROUND&#39;</span>
 </code></pre></div>
@@ -6982,10 +6982,10 @@ $ curl --header <span class="s2">&quot;Host: atlas.rm.miletic.net&quot;</span> h
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/apache-web-posluzitelj/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.6">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.9d5733d3.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.644de097.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -6777,7 +6777,7 @@
 <h2 id="slika-httpd-na-docker-hubu">Slika <code>httpd</code> na Docker Hubu</h2>
 <p>Apache možemo instalirati kao i svaki drugi program i pokretati kao i svaki drugi daemon. Ipak, kako ćemo u nastavku eksperimentirati s različitim postavkama i kopirati datoteke u sustavske direktorije gdje ih Apache čita, iskoristit ćemo <a href="https://www.docker.com/">Docker</a> za pokretanje da se ne igramo s vlastitim operacijskim sustavom. Docker omogućuje pokretanje tzv. <a href="https://www.docker.com/resources/what-container">kontejnera</a>, standardiziranih jedinica softvera većih od softverskih paketa i manjih od virtualnih mašina. Svaki Dockerov kontejner uz aplikaciju sadrži i sve biblioteke potrebne za pokretanje te aplikacije. <a href="https://hub.docker.com/">Docker Hub</a> je pretraživa kolekcija Dockerovih kontejnera.</p>
 <p>Apache se na Docker Hubu naziva <a href="https://hub.docker.com/_/httpd">httpd</a>, a zbog svoje popularnosti spada među <a href="https://hub.docker.com/search?type=image&amp;image_filter=official">službene slike</a> za koje se <a href="https://docs.docker.com/docker-hub/official_images/">garantira redovitost sigurnosnih nadogradnji</a>. Pokretanje kontejnera <code>httpd</code> izvodimo naredbom <code>docker run</code>:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run httpd:2.4
+<div class="highlight"><pre><span></span><code>$ docker run httpd:2.4
 Unable to find image <span class="s1">&#39;httpd:2.4&#39;</span> locally
 <span class="m">2</span>.4: Pulling from library/httpd
 54fec2fa59d0: Pull <span class="nb">complete</span>
@@ -6817,7 +6817,7 @@ Content-Type: text/html
 <p>U ovom zapisu oblika Common Log Format polja su redom, odvojena razmakom: ime ili adresa domaćina, ime kojim se korisnik prijavio (ako postoji), ime korisnika na udaljenom računalu, vrijeme, prva linija HTTP zahtjeva, HTTP kod statusa i veličina odgovora. Više informacija moguće je pronaći u dokumentaciji modula <a href="https://httpd.apache.org/docs/2.4/mod/mod_log_config.html">mod_log_config</a>.</p>
 <h2 id="konfiguracija-posluzitelja-apache">Konfiguracija poslužitelja Apache</h2>
 <p>Poslužitelj sad možemo zaustaviti jer želimo prije ponovnog pokretanja učiniti što od nas traži upozorenje <code>AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message</code>. Dohvatimo Apachejevu konfiguracijsku datoteku iz kontejnera:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf &gt; my-httpd.conf
+<div class="highlight"><pre><span></span><code>$ docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf &gt; my-httpd.conf
 </code></pre></div>
 <p>Uočimo da ovdje imamo novi parametar <code>--rm</code> koji Dockeru kaže da izbriše stvoreni kontejner nakon što završi izvođenje. Također, uočimo da uz ime kontejnera navodimo i naredbu koju želimo pokrenuti unutar kontejnera (umjesto zadane naredbe <code>httpd</code>), a to je ovdje <code>cat /usr/local/apache2/conf/httpd.conf</code>. Izlaz te naredbe spremamo u <code>my-httpd.conf</code>. Proučimo tu datoteku (možemo je ispisati korištenjem naredbe <code>cat</code> ili otvoriti u uređivaču teksta po želji):</p>
 <div class="highlight"><pre><span></span><code><span class="c">#</span><span class="w"></span>
@@ -6874,7 +6874,7 @@ Content-Type: text/html
 <span class="k">COPY</span><span class="w"> </span>./my-httpd.conf /usr/local/apache2/conf/httpd.conf
 </code></pre></div>
 <p>Ova datoteka kaže da će novi Docker kontejneri nastajati iz slike <code>httpd:2.4</code> u koju je dodatno kopirana datoteka <code>./my-httpd.conf</code> na mjesto <code>/usr/local/apache2/conf/httpd.conf</code>. Izgradimo novu sliku naredbom <code>docker build</code> na način:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker build -t <span class="s2">&quot;my-httpd:2.4-1&quot;</span> .
+<div class="highlight"><pre><span></span><code>$ docker build -t <span class="s2">&quot;my-httpd:2.4-1&quot;</span> .
 Sending build context to Docker daemon  <span class="m">27</span>.14kB
 Step <span class="m">1</span>/2 : FROM httpd:2.4
 ---&gt; b2c2ab6dcf2e
@@ -6884,7 +6884,7 @@ Successfully built 38dbb60affd2
 Successfully tagged my-httpd:2.4-1
 </code></pre></div>
 <p>Ovdje su ime <code>my-httpd</code> i verzija <code>2.4-1</code> proizvoljni, ali <code>.</code> nakon imena i verzije je vrlo važna jer označava trenutni direktorij u kojem se nalaze <code>Dockerfile</code> i ostale datoteke. Sada pokrenimo kontejner na temelju stvorene slike:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run my-httpd:2.4-1
+<div class="highlight"><pre><span></span><code>$ docker run my-httpd:2.4-1
 <span class="o">[</span>Fri May <span class="m">08</span> <span class="m">23</span>:33:45.732132 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>mpm_event:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">139777349747840</span><span class="o">]</span> AH00489: Apache/2.4.43 <span class="o">(</span>Unix<span class="o">)</span> configured -- resuming normal operations
 <span class="o">[</span>Fri May <span class="m">08</span> <span class="m">23</span>:33:45.732472 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>core:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">139777349747840</span><span class="o">]</span> AH00094: Command line: <span class="s1">&#39;httpd -D FOREGROUND&#39;</span>
 </code></pre></div>
@@ -6943,7 +6943,7 @@ $ <span class="nb">echo</span> <span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt
 <span class="hll"><span class="k">COPY</span><span class="w"> </span>./www /var/www
 </span></code></pre></div>
 <p>Izgradimo novu sliku naredbom <code>docker build</code> na način:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker build -t <span class="s2">&quot;my-httpd:2.4-2&quot;</span> .
+<div class="highlight"><pre><span></span><code>$ docker build -t <span class="s2">&quot;my-httpd:2.4-2&quot;</span> .
 Sending build context to Docker daemon   <span class="m">25</span>.6kB
 Step <span class="m">1</span>/3 : FROM httpd:2.4
 ---&gt; b2c2ab6dcf2e
@@ -6955,7 +6955,7 @@ Successfully built beaf5a8401fc
 Successfully tagged my-httpd:2.4-2
 </code></pre></div>
 <p>Verziju smo postavili na <code>2.4-2</code> čisto da bude različita od prethodne i da imamo povijest promjena za kasnije pregledavanje. Sada pokrenimo kontejner na temelju stvorene slike:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run my-httpd:2.4-2
+<div class="highlight"><pre><span></span><code>$ docker run my-httpd:2.4-2
 <span class="o">[</span>Sun May <span class="m">10</span> <span class="m">15</span>:39:27.908202 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>mpm_event:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140585480324224</span><span class="o">]</span> AH00489: Apache/2.4.43 <span class="o">(</span>Unix<span class="o">)</span> configured -- resuming normal operations
 <span class="o">[</span>Sun May <span class="m">10</span> <span class="m">15</span>:39:27.908547 <span class="m">2020</span><span class="o">]</span> <span class="o">[</span>core:notice<span class="o">]</span> <span class="o">[</span>pid <span class="m">1</span>:tid <span class="m">140585480324224</span><span class="o">]</span> AH00094: Command line: <span class="err">&#39;</span>httpd -D FOREGROUND
 </code></pre></div>
@@ -7179,10 +7179,10 @@ content-type: text/html
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "translations": {"clipboard.copy": "Kopirajte u me\u0111uspremnik", "clipboard.copied": "Kopirano u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>
