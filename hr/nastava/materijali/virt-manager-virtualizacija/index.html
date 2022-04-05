@@ -1929,6 +1929,12 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2_5_4">
@@ -2245,6 +2251,20 @@
     <li class="md-nav__item">
       <a href="../c-mrezne-aplikacije/" class="md-nav__link">
         Programiranje mrežnih aplikacija u programskim jezicima C i C++
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-init-konfiguracija-cloud-slike/" class="md-nav__link">
+        Konfiguracija cloud slike korištenjem cloud-inita
       </a>
     </li>
   
@@ -2874,13 +2894,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloud-init" class="md-nav__link">
-    Cloud-init
-  </a>
   
 </li>
       
@@ -5159,6 +5172,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../upravljanje-zaporkama/" class="md-nav__link">
+        Upravljanje zaporkama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../vlasnicki-softveri-posebne-namjene-i-racunalne-igre/" class="md-nav__link">
         Vlasnički softveri posebne namjene i računalne igre
       </a>
@@ -5245,6 +5272,20 @@
     <li class="md-nav__item">
       <a href="../yum-rpm-upravljanje-paketima-operacijskog-sustava/" class="md-nav__link">
         Upravljanje paketima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zfs-datotecni-sustav-upravitelj-volumenima/" class="md-nav__link">
+        Datotečni sustav i upravitelj volumenima ZFS
       </a>
     </li>
   
@@ -6774,13 +6815,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cloud-init" class="md-nav__link">
-    Cloud-init
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#povezivanje-na-virtualni-stroj-koristenjem-openssh-a" class="md-nav__link">
     Povezivanje na virtualni stroj korištenjem OpenSSH-a
   </a>
@@ -6874,66 +6908,7 @@ image resized
 <h3 id="postavke-virtualnog-stroja">Postavke virtualnog stroja</h3>
 <p>U trećem koraku biramo postavke memorije i procesora za novostvoreni virtualni stroj. Varijanta Ubuntua koju koristimo nema grafičko sučelje i uredno će raditi s manje od predloženih 4096 MiB RAM-a i 2 CPU-a, odnosno 2048 MiB i 1 CPU će biti dosta. Ta štedljivost će nam biti korisna obzirom da ćemo vremenom stvarati veći broj virtualnih strojeva.</p>
 <p>U posljednjem koraku imamo mogućnost prilagodbe konfiguracije uključivanjem kvačice pored <code>Customize configuration before install</code> i odabira mreže koja će se koristiti. Zasad ostavimo te postavke kakve jesu.</p>
-<p>Nakon pokretanja virtualnog stroja uočit ćemo kako se ne možemo prijaviti ma koje korisničko ime i zaporku isprobali.</p>
-<h2 id="cloud-init">Cloud-init</h2>
-<p>Ubuntove slike za korištenje u oblaku sadrže sustav <a href="https://cloud-init.io/">cloud-init</a> koji omogućuje postavljanje:</p>
-<ul>
-<li>zadanih lokalnih i regionalnih postavki</li>
-<li>imena domaćina</li>
-<li>zaporki korisnika</li>
-<li>SSH ključeva koji se mogu koristiti za prijavu</li>
-<li>diskova koji će biti montirani</li>
-</ul>
-<p>Kako bismo postavili zaporku korisnika, koristit ćemo alat <code>cloud-localds</code> iz paketa <a href="https://github.com/canonical/cloud-utils">cloud-utils</a>. Taj alat služi za pripremu slike diska u odgovarajućem formatu za <code>cloud-init</code> izvod podataka (engl. <em>data source</em>, odakle dolazi <code>ds</code> u <code>localds</code>) <code>NoCloud</code> (<a href="https://github.com/canonical/cloud-init/blob/main/doc/rtd/topics/datasources/nocloud.rst">dokumentacija</a>). Taj će se disk uključiti prilikom stvaranja virtualnog stroja u posljednjem koraku kao drugi disk i <code>cloud-init</code> će ga očitati prilikom prvog pokretanja. Alat <code>cloud-localds</code> kod pokretanja bez argumenata pokazuje pomoć pri korištenju:</p>
-<div class="highlight"><pre><span></span><code>$ cloud-localds 
-Usage: cloud-localds <span class="o">[</span> options <span class="o">]</span> output user-data <span class="o">[</span>meta-data<span class="o">]</span>
-
-   Create a disk <span class="k">for</span> cloud-init to utilize nocloud
-
-   options:
-     -h <span class="p">|</span> --help             show usage
-     -d <span class="p">|</span> --disk-format D    disk format to output. default: raw
-                             can be anything supported by qemu-img or
-                             tar, tar-seed-local, tar-seed-net
-     -H <span class="p">|</span> --hostname    H    <span class="nb">set</span> hostname <span class="k">in</span> metadata to H
-     -f <span class="p">|</span> --filesystem  F    filesystem format <span class="o">(</span>vfat or iso<span class="o">)</span>, default: iso9660
-
-     -i <span class="p">|</span> --interfaces  F    write network interfaces file into metadata
-     -N <span class="p">|</span> --network-config F write network config file to <span class="nb">local</span> datasource
-     -m <span class="p">|</span> --dsmode      M    add <span class="s1">&#39;dsmode&#39;</span> <span class="o">(</span><span class="s1">&#39;local&#39;</span> or <span class="s1">&#39;net&#39;</span><span class="o">)</span> to the metadata
-                             default <span class="k">in</span> cloud-init is <span class="s1">&#39;net&#39;</span>, meaning network is
-                             required.
-     -V <span class="p">|</span> --vendor-data F    vendor-data file
-     -v <span class="p">|</span> --verbose          increase verbosity
-
-   Note, --dsmode, --hostname, and --interfaces are incompatible
-   with metadata.
-
-   Example:
-    * cat my-user-data
-      <span class="c1">#cloud-config</span>
-      password: passw0rd
-      chpasswd: <span class="o">{</span> expire: False <span class="o">}</span>
-      ssh_pwauth: True
-    * <span class="nb">echo</span> <span class="s2">&quot;instance-id: </span><span class="k">$(</span>uuidgen <span class="o">||</span> <span class="nb">echo</span> i-abcdefg<span class="k">)</span><span class="s2">&quot;</span> &gt; my-meta-data
-    * cloud-localds my-seed.img my-user-data my-meta-data
-    * kvm -net nic -net user,hostfwd<span class="o">=</span>tcp::2222-:22 <span class="se">\</span>
-         -drive <span class="nv">file</span><span class="o">=</span>disk1.img,if<span class="o">=</span>virtio -drive <span class="nv">file</span><span class="o">=</span>my-seed.img,if<span class="o">=</span>virtio
-    * ssh -p <span class="m">2222</span> ubuntu@localhost
-must provide output, userdata
-</code></pre></div>
-<p>Pripremimo datoteku <code>user-data</code> tako da je oblika:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#cloud-config</span><span class="w"></span>
-<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asdf1234</span><span class="w"></span>
-<span class="nt">chpasswd</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> expire</span><span class="p">:</span><span class="w"> </span><span class="nv">False</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
-<span class="nt">ssh_pwauth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
-</code></pre></div>
-<p>Ovom datotekom u konfiguraciji oblaka (<code>cloud-config</code>) koju će <code>cloud-init</code> čitati postavljamo zaporku (<code>password</code>) na <code>asdf1234</code>, označavamo da zaporka nije istekla (<code>chpasswd: { expire: False }</code>) i dozvoljavamo prijavu putem SSH korištenjem zaporke <code>ssh_pwauth: True</code>.</p>
-<p>Stvorimo sliku diska naredbom:</p>
-<div class="highlight"><pre><span></span><code>$ cloud-localds user-data.img user-data
-</code></pre></div>
-<p>Ponovimo instalaciju Ubuntua s novom kopijom slike. U posljednjem koraku ćemo iskoristiti mogućnost prilagodbe konfiguracije uključivanjem kvačice pored <code>Customize configuration before install</code>. U dijalogu koji dobijemo odabrati ćemo <code>Add Hardware</code> pa u odjeljku <code>Storage</code> na kartici <code>Details</code> odabrati <code>Select or create custom storage</code>. Klikom na gumb <code>Manage...</code> dobivamo <code>Locate or create storage volume</code> gdje možemo iskoristiti gumb <code>Browse Local</code> kako bismo pronašli upravo stvoreni <code>user-data.img</code>.</p>
-<p>Nakon pokretanja Ubuntua moći ćemo se prijaviti sa s korisničkim imenom <code>ubuntu</code> i postavljenom zaporkom.</p>
+<p>Nakon pokretanja virtualnog stroja uočit ćemo kako se ne možemo prijaviti ma koje korisničko ime i zaporku isprobali jer je potrebno iskorisiti <a href="https://cloud-init.io/">cloud-init</a> za konfiguraciju cloud slike koju smo preuzeli.</p>
 <div class="admonition admonition">
 <p class="admonition-title">Zadatak</p>
 <p>U virtualnom stroju instalirajte HTTP poslužitelj Apache (paket <code>apache2</code>). Iskoristite Firefox ili cURL kako biste se uvjerili da poslužitelj ispravno radi, a zatim (po)maknite zadanu datoteku <code>index.html</code> i na njenom mjestu stvorite novu datoteku sa sadržajem po vašoj želji.</p>
