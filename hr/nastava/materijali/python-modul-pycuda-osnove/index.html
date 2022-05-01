@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/python-modul-pycuda-osnove/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.12">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.27ad92d8.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1468,6 +1468,8 @@
       
       
       
+        
+          
         
           
         
@@ -4978,6 +4980,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../systemd-analyze-analiza-operacijskog-sustava/" class="md-nav__link">
+        Analiza upravitelja operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../systemd-timer-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
         Automatizacija zadaća operacijskog sustava
       </a>
@@ -6779,8 +6795,8 @@
 <h1 id="python-modul-pycuda-osnove-rada-s-gpu-om">Python modul PyCUDA: osnove rada s GPU-om</h1>
 <h2 id="podesenja-za-rad-u-laboratoriju">Podešenja za rad u laboratoriju</h2>
 <p>Emacs je potrebno naučiti da prepoznaje CUDA/OpenCL datoteke kao C. U datoteku <code>.emacs</code> dodajte</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">auto-mode-alist</span> <span class="p">(</span><span class="nb">cons</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cu$&quot;</span> <span class="o">.</span> <span class="nv">c-mode</span><span class="p">)</span> <span class="nv">auto-mode-alist</span><span class="p">))</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">auto-mode-alist</span> <span class="p">(</span><span class="nb">cons</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cl$&quot;</span> <span class="o">.</span> <span class="nv">c-mode</span><span class="p">)</span> <span class="nv">auto-mode-alist</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span><span class="w"> </span><span class="nv">auto-mode-alist</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cu$&quot;</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nv">c-mode</span><span class="p">)</span><span class="w"> </span><span class="nv">auto-mode-alist</span><span class="p">))</span><span class="w"></span>
+<span class="p">(</span><span class="k">setq</span><span class="w"> </span><span class="nv">auto-mode-alist</span><span class="w"> </span><span class="p">(</span><span class="nb">cons</span><span class="w"> </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.cl$&quot;</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nv">c-mode</span><span class="p">)</span><span class="w"> </span><span class="nv">auto-mode-alist</span><span class="p">))</span><span class="w"></span>
 </code></pre></div>
 <p>Prva linija postavlja CUDA C/C++ datoteke s izvornim kodom da koriste Emacsov način rada s C-om, a druga radi to isto za datoteke s OpenCL izvornim kodom.</p>
 <h2 id="hello-world-primjer">Hello world primjer</h2>
@@ -7005,7 +7021,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://group.miletic.net/hr/nastava/materijali/vlc-strujanje-multimedijskog-sadrzaja/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.12">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.27ad92d8.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1468,6 +1468,8 @@
       
       
       
+        
+          
         
           
         
@@ -4923,6 +4925,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../systemd-analyze-analiza-operacijskog-sustava/" class="md-nav__link">
+        Analiza upravitelja operacijskog sustava
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../systemd-timer-automatizacija-zadaca-operacijskog-sustava/" class="md-nav__link">
         Automatizacija zadaća operacijskog sustava
       </a>
@@ -5148,13 +5164,6 @@
         <li class="md-nav__item">
   <a href="#upravljanje-vlc-om-putem-web-sucelja" class="md-nav__link">
     Upravljanje VLC-om putem web sučelja
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#literatura" class="md-nav__link">
-    Literatura
   </a>
   
 </li>
@@ -6775,13 +6784,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#literatura" class="md-nav__link">
-    Literatura
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -6822,7 +6824,7 @@
 <div class="highlight"><pre><span></span><code>$ vlc
 </code></pre></div>
 <h2 id="strujanje">Strujanje</h2>
-<p>Strujanje videa se može pokrenuti pomoću GUI-a (<code>Media/Streaming</code>) koji nam uvelike olakšavaju posao, jer su sve opcije i metode ponuđene na panelima. No, u ovom radu ću prikazati streaming preko command line-a.</p>
+<p>Strujanje videa se može pokrenuti pomoću GUI-a (<code>Media/Streaming</code>) koji nam uvelike olakšavaju posao, jer su sve opcije i metode <a href="https://wiki.videolan.org/Documentation:Advanced_Use_of_VLC">ponuđene na panelima</a>. No, u ovom radu ću prikazati streaming preko command line-a.</p>
 <p>Pomoću naredbe <code>cvlc</code> pokrećemo VLC unutar terminala, zatim s modulom <code>STANDARD</code> omogućujemo streamanje preko mreže nakon što preko opcije <code>mux</code> enkapsuliramo metodu kojom ćemo streamat, u ovom slučaju <code>ogg</code> (ova opcija je obavezna).</p>
 <p>Pomoću opcije <code>dst</code> određujemo na kojoj adresi i kojem portu se klijent može povezati. 192.168.104 je IP adresa računala. Naredba koju upisujemo na server računalu:</p>
 <div class="highlight"><pre><span></span><code>$ cvlc -vvv /home/iva/stream/sintel_trailer-1080p.mp4 <span class="s1">&#39;standard{access=http,mux=ogg,dst=192.168.104:8080}&#39;</span>
@@ -6841,7 +6843,7 @@
 <p>Izlaz je potrebno ponovno snimiti.</p>
 </div>
 <p>Ukoliko upišemo <code>vlc</code> ili <code>nvlc</code> umjesto <code>cvlc</code>, dobivamo i VLC-ovo grafičko sučelje ili ncurses sučelje (respektivno). Parametrom <code>--sout</code> možemo odlučiti kamo će se spremiti sadržaj preuzet strujanjem:</p>
-<div class="highlight"><pre><span></span><code>$ nvlc http:// <span class="m">192</span>.168.104:8080 --sout<span class="o">=</span>file/ogg: sintel_trailer-1080p .ogg
+<div class="highlight"><pre><span></span><code>$ nvlc http:// <span class="m">192</span>.168.104:8080 --sout<span class="o">=</span>file/ogg: sintel_trailer-1080p.ogg
 </code></pre></div>
 <p>Pomoću VLC-a možemo spremiti stream na disk, a da bi to napravili koristimo VLC-ov Stream Output. Spomenuto možemo učiniti koristeći grafičko sučelje i VLC-ov record button ili putem Linux-ove komandne linije parametrom <code>--sout file/muxer:stream.xyz</code>, gdje je <code>muxer</code> jedan od podržanih formata. Format za spremanje streamova možemo mijenjati, podržani formati su:</p>
 <ul>
@@ -6868,32 +6870,21 @@
 <p>Standardan UDP streaming istog videa u avi formatu iz direktorija <code>/home/iva/stream/</code> sa brojem UDP porta 1234:</p>
 <div class="highlight"><pre><span></span><code>$ cvlc -vvv /home/iva/stream/sintel.avi --sout <span class="c1">#std{access=udp, mux=ts, dst=:1234}&#39;</span>
 </code></pre></div>
+<p>Više detalja o strujanju u VLC-u može se pronaći na VideoLAN-ovom wikiju u dijelu dokumentacije <a href="https://wiki.videolan.org/Documentation:Streaming_HowTo">Streaming HowTo</a>: <a href="https://wiki.videolan.org/Documentation:Streaming_HowTo/Command_Line_Examples">Command Line Examples</a>, <a href="https://wiki.videolan.org/Documentation:Streaming_HowTo/Receive_and_Save_a_Stream">Receive and Save a Stream</a> i <a href="https://wiki.videolan.org/Documentation:Streaming_HowTo/Advanced_streaming_with_samples,_multiple_files_streaming,_using_multicast_in_streaming">Advanced streaming with samples, multiple files streaming, using multicast in streaming</a>.</p>
 <h2 id="transkodiranje">Transkodiranje</h2>
 <p>Ako većina klijenata do kojih želim doprijeti koristi operacijski sustav Windows, znači da ću ja za VLC koristiti argument da on transkodira video u Windows Media Video (wmv) jer ću time moć doprijeti do najvećeg broja klijenata i bit ću sigurna da neće imati problema sa gledanjem mojih video snimki. Ako se na playlisti nalazi video u formatu avi, mpeg1, i sl., svaki taj video će se transkodirati u wmv format jer onda pouzdano znam da će većina korisnika (klijenata) bez ikakvih dodatnih kodeka moći gledati iste.</p>
-<p>Primjerice, za Windows Media Video version 1, bitrate 512 with MP3 audio and ASFH muxer over MMSH protocol (mmsh://192.168.0.10:30001) parametri su:</p>
+<p>Primjerice, za Windows Media Video version 1, bitrate 512 with MP3 audio and ASFH muxer over MMSH protocol (<code>mmsh://192.168.0.10:30001</code>) parametri su:</p>
 <div class="highlight"><pre><span></span><code>&#39;#transcode{vcodec=WMV1,vb=512,scale=1,acodec=mp3,ab=64}:std{access=mmsh,mux=asfh,dst=192.168.0.104:30001}&#39;
 </code></pre></div>
-<p>Za DivX version 3, bitrate 1024 with Dolby Digital AC3 audio and ASFH muxer over MMSH protocol (mmsh://192.168.0.10:30001) parametri su:</p>
+<p>Za DivX version 3, bitrate 1024 with Dolby Digital AC3 audio and ASFH muxer over MMSH protocol (<code>mmsh://192.168.0.10:30001</code>) parametri su:</p>
 <div class="highlight"><pre><span></span><code>&#39;#transcode{vcodec=DIV3,vb=1024,acodec=a52,ab=512}:std{access=mmsh,mux=asfh,dst=192.168.0.104:30001}&#39;
 </code></pre></div>
-<p>Za MPEG-4 with marquee filter, bitrate 1024 with MP3 audio and OGG muxer over HTTP protocol (http://192.168.0.10:30001) parametri su:</p>
+<p>Za MPEG-4 with marquee filter, bitrate 1024 with MP3 audio and OGG muxer over HTTP protocol (<code>http://192.168.0.10:30001</code>) parametri su:</p>
 <div class="highlight"><pre><span></span><code>&#39;#transcode{vcodec=mp4v,sfilter=marq,vb=1024,acodec=mp3,ab=512}:std{access=http,mux=ogg,dst=192.168.0.104:30001}
 </code></pre></div>
 <h2 id="upravljanje-vlc-om-putem-web-sucelja">Upravljanje VLC-om putem web sučelja</h2>
-<p>Kako bi omogućili da se VLC kontrolira preko preglednika, potrebno je aktivirati Web interface putem kvačice na <code>Tools/Preferences/Interface/Main interfaces/Web</code>.</p>
-<p>Zatim, otvaramo preglednik i na adresi http://127.0.0.1:8080 se pokreće sljedeći prozor.</p>
-<h2 id="literatura">Literatura</h2>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Reference treba pročistiti i povezati u tekstu.</p>
-</div>
-<ol>
-<li>https://wiki.videolan.org/Documentation:Modules/http_intf</li>
-<li>https://wiki.videolan.org/Documentation:Play_HowTo/Advanced_Use_of_VLC</li>
-<li>https://wiki.videolan.org/Documentation:Streaming_HowTo/Advanced_streaming_with_samples,_multiple_files_streaming,_using_multicast_in_streaming</li>
-<li>https://wiki.videolan.org/Documentation:Streaming_HowTo/Receive_and_Save_a_Stream</li>
-<li>https://wiki.videolan.org/Documentation:Streaming_HowTo/Command_Line_Examples</li>
-</ol>
+<p>Kako bi omogućili da se <a href="https://wiki.videolan.org/Documentation:Modules/http_intf">VLC kontrolira preko preglednika</a>, potrebno je aktivirati Web interface putem kvačice na <code>Tools/Preferences/Interface/Main interfaces/Web</code>.</p>
+<p>Zatim, otvaramo preglednik i na adresi <code>http://127.0.0.1:8080</code> se pokreće sljedeći prozor.</p>
 
               
   
@@ -7003,7 +6994,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>
