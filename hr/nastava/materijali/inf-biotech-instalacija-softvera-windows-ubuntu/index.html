@@ -9,17 +9,17 @@
         <meta name="description" content="GASERI is a research and teaching group at the University of Rijeka Faculty of Informatics and Digital Technologies.">
       
       
-        <meta name="author" content="Petar Živković, Vedran Miletić">
+        <meta name="author" content="Vedran Miletić">
       
       
-        <link rel="canonical" href="https://gaseri.org/hr/nastava/materijali/ceph-distribuirani-datotecni-sustav/">
+        <link rel="canonical" href="https://gaseri.org/hr/nastava/materijali/inf-biotech-instalacija-softvera-windows-ubuntu/">
       
       <link rel="icon" href="../../../../images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
-        <title>Distribuirani datotečni sustav Ceph - GASERI – Group for apps and services on exascale research infrastructure</title>
+        <title>Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech) - GASERI – Group for apps and services on exascale research infrastructure</title>
       
     
     
@@ -64,11 +64,11 @@
     
   
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Distribuirani datotečni sustav Ceph - GASERI – Group for apps and services on exascale research infrastructure" />
+  <meta property="og:title" content="Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech) - GASERI – Group for apps and services on exascale research infrastructure" />
   <meta property="og:description" content="GASERI is a research and teaching group at the University of Rijeka Faculty of Informatics and Digital Technologies." />
-  <meta property="og:url" content="https://gaseri.org/hr/nastava/materijali/ceph-distribuirani-datotecni-sustav/" />
+  <meta property="og:url" content="https://gaseri.org/hr/nastava/materijali/inf-biotech-instalacija-softvera-windows-ubuntu/" />
   
-    <meta http-equiv="onion-location" content="http://vcwkbqby652dtqgbtbtr6ouvs6fu5abx5z45dmlug6dl55d6zcadsuqd.onion/hr/nastava/materijali/ceph-distribuirani-datotecni-sustav/">
+    <meta http-equiv="onion-location" content="http://vcwkbqby652dtqgbtbtr6ouvs6fu5abx5z45dmlug6dl55d6zcadsuqd.onion/hr/nastava/materijali/inf-biotech-instalacija-softvera-windows-ubuntu/">
   
 
   </head>
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#distribuirani-datotecni-sustav-ceph" class="md-skip">
+        <a href="#instalacija-i-konfiguracija-softvera-za-vjezbe-iz-kolegija-informatika-biotech" class="md-skip">
           Preskočite na sadržaj
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Distribuirani datotečni sustav Ceph
+              Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech)
             
           </span>
         </div>
@@ -2184,113 +2184,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Distribuirani datotečni sustav Ceph
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ceph-distribuirani-datotecni-sustav/" class="md-nav__link">
         Distribuirani datotečni sustav Ceph
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Sadržaj
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#razine-cepha" class="md-nav__link">
-    Razine Cepha
-  </a>
-  
-    <nav class="md-nav" aria-label="Razine Cepha">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prva-razina-osd" class="md-nav__link">
-    Prva razina: OSD
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#druga-razina-placement-groups" class="md-nav__link">
-    Druga razina: placement groups
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#treca-razina-pool" class="md-nav__link">
-    Treća razina: pool
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cetvrta-razina-usluge" class="md-nav__link">
-    Četvrta razina: usluge
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementacija" class="md-nav__link">
-    Implementacija
-  </a>
-  
-    <nav class="md-nav" aria-label="Implementacija">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#faza-preflight" class="md-nav__link">
-    Faza preflight
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#faza-storage-cluster" class="md-nav__link">
-    Faza storage cluster
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2874,11 +2772,216 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../inf-biotech-instalacija-softvera-windows-ubuntu/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech)
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sadržaj">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sadržaj
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#priprema-operacijskog-sustava-windows" class="md-nav__link">
+    Priprema operacijskog sustava Windows
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacija-podsustava-windows-subsystem-for-linux-wsl" class="md-nav__link">
+    Instalacija podsustava Windows Subsystem for Linux (WSL)
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalacija podsustava Windows Subsystem for Linux (WSL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-terminal" class="md-nav__link">
+    Windows Terminal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-on-wsl" class="md-nav__link">
+    Ubuntu on WSL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priprema-operacijskog-sustava-ubuntu" class="md-nav__link">
+    Priprema operacijskog sustava Ubuntu
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#racunalna-kemija-kemoinformatika-i-bioinformatika" class="md-nav__link">
+    Računalna kemija, kemoinformatika i Bioinformatika
+  </a>
+  
+    <nav class="md-nav" aria-label="Računalna kemija, kemoinformatika i Bioinformatika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avogadro-za-windowse" class="md-nav__link">
+    Avogadro za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openbabel-za-windowse" class="md-nav__link">
+    OpenBabel za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pymol-za-windowse" class="md-nav__link">
+    PyMOL za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ugene-za-windowse" class="md-nav__link">
+    UGENE za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avogadro-openbabel-pymol-i-ugene-za-ubuntu" class="md-nav__link">
+    Avogadro, OpenBabel, PyMOL i UGENE za Ubuntu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastqc-trim-galore-trinity-rna-seq-bowtie-2-samtools-integrative-genomics-viewer-igv" class="md-nav__link">
+    FastQC, Trim Galore!, Trinity RNA-Seq, Bowtie 2, Samtools, Integrative Genomics Viewer (IGV)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastx-toolkit" class="md-nav__link">
+    FASTX-Toolkit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visual-studio-code" class="md-nav__link">
+    Visual Studio Code
+  </a>
+  
+    <nav class="md-nav" aria-label="Visual Studio Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-remote-wsl" class="md-nav__link">
+    Proširenje za VS Code: Remote - WSL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-python" class="md-nav__link">
+    Proširenje za VS Code: Python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obrada-dokumenata" class="md-nav__link">
+    Obrada dokumenata
+  </a>
+  
+    <nav class="md-nav" aria-label="Obrada dokumenata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marp-pandoc-i-libreoffice" class="md-nav__link">
+    Marp, Pandoc i LibreOffice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-marp" class="md-nav__link">
+    Proširenje za VS Code: Marp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-live-share-extension-pack" class="md-nav__link">
+    Proširenje za VS Code: Live Share Extension Pack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -7164,37 +7267,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#razine-cepha" class="md-nav__link">
-    Razine Cepha
+  <a href="#priprema-operacijskog-sustava-windows" class="md-nav__link">
+    Priprema operacijskog sustava Windows
   </a>
   
-    <nav class="md-nav" aria-label="Razine Cepha">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacija-podsustava-windows-subsystem-for-linux-wsl" class="md-nav__link">
+    Instalacija podsustava Windows Subsystem for Linux (WSL)
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalacija podsustava Windows Subsystem for Linux (WSL)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prva-razina-osd" class="md-nav__link">
-    Prva razina: OSD
+  <a href="#windows-terminal" class="md-nav__link">
+    Windows Terminal
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#druga-razina-placement-groups" class="md-nav__link">
-    Druga razina: placement groups
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#treca-razina-pool" class="md-nav__link">
-    Treća razina: pool
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cetvrta-razina-usluge" class="md-nav__link">
-    Četvrta razina: usluge
+  <a href="#ubuntu-on-wsl" class="md-nav__link">
+    Ubuntu on WSL
   </a>
   
 </li>
@@ -7205,23 +7301,133 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementacija" class="md-nav__link">
-    Implementacija
+  <a href="#priprema-operacijskog-sustava-ubuntu" class="md-nav__link">
+    Priprema operacijskog sustava Ubuntu
   </a>
   
-    <nav class="md-nav" aria-label="Implementacija">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#racunalna-kemija-kemoinformatika-i-bioinformatika" class="md-nav__link">
+    Računalna kemija, kemoinformatika i Bioinformatika
+  </a>
+  
+    <nav class="md-nav" aria-label="Računalna kemija, kemoinformatika i Bioinformatika">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#faza-preflight" class="md-nav__link">
-    Faza preflight
+  <a href="#avogadro-za-windowse" class="md-nav__link">
+    Avogadro za Windowse
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#faza-storage-cluster" class="md-nav__link">
-    Faza storage cluster
+  <a href="#openbabel-za-windowse" class="md-nav__link">
+    OpenBabel za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pymol-za-windowse" class="md-nav__link">
+    PyMOL za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ugene-za-windowse" class="md-nav__link">
+    UGENE za Windowse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avogadro-openbabel-pymol-i-ugene-za-ubuntu" class="md-nav__link">
+    Avogadro, OpenBabel, PyMOL i UGENE za Ubuntu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastqc-trim-galore-trinity-rna-seq-bowtie-2-samtools-integrative-genomics-viewer-igv" class="md-nav__link">
+    FastQC, Trim Galore!, Trinity RNA-Seq, Bowtie 2, Samtools, Integrative Genomics Viewer (IGV)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastx-toolkit" class="md-nav__link">
+    FASTX-Toolkit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visual-studio-code" class="md-nav__link">
+    Visual Studio Code
+  </a>
+  
+    <nav class="md-nav" aria-label="Visual Studio Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-remote-wsl" class="md-nav__link">
+    Proširenje za VS Code: Remote - WSL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-python" class="md-nav__link">
+    Proširenje za VS Code: Python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obrada-dokumenata" class="md-nav__link">
+    Obrada dokumenata
+  </a>
+  
+    <nav class="md-nav" aria-label="Obrada dokumenata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marp-pandoc-i-libreoffice" class="md-nav__link">
+    Marp, Pandoc i LibreOffice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-marp" class="md-nav__link">
+    Proširenje za VS Code: Marp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prosirenje-za-vs-code-live-share-extension-pack" class="md-nav__link">
+    Proširenje za VS Code: Live Share Extension Pack
   </a>
   
 </li>
@@ -7244,7 +7450,7 @@
               
   
                 
-  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/ceph-distribuirani-datotecni-sustav.md" title="Uredi stranicu" class="md-content__button md-icon">
+  <a href="https://github.com/gaseri/website/blob/main/docs/hr/nastava/materijali/inf-biotech-instalacija-softvera-windows-ubuntu.md" title="Uredi stranicu" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
@@ -7253,152 +7459,90 @@
 
 
 
-<h1 id="distribuirani-datotecni-sustav-ceph">Distribuirani datotečni sustav Ceph</h1>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Za više informacija proučite <a href="https://docs.ceph.com/">službenu dokumentaciju</a>.</p>
-</div>
-<p><a href="https://ceph.com/">Ceph</a> je platforma otvorenog koda za distribuirano spremanje podataka koju odlikuje otpornost na kvarove i koja je izuetno skalabilna ("na nivo eksabajta"). Ceph se sastoji od više razina.</p>
-<div class="highlight"><pre><span></span><code><span class="k">digraph</span><span class="w"> </span><span class="nt">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="k">node</span><span class="w"> </span><span class="p">[</span><span class="na">shape</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">box</span><span class="p">];</span><span class="w"></span>
-<span class="w">   </span><span class="nt">RBD</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">RADOS</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">CephFS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">RADOS</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">RADOS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">pool</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">pool</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;CRUSH map&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;CRUSH map&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;PG 1&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;CRUSH map&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;PG 2&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;CRUSH map&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;PG 3&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;CRUSH map&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;PG n&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 1&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 2&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 2&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 3&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 1&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;PG 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;cluster node 3&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;cluster node 1&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;OSDs 1 (proizvoljan broj diskova)&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;cluster node 2&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;OSDs 2 (proizvoljan broj diskova)&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;cluster node 3&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nt">&quot;OSDs 3 (proizvoljan broj diskova)&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<h1 id="instalacija-i-konfiguracija-softvera-za-vjezbe-iz-kolegija-informatika-biotech">Instalacija i konfiguracija softvera za vježbe iz kolegija Informatika (BioTech)</h1>
+<p>Upute u nastavku pisane su za korisnike Microsoftovih operacijskih sustava <a href="https://www.microsoft.com/en-us/windows">Windows, verzije 10 i 11</a>. Ako ste korisnik Ubuntua, možete preskočiti dio uputa koji je specifičan za operacijski sustav Windows i odmah početi s upisivanjem naredbi danih naredbi u terminalu.</p>
+<h2 id="priprema-operacijskog-sustava-windows">Priprema operacijskog sustava Windows</h2>
+<p>Korištenjem sustava <a href="https://support.microsoft.com/en-us/windows/update-windows-3c5ae7fc-9fb6-9af1-1984-b5e0412c556a">Windows Update</a> instalirajte sve dostupne nadogradnje. Po potrebi, ponovno pokrenite računalo kad Windowsi to zatraže. Ovaj korak je nužan preduvjet za nastavak i s njime ste gotovi tek kada vam Windowsi prestanu nuditi ikakve nadogradnje za instalaciju.</p>
+<h2 id="instalacija-podsustava-windows-subsystem-for-linux-wsl">Instalacija podsustava Windows Subsystem for Linux (WSL)</h2>
+<p>Instalirajte Windows Subsystem for Linux (WSL) prema <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Microsoftovim uputama</a>, specifično odjeljku <code>Install WSL command</code>. Nemojte zaboraviti pokrenuti PowerShell ili Windows Command Prompt kao administrator prije upisivanja navedene naredbe.</p>
+<h3 id="windows-terminal">Windows Terminal</h3>
+<p>Dok čekate da WSL odradi svoje, iz <a href="https://apps.microsoft.com/">Microsoftovog Storea</a> instalirajte <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701">Windows Terminal</a>.</p>
+<h3 id="ubuntu-on-wsl">Ubuntu on WSL</h3>
+<p>Nakon ponovnog pokretanja operacijskog sustava Ubuntu bi se trebao pokrenuti sam. Ako se to ne dogodi, pokrenite Ubuntu i pričekajte da se instalira; instalacija će trajati najviše nekoliko minuta. Nakon završetka instalacije postavite korisničko ime, postavite zaporku (nećete vidjeti znakove koje utipkate) i ponovite unos iste zaporke. Kad dobijete pozdravnu poruku, možete zatvoriti Ubuntu.</p>
+<p>Ako ste nehotice zatvorili Ubuntu prije unosa svih podataka i time prekinuli instalaciju, vratite instalirani Ubuntu u početno stanje prema <a href="https://support.microsoft.com/en-us/windows/repair-apps-and-programs-in-windows-e90eefe4-d0a2-7c1b-dd59-949a9030f317">Microsoftovim uputama</a> pa ponovite postupak instalacije i postavljanja korisničkog imena i lozinke.</p>
+<h2 id="priprema-operacijskog-sustava-ubuntu">Priprema operacijskog sustava Ubuntu</h2>
+<p>Pokrenite Windows Terminal pa <a href="https://docs.microsoft.com/en-us/windows/terminal/panes">korištenjem dropdown izbornika u njemu otvorite Ubuntu</a> ili pokrenite Terminal na Ubuntuu. Upišite naredbu:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt update
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<h2 id="razine-cepha">Razine Cepha</h2>
-<h3 id="prva-razina-osd">Prva razina: OSD</h3>
-<p>Object store daemon (OSD) obavlja spremanje podataka, replikaciju, oporavljanje podataka te pruža neke podatke Monitorima tako što provjerava druge OSD-eove da li su u funkciji. Možemo reći da oni otprilike predstavljaju konkretni hard-disk na kojemu će se spremati podaci.</p>
-<h3 id="druga-razina-placement-groups">Druga razina: placement groups</h3>
-<p>Grupe za razmještaj (engl. placement groups) prikupljaju objekte sa sloja iznad i upravljaju njima kao grupom te ih mapiraju u OSD-ove ispod sebe. Na ovom sloju se vrši kopiranje podataka. Broj kopija određuje se u sloju iznad, točnije, Pool razina. PGovi su zaslužni za hash mapiranje objekata u OSD-ove zato da OSD-ovi budu ravnomjerno iskorišteni prilikom dodavanja novih objekata u Pool.</p>
-<h3 id="treca-razina-pool">Treća razina: pool</h3>
-<p>Na ovoj razini se događa većina korisničke interakcije sa sustavom. Tu se unose naredbe poput get, put i delete za objekte u bazenu. Pool se sastoji od nekoliko PGova i njihov broj se određuje kada se on kreira.</p>
-<p>CRUSH mape -- specificiraju se za po jedan Pool i služe tome da prepravljaju distribuciju objekata u OSD-eove prema pravilima koje definira administrator. To se radi iz razloga da dvije kopije ne završe na istom disku. Crush mape se ručno rade te se kompajliraju i proslijede klasteru.</p>
-<h3 id="cetvrta-razina-usluge">Četvrta razina: usluge</h3>
-<p>Reliable Autonomic Distributed Object Store (RADOS) predstavlja dijeljeno spremanje podataka visokih performansi, odnosno prva tri sloja čine RADOS uslugu. RADOS je baza na koju se grade malo složeniji sustavi poput RBD (Rados Block Device) i CephFS.</p>
-<p>RADOS block device (RBD) je, kao što samo ime sugerira, blok uređaj spremljen u RADOSU. RBD-i su razgranati preko nekoliko PGova radi boljih performasi te su promjenjivih veličina.</p>
-<p>CephFS je POSIX datotečni sustav implementiran nad RADOSom. CephFS je još u izradi dok su RADOS i RBD usluge dostupne.</p>
-<h2 id="implementacija">Implementacija</h2>
-<p>Da bi implementirali osnovni Ceph klaster za spremanje podataka moramo imati najmanje 2 OSD-a, Monitor te MDS (Metadata Server).</p>
-<p>Monitor -- održava mape stanja klastera što uključuje, mapu monitora, mapu OSD-a, mapu PGova i CRUSH mapu.</p>
-<p>MDS -- čuva meta podatke u ime Ceph datotečnog sustava. Oni omogučavaju da korisnici unose naredbe poput ls, find i slično.</p>
-<p>Sama implementacija sastoji se od dvije faze, ali ja nažalost nisam uspio do kraja implementirati sustav. Točnije greška se javlja kada bi admin čvor morao putem naredbe <code>ceph-deploy</code> instalirat ceph repozitorije na ostale čvorove i pripremiti ih za instaliranje ceph monitora.</p>
-<p>Za implementaciju koristio sam Vmware Workstation te četiri virtualne mašine u mreži sa CentOS oeprativnim sustavom.</p>
-<h3 id="faza-preflight">Faza preflight</h3>
-<p>Ova faza uključuje postavljanje admin čvora sa kojega zovemo ceph-deploy i 3 čvora koja će predstavljati naš ceph klaster.</p>
-<p>Instaliramo ssh ako je potrebno:</p>
-<div class="highlight"><pre><span></span><code>$ sudo yum install openssh-server
+<p>i vašu zaporku kad vas upita. Zatim upišite naredbu:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt upgrade
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Prvo moramo instalirati ceph repozitorij na admin čvor. To radimo tako da napravimo YUM entry:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[ceph-noarch]</span><span class="w"></span>
-<span class="na">name</span><span class="o">=</span><span class="s">Ceph noarch packages</span><span class="w"></span>
-<span class="na">baseurl</span><span class="o">=</span><span class="s">https://download.ceph.com/rpm-{ceph-release}/{distro}/noarch</span><span class="w"></span>
-<span class="na">enabled</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
-<span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
-<span class="na">type</span><span class="o">=</span><span class="s">rpm-md</span><span class="w"></span>
-<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://download.ceph.com/keys/release.asc</span><span class="w"></span>
+<p>i prihvatite nadogradnje koje vam ponudi.</p>
+<h2 id="python">Python</h2>
+<p>Upišite redom naredbe:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install python-is-python3 python3 python3-pip python3-ipykernel python3-autopep8 pylint
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Zatim radimo update repozitorija i instaliramo ceph-deploy:</p>
-<div class="highlight"><pre><span></span><code>$ sudo yum update <span class="o">&amp;&amp;</span> sudo yum install ceph-deploy
+<div class="highlight"><pre><span></span><code>$ sudo apt install python3-rdkit python3-sympy python3-numpy python3-scipy python3-matplotlib python3-pandas
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Sada moram za svaki čvor dodati hostname u <code>/etc/hosts</code>.</p>
-<div class="highlight"><pre><span></span><code>(...)
-192.168.72.129  node1
-192.168.72.130  node2
-192.168.72.131  node3
+<h2 id="racunalna-kemija-kemoinformatika-i-bioinformatika">Računalna kemija, kemoinformatika i Bioinformatika</h2>
+<h3 id="avogadro-za-windowse">Avogadro za Windowse</h3>
+<p>Preuzmite Avogadro sa <a href="https://avogadro.cc/">službenih stranica</a>. Instalirajte ga sa zadanim postavkama. Ako se kod pokretanja požali da mu nedostaju određene datoteke <code>.dll</code>, instalirajte verziju 1.90.0 za 64-bitne Windowse umjesto 1.2.0 za 32-bitne.</p>
+<h3 id="openbabel-za-windowse">OpenBabel za Windowse</h3>
+<p>Preuzmite OpenBabel sa <a href="http://openbabel.org/">službenih stranica</a>. Instalirajte ga sa zadanim postavkama.</p>
+<h3 id="pymol-za-windowse">PyMOL za Windowse</h3>
+<p>Preuzmite PyMOL sa <a href="https://pymol.org/">službenih stranica</a>. Instalirajte ga sa zadanim postavkama. Ako se u instalaciji požali na duljinu putanje, instalirajte ga za sve korisnike uz korištenje administratorskih ovlasti umjesto samo za sebe.</p>
+<h3 id="ugene-za-windowse">UGENE za Windowse</h3>
+<p>Preuzmite UGENE sa <a href="http://ugene.net/">službenih stranica</a>. Instalirajte ga sa zadanim postavkama.</p>
+<h3 id="avogadro-openbabel-pymol-i-ugene-za-ubuntu">Avogadro, OpenBabel, PyMOL i UGENE za Ubuntu</h3>
+<p>U (Windows) Terminalu upišite redom naredbe:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install avogadro openbabel openbabel-gui python3-openbabel pymol ugene
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Na sve čvorove dodajem ceph korisnike kojima moram staviti root ovlasti tako da se ceph-deploy može spojiti bez šifre i instalirati ceph:</p>
-<div class="highlight"><pre><span></span><code>$ sudo useradd -d /home/ceph -m ceph
-$ sudo passwd ceph
+<h3 id="fastqc-trim-galore-trinity-rna-seq-bowtie-2-samtools-integrative-genomics-viewer-igv">FastQC, Trim Galore!, Trinity RNA-Seq, Bowtie 2, Samtools, Integrative Genomics Viewer (IGV)</h3>
+<p>Upišite redom naredbe:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install fastqc trim-galore trinityrnaseq bowtie2 igv samtools
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Te im dododajem root ovlasti:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;ceph ALL = (root) NOPASSWD:ALL&quot;</span> <span class="p">|</span> sudo tee /etc/sudoers.d/ceph
-$ sudo chmod <span class="m">0440</span> /etc/sudoers.d/ceph
+<h3 id="fastx-toolkit">FASTX-Toolkit</h3>
+<p>Prvo instalirajte cURL koji ćemo iskoristiti za preuzimanje paketa:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install curl
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Idući korak je konfiguriati sve čvorove sa SSH pristupom bez šifre:</p>
-<div class="highlight"><pre><span></span><code>$ ssh-keygen
-Generating public/private key pair.
-Enter file <span class="k">in</span> which to save the key <span class="o">(</span>/ceph-client/.ssh/id_rsa<span class="o">)</span>:
-Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
-Enter same passphrase again:
-Your identification has been saved <span class="k">in</span> /ceph-client/.ssh/id_rsa.
-Your public key has been saved <span class="k">in</span> /ceph-client/.ssh/id_rsa.pub.
+<p>Zatim upišite redom naredbe:</p>
+<div class="highlight"><pre><span></span><code>$ curl -O http://de.archive.ubuntu.com/ubuntu/pool/universe/f/fastx-toolkit/fastx-toolkit_0.0.14-5_amd64.deb
+$ sudo apt install ./fastx-toolkit_0.0.14-5_amd64.deb
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Za svaki čvor kopiram ssh key do svakog drugog čvora:</p>
-<div class="highlight"><pre><span></span><code>$ ssh-copy-id ceph@node1
-$ ssh-copy-id ceph@node2
-$ ssh-copy-id ceph@node3
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>Preuzmite Visual Studio Code sa <a href="https://code.visualstudio.com/">službenih stranica</a>. Instalirajte ga sa zadanim postavkama.</p>
+<h3 id="prosirenje-za-vs-code-remote-wsl">Proširenje za VS Code: Remote - WSL</h3>
+<p>Ako ste na Windowsima, u dijelu <code>Extensions</code> koji se nalazi u <code>Side Bar</code>-u (<a href="https://code.visualstudio.com/docs/getstarted/userinterface">pregled sučelja</a>) instalirajte <a href="https://code.visualstudio.com/docs/remote/wsl-tutorial">proširenje za udaljeni rad korištenjem WSL-a</a> i povežite se na Ubuntu koji ste instalirali.</p>
+<h3 id="prosirenje-za-vs-code-python">Proširenje za VS Code: Python</h3>
+<p>Ako ste na Windowsima, uvjerite se da ste <a href="https://code.visualstudio.com/docs/remote/wsl">povezani na WSL pogledom u donji lijevi kut</a> gdje bi trebalo pisati <code>WSL: Ubuntu</code>; ako to ne piše, prvo se povežite na Ubuntu u WSL-u prema uputama danim u prethodnom dijelu.</p>
+<p>Kad ste se uvjerili da ste povezani na Ubuntu, instalirajte <a href="https://code.visualstudio.com/docs/languages/python">proširenje za Python</a>.</p>
+<h2 id="obrada-dokumenata">Obrada dokumenata</h2>
+<h3 id="marp-pandoc-i-libreoffice">Marp, Pandoc i LibreOffice</h3>
+<p>U (Windows) Terminalu upišite redom naredbe:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt install npm pandoc libreoffice
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<p>Te na kraju modificiram datoteku <code>~/.ssh/config</code> admin čvora tako da se logira na korisnike <code>ceph</code> ostalih čvorova:</p>
-<div class="highlight"><pre><span></span><code>Host node1
-  User ceph
-Host node2
-  User ceph
-Host node3
-  User ceph
+<div class="highlight"><pre><span></span><code>$ npm i @marp-team/marp-core @marp-team/marp-cli
+<span class="o">(</span>...<span class="o">)</span>
 </code></pre></div>
-<h3 id="faza-storage-cluster">Faza storage cluster</h3>
-<p>U ovoj fazi postavljamo Monitor i dva OSD-a. Za početak možemo napravit direktorij na admin čvoru gdje će nam biti konfiguracijske datoteke koje kreira ceph-deploy prilikom generiranja klastera.</p>
-<div class="highlight"><pre><span></span><code>$ mkdir my-cluster
-$ <span class="nb">cd</span> my-cluster
-</code></pre></div>
-<p>Stvaramo klaster:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy new node1
-</code></pre></div>
-<p>Idući korak bi bio instaliranje Cepha na čvorove putem ceph-deploya:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy install node1 node2 node3
-</code></pre></div>
-<p>Ovako bi izgledala uspješna instalacija, ali meni prilikom pokretanja naredbe javi grešku da ceph korisnik nema root ovlasti kada ceph-deploy treba pokrenuti naredbu za dohvaćanje cepha. Nije pomoglo ni dodavanje cepha kao roota u datoteci <code>/etc/sudoers</code>.</p>
-<p>Nakon toga slijedi dodavanje Monitora i dohvaćanje ključeva:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy mon create-initial
-$ ceph-deploy gatherkeys node1
-</code></pre></div>
-<p>Dodajemo 2 OSD-a:</p>
-<div class="highlight"><pre><span></span><code>$ ssh node2
-$ sudo mkdir /var/local/osd0
-$ <span class="nb">exit</span>
-$ ssh node3
-$ sudo mkdir /var/local/osd1
-$ <span class="nb">exit</span>
-</code></pre></div>
-<p>Pomoću ceph-deploya pripremimo OSD-ove:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy osd prepare node2:/var/local/osd0 node3:/var/local/osd1
-</code></pre></div>
-<p>Te ih aktiviramo:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy osd activate node2:/var/local/osd0 node3:/var/local/osd1
-</code></pre></div>
-<p>Osiguramo da imamo pristup datoteci <code>ceph.client.admin.keyring</code>:</p>
-<div class="highlight"><pre><span></span><code>$ sudo chmod +r /etc/ceph/ceph.client.admin.keyring
-</code></pre></div>
-<p>Zatim putem ceph-deploya kopiramo konfiguracijsku datoteku i admin ključ admin čvoru i ostalim čvorovima tako da možemo koristiti cephov CLI bez da moramo unositi adresu Monitora i ceph.client.admin.keyring prilikom izvođenja naredbi.</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy admin node1 node2 node3 admin-node
-</code></pre></div>
-<p>Naredbom:</p>
-<div class="highlight"><pre><span></span><code>$ ceph health
-</code></pre></div>
-<p>provjerimo da li nam je klaster aktivan, a MDS (Metadata server) dodajemo pomoću naredbe:</p>
-<div class="highlight"><pre><span></span><code>$ ceph-deploy mds create node1
-</code></pre></div>
+<h3 id="prosirenje-za-vs-code-marp">Proširenje za VS Code: Marp</h3>
+<p>Instalirajte Marp za Visual Studio Code prema <a href="https://marp.app/#get-started">službenim uputama</a>.</p>
+<h3 id="prosirenje-za-vs-code-live-share-extension-pack">Proširenje za VS Code: Live Share Extension Pack</h3>
+<p>Instalirajte i konfigurirajte Visual Studio Live Share prema <a href="https://code.visualstudio.com/learn/collaboration/live-share">službenim uputama</a>.</p>
 
               
   
     <p>
     
-      <small>Author: Petar Živković, Vedran Miletić</small><br />
+      <small>Author: Vedran Miletić</small><br />
     
     
     </p>
@@ -7417,7 +7561,7 @@ $ <span class="nb">exit</span>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../bro-raspoznavanje-upada-u-sustav/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Raspoznavanje upada u sustav alatom Bro" rel="prev">
+        <a href="../ifconfig-konfiguracija-mreznih-sucelja/" class="md-footer__link md-footer__link--prev" aria-label="Prethodno: Osnovni alati za konfiguraciju računalne mreže" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -7426,20 +7570,20 @@ $ <span class="nb">exit</span>
               <span class="md-footer__direction">
                 Prethodno
               </span>
-              Raspoznavanje upada u sustav alatom Bro
+              Osnovni alati za konfiguraciju računalne mreže
             </div>
           </div>
         </a>
       
       
         
-        <a href="../chembl-baza-bioaktivnih-molekula/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Baza bioaktivnih molekula ChEMBL" rel="next">
+        <a href="../intelektualno-vlasnistvo-softver-podaci-znanstveni-radovi/" class="md-footer__link md-footer__link--next" aria-label="Sljedeće: Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Sljedeće
               </span>
-              Baza bioaktivnih molekula ChEMBL
+              Intelektualno vlasništvo nad softverom, podacima i znanstvenim radovima
             </div>
           </div>
           <div class="md-footer__button md-icon">
