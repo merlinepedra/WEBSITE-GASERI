@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://gaseri.org/hr/nastava/materijali/linux-kernel-osnove/">
       
       <link rel="icon" href="../../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
@@ -3046,6 +3046,33 @@
         <li class="md-nav__item">
   <a href="#specficnosti-jezgre-arch-linuxa" class="md-nav__link">
     Specfičnosti jezgre Arch Linuxa
+  </a>
+  
+    <nav class="md-nav" aria-label="Specfičnosti jezgre Arch Linuxa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nadogradnja-verzije-jezgre" class="md-nav__link">
+    Nadogradnja verzije jezgre
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promjena-vrste-jezgre-koja-se-koristi" class="md-nav__link">
+    Promjena vrste jezgre koja se koristi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pokretanje-nove-verzije-jezgre-koristenjem-kexeca" class="md-nav__link">
+    Pokretanje nove verzije jezgre korištenjem kexeca
   </a>
   
 </li>
@@ -7147,6 +7174,33 @@
     Specfičnosti jezgre Arch Linuxa
   </a>
   
+    <nav class="md-nav" aria-label="Specfičnosti jezgre Arch Linuxa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nadogradnja-verzije-jezgre" class="md-nav__link">
+    Nadogradnja verzije jezgre
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promjena-vrste-jezgre-koja-se-koristi" class="md-nav__link">
+    Promjena vrste jezgre koja se koristi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pokretanje-nove-verzije-jezgre-koristenjem-kexeca" class="md-nav__link">
+    Pokretanje nove verzije jezgre korištenjem kexeca
+  </a>
+  
 </li>
       
     </ul>
@@ -7261,7 +7315,11 @@
 <li>dugotrajna, paket <a href="https://archlinux.org/packages/?name=linux-lts">linux-lts</a></li>
 <li>Zen, paket <a href="https://archlinux.org/packages/?name=linux-zen">linux-zen</a></li>
 </ul>
-<p>Zadana instalacija koristi stabilnu verziju, ali za ilustraciju korištenja vrste jezgre koja nije zadana prijeći ćemo na dugotrajnu instalacijom paketa <code>linux-lts</code>:</p>
+<p>Zadana instalacija koristi stabilnu verziju.</p>
+<h3 id="nadogradnja-verzije-jezgre">Nadogradnja verzije jezgre</h3>
+<p>Kod nadogradnje svih paketa naredbom <code>pacman -Syu</code>, moguće je da će među nadogradnjama biti i novija verzija paketa <code>linux</code>. Za razliku od svih ostalih paketa, nadogradnja jezgre zahtijeva ponovno pokretanje operacijskog sustava kako bi se pokrenula. Štoviše, sve do ponovnog pokretanja operacijskog sustava neće ispravno raditi naredbe koje koriste informacije o pokrenutoj verziji jezgre kod traženja modula jezgre (kao što je, primjerice, naredba <code>modprobe</code>).</p>
+<h3 id="promjena-vrste-jezgre-koja-se-koristi">Promjena vrste jezgre koja se koristi</h3>
+<p>Za ilustraciju korištenja vrste jezgre koja nije zadana prijeći ćemo na dugotrajnu instalacijom paketa <code>linux-lts</code>:</p>
 <div class="highlight"><pre><span></span><code>$ sudo pacman -S linux-lts
 </code></pre></div>
 <p>Nakon instalacije, ali i ponovnog pokretanja uvjerit ćemo se da se novoinstalirana varijanta jezgra ne koristi:</p>
@@ -7272,6 +7330,18 @@ Linux ares.miletic.net <span class="m">5</span>.17.5-arch1-1 <span class="c1">#1
 <div class="highlight"><pre><span></span><code>$ ls /boot
 efi  grub  initramfs-linux-fallback.img  initramfs-linux-lts-fallback.img  initramfs-linux-lts.img  initramfs-linux.img  vmlinuz-linux  vmlinuz-linux-lts
 </code></pre></div>
+<h2 id="pokretanje-nove-verzije-jezgre-koristenjem-kexeca">Pokretanje nove verzije jezgre korištenjem kexeca</h2>
+<p>Iako pokretanje nove verzije jezgre operacijskog sustava nominalno zahtijeva ponovno pokretanje računala, Linux podržava <a href="https://en.wikipedia.org/wiki/Kexec">sustavski poziv pokretanja jezgre</a> (engl. <em>kernel execute</em>, kraće kexec) koji omogućuje pokretanje novije verzije jezgre iz trenutno pokrenute jezgre. Time se preskače inicijalizacija hardvera i pokretanje bootloadera.</p>
+<p>Prvi korak je instalacija paketa <code>kexec-tools</code>:</p>
+<div class="highlight"><pre><span></span><code>$ sudo pacman -S kexec-tools
+</code></pre></div>
+<p>Ako je instalirana nova verzija jezgre, alat <code>kexec</code> je može pripremiti za pokretanje korištenjem parametra <code>-l</code> na način:</p>
+<div class="highlight"><pre><span></span><code>$ kexec -l /boot/vmlinuz-linux --initrd<span class="o">=</span>/boot/initramfs-linux.img --reuse-cmdline
+</code></pre></div>
+<p>Pokretanje nove verzije jezgre uz zaustavljanje svih usluga i odmontiranje svih datotečnih sustava vrši se korištenjem systemdove naredbe <code>systemctl kexec</code>:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl kexec
+</code></pre></div>
+<p>Više detalja moguće je pronaći na <a href="https://wiki.archlinux.org/title/Kexec">stranici kexec na ArchWikiju</a>.</p>
 
               
   
@@ -7380,10 +7450,10 @@ efi  grub  initramfs-linux-fallback.img  initramfs-linux-lts-fallback.img  initr
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Kopirano u me\u0111uspremnik", "clipboard.copy": "Kopirajte u me\u0111uspremnik", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Pretra\u017eivanje", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "Ni\u0161ta nije prona\u0111eno", "search.result.one": "1 rezultat pretra\u017eivanja", "search.result.other": "# rezultata pretra\u017eivanja", "search.result.placeholder": "Unesite pojam pretra\u017eivanja", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.f758a944.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.a877e258.min.js"></script>
       
     
   </body>
