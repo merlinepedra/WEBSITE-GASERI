@@ -516,6 +516,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://gaseri.org/hr/nastava/kolegiji/INF-Pharma/</loc>
+         <lastmod>2022-07-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://gaseri.org/hr/nastava/kolegiji/IPVO/</loc>
+         <lastmod>2022-07-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://gaseri.org/hr/nastava/kolegiji/KM/</loc>
          <lastmod>2022-07-14</lastmod>
          <changefreq>daily</changefreq>
