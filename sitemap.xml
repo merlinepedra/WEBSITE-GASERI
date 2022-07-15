@@ -1801,7 +1801,32 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/KM/</loc>
+         <lastmod>2022-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/OPK/</loc>
+         <lastmod>2022-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/PW/</loc>
+         <lastmod>2022-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/RBKBF/</loc>
+         <lastmod>2022-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/RM/</loc>
+         <lastmod>2022-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://gaseri.org/hr/nastava/programi/verzija-2022-2023/URS/</loc>
          <lastmod>2022-07-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
